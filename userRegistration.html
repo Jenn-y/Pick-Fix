@@ -37,28 +37,62 @@
         <div class="arrow_box"></div>
       </div>
     </div>
-    <div class="registrationBlock">
 
-        <h1>Register</h1>
+    <div class="registrationWrapper"><div class="registrationBlock">
 
-        <div class="leftBlock">
+        <h1>Register as a professional</h1>
+
             <div>
-                <label for="email">Email</label>
-                <input id="email" type="text" placeholder="Enter Email" name="email" required>
+                <label>Full Name<br>
+                    <input type="text" placeholder="First name" required>
+                    <input type="text" placeholder="Last name" required>
+                </label>
             </div>
 
             <div>
-                <label for="psw">Password</label>
-                <input id="psw" type="password" placeholder="Enter Password" name="psw" required>
+                <label for="email">Password</label><br>
+                <input id="email" type="email" placeholder="example: email@gmail.com" required>
             </div>
-        </div>
-        <div class="rightBlock">
+
+            <div>
+                <label for="workAreas">Available for work in:</label><br>
+                <input id="workAreas" type="checkbox" placeholder="Choose cities you are available for work" required>
+            </div>
+
+            <div>
+                <label for="categories">Categories of work:</label><br>
+                <input id="categories" type="checkbox" placeholder="Mark all categories you provide services in" required>
+            </div>
+
+            <div>
+                <label>Phone Number<br>
+                    <input type="number" placeholder="Area code" required>
+                    <input type="number" placeholder="Phone Number" required>
+                </label>
+            </div>
+
+            <div>
+                <input type="radio" id="male" name="gender" value="male">
+                <label for="male">Male</label><br>
+                <input type="radio" id="female" name="gender" value="female">
+                <label for="female">Female</label><br>
+                <input type="radio" id="other" name="gender" value="other">
+                <label for="other">Prefer no to say</label>
+             </div>
             <div>
                 <p>By creating an account you agree to our <a href="#">Terms & Privacy</a>.</p>
-                <button type="submit" class="registerButton">Register</button>
+                <button type="submit" class="buttonStyle">START WORKING</button>
             </div>
-        <p>Already have an account? <a href="#">Sign in</a>.</p>
-    </div></div>
+    </div>
+    <div class="verticalLine"></div>
+    <div class="signInBlock">
+        <h4>Already have an account?</h4>
+        <button type="button" class="buttonStyle">SIGN IN</button>
+    </div>
+    </div>
 </main>
+
+<footer>footer</footer>
+
 </body>
 </html>
