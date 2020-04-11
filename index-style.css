@@ -1,0 +1,233 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: sans-serif;
+    background-color: #5e3a11;
+    margin: 0;
+    padding: 0;
+    background-image: url("Images/background.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+#page-container {
+    position: relative;
+    min-height: 100vh;
+}
+
+/* Theater screen */
+
+#welcome {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    width: 100%;
+    height: 470px;
+
+    position: relative;
+}
+
+.color-overlay {
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    opacity: 0.4;
+
+    position: absolute;
+}
+
+#welcome h1 {
+    color: white;
+    margin-bottom: 2rem;
+    z-index: 1;
+}
+
+#welcome a {
+    color: white;
+    font-size: 18px;
+    text-decoration: none;
+    padding: 15px 50px;
+    border-radius: 3px;
+    background-color: #4dbc15;
+    z-index: 1;
+}
+
+#welcome a:hover {
+    background-color: #44a512;
+}
+
+main {
+    background-color: #f4f4f4;
+    width: 100%;
+    padding-bottom: 100px;
+}
+
+.text {
+    width: 1200px;
+    margin: 0 auto;
+    padding-top: 50px;
+}
+
+.text p {
+    padding-top: 20px;
+}
+
+.text span {
+    float: right;
+    color: #00cdf1;
+    cursor: pointer;
+}
+
+.text span:hover {
+    color: #06b3d6;
+}
+
+/* Popular services section */
+
+#popular-services {
+    display: flex;
+    justify-content: space-between;
+    width: 1200px;
+    height: 250px;
+    padding-top: 30px;
+    margin: 0 auto;
+}
+
+.service {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 280px;
+    height: 230px;
+
+    box-shadow: 3px 3px 3px 2px #ccc;
+}
+
+.service:last-child {
+    margin-right: 0;
+}
+
+.service img {
+    width: 280px;
+    height: 180px;
+}
+
+.service a {
+    text-decoration: none;
+    color: black;
+    margin-top: 15px;
+}
+
+/* Vetted professionals section*/
+
+#vetted-professionals {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    width: 1200px;
+    height: 250px;
+    background-color: #f4f4f4;
+
+    margin: 0 auto;
+    padding-bottom: 50px;
+}
+
+#vetted-professionals i {
+    color: #5a5a5a;
+    font-size: 55px;
+    padding-bottom: 1rem;
+}
+
+#vetted-professionals h2 {
+    color: #5a5a5a;
+    padding-bottom: 1rem;
+}
+
+#vetted-professionals p {
+    padding-bottom: 0.5rem;
+    color: #5a5a5a;
+}
+
+#vetted-professionals span {
+    color: #00cdf1;
+    cursor: pointer;
+}
+
+#vetted-professionals span:hover {
+    color: #06b3d6;
+}
+
+/* Footer */
+
+footer {
+    width: 100%;
+    min-height: 80px;
+    background-color: #1d1d1d;
+
+    position: absolute;
+    bottom: 0
+
+}
+
+#inner-footer {
+    width: 1200px;
+    margin: 0 auto;
+}
+
+.line {
+    width: 100%;
+    height: 1px;
+    background-color: lightgray;
+}
+
+#social-media {
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+#social-media p {
+    color: lightgray;
+}
+
+#social-media a {
+    color: lightgray;
+    height: 2.5rem;
+    width: 2.5rem;
+    display: inline-block;
+    border-radius: 1.75rem;
+    border: 1px solid lightgray;
+    font-size: 1.125rem;
+    text-align: center;
+    line-height: 2.5rem;
+    margin-left: 2rem;
+}
+
+#contact {
+    height: 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#contact a {
+    margin-right: 1rem;
+    color: lightgray;
+    text-decoration: none;
+}
+
+#contact p {
+    color: #f4f4f4;
+    font-weight: lighter;
+}

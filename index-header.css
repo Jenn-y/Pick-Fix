@@ -1,0 +1,77 @@
+header {
+    width: 100%;
+    height: 64px;
+    background-color: white;
+}
+
+#inner-header {
+    display: flex;
+    align-items: center;
+
+    width: 1200px;
+    margin: 0 auto;
+    height: 100%;
+    background-color: white;
+}
+
+nav ul {
+    list-style-type: none;
+}
+
+nav > ul > li {
+    display: inline-block;
+
+    position: relative;
+}
+
+header a {
+    text-decoration: none;
+    color: black;padding: 16px 20px;
+}
+
+#services {
+    flex: 1 1 auto;
+}
+
+#login {
+    flex: 0 1 auto;
+}
+
+#services ul {
+    margin-left: 20px;
+}
+#services li i {
+    transition: all 0.15s ease-in-out;
+}
+
+#services li:hover i {
+    transform: rotate(90deg);
+}
+
+/* Dropdown menu */
+
+nav ul ul {
+    position: absolute;
+    display: none;
+}
+
+nav ul li:hover > ul {
+    display: block;
+    z-index: 2;
+    left: -11px;
+    width: 200px;
+    top: calc(100%);
+    background-color: white;
+}
+
+nav ul li:hover > ul > li {
+    margin: 30px 0 30px 0;
+}
+
+nav ul li:hover > ul > li > a {
+    color: dimgray;
+}
+
+nav ul li:hover > ul > li > a:hover {
+    color: black;
+}
