@@ -1,6 +1,5 @@
-body {
+#login {
     font-family: sans-serif;
-    background-color: #5e3a11;
     margin: 0;
     padding: 0;
     background-image: url("loginBack.jpg");
@@ -8,9 +7,42 @@ body {
     background-repeat: no-repeat;
     background-attachment: fixed;
 }
+html, body {
+    height: 100%;
+    width: 100%;
+}
 
 * {
     box-sizing: border-box;
+}
+
+#header{
+    background: rgba(48, 26, 13, 0.6);
+    transform: skewY(-5deg);
+    margin-top: -55px;
+    padding: 40px 0 60px;
+    width: 100%;
+}
+header {
+    transform: skewY(5deg);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+    width: 70%;
+    margin: 40px auto 0;
+}
+
+nav a {
+    display: inline-block;
+    text-decoration: none;
+    color: inherit;
+    margin-right: 15px;
+    font-size: 17px;
+    padding: 15px;
+    border-radius: 5px;
+    border-left: 6px solid white;
+    background-color: rgb(75, 40, 17);
 }
 h1{
     text-align: center;
@@ -21,22 +53,59 @@ label {
     width: 30%;
     padding: 50px;
 }
-
-.container {
-    width: 60%;
-    margin: 50px auto;
-    background-color: white;
-    padding: 30px;
+main .backShape{
+    transform: skewY(-5deg);
+    background: rgba(48, 26, 13, 0.6);
+    width: 100%;
+    height: 60%;
+    margin: -4.9px 0;
+}
+hr{
+    margin: 0 35px;
+    padding: 0;
+    transform: skewY(5deg);
+}
+.textBlockForProfessionals{
+    transform: skewY(5deg);
+    width: 70%;
+    padding: 0;
+    margin: 0 auto;
+    font-size: 15px;
+    color: #dddddd;
+    text-align: center;
+}
+.textBlockForProfessionals h3, .textBlockForProfessionals h4 {
+    font-size: 25px;
+    margin: 5px;
+}
+main .registrationBlock {
+    transform: skewY(-5deg);
+    width: 100%;
+    flex-wrap: wrap;
+    background-color: rgba(197, 197, 197, 0.9);
+    justify-content: flex-start;
+    align-items: center;
+    display: flex;
+}
+.registrationBlock > h1, .registrationBlock > div, .registrationBlock > p{
+    transform: skewY(5deg);
+}
+.registrationBlock h1{
+    width: 100%;
+}
+.registrationBlock div{
+    width: 50%;
+}
+main {
     display: block;
+    width: 100%;
+    height: 100%;
 }
 
-/* Full-width input fields */
 input {
     width: 40%;
-    padding: 15px;
-    display: inline-block;
     background: #f1f1f1;
-    margin: 20px auto;
+
 }
 
 input[type=text]:focus, input[type=password]:focus {
@@ -44,12 +113,10 @@ input[type=text]:focus, input[type=password]:focus {
     outline: none;
 }
 
-/* Set a style for the submit button */
 .registerButton {
-    background-color: #4CAF50;
+    background-color: #5e3a11;
     color: white;
     padding: 16px 20px;
-    margin: 8px 0;
     border: none;
     cursor: pointer;
     width: 40%;
@@ -61,7 +128,6 @@ input[type=text]:focus, input[type=password]:focus {
     opacity: 1;
 }
 
-/* Add a blue text color to links */
 a {
     color: dodgerblue;
 }
