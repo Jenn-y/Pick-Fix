@@ -162,10 +162,10 @@ main {
 
 footer {
     width: 100%;
-    height: 100px;
+    min-height: 100px;
     background-color: #1d1d1d;
-    position: static;
-    display: table-row;
+    position: absolute;
+    bottom: 0;
 }
 
 #inner-footer {
