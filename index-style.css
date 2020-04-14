@@ -26,7 +26,7 @@ body {
     justify-content: center;
 
     width: 100%;
-    height: 470px;
+    height: 30rem;
 
     position: relative;
 }
@@ -67,7 +67,7 @@ main {
 }
 
 .text {
-    width: 1200px;
+    max-width: 75rem;
     margin: 0 auto;
     padding-top: 50px;
 }
@@ -91,7 +91,7 @@ main {
 #popular-services {
     display: flex;
     justify-content: space-between;
-    width: 1200px;
+    width: 75rem;
     height: 250px;
     padding-top: 30px;
     margin: 0 auto;
@@ -125,7 +125,7 @@ main {
     align-items: center;
     justify-content: center;
 
-    width: 1200px;
+    max-width: 75rem;
     height: 250px;
     background-color: #f4f4f4;
 
@@ -169,7 +169,7 @@ footer {
 }
 
 #inner-footer {
-    width: 1200px;
+    max-width: 75rem;
     margin: 0 auto;
 }
 

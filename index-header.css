@@ -1,6 +1,6 @@
 header {
     width: 100%;
-    height: 64px;
+    height: 4rem;
     background-color: white;
 }
 
@@ -8,7 +8,7 @@ header {
     display: flex;
     align-items: center;
 
-    width: 1200px;
+    max-width: 75rem;
     margin: 0 auto;
     height: 100%;
     background-color: white;
@@ -26,7 +26,8 @@ nav > ul > li {
 
 header a {
     text-decoration: none;
-    color: black;padding: 16px 20px;
+    color: black;
+    padding: 16px 20px;
 }
 
 #services {
