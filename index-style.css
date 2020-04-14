@@ -91,8 +91,8 @@ main {
 #popular-services {
     display: flex;
     justify-content: space-between;
-    width: 75rem;
-    height: 250px;
+    max-width: 75rem;
+    max-height: 250px;
     padding-top: 30px;
     margin: 0 auto;
 }
@@ -101,13 +101,20 @@ main {
     display: flex;
     flex-direction: column;
     width: 280px;
-    height: 230px;
+    height: auto;
     box-shadow: 3px 3px 3px 2px #ccc;
+    padding-bottom: 1rem;
+    margin-right: 1rem;
+}
+
+.service:last-child {
+    margin-right: 0;
 }
 
 .service img {
-    width: 280px;
-    height: 180px;
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: cover;
     padding-bottom: 12px;
 }
 
