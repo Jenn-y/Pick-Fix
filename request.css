@@ -1,0 +1,59 @@
+body{
+    background-image: url("Images/2ndBack.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+main {
+    background-color: white;
+    width: 70%;
+    margin: 50px auto 20px;
+    padding: 2em;
+    font-size: 20px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.59), 0 6px 6px rgba(0,0,0,0.73);
+}
+main h1 {
+    color: #4d3534;
+    text-align: center;
+    font-size: 60px;
+}
+
+main p {
+    padding: 20px;
+    color: #5a5a5a;
+    text-align: center;
+}
+
+main #title {
+    width: 100%;
+}
+div label {
+    width: 50%;
+    text-align: right;
+    margin-right: 20px;
+    color: #4d3534;
+}
+
+main form div {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: inherit;
+    margin-bottom: 20px;
+    clear: both;
+}
+
+div textarea {
+    height: 90px;
+}
+
+div input:hover, div textarea:hover, div select:hover,
+div input:focus, div textarea:focus, div select:focus{
+    box-shadow: 2px 2px 7px 1px #634b30;
+    outline: none;
+}
+
+div button {
+    clear: both;
+    margin: 5px auto;
+}
