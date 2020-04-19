@@ -1,0 +1,129 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Roboto', serif;
+    background-color: #f4f4f4;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+#page-container {
+    position: relative;
+    min-height: 100vh;
+}
+
+.center {
+    max-width: 75rem;
+    margin: 0 auto;
+}
+
+.flex-container {
+    display: flex;
+}
+
+.user {
+    margin-top: 3rem;
+    background-image: linear-gradient(to right, #003164, dodgerblue);
+    align-items: center;
+    line-height: 1.5rem;
+    padding: 2rem;
+    color:white;
+}
+
+.user img {
+    max-width: 180px;
+    border-radius: 50%;
+}
+
+.user div {
+    margin-left: 2rem;
+}
+
+.about {
+    background-color: white;
+    padding: 2rem;
+}
+
+.about h4 {
+    padding-bottom: 1rem;
+}
+
+.about p {
+    padding-bottom: 2rem;
+}
+
+main {
+    padding-bottom: 11rem;
+}
+
+.shadow {
+    box-shadow: 5px 5px 5px #999999;
+}
+
+/* Footer */
+
+footer {
+    width: 100%;
+    min-height: 11rem;
+    background-color: #1d1d1d;
+    position: absolute;
+    bottom: 0;
+}
+
+#inner-footer {
+    max-width: 75rem;
+    margin: 0 auto;
+}
+
+.line {
+    width: 100%;
+    height: 1px;
+    background-color: lightgray;
+}
+
+#social-media {
+    height: 5.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+#social-media p {
+    color: lightgray;
+}
+
+#social-media a {
+    color: lightgray;
+    height: 2.5rem;
+    width: 2.5rem;
+    display: inline-block;
+    border-radius: 1.75rem;
+    border: 1px solid lightgray;
+    font-size: 1.125rem;
+    text-align: center;
+    line-height: 2.5rem;
+    margin-left: 2rem;
+}
+
+#contact {
+    height: 5.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#contact a {
+    margin-right: 1rem;
+    color: lightgray;
+    text-decoration: none;
+}
+
+#contact p {
+    color: #f4f4f4;
+}

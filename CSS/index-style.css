@@ -6,7 +6,7 @@
 body {
     font-family: 'Roboto', serif;
     background-color: #5e3a11;
-    background-image: url("Images/background.jpg");
+    background-image: url("../Images/background.jpg");
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;

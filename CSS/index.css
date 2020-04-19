@@ -7,7 +7,12 @@
 }
 
 body {
+<<<<<<< HEAD:index.css
     background-image: url("Images/background.jpg");
+=======
+    font-family: 'Roboto', serif;
+    background-image: url("../Images/background.jpg");
+>>>>>>> 79b4659821b8190ad65e77c49089d604143627f4:CSS/index.css
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
