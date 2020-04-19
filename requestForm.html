@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="CSS/index.css">
+    <link rel="stylesheet" href="request.css">
+    <title>Request Service</title>
+</head>
+<body>
+<main>
+    <div id="title">
+    <h1>Request Service Form</h1>
+    <p>Let us know what are your requirements</p>
+    </div>
+    <form>
+        <div>
+    <label for="name" id="name-label">Name:</label>
+    <input id="name" name="newName" placeholder="Enter your name" required="Required field!" type="text">
+        </div>
+
+        <div>
+    <label for="dropdown1" id="dropdown1-label">Which city are you in: </label>
+    <select id="dropdown1">
+        <option value="select" disabled>Select the city you need service in</option>
+        <option value="fax1">Tuzla</option>
+        <option value="fax2">Zivinice</option>
+        <option value="fax3">Bihac</option>
+        <option value="fax4">Sarajevo</option>
+        <option value="fax5">Mostar</option>
+    </select>
+        </div>
+
+        <div>
+    <label for="dropdown1" id="dropdown2-label">What service do you require</label>
+    <select id="dropdown2">
+        <option value="select" disabled>Select one of the categories</option>
+        <option value="fax1">Furniture repairment</option>
+        <option value="fax2">Plumbing</option>
+        <option value="fax3">Electricity</option>
+        <option value="fax4">Toilets</option>
+        <option value="fax5">Moving help</option>
+    </select>
+        </div>
+
+        <div>
+    <label for="area" id="txt">Description of the problem: </label>
+    <textarea rows="4" cols="40" placeholder="Please describe your problem here" id="area"></textarea>
+        </div>
+
+<div>
+    <label for="number" id="number-label">Please leave your phone number for contact: </label>
+    <input id="number" name="newNumber" placeholder="Enter your phone number" required="Required field!" type="number">
+</div>
+        <div>
+        <button type="submit" class="buttonStyle">SUBMIT</button>
+        </div>
+    </form>
+</main>
+</body>
+</html>

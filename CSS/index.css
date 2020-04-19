@@ -3,11 +3,16 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+    font-family: 'Roboto', serif;
 }
 
 body {
+<<<<<<< HEAD:index.css
+    background-image: url("Images/background.jpg");
+=======
     font-family: 'Roboto', serif;
     background-image: url("../Images/background.jpg");
+>>>>>>> 79b4659821b8190ad65e77c49089d604143627f4:CSS/index.css
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
@@ -58,7 +63,7 @@ header {
     transform: skewY(5deg);
 }
 
-main {
+#login main {
     display: block;
     width: 100%;
     height: 100%;
@@ -102,7 +107,6 @@ main .registrationBlock{
     display: block;
     width: 50%;
     margin-top: -70px;
-
 }
 
 .registrationBlock, .verticalLine, .signInBlock {
@@ -146,7 +150,7 @@ main .verticalLine {
     top:1px;
 }
 
-input{
+input, #dropdown1, #dropdown2, textarea {
     width: 230px;
     border: 1px solid #4d3534;
     border-left: 4px solid #4d3534;
@@ -155,6 +159,7 @@ input{
     margin-right: 20px;
     margin-bottom: 10px;
     border-radius: 8px;
+    height: 35px;
 }
 
 footer {
@@ -162,7 +167,7 @@ footer {
     min-height: 11rem;
     background-color: #1d1d1d;
     position: absolute;
-    bottom: 0;
+    bottom: -110px;
 }
 
 #inner-footer {
