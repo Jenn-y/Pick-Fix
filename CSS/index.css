@@ -39,6 +39,13 @@ header {
     text-shadow: 0 2px 3px #222;
 }
 
+header a {
+    text-decoration: none;
+    color: #dddddd;
+    text-align: center;
+    text-shadow: 0 2px 3px #222;
+}
+
 #header nav a {
     display: inline-block;
     text-decoration: none;
@@ -50,9 +57,7 @@ header {
     background: #7d5d3b linear-gradient(to bottom, #6a4b35 5%, #634b30 100%);
     border-radius:8px;
     cursor:pointer;
-    color:#ffffff;
-    font-weight:bold;
-    text-shadow:0 1px 0 #4d3534;
+    color: #dddddd;
 }
 
 #header hr{
