@@ -60,7 +60,7 @@ body {
 
 main {
     padding-top: 3rem;
-    padding-bottom: 14rem;
+    padding-bottom: 15rem;
 }
 
 .shadow {
@@ -114,6 +114,68 @@ td a {
 
 td a:hover {
     background-color: #44a512;
+}
+
+/* Form */
+
+.request {
+    margin-top: 2rem;
+    padding: 2rem;
+    background: rgb(30,144,255);
+    background: linear-gradient(0deg, rgba(30,144,255,1) 15%, rgba(9,76,143,1) 100%);
+
+}
+form p {
+    font-size: 2.5rem;
+    padding-bottom: 2.5rem;
+    color: white;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+input, textarea, button, select{
+    font-family:inherit;
+    font-size: inherit;
+    border-radius: 0.313rem;
+}
+
+input, select { box-sizing:content-box; }
+
+input, textarea, select {
+    background-color: #f4f4f4;
+    border: 0;
+    padding: 1rem;
+    margin-bottom: 2rem;
+    width: 50%;
+}
+
+textarea { resize: none; }
+
+select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
+
+button {
+    box-sizing:content-box;
+    padding: 1rem;
+    width: 50%;
+    border: none;
+    cursor: pointer;
+    background-color: #4dbc15;
+    color: white;
+    font-weight: bold;
+}
+
+button:hover { background-color: #44a512; }
+
+label {
+    padding-bottom: 1rem;
+    color: white;
 }
 
 /* Footer */
