@@ -13,108 +13,180 @@
 </head>
 <body>
 <div id="page-container">
-<div id="header">
-<header>
-    <h1>pick&fix</h1>
-    <nav>
-        <a href="#signUp">SIGN UP</a>
-    </nav>
-</header>
-    <hr>
-</div>
-
-<main>
-
-    <div class="backShape">
-     <div class="textBlockForProfessionals">
-        <h3>Want to join us?</h3>
-        <h4>WHY</h4>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-            dolore magna aliqua. Sit amet nisl suscipit adipiscing bibendum est ultricies integer quis. Tempus
-            egestas sed sed risus pretium quam vulputate dignissim. Nunc faucibus a pellentesque
-            sit amet porttitor eget. Vitae auctor eu augue ut lectus arcu. </p>
-        <h4>HOW</h4>
-        <p>Cursus vitae congue mauris rhoncus aenean vel. Leo vel fringilla est ullamcorper eget nulla facilisi etiam
-            dignissim. Eget duis at tellus at urna condimentum mattis pellentesque. Nunc faucibus a pellentesque
-            sit amet porttitor eget. Vitae auctor eu augue ut lectus arcu</p>
-        <div class="arrow_box"></div>
-      </div>
+    <div id="header">
+        <header>
+            <h1>pick&fix</h1>
+            <nav>
+                <a href="#signUp">SIGN UP</a>
+            </nav>
+        </header>
+        <hr>
     </div>
 
-    <div class="registrationWrapper"><div class="registrationBlock">
+    <main>
 
-        <h1 id="signUp">Register as a professional</h1>
-
-            <div>
-                <label>Full Name<br>
-                    <input type="text" placeholder="First name" required>
-                    <input type="text" placeholder="Last name" required>
-                </label>
+        <div class="backShape">
+            <div class="textBlockForProfessionals">
+                <h3>WANT TO JOIN US?</h3>
+                <h4>WHY</h4>
+                <p>We offer You a chance to join our community of professionals who offer their services and
+                    broad set of skills on our platform.
+                    <br><strong>Start receiving job requests in one place - easy and fast!</strong></p>
+                <h4>HOW</h4>
+                <p>Fill out the registration form below, and with a monthly fee of only 3,99BAM
+                    enjoy all the benefits of our platform. Sign up for your 14-day FREE trial today!</p>
+                <div class="arrow_box"></div>
             </div>
+        </div>
 
-            <div>
-                <label for="email">Password</label><br>
-                <input id="email" type="email" placeholder="example: email@gmail.com" required>
-            </div>
+        <div class="registrationWrapper">
+            <div class="registrationBlockLeft">
 
-            <div>
-                <label for="workAreas">Available for work in:</label><br>
-                <input id="workAreas" type="checkbox" placeholder="Choose cities you are available for work" required>
-            </div>
+                <h1 id="signUp">Register as a professional</h1>
+                <form>
+                    <div>
+                        <label>Full Name<br>
+                            <input type="text" placeholder="First name" required>
+                            <input type="text" placeholder="Last name" required>
+                        </label>
+                    </div>
 
-            <div>
-                <label for="categories">Categories of work:</label><br>
-                <input id="categories" type="checkbox" placeholder="Mark all categories you provide services in" required>
-            </div>
+                    <div>
+                        <label for="email">Email</label><br>
+                        <input id="email" type="email" placeholder="example: email@gmail.com" required>
+                    </div>
+                    <div class="checkboxWrapper">
+                        <div>
+                            <label>Available for work in:</label>
+                            <div class="checkbox">
+                                <input id="tuzla" type="checkbox">
+                                <label for="tuzla">Tuzla</label><br>
+                                <input type="checkbox" id="sarajevo">
+                                <label for="sarajevo">Sarajevo</label><br>
+                                <input type="checkbox" id="bihac">
+                                <label for="bihac">Bihac</label><br>
+                                <input type="checkbox" id="travnik">
+                                <label for="travnik">Travnik</label><br>
+                                <input type="checkbox" id="mostar">
+                                <label for="mostar">Mostar</label><br>
+                                <input type="checkbox" id="zenica">
+                                <label for="zenica">Zenica</label><br>
+                                <input type="checkbox" id="zivinice">
+                                <label for="zivinice">Zivinice</label>
+                            </div>
+                        </div>
 
-            <div>
-                <label>Phone Number<br>
-                    <input type="number" placeholder="Area code" required>
-                    <input type="number" placeholder="Phone Number" required>
-                </label>
+                        <div>
+                            <label>Categories of work</label>
+                            <div class="checkbox">
+                                <input id="furniture" type="checkbox">
+                                <label for="furniture">Furniture assembly</label><br>
+                                <input type="checkbox" id="generalRepairman">
+                                <label for="generalRepairman">General Repairman</label><br>
+                                <input type="checkbox" id="plumbing">
+                                <label for="plumbing">Plumbing</label><br>
+                                <input type="checkbox" id="faucets">
+                                <label for="faucets">Faucets</label><br>
+                                <input type="checkbox" id="toilets">
+                                <label for="toilets">Toilets</label><br>
+                                <input type="checkbox" id="electricity">
+                                <label for="electricity">Electricity</label><br>
+                                <input type="checkbox" id="movingHelp">
+                                <label for="movingHelp">Moving Help</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <label>Phone Number<br>
+                            <input type="number" placeholder="Area code" required>
+                            <input type="number" placeholder="Phone Number" required>
+                        </label>
+                    </div>
+                </form>
             </div>
+            <div class="verticalLine"></div>
 
-            <div>
-                <input type="radio" id="male" name="gender" value="male">
-                <label for="male">Male</label><br>
-                <input type="radio" id="female" name="gender" value="female">
-                <label for="female">Female</label><br>
-                <input type="radio" id="other" name="gender" value="other">
-                <label for="other">Prefer no to say</label>
-             </div>
-            <div>
-                <p>By creating an account you agree to our <a href="#">Terms & Privacy</a>.</p>
-                <button type="submit" class="buttonStyle">START WORKING</button>
+            <div class="registrationBlockRight">
+                <h3 class="title">Credit card detail</h3><br>
+                <form>
+                    <div class="acceptedCards">
+                        <label>Accepted Cards</label>
+                        <div class="icon-container">
+                            <i class="fa fa-cc-visa" style="color:navy;"></i>
+                            <i class="fa fa-cc-amex" style="color:blue;"></i>
+                            <i class="fa fa-cc-mastercard" style="color:red;"></i>
+                            <i class="fa fa-cc-discover" style="color:orange;"></i>
+                        </div>
+                    </div>
+                    <input type="text" class="card-number" placeholder="Card Number">
+                    <div class="dateAndCvv">
+                        <div class="month">
+                            <select name="Month">
+                                <option value="january">January</option>
+                                <option value="february">February</option>
+                                <option value="march">March</option>
+                                <option value="april">April</option>
+                                <option value="may">May</option>
+                                <option value="june">June</option>
+                                <option value="july">July</option>
+                                <option value="august">August</option>
+                                <option value="september">September</option>
+                                <option value="october">October</option>
+                                <option value="november">November</option>
+                                <option value="december">December</option>
+                            </select>
+                        </div>
+                        <div class="year">
+                            <select name="Year">
+                                <option value="2016">2016</option>
+                                <option value="2017">2017</option>
+                                <option value="2018">2018</option>
+                                <option value="2019">2019</option>
+                                <option value="2020">2020</option>
+                                <option value="2021">2021</option>
+                                <option value="2022">2022</option>
+                                <option value="2023">2023</option>
+                                <option value="2024">2024</option>
+                            </select>
+                        </div>
+                        <div class="cvv-input">
+                            <input type="text" placeholder="CVV">
+                        </div>
+                    </div>
+                    <div class="submission">
+                        <p>By creating an account you agree to our <a href="#">Terms & Privacy</a></p>
+                        <button type="submit" class="buttonStyle">START WORKING</button>
+                    </div>
+                </form>
             </div>
-    </div>
-    <div class="verticalLine"></div>
-    <div class="signInBlock">
-        <h4>Already have an account?</h4>
-        <button type="button" class="buttonStyle">SIGN IN</button>
-    </div>
-    </div>
-</main>
+        </div>
 
-<footer>
-    <div id="inner-footer">
-        <section id="social-media">
-            <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
-            <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
-            <a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a>
-        </section>
-        <div class="line"></div>
-        <section id="contact">
-            <div>
-                <a href="#">Contact</a>
-                <a href="#">Privacy</a>
-                <a href="#">Cookies</a>
-                <a href="#">Terms</a>
-                <a href="#">Cancellation Policy</a>
-            </div>
-            <p>&copy; 2020 Pick & Fix. All rights reserved.</p>
-        </section>
-    </div>
-</footer>
+        <div id="signInBlock">
+            <h4>Already have an account?</h4>
+            <button type="button" class="buttonStyle">SIGN IN</button>
+        </div>
+    </main>
+
+    <footer>
+        <div id="inner-footer">
+            <section id="social-media">
+                <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+                <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+                <a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+            </section>
+            <div class="line"></div>
+            <section id="contact">
+                <div>
+                    <a href="#">Contact</a>
+                    <a href="#">Privacy</a>
+                    <a href="#">Cookies</a>
+                    <a href="#">Terms</a>
+                    <a href="#">Cancellation Policy</a>
+                </div>
+                <p>&copy; 2020 Pick & Fix. All rights reserved.</p>
+            </section>
+        </div>
+    </footer>
 </div>
 </body>
 </html>
