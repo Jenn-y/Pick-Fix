@@ -21,14 +21,11 @@ body {
     margin: 0 auto;
 }
 
-.flex-container {
-    display: flex;
-}
+.flex-container { display: flex; }
 
 /* Professional user profile */
 
 .user {
-
     background-image: linear-gradient(to right, #003164, dodgerblue);
     align-items: center;
     line-height: 1.5rem;
@@ -41,41 +38,27 @@ body {
     border-radius: 50%;
 }
 
-.user div {
-    margin-left: 2rem;
-}
+.user div { margin-left: 2rem; }
 
 .about {
     background-color: white;
     padding: 2rem;
 }
 
-.about h4 {
-    padding-bottom: 1rem;
-}
-
-.about p {
-    padding-bottom: 2rem;
-}
+.about h4 { padding-bottom: 1rem; }
+.about p { padding-bottom: 2rem; }
 
 main {
     padding-top: 3rem;
     padding-bottom: 15rem;
 }
 
-.shadow {
-    box-shadow: 5px 5px 5px #999999;
-}
+.shadow { box-shadow: 5px 5px 5px #999999; }
 
 /* Professional user requests*/
 
-table, th, td {
-    border-collapse: collapse;
-}
-
-table {
-    width: 100%;
-}
+table, th, td { border-collapse: collapse; }
+table { width: 100%; }
 
 th {
     background-color: darkblue;
@@ -92,12 +75,8 @@ td {
     width: 33%;
 }
 
-table tr:nth-child(odd) {
-    background-color: dodgerblue;
-}
-table tr:nth-child(even) {
-    background-color: lightblue;
-}
+table tr:nth-child(odd) { background-color: dodgerblue; }
+table tr:nth-child(even) { background-color: lightblue; }
 
 main h2 {
     color: #333333;
@@ -105,16 +84,26 @@ main h2 {
 }
 
 td a {
+    display: inline-block;
+    min-width: 20%;
     text-decoration: none;
-    background-color: #4dbc15;
     padding: 10px 15px;
     border-radius: 5px;
     color: white;
 }
 
-td a:hover {
-    background-color: #44a512;
+td a:nth-child(odd) {
+    background-color: #4dbc15;
+    margin-right: 0.5rem;
 }
+
+td a:nth-child(even) {
+    background-color: #ca3433;
+    margin-left: 0.5rem;
+}
+
+td a:nth-child(even):hover { background-color: #b22222; }
+td a:nth-child(odd):hover { background-color: #44a512; }
 
 /* Form */
 
@@ -216,9 +205,7 @@ footer {
     margin-bottom: 10px;
 }
 
-#social-media p {
-    color: lightgray;
-}
+#social-media p { color: lightgray; }
 
 #social-media a {
     color: lightgray;
@@ -246,6 +233,4 @@ footer {
     text-decoration: none;
 }
 
-#contact p {
-    color: #f4f4f4;
-}
+#contact p { color: #f4f4f4; }
