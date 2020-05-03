@@ -64,14 +64,14 @@
             </div>
         </div>
 
-        <div class="request shadow">
+        <div class="request-box shadow">
             <form>
                 <p>Request Service Form</p>
-                    <label for="fname">First name <span>*</span></label>
-                    <input type="text" id="fname" name="fname" required>
-
-                <label for="lname">Last name <span>*</span> </label>
-                <input type="text" id="lname" name="lname" required>
+                <label>Full name</label>
+                <div class="flex-container">
+                    <input type="text" id="fname" name="fname" placeholder="First name" required>
+                    <input type="text" id="lname" name="lname" placeholder="Last name" required>
+                </div>
 
                 <label for="cities">City <span>*</span></label>
                 <select name="cities" id="cities" required>
@@ -94,10 +94,10 @@
                 </select>
 
                 <label for="phone">Phone number <span>*</span></label>
-                <input type="tel" id="phone" placeholder="phone number" required>
+                <input type="tel" id="phone" placeholder="Phone number" required>
 
                 <label for="problem-description">Description of the problem:</label>
-                <textarea name="problem-description" id="problem-description" cols="30" rows="10"></textarea>
+                <textarea name="problem-description" id="problem-description" cols="30" rows="10" placeholder="Please describe your problem here"></textarea>
 
                 <button type="submit">Submit</button>
             </form>
