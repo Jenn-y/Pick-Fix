@@ -118,22 +118,31 @@ td a:hover {
 
 /* Form */
 
-.request {
+.request-box {
     margin-top: 2rem;
     padding: 2rem;
     background: rgb(30,144,255);
     background: linear-gradient(0deg, rgba(30,144,255,1) 15%, rgba(9,76,143,1) 100%);
-
-}
-form p {
-    font-size: 2.5rem;
-    padding-bottom: 2.5rem;
-    color: white;
 }
 
 form {
     display: flex;
     flex-direction: column;
+    max-width: 50%;
+}
+
+form div input, select {
+    width: calc(50% - 0.5rem);
+    margin-right: 1rem;
+    box-sizing: border-box;
+}
+
+form div input:last-child, select:last-child { margin-right: 0; }
+
+form p {
+    font-size: 2.5rem;
+    padding-bottom: 2.5rem;
+    color: white;
 }
 
 input, textarea, button, select{
@@ -142,14 +151,11 @@ input, textarea, button, select{
     border-radius: 0.313rem;
 }
 
-input, select { box-sizing:content-box; }
-
 input, textarea, select {
     background-color: #f4f4f4;
     border: 0;
     padding: 1rem;
     margin-bottom: 2rem;
-    width: 50%;
 }
 
 textarea { resize: none; }
@@ -161,14 +167,14 @@ select {
 }
 
 button {
-    box-sizing:content-box;
+    box-sizing:border-box;
     padding: 1rem;
-    width: 50%;
     border: none;
     cursor: pointer;
     background-color: #4dbc15;
     color: white;
     font-weight: bold;
+    width: 100%;
 }
 
 button:hover { background-color: #44a512; }
@@ -177,6 +183,8 @@ label {
     padding-bottom: 1rem;
     color: white;
 }
+
+label span { color: #DC143C; }
 
 /* Footer */
 
