@@ -73,9 +73,12 @@
                     <input type="text" id="lname" name="lname" placeholder="Last name" required>
                 </div>
 
-                <label for="cities">City <span>*</span></label>
+
+                <label>City and Service <span>*</span></label>
+                <div class="flex-container">
+                <!--<label for="cities">City </label>-->
                 <select name="cities" id="cities" required>
-                    <option disabled selected value>select an option</option>
+                    <option disabled selected value>City</option>
                     <option value="tuzla">Tuzla</option>
                     <option value="zivinice">Zivinice</option>
                     <option value="bihac">Bihac</option>
@@ -83,15 +86,16 @@
                     <option value="mostar">Mostar</option>
                 </select>
 
-                <label for="services-dropdown">What service do you require <span>*</span></label>
-                <select name="services-dropdown" id="services-dropdown" required>
-                    <option disabled selected value>select an option</option>
+                <!--<label for="services-dropdown">What service do you require <span>*</span></label>
+               --> <select name="services-dropdown" id="services-dropdown" required>
+                    <option disabled selected value>Service</option>
                     <option value="furniture-repair">Furniture repair</option>
                     <option value="plumbing">Plumbing</option>
                     <option value="electricity">Electricity</option>
                     <option value="toilets">Toilets</option>
                     <option value="moving-help">Moving help</option>
-                </select>
+                    </select>
+                </div>
 
                 <label for="phone">Phone number <span>*</span></label>
                 <input type="tel" id="phone" placeholder="Phone number" required>

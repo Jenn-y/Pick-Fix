@@ -131,13 +131,13 @@ form {
     max-width: 50%;
 }
 
-form div input {
+form div input, select {
     width: calc(50% - 0.5rem);
     margin-right: 1rem;
     box-sizing: border-box;
 }
 
-form div input:last-child { margin-right: 0; }
+form div input:last-child, select:last-child { margin-right: 0; }
 
 form p {
     font-size: 2.5rem;
