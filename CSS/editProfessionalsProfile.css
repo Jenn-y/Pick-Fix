@@ -1,0 +1,142 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Roboto', serif;
+    background-color: #5e3a11;
+    background-image: url("../Images/2ndback.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+#page-container {
+    position: relative;
+    min-height: 100vh;
+}
+main {
+    background-color: white;
+    width: 70%;
+    margin: 50px auto 60px;
+    padding: 2em;
+    font-size: 20px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.59), 0 6px 6px rgba(0,0,0,0.73);
+}
+
+#profilePhoto img {
+    display: block;
+    max-width: 180px;
+    border-radius: 50%;
+    margin: 20px auto;
+}
+
+.buttonStyle {
+    display: block;
+    margin: 20px auto;
+    box-shadow:inset 0 10px 14px -7px #a6827e;
+    background: #7d5d3b linear-gradient(to bottom, #7d5d3b 5%, #634b30 100%);
+    border-radius:8px;
+    cursor:pointer;
+    color:#ffffff;
+    font-size:13px;
+    font-weight:bold;
+    padding:13px 32px;
+}
+input[type="text"], input[type="email"], input[type="number"], select,
+input[type="password"] {
+    width: 230px;
+    border: 1px solid #4d3534;
+    background-color: rgba(245, 245, 245, 0.58);
+    padding: 5px;
+    border-radius: 8px;
+    height: 25px;
+    outline: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
+
+div label {
+    width: 50%;
+    text-align: right;
+    margin-right: 20px;
+    color: #4d3534;
+}
+
+main form div {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: inherit;
+    margin-bottom: 20px;
+}
+
+div input:hover, div textarea:hover, div select:hover,
+div input:focus, div select:focus{
+    box-shadow: 2px 2px 7px 1px #634b30;
+    outline: none;
+}
+
+/* Footer */
+
+footer {
+    width: 100%;
+    min-height: 11rem;
+    background-color: #1d1d1d;
+    bottom: 0;
+}
+
+#inner-footer {
+    max-width: 75rem;
+    margin: 0 auto;
+}
+
+.line {
+    width: 100%;
+    height: 1px;
+    background-color: lightgray;
+}
+
+#social-media {
+    height: 5.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+#social-media p {
+    color: lightgray;
+}
+
+#social-media a {
+    color: lightgray;
+    height: 2.5rem;
+    width: 2.5rem;
+    display: inline-block;
+    border-radius: 1.75rem;
+    border: 1px solid lightgray;
+    font-size: 1.125rem;
+    text-align: center;
+    line-height: 2.5rem;
+    margin-left: 2rem;
+}
+
+#contact {
+    height: 5.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#contact a {
+    margin-right: 1rem;
+    color: lightgray;
+    text-decoration: none;
+}
+
+#contact p {
+    color: #f4f4f4;
+}
