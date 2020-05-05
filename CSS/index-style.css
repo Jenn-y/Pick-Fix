@@ -98,6 +98,10 @@ main {
 
 /* Popular services section */
 
+.popular-services {
+    padding: 1rem;
+}
+
 .popular-services a {
     max-width: 25%;
     text-decoration: none;
@@ -122,42 +126,25 @@ main {
 
 /* Vetted professionals section*/
 
-#vetted-professionals {
-    display: flex;
+.vetted-professionals {
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-
-    max-width: 75rem;
-    height: 250px;
-    background-color: #f4f4f4;
-
-    margin: 0 auto;
-    padding-bottom: 50px;
+    padding: 3rem 1rem 4rem 1rem;
+    color: #5a5a5a;
+    text-align: center;
+    line-height: 2.5rem;
 }
 
-#vetted-professionals i {
-    color: #5a5a5a;
+.vetted-professionals i {
     font-size: 55px;
-    padding-bottom: 1rem;
 }
 
-#vetted-professionals h2 {
-    color: #5a5a5a;
-    padding-bottom: 1rem;
-}
-
-#vetted-professionals p {
-    padding-bottom: 0.5rem;
-    color: #5a5a5a;
-}
-
-#vetted-professionals span {
+.vetted-professionals span {
     color: #00cdf1;
     cursor: pointer;
 }
 
-#vetted-professionals span:hover {
+.vetted-professionals span:hover {
     color: #06b3d6;
 }
 
