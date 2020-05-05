@@ -44,11 +44,13 @@
             </a>
         </section>
 
-        <section id="vetted-professionals">
-            <i class="fa fa-lock" aria-hidden="true"></i><h2>Vetted, Background-Checked Professionals</h2>
+        <section class="vetted-professionals flex-container center">
+            <i class="fa fa-lock" aria-hidden="true"></i>
+            <h2>Vetted, Background-Checked Professionals</h2>
             <p>Pick & Fix tasks booked and paid for directly through the Pick & Fix platform are performed by experienced, background-checked professionals</p>
             <p>who are highly rated by customers like you. <span> Learn more.</span></p>
         </section>
+
     </main>
 
     <?php include('Includes/footer.php'); ?>
