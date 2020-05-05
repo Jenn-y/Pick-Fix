@@ -1,21 +1,15 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet'>
+    <?php include('head.php'); ?>
     <link rel="stylesheet" href="CSS/index.css">
-    <link rel="icon" href="Images/hammer.png">
     <title>Join as a Pro</title>
 </head>
 <body>
 <div id="page-container">
     <div id="header">
         <header>
-            <h1><a href="index.html">pick&fix</a></h1>
+            <h1><a href="index.php">pick&fix</a></h1>
             <nav>
                 <a href="#signUp">SIGN UP</a>
             </nav>
@@ -167,26 +161,7 @@
         </div>
     </main>
 
-    <footer>
-        <div id="inner-footer">
-            <section id="social-media">
-                <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
-                <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
-                <a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a>
-            </section>
-            <div class="line"></div>
-            <section id="contact">
-                <div>
-                    <a href="#">Contact</a>
-                    <a href="#">Privacy</a>
-                    <a href="#">Cookies</a>
-                    <a href="#">Terms</a>
-                    <a href="#">Cancellation Policy</a>
-                </div>
-                <p>&copy; 2020 Pick & Fix. All rights reserved.</p>
-            </section>
-        </div>
-    </footer>
+    <?php include('footer.php'); ?>
 </div>
 </body>
 </html>
