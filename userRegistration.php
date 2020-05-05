@@ -11,7 +11,7 @@
         <header>
             <h1><a href="index.php">pick&fix</a></h1>
             <nav>
-                <a href="#signUp">SIGN UP</a>
+                <a href="index.php">Home</a>
             </nav>
         </header>
         <hr>
@@ -44,10 +44,15 @@
                             <input type="text" placeholder="Last name" required>
                         </label>
                     </div>
-
-                    <div>
-                        <label for="email">Email</label><br>
-                        <input id="email" type="email" placeholder="example: email@gmail.com" required>
+                    <div class="loginFields">
+                        <div>
+                            <label for="email">Email</label><br>
+                            <input id="email" type="email" placeholder="example: email@gmail.com" required>
+                        </div>
+                        <div>
+                            <label for="password">Password</label><br>
+                            <input id="password" type="password" placeholder="Password" required>
+                        </div>
                     </div>
                     <div class="checkboxWrapper">
                         <div>
