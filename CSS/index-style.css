@@ -12,6 +12,15 @@ body {
     background-attachment: fixed;
 }
 
+.flex-container {
+    display: flex;
+}
+
+.center {
+    max-width: 75rem;
+    margin: 0 auto;
+}
+
 #page-container {
     position: relative;
     min-height: 100vh;
@@ -70,6 +79,7 @@ main {
     max-width: 75rem;
     margin: 0 auto;
     padding-top: 50px;
+    padding-bottom: 1rem;
 }
 
 .text p {
@@ -88,80 +98,53 @@ main {
 
 /* Popular services section */
 
-#popular-services {
-    display: flex;
-    justify-content: space-between;
-    max-width: 75rem;
-    max-height: 250px;
-    padding-top: 30px;
-    margin: 0 auto;
+.popular-services {
+    padding: 1rem;
 }
 
-.service {
-    display: flex;
-    flex-direction: column;
-    width: 280px;
-    height: auto;
-    box-shadow: 3px 3px 3px 2px #ccc;
-    padding-bottom: 1rem;
+.popular-services a {
+    max-width: 25%;
+    text-decoration: none;
+    color: black;
+    background-color: white;
     margin-right: 1rem;
+    box-shadow: 3px 3px 3px 2px #ccc;
 }
 
-.service:last-child {
+.popular-services a:last-child {
     margin-right: 0;
 }
 
-.service img {
-    max-width: 100%;
-    max-height: 100%;
-    object-fit: cover;
-    padding-bottom: 12px;
+.popular-services a img{
+    width: 100%;
 }
 
-.service a {
-    text-decoration: none;
+.popular-services a p {
     text-align: center;
-    color: black;
+    padding: 1rem;
 }
 
 /* Vetted professionals section*/
 
-#vetted-professionals {
-    display: flex;
+.vetted-professionals {
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-
-    max-width: 75rem;
-    height: 250px;
-    background-color: #f4f4f4;
-
-    margin: 0 auto;
-    padding-bottom: 50px;
+    padding: 3rem 1rem 4rem 1rem;
+    color: #5a5a5a;
+    text-align: center;
+    line-height: 2.5rem;
 }
 
-#vetted-professionals i {
-    color: #5a5a5a;
+.vetted-professionals i {
     font-size: 55px;
-    padding-bottom: 1rem;
 }
 
-#vetted-professionals h2 {
-    color: #5a5a5a;
-    padding-bottom: 1rem;
-}
-
-#vetted-professionals p {
-    padding-bottom: 0.5rem;
-    color: #5a5a5a;
-}
-
-#vetted-professionals span {
+.vetted-professionals span {
     color: #00cdf1;
     cursor: pointer;
 }
 
-#vetted-professionals span:hover {
+.vetted-professionals span:hover {
     color: #06b3d6;
 }
 
@@ -169,37 +152,32 @@ main {
 
 footer {
     width: 100%;
-    min-height: 11rem;
     background-color: #1d1d1d;
     position: absolute;
     bottom: 0;
 }
 
-#inner-footer {
-    max-width: 75rem;
-    margin: 0 auto;
+.inner-footer {
+    padding: 1rem;
 }
 
 .line {
     width: 100%;
     height: 1px;
     background-color: lightgray;
+    margin: 1rem 0;
 }
 
-#social-media {
-    height: 5.5rem;
-    display: flex;
-    align-items: center;
+.social-media {
     justify-content: center;
-    margin-top: 10px;
-    margin-bottom: 10px;
+    padding: 1rem;
 }
 
-#social-media p {
+.social-media p {
     color: lightgray;
 }
 
-#social-media a {
+.social-media a {
     color: lightgray;
     height: 2.5rem;
     width: 2.5rem;
@@ -212,19 +190,17 @@ footer {
     margin-left: 2rem;
 }
 
-#contact {
-    height: 5.5rem;
-    display: flex;
+.contact {
     justify-content: space-between;
-    align-items: center;
+    padding: 1rem 0;
 }
 
-#contact a {
+.contact a {
     margin-right: 1rem;
     color: lightgray;
     text-decoration: none;
 }
 
-#contact p {
+.contact p {
     color: #f4f4f4;
 }
