@@ -46,7 +46,6 @@
             </a>
         </section>
 
-
         <section id="vetted-professionals">
             <i class="fa fa-lock" aria-hidden="true"></i><h2>Vetted, Background-Checked Professionals</h2>
             <p>Pick & Fix tasks booked and paid for directly through the Pick & Fix platform are performed by experienced, background-checked professionals</p>
@@ -58,34 +57,3 @@
 </div>
 </body>
 </html>
-
-
-<!--<section id="popular-services">
-    <div class="service">
-        <a href="#">
-            <img src="Images/repairman.jpg" alt="Repairman">
-            <p>General repairman <i class="fa fa-angle-right" aria-hidden="true"></i></p>
-        </a>
-    </div>
-
-    <div class="service">
-        <a href="#">
-            <img src="Images/electrics-resized.jpg" alt="Electrics">
-            <p>Electrician <i class="fa fa-angle-right" aria-hidden="true"></i></p>
-        </a>
-    </div>
-
-    <div class="service">
-        <a href="#">
-            <img src="Images/faucet-resized.jpg" alt="Faucet">
-            <p>Faucets <i class="fa fa-angle-right" aria-hidden="true"></i></p>
-        </a>
-    </div>
-
-    <div class="service">
-        <a href="#">
-            <img src="Images/furniture-resized.jpg" alt="Furniture">
-            <p>Furniture assembly <i class="fa fa-angle-right" aria-hidden="true"></i></p>
-        </a>
-    </div>
-</section>-->
