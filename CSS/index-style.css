@@ -12,6 +12,16 @@ body {
     background-attachment: fixed;
 }
 
+.flex-container {
+    display: flex;
+}
+
+.center {
+    max-width: 75rem;
+    margin: 0 auto;
+    background-color: mediumvioletred;
+}
+
 #page-container {
     position: relative;
     min-height: 100vh;
@@ -88,7 +98,31 @@ main {
 
 /* Popular services section */
 
-#popular-services {
+.popular-services a {
+    max-width: 25%;
+    text-decoration: none;
+    color: black;
+    background-color: white;
+
+    margin-right: 1rem;
+}
+
+.popular-services a:last-child {
+    margin-right: 0;
+}
+
+.popular-services a img{
+    width: 100%;
+}
+
+.popular-services a p {
+    text-align: center;
+    padding: 1rem;
+}
+
+
+
+/*#popular-services {
     display: flex;
     justify-content: space-between;
     max-width: 75rem;
@@ -122,7 +156,7 @@ main {
     text-decoration: none;
     text-align: center;
     color: black;
-}
+}*/
 
 /* Vetted professionals section*/
 
