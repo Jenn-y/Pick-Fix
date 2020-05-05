@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <?php include('head.php'); ?>
+    <?php include('Includes/head.php'); ?>
     <link href="CSS/index-header.css" rel="stylesheet">
     <link href="CSS/pro-profile.css" rel="stylesheet">
 
@@ -9,7 +9,7 @@
 </head>
 <body>
 <div id="page-container">
-    <?php include('header-signed-in.php'); ?>
+    <?php include('Includes/header-signed-in.php'); ?>
 
     <main class="center">
         <div class="shadow">
@@ -72,7 +72,7 @@
         </div>
     </main>
 
-    <?php include('footer.php'); ?>
+    <?php include('Includes/footer.php'); ?>
 </div>
 </body>
 </html>

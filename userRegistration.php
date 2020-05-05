@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <?php include('head.php'); ?>
+    <?php include('Includes/head.php'); ?>
     <link rel="stylesheet" href="CSS/index.css">
     <title>Join as a Pro</title>
 </head>
@@ -161,7 +161,7 @@
         </div>
     </main>
 
-    <?php include('footer.php'); ?>
+    <?php include('Includes/footer.php'); ?>
 </div>
 </body>
 </html>

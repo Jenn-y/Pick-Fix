@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <?php include('head.php'); ?>
+    <?php include('Includes/head.php'); ?>
     <link href="CSS/index-header.css" rel="stylesheet">
     <link href="CSS/index-style.css" rel="stylesheet">
 
@@ -10,7 +10,7 @@
 <body>
 <div id="page-container">
 
-    <?php include('header.php'); ?>
+    <?php include('Includes/header.php'); ?>
 
     <div id="welcome">
         <div class="color-overlay"></div>
@@ -60,7 +60,7 @@
         </section>
     </main>
 
-    <?php include('footer.php'); ?>
+    <?php include('Includes/footer.php'); ?>
 </div>
 </body>
 </html>
