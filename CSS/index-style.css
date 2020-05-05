@@ -12,6 +12,15 @@ body {
     background-attachment: fixed;
 }
 
+.flex-container {
+    display: flex;
+}
+
+.center {
+    max-width: 75rem;
+    margin: 0 auto;
+}
+
 #page-container {
     position: relative;
     min-height: 100vh;
@@ -70,6 +79,7 @@ main {
     max-width: 75rem;
     margin: 0 auto;
     padding-top: 50px;
+    padding-bottom: 1rem;
 }
 
 .text p {
@@ -88,40 +98,26 @@ main {
 
 /* Popular services section */
 
-#popular-services {
-    display: flex;
-    justify-content: space-between;
-    max-width: 75rem;
-    max-height: 250px;
-    padding-top: 30px;
-    margin: 0 auto;
-}
-
-.service {
-    display: flex;
-    flex-direction: column;
-    width: 280px;
-    height: auto;
-    box-shadow: 3px 3px 3px 2px #ccc;
-    padding-bottom: 1rem;
+.popular-services a {
+    max-width: 25%;
+    text-decoration: none;
+    color: black;
+    background-color: white;
     margin-right: 1rem;
+    box-shadow: 3px 3px 3px 2px #ccc;
 }
 
-.service:last-child {
+.popular-services a:last-child {
     margin-right: 0;
 }
 
-.service img {
-    max-width: 100%;
-    max-height: 100%;
-    object-fit: cover;
-    padding-bottom: 12px;
+.popular-services a img{
+    width: 100%;
 }
 
-.service a {
-    text-decoration: none;
+.popular-services a p {
     text-align: center;
-    color: black;
+    padding: 1rem;
 }
 
 /* Vetted professionals section*/
