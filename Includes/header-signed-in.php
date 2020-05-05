@@ -22,7 +22,7 @@
                 <li><i class="fa fa-user" aria-hidden="true"></i> Your Profile
                     <ul>
                         <li><a href="pro-profile.php">My profile</a></li>
-                        <li><a href="#">Edit profile</a></li>
+                        <li><a href="editProfessionalsProfile.php">Edit profile</a></li>
                         <li><a href="pro-profile-requests.php">Requests</a></li>
                         <li><a href="index.php">Sign out</a></li>
                     </ul>
