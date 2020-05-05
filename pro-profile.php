@@ -1,48 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Pick&Fix</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet'>
+    <?php include('Includes/head.php'); ?>
     <link href="CSS/index-header.css" rel="stylesheet">
     <link href="CSS/pro-profile.css" rel="stylesheet">
-    <link rel="icon" href="Images/hammer.png">
+
+    <title>Profile</title>
 </head>
 <body>
 <div id="page-container">
-    <header>
-        <div id="inner-header">
-            <div id="logo"><a href="index-signed-in.html"><h1>Pick & Fix</h1></a></div>
-            <nav id="services">
-                <ul><li>
-                    <a href="#"><i class="fa fa-angle-right" aria-hidden="true"></i> All Services</a>
-                    <ul>
-                        <li><a href="#">Furniture Assembly</a></li>
-                        <li><a href="#">General Repairman</a></li>
-                        <li><a href="#">General Plumbing</a></li>
-                        <li><a href="#">Faucets</a></li>
-                        <li><a href="#">Toilets</a></li>
-                        <li><a href="#">General Electric</a></li>
-                        <li><a href="#">Outlets and Switches</a></li>
-                        <li><a href="#">Moving Help</a></li>
-                    </ul>
-                </li>
-                </ul>
-            </nav>
-            <nav id="login">
-                <ul>
-                    <li><a href="pro-profile.html"><i class="fa fa-user" aria-hidden="true"></i> Your Profile</a>
-                        <ul>
-                            <li><a href="#">Edit profile</a></li>
-                            <li><a href="pro-profile-requests.html">Requests</a></li>
-                            <li><a href="index.html">Sign out</a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </nav>
-        </div>
-    </header>
+    <?php include('Includes/header-signed-in.php'); ?>
 
     <main class="center">
         <div class="shadow">
@@ -105,26 +72,7 @@
         </div>
     </main>
 
-    <footer>
-        <div id="inner-footer">
-            <section id="social-media">
-                <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
-                <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
-                <a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a>
-            </section>
-            <div class="line"></div>
-            <section id="contact">
-                <div>
-                    <a href="#">Contact</a>
-                    <a href="#">Privacy</a>
-                    <a href="#">Cookies</a>
-                    <a href="#">Terms</a>
-                    <a href="#">Cancellation Policy</a>
-                </div>
-                <p>&copy; 2020 Pick & Fix. All rights reserved.</p>
-            </section>
-        </div>
-    </footer>
+    <?php include('Includes/footer.php'); ?>
 </div>
 </body>
 </html>
