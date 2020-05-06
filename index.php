@@ -9,7 +9,6 @@
 </head>
 <body>
 <div id="page-container">
-
     <?php include('Includes/header.php'); ?>
 
     <div id="welcome">

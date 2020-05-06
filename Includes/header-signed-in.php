@@ -24,7 +24,7 @@
                         <li><a href="pro-profile.php">My profile</a></li>
                         <li><a href="editProfessionalsProfile.php">Edit profile</a></li>
                         <li><a href="pro-profile-requests.php">Requests</a></li>
-                        <li><a href="index.php">Sign out</a></li>
+                        <li><a href="index.php">Log out</a></li>
                     </ul>
                 </li>
             </ul>
