@@ -73,8 +73,10 @@
                     <textarea name="problem-description" id="problem-description" cols="30" rows="10" placeholder="Please describe your problem here"></textarea>
                 </div>
             </form>
+            <div class="flex-container">
+                <button type="submit">Submit</button>
+            </div>
         </div>
-
     </main>
 
     <?php include('Includes/footer.php'); ?>
