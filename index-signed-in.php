@@ -17,7 +17,7 @@
     </div>
 
     <main>
-        <div class="text">
+        <div class="text center">
             <h2>Pick & Fix Tasks</h2>
             <p>Instantly book highly rated pros for cleaning and handyman tasks at a fixed price. <span>See All <i class="fa fa-angle-right" aria-hidden="true"></i></span></p>
         </div>
