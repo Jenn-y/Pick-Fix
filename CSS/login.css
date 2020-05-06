@@ -105,3 +105,19 @@ a {
 a:hover {
     color: #57b846;
 }
+
+/****** Responsive design ******/
+
+@media (max-width: 600px) {
+    main {
+        flex-direction: column;
+    }
+
+    main > div {
+        width: 100%;
+    }
+
+    form button {
+        margin-bottom: 2rem;
+    }
+}
