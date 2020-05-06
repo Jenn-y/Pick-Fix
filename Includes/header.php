@@ -19,7 +19,7 @@
         </nav>
         <nav id="login">
             <ul>
-                <li><a href="index-signed-in.php"><i class="fa fa-sign-in"></i> Log In</a></li>
+                <li><a href="login.php"><i class="fa fa-sign-in"></i> Log In</a></li>
                 <li><a href="userRegistration.php"><i class="fa fa-star" aria-hidden="true"></i> Join as a Pro</a></li>
             </ul>
         </nav>
