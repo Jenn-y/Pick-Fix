@@ -49,8 +49,7 @@ body {
 .about p { padding-bottom: 2rem; }
 
 main {
-    padding-top: 3rem;
-    padding-bottom: 15rem;
+    padding: 3rem 1rem 15rem 1rem;
 }
 
 .shadow { box-shadow: 5px 5px 5px #999999; }
@@ -241,4 +240,26 @@ footer {
 
 .contact p {
     color: #f4f4f4;
+}
+
+@media (max-width: 600px) {
+    main {
+
+    }
+
+    .request-box form {
+        flex-direction: column;
+    }
+
+    form > div {
+        width: 100%;
+    }
+
+    .description {
+        padding-left: 0;
+    }
+
+    .request-details {
+        padding-right: 0;
+    }
 }
