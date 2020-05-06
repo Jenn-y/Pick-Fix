@@ -242,6 +242,8 @@ footer {
     color: #f4f4f4;
 }
 
+/****** Responsive design ******/
+
 @media (max-width: 600px) {
     main {
 
