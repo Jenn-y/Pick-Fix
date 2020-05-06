@@ -166,6 +166,7 @@ select {
 }
 
 button {
+    margin: 0 auto;
     box-sizing:border-box;
     padding: 1rem;
     border: none;
@@ -173,7 +174,7 @@ button {
     background-color: #4dbc15;
     color: white;
     font-weight: bold;
-    width: 100%;
+    width: 25%;
 }
 
 button:hover { background-color: #44a512; }
