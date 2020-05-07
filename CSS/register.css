@@ -61,6 +61,10 @@ input[type=number] {
     -moz-appearance: textfield;
 }
 
+form {
+    width: calc(50% - 2rem);
+}
+
 form button {
     margin: 1rem 0;
     color: white;
@@ -137,4 +141,12 @@ span {
 
 .already-member {
     justify-content: center;
+}
+
+/****** Responsive layout ******/
+
+@media (max-width: 600px) {
+    form {
+        width: unset; !important;
+    }
 }
