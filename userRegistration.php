@@ -21,7 +21,7 @@ if ($_POST) {
         $sql = "INSERT INTO PROFESSIONALS (PID, FNAME, LNAME, EMAIL, PASSWORD, AREA_CODE, PHONE_NUMBER)
         VALUES (1, '{$_POST['first_name']}', '{$_POST['last_name']}', '{$_POST['email']}', '{$_POST['password']}', '{$_POST['area_code']}', '{$_POST['phone_number']}')";
         if (mysqli_query($conn, $sql)) {
-            echo "New record created successfully";
+            echo " record created successfully";
         } else {
             echo "Error: " . $sql . "<br>" . mysqli_error($conn);
         }
