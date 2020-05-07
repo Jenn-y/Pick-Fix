@@ -14,11 +14,18 @@ if ($_POST) {
         $servername = "localhost";
         $username = "root";
         $password = "";
+        $database = "pick_fix";
 
         // Create connection
-        $conn = mysqli_connect($servername, $username, $password);
+        $conn = mysqli_connect($servername, $username, $password, $database);
         $sql = "INSERT INTO PROFESSIONALS (PID, FNAME, LNAME, EMAIL, PASSWORD, AREA_CODE, PHONE_NUMBER)
         VALUES (1, '{$_POST['first_name']}', '{$_POST['last_name']}', '{$_POST['email']}', '{$_POST['password']}', '{$_POST['area_code']}', '{$_POST['phone_number']}')";
+        if (mysqli_query($conn, $sql)) {
+            echo "New record created successfully";
+        } else {
+            echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+        }
+
 
         // Check connection
         if (!$conn) {
