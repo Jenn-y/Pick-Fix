@@ -1,7 +1,7 @@
 <?php
 
 
-    /*function checkRequiredField ($value) {
+    function checkRequiredField ($value) {
         return isset($value) && !empty($value);
     }
 
@@ -10,14 +10,13 @@
         if(checkRequiredField($_POST['first_name']) && checkRequiredField($_POST['last_name']) && checkRequiredField($_POST['email'])
             && checkRequiredField($_POST['password']) && checkRequiredField($_POST['area_code']) && checkRequiredField($_POST['phone_number'])) {
             $msg = "form is valid";
-            /*echo $_POST['first_name'];
 
 
 
-      /*  } else {
+        } else {
             $msg = "form is invalid";
         }
-    }*/
+    }
 
 
 
@@ -65,14 +64,14 @@
                 <form method="post">
                     <div>
                         <label>Full Name<br>
-                            <input name="first_name" id="first_name" type="text" placeholder="First name" >
-                            <input name="last_name" id="last_name" type="text" placeholder="Last name" >
+                            <input name="first_name" id="first_name" type="text" placeholder="First name" value="<?= $_POST['first_name'] ?? $_GET['first_name'] ?>"required>
+                            <input name="last_name" id="last_name" type="text" placeholder="Last name" value="<?= $_POST['last_name'] ?? $_GET['last_name'] ?>" required>
                         </label>
                     </div>
                     <div class="loginFields">
                         <div>
                             <label for="email">Email</label><br>
-                            <input name="email" id="email" type="email" placeholder="example: email@gmail.com" >
+                            <input name="email" id="email" type="email" placeholder="example: email@gmail.com" value="<?= $_POST['email'] ?? $_GET['email'] ?>" required>
                         </div>
                         <div>
                             <label for="password">Password</label><br>
@@ -122,8 +121,8 @@
                     </div>
                     <div>
                         <label>Phone Number<br>
-                            <input name="area_code" id="area_code" type="number" placeholder="Area code" >
-                            <input name="phone_number" id="phone_number" type="number" placeholder="Phone Number" >
+                            <input name="area_code" id="area_code" type="number" placeholder="Area code" value="<?= $_POST['area_code'] ?? $_GET['area_code'] ?>" required>
+                            <input name="phone_number" id="phone_number" type="number" placeholder="Phone Number" value="<?= $_POST['phone_number'] ?? $_GET['phone_number'] ?>" required>
                         </label>
                     </div>
 
@@ -182,7 +181,9 @@
                         <button type="submit" class="buttonStyle">START WORKING</button>
                     </div>
                     <?php
-                        var_dump($_POST);
+                    if (isset($msg)) {
+                        echo $msg;
+                    }
                     ?>
                 </form>
             </div>
