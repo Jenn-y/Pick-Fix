@@ -1,23 +1,36 @@
 <?php
 
 
-    function checkRequiredField ($value) {
-        return isset($value) && !empty($value);
-    }
+function checkRequiredField($value)
+{
+    return isset($value) && !empty($value);
+}
 
-    if($_POST) {
-        echo $_POST['first_name'];
-        if(checkRequiredField($_POST['first_name']) && checkRequiredField($_POST['last_name']) && checkRequiredField($_POST['email'])
-            && checkRequiredField($_POST['password']) && checkRequiredField($_POST['area_code']) && checkRequiredField($_POST['phone_number'])) {
-            $msg = "form is valid";
+if ($_POST) {
+    echo $_POST['first_name'];
+    if (checkRequiredField($_POST['first_name']) && checkRequiredField($_POST['last_name']) && checkRequiredField($_POST['email'])
+        && checkRequiredField($_POST['password']) && checkRequiredField($_POST['area_code']) && checkRequiredField($_POST['phone_number'])) {
+        $msg = "form is valid";
+        $servername = "localhost";
+        $username = "root";
+        $password = "";
 
+        // Create connection
+        $conn = mysqli_connect($servername, $username, $password);
+        $sql = "INSERT INTO PROFESSIONALS (PID, FNAME, LNAME, EMAIL, PASSWORD, AREA_CODE, PHONE_NUMBER)
+        VALUES (1, '{$_POST['first_name']}', '{$_POST['last_name']}', '{$_POST['email']}', '{$_POST['password']}', '{$_POST['area_code']}', '{$_POST['phone_number']}')";
 
-
-        } else {
-            $msg = "form is invalid";
+        // Check connection
+        if (!$conn) {
+            die("Connection failed: " . mysqli_connect_error());
         }
-    }
+        echo "Connected successfully";
 
+
+    } else {
+        $msg = "form is invalid";
+    }
+}
 
 
 ?>
@@ -64,14 +77,17 @@
                 <form method="post">
                     <div>
                         <label>Full Name<br>
-                            <input name="first_name" id="first_name" type="text" placeholder="First name" value="<?= $_POST['first_name'] ?? $_GET['first_name'] ?>"required>
-                            <input name="last_name" id="last_name" type="text" placeholder="Last name" value="<?= $_POST['last_name'] ?? $_GET['last_name'] ?>" required>
+                            <input name="first_name" id="first_name" type="text" placeholder="First name"
+                                   value="<?= $_POST['first_name'] ?? $_GET['first_name'] ?>" required>
+                            <input name="last_name" id="last_name" type="text" placeholder="Last name"
+                                   value="<?= $_POST['last_name'] ?? $_GET['last_name'] ?>" required>
                         </label>
                     </div>
                     <div class="loginFields">
                         <div>
                             <label for="email">Email</label><br>
-                            <input name="email" id="email" type="email" placeholder="example: email@gmail.com" value="<?= $_POST['email'] ?? $_GET['email'] ?>" required>
+                            <input name="email" id="email" type="email" placeholder="example: email@gmail.com"
+                                   value="<?= $_POST['email'] ?? $_GET['email'] ?>" required>
                         </div>
                         <div>
                             <label for="password">Password</label><br>
@@ -121,8 +137,10 @@
                     </div>
                     <div>
                         <label>Phone Number<br>
-                            <input name="area_code" id="area_code" type="number" placeholder="Area code" value="<?= $_POST['area_code'] ?? $_GET['area_code'] ?>" required>
-                            <input name="phone_number" id="phone_number" type="number" placeholder="Phone Number" value="<?= $_POST['phone_number'] ?? $_GET['phone_number'] ?>" required>
+                            <input name="area_code" id="area_code" type="number" placeholder="Area code"
+                                   value="<?= $_POST['area_code'] ?? $_GET['area_code'] ?>" required>
+                            <input name="phone_number" id="phone_number" type="number" placeholder="Phone Number"
+                                   value="<?= $_POST['phone_number'] ?? $_GET['phone_number'] ?>" required>
                         </label>
                     </div>
 
@@ -132,59 +150,59 @@
             <div class="registrationBlockRight">
                 <h3 class="title">Credit card detail</h3><br>
 
-                    <div class="acceptedCards">
-                        <label>Accepted Cards</label>
-                        <div class="icon-container">
-                            <i class="fa fa-cc-visa" style="color:navy;"></i>
-                            <i class="fa fa-cc-amex" style="color:blue;"></i>
-                            <i class="fa fa-cc-mastercard" style="color:red;"></i>
-                            <i class="fa fa-cc-discover" style="color:orange;"></i>
-                        </div>
+                <div class="acceptedCards">
+                    <label>Accepted Cards</label>
+                    <div class="icon-container">
+                        <i class="fa fa-cc-visa" style="color:navy;"></i>
+                        <i class="fa fa-cc-amex" style="color:blue;"></i>
+                        <i class="fa fa-cc-mastercard" style="color:red;"></i>
+                        <i class="fa fa-cc-discover" style="color:orange;"></i>
                     </div>
-                    <input type="text" class="card-number" placeholder="Card Number">
-                    <div class="dateAndCvv">
-                        <div class="month">
-                            <select name="Month">
-                                <option value="january">January</option>
-                                <option value="february">February</option>
-                                <option value="march">March</option>
-                                <option value="april">April</option>
-                                <option value="may">May</option>
-                                <option value="june">June</option>
-                                <option value="july">July</option>
-                                <option value="august">August</option>
-                                <option value="september">September</option>
-                                <option value="october">October</option>
-                                <option value="november">November</option>
-                                <option value="december">December</option>
-                            </select>
-                        </div>
-                        <div class="year">
-                            <select name="Year">
-                                <option value="2016">2016</option>
-                                <option value="2017">2017</option>
-                                <option value="2018">2018</option>
-                                <option value="2019">2019</option>
-                                <option value="2020">2020</option>
-                                <option value="2021">2021</option>
-                                <option value="2022">2022</option>
-                                <option value="2023">2023</option>
-                                <option value="2024">2024</option>
-                            </select>
-                        </div>
-                        <div class="cvv-input">
-                            <input type="text" placeholder="CVV">
-                        </div>
+                </div>
+                <input type="text" class="card-number" placeholder="Card Number">
+                <div class="dateAndCvv">
+                    <div class="month">
+                        <select name="Month">
+                            <option value="january">January</option>
+                            <option value="february">February</option>
+                            <option value="march">March</option>
+                            <option value="april">April</option>
+                            <option value="may">May</option>
+                            <option value="june">June</option>
+                            <option value="july">July</option>
+                            <option value="august">August</option>
+                            <option value="september">September</option>
+                            <option value="october">October</option>
+                            <option value="november">November</option>
+                            <option value="december">December</option>
+                        </select>
                     </div>
-                    <div class="submission">
-                        <p>By creating an account you agree to our <a href="#">Terms & Privacy</a></p>
-                        <button type="submit" class="buttonStyle">START WORKING</button>
+                    <div class="year">
+                        <select name="Year">
+                            <option value="2016">2016</option>
+                            <option value="2017">2017</option>
+                            <option value="2018">2018</option>
+                            <option value="2019">2019</option>
+                            <option value="2020">2020</option>
+                            <option value="2021">2021</option>
+                            <option value="2022">2022</option>
+                            <option value="2023">2023</option>
+                            <option value="2024">2024</option>
+                        </select>
                     </div>
-                    <?php
-                    if (isset($msg)) {
-                        echo $msg;
-                    }
-                    ?>
+                    <div class="cvv-input">
+                        <input type="text" placeholder="CVV">
+                    </div>
+                </div>
+                <div class="submission">
+                    <p>By creating an account you agree to our <a href="#">Terms & Privacy</a></p>
+                    <button type="submit" class="buttonStyle">START WORKING</button>
+                </div>
+                <?php
+                if (isset($msg)) {
+                    echo $msg;
+                }
+                ?>
                 </form>
             </div>
         </div>
