@@ -1,3 +1,28 @@
+<?php
+
+
+    /*function checkRequiredField ($value) {
+        return isset($value) && !empty($value);
+    }
+
+    if($_POST) {
+        echo $_POST['first_name'];
+        if(checkRequiredField($_POST['first_name']) && checkRequiredField($_POST['last_name']) && checkRequiredField($_POST['email'])
+            && checkRequiredField($_POST['password']) && checkRequiredField($_POST['area_code']) && checkRequiredField($_POST['phone_number'])) {
+            $msg = "form is valid";
+            /*echo $_POST['first_name'];
+
+
+
+      /*  } else {
+            $msg = "form is invalid";
+        }
+    }*/
+
+
+
+?>
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -37,21 +62,23 @@
             <div class="registrationBlockLeft">
 
                 <h1 id="signUp">Register as a professional</h1>
-                <form>
+                <form method="POST">
                     <div>
                         <label>Full Name<br>
-                            <input type="text" placeholder="First name" required>
-                            <input type="text" placeholder="Last name" required>
+
+
+                            <input name="first_name" id="first_name" type="text" placeholder="First name" >
+                            <input name="last_name" id="last_name" type="text" placeholder="Last name" >
                         </label>
                     </div>
                     <div class="loginFields">
                         <div>
                             <label for="email">Email</label><br>
-                            <input id="email" type="email" placeholder="example: email@gmail.com" required>
+                            <input name="email" id="email" type="email" placeholder="example: email@gmail.com" >
                         </div>
                         <div>
                             <label for="password">Password</label><br>
-                            <input id="password" type="password" placeholder="Password" required>
+                            <input name="password" id="password" type="password" placeholder="Password">
                         </div>
                     </div>
                     <div class="checkboxWrapper">
@@ -97,8 +124,8 @@
                     </div>
                     <div>
                         <label>Phone Number<br>
-                            <input type="number" placeholder="Area code" required>
-                            <input type="number" placeholder="Phone Number" required>
+                            <input name="area_code" id="area_code" type="number" placeholder="Area code" value="<?= $_POST['area_code'] ?? $_GET['area_code'] ?>" required>
+                            <input name="phone_number" id="phone_number" type="number" placeholder="Phone Number" value="<?= $_POST['phone_number'] ?? $_GET['phone_number'] ?>" required>
                         </label>
                     </div>
                 </form>
@@ -156,6 +183,16 @@
                         <p>By creating an account you agree to our <a href="#">Terms & Privacy</a></p>
                         <button type="submit" class="buttonStyle">START WORKING</button>
                     </div>
+                    <?php var_dump($_POST);
+                            if(isset($_POST['area_code'])) {
+                                echo "yes";
+                            } else "no";
+                            /*$name = $_POST['area_code'];
+                            echo $name;*/
+/*                        if (isset($msg)) {
+                        echo $msg;
+                        }
+                    */?>
                 </form>
             </div>
         </div>
