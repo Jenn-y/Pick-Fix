@@ -62,11 +62,9 @@
             <div class="registrationBlockLeft">
 
                 <h1 id="signUp">Register as a professional</h1>
-                <form method="POST">
+                <form method="post">
                     <div>
                         <label>Full Name<br>
-
-
                             <input name="first_name" id="first_name" type="text" placeholder="First name" >
                             <input name="last_name" id="last_name" type="text" placeholder="Last name" >
                         </label>
@@ -124,17 +122,17 @@
                     </div>
                     <div>
                         <label>Phone Number<br>
-                            <input name="area_code" id="area_code" type="number" placeholder="Area code" value="<?= $_POST['area_code'] ?? $_GET['area_code'] ?>" required>
-                            <input name="phone_number" id="phone_number" type="number" placeholder="Phone Number" value="<?= $_POST['phone_number'] ?? $_GET['phone_number'] ?>" required>
+                            <input name="area_code" id="area_code" type="number" placeholder="Area code" >
+                            <input name="phone_number" id="phone_number" type="number" placeholder="Phone Number" >
                         </label>
                     </div>
-                </form>
+
             </div>
             <div class="verticalLine"></div>
 
             <div class="registrationBlockRight">
                 <h3 class="title">Credit card detail</h3><br>
-                <form>
+
                     <div class="acceptedCards">
                         <label>Accepted Cards</label>
                         <div class="icon-container">
@@ -183,16 +181,9 @@
                         <p>By creating an account you agree to our <a href="#">Terms & Privacy</a></p>
                         <button type="submit" class="buttonStyle">START WORKING</button>
                     </div>
-                    <?php var_dump($_POST);
-                            if(isset($_POST['area_code'])) {
-                                echo "yes";
-                            } else "no";
-                            /*$name = $_POST['area_code'];
-                            echo $name;*/
-/*                        if (isset($msg)) {
-                        echo $msg;
-                        }
-                    */?>
+                    <?php
+                        var_dump($_POST);
+                    ?>
                 </form>
             </div>
         </div>
