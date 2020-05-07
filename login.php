@@ -10,19 +10,20 @@ $db = mysqli_connect(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_DATABASE);
 session_start();
 if ($_POST) {
 
-
     $username = mysqli_real_escape_string($db, $_POST['uname']);
     $password = mysqli_real_escape_string($db, $_POST['psw']);
 
-    $query = mysqli_query($db, "select * from PROFESSIONALS where EMAIL = '{$username}' and PASSWORD = '{$password}'");
+    $query1 = mysqli_query($db, "select * from PROFESSIONALS where EMAIL = '{$username}' and PASSWORD = '{$password}'");
+    $query2 = mysqli_query($db, "select * from USERS where EMAIL = '{$username}' and PASSWORD = '{$password}'");
 
-    $row = mysqli_fetch_assoc($query);
+    $row1 = mysqli_fetch_assoc($query1);
+    $row2 = mysqli_fetch_assoc($query2);
 
-    if ($row) {
+    if ($row1 || $row2) {
         exit();
-    } else {
-        $_SESSION['msg'] = 'Incorrect username and/or password';
-        echo "INCORREEEEEEEECT!";
+    }
+    else {
+
     }
 }
 
@@ -50,7 +51,7 @@ if ($_POST) {
         </form>
     </div>
     <div class="new-account flex-container">
-        <a href="#">Create your Account <i class="fa fa-long-arrow-right m-l-5" aria-hidden="true"></i></a>
+        <a href="register.php">Create your Account <i class="fa fa-long-arrow-right m-l-5" aria-hidden="true"></i></a>
         <a href="userRegistration.php">Join as a pro <i class="fa fa-star" aria-hidden="true"></i></a>
     </div>
 </main>

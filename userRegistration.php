@@ -1,16 +1,13 @@
 <?php
 
-
 function checkRequiredField($value)
 {
     return isset($value) && !empty($value);
 }
 
 if ($_POST) {
-    echo $_POST['first_name'];
     if (checkRequiredField($_POST['first_name']) && checkRequiredField($_POST['last_name']) && checkRequiredField($_POST['email'])
         && checkRequiredField($_POST['password']) && checkRequiredField($_POST['area_code']) && checkRequiredField($_POST['phone_number'])) {
-        $msg = "form is valid";
         $servername = "localhost";
         $username = "root";
         $password = "";
@@ -18,28 +15,15 @@ if ($_POST) {
 
         // Create connection
         $conn = mysqli_connect($servername, $username, $password, $database);
-        $sql = "INSERT INTO PROFESSIONALS (PID, FNAME, LNAME, EMAIL, PASSWORD, AREA_CODE, PHONE_NUMBER)
-        VALUES (1, '{$_POST['first_name']}', '{$_POST['last_name']}', '{$_POST['email']}', '{$_POST['password']}', '{$_POST['area_code']}', '{$_POST['phone_number']}')";
+        $sql = "INSERT INTO PROFESSIONALS (FNAME, LNAME, EMAIL, PASSWORD, AREA_CODE, PHONE_NUMBER)
+        VALUES ('{$_POST['first_name']}', '{$_POST['last_name']}', '{$_POST['email']}', '{$_POST['password']}', '{$_POST['area_code']}', '{$_POST['phone_number']}')";
         if (mysqli_query($conn, $sql)) {
-            echo " record created successfully";
+            exit("SUCCESS !!!");
         } else {
             echo "Error: " . $sql . "<br>" . mysqli_error($conn);
         }
-
-
-        // Check connection
-        if (!$conn) {
-            die("Connection failed: " . mysqli_connect_error());
-        }
-        echo "Connected successfully";
-
-
-    } else {
-        $msg = "form is invalid";
     }
 }
-
-
 ?>
 
 <!doctype html>
@@ -85,16 +69,16 @@ if ($_POST) {
                     <div>
                         <label>Full Name<br>
                             <input name="first_name" id="first_name" type="text" placeholder="First name"
-                                   value="<?= $_POST['first_name'] ?? $_GET['first_name'] ?>" required>
+                                   value="<?= isset($_POST['first_name']) ?? isset($_GET['first_name']) ?>" required>
                             <input name="last_name" id="last_name" type="text" placeholder="Last name"
-                                   value="<?= $_POST['last_name'] ?? $_GET['last_name'] ?>" required>
+                                   value="<?= isset($_POST['last_name']) ?? isset($_GET['last_name']) ?>" required>
                         </label>
                     </div>
                     <div class="loginFields">
                         <div>
                             <label for="email">Email</label><br>
                             <input name="email" id="email" type="email" placeholder="example: email@gmail.com"
-                                   value="<?= $_POST['email'] ?? $_GET['email'] ?>" required>
+                                   value="<?= isset($_POST['email']) ?? isset($_GET['email']) ?>" required>
                         </div>
                         <div>
                             <label for="password">Password</label><br>
@@ -145,9 +129,9 @@ if ($_POST) {
                     <div>
                         <label>Phone Number<br>
                             <input name="area_code" id="area_code" type="number" placeholder="Area code"
-                                   value="<?= $_POST['area_code'] ?? $_GET['area_code'] ?>" required>
+                                   value="<?= isset($_POST['area_code']) ?? isset($_GET['area_code']) ?>" required>
                             <input name="phone_number" id="phone_number" type="number" placeholder="Phone Number"
-                                   value="<?= $_POST['phone_number'] ?? $_GET['phone_number'] ?>" required>
+                                   value="<?= $_POST['phone_number'] ?? isset($_GET['phone_number']) ?>" required>
                         </label>
                     </div>
 
@@ -205,11 +189,6 @@ if ($_POST) {
                     <p>By creating an account you agree to our <a href="#">Terms & Privacy</a></p>
                     <button type="submit" class="buttonStyle">START WORKING</button>
                 </div>
-                <?php
-                if (isset($msg)) {
-                    echo $msg;
-                }
-                ?>
                 </form>
             </div>
         </div>
