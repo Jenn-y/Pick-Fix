@@ -4,6 +4,7 @@
     <?php include('Includes/head.php'); ?>
     <link rel="stylesheet" href="CSS/editProfessionalsProfile.css">
     <link href="CSS/index-header.css" rel="stylesheet">
+    <link rel="stylesheet" href="CSS/footer.css">
     <title>Edit Profile</title>
 </head>
 <body>
