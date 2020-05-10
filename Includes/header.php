@@ -5,14 +5,18 @@
             <ul><li>
                     <a href="#"><i class="fa fa-angle-right" aria-hidden="true"></i> All Services</a>
                     <ul>
-                        <li><a href="#">Furniture Assembly</a></li>
+                        <li><a href="#">Appliances</a></li>
+                        <li><a href="#">Carpet</a></li>
+                        <li><a href="#">Chimney</a></li>
+                        <li><a href="#">Driveways</a></li>
+                        <li><a href="#">Electrical</a></li>
+                        <li><a href="#">Furniture</a></li>
                         <li><a href="#">General Repairman</a></li>
-                        <li><a href="#">General Plumbing</a></li>
-                        <li><a href="#">Faucets</a></li>
-                        <li><a href="#">Toilets</a></li>
-                        <li><a href="#">General Electric</a></li>
-                        <li><a href="#">Outlets and Switches</a></li>
-                        <li><a href="#">Moving Help</a></li>
+                        <li><a href="#">Glass and Screens</a></li>
+                        <li><a href="#">Lighting</a></li>
+                        <li><a href="#">Painting</a></li>
+                        <li><a href="#">Plumbing</a></li>
+                        <li><a href="#">Windows and Doors</a></li>
                     </ul>
                 </li>
             </ul>
