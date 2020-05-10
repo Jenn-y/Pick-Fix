@@ -51,8 +51,8 @@ if ($_POST) {
         </form>
     </div>
     <div class="new-account flex-container">
-        <a href="register.php">Create your Account <i class="fa fa-long-arrow-right m-l-5" aria-hidden="true"></i></a>
-        <a href="userRegistration.php">Join as a pro <i class="fa fa-star" aria-hidden="true"></i></a>
+        <a href="userRegistration.php">Create your Account <i class="fa fa-long-arrow-right m-l-5" aria-hidden="true"></i></a>
+        <a href="professionalsRegistration.php">Join as a pro <i class="fa fa-star" aria-hidden="true"></i></a>
     </div>
 </main>
 </body>
