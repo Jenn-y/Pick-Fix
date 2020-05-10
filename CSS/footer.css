@@ -1,5 +1,3 @@
-/* Footer */
-
 footer {
     width: 100%;
     background-color: #1d1d1d;
@@ -45,6 +43,10 @@ footer {
     padding: 1rem 0;
 }
 
+.contact .center {
+    margin: 0;
+}
+
 .contact a {
     margin-right: 1rem;
     color: lightgray;
@@ -57,7 +59,7 @@ footer {
 
 /****** Responsive design ******/
 
-@media (max-width: 600px) {
+@media (max-width: 800px) {
     .contact {
         justify-content: center;
         flex-direction: column;
