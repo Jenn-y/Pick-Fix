@@ -111,13 +111,12 @@ main {
     margin-right: 1rem;
     margin-bottom: 2rem;
     box-shadow: 3px 3px 3px 2px #ccc;
+    transition: 0.1s all ease-in-out;
 }
 
 .popular-services a:hover {
-    transform: scaleY(1.2);
+    transform: scale(1.1);
 }
-
-
 
 .popular-services a img{
     width: 100%;
