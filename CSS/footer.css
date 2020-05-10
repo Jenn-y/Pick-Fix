@@ -54,3 +54,28 @@ footer {
 .contact p {
     color: #f4f4f4;
 }
+
+/****** Responsive design ******/
+
+@media (max-width: 600px) {
+    .contact {
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+        padding: 0;
+    }
+    .contact div {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .contact a {
+        margin: 0;
+        padding: 0.5rem;
+    }
+
+
+    .contact p {
+        padding-top: 1rem;
+    }
+}
