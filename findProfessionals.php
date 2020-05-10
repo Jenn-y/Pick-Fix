@@ -29,7 +29,7 @@
                 <option value="moving-help">Windows and doors</option>
             </select>
             <select name="cities">
-                <option disabled selected value>Select a city</option>
+                <option disabled selected value>&#128205;</option>
                 <option value="tuzla">Tuzla</option>
                 <option value="zivinice">Zivinice</option>
                 <option value="bihac">Bihac</option>
