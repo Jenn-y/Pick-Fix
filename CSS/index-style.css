@@ -14,6 +14,8 @@ body {
 
 .flex-container {
     display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
 }
 
 .center {
@@ -21,14 +23,14 @@ body {
     margin: 0 auto;
 }
 
-#page-container {
+.page-container {
     position: relative;
     min-height: 100vh;
 }
 
 /* Theater screen */
 
-#welcome {
+.welcome {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -50,14 +52,14 @@ body {
     position: absolute;
 }
 
-#welcome h1 {
+.welcome h1 {
     color: white;
     padding-bottom: 2rem;
     text-align: center;
     z-index: 1;
 }
 
-#welcome a {
+.welcome a {
     color: white;
     font-size: 18px;
     text-decoration: none;
@@ -67,7 +69,7 @@ body {
     z-index: 1;
 }
 
-#welcome a:hover {
+.welcome a:hover {
     background-color: #44a512;
 }
 
@@ -102,17 +104,20 @@ main {
 }
 
 .popular-services a {
-    max-width: 25%;
+    max-width: 20%;
     text-decoration: none;
     color: black;
     background-color: white;
     margin-right: 1rem;
+    margin-bottom: 2rem;
     box-shadow: 3px 3px 3px 2px #ccc;
 }
 
-.popular-services a:last-child {
-    margin-right: 0;
+.popular-services a:hover {
+    transform: scaleY(1.2);
 }
+
+
 
 .popular-services a img{
     width: 100%;
@@ -222,4 +227,84 @@ footer {
     .popular-services a:nth-child(even) {
         margin-left: 0.5rem;
     }
+}
+
+/* Additionals style for Find Professionals page */
+#findProfessionals{
+    background-image: none;
+    background-color: white;
+}
+
+.backImage {
+    background-image: url("../Images/professionalsBackground3.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    max-height: 20rem;
+}
+
+select {
+    z-index: 1;
+    max-width: 100%;
+    padding: 1rem 3rem;
+}
+
+#findProfessionals .flex-container h1 {
+    width: 100%;
+    text-align: center;
+    margin: 2.5rem auto;
+}
+
+#findProfessionals main .flex-container .all-services {
+    width: 27%;
+    text-align: center;
+}
+#findProfessionals main .flex-container .all-services .dropdown {
+    max-width: 100%;
+}
+#findProfessionals main .flex-container .all-services a {
+    background-color: #f4f4f4;
+    box-shadow: none;
+    display: block;
+    max-width: 100%;
+    margin: 0.1rem auto;
+    transform: none;
+}
+
+#findProfessionals main .flex-container .all-services a:hover {
+    transform: scaleX(1.1);
+    cursor: pointer;
+}
+
+#findProfessionals main .flex-container .displayProfessionals {
+    width: 70%;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+#findProfessionals .dropdown {
+    position: relative;
+    margin-bottom: 1rem;
+}
+
+#findProfessionals .dropdown-content {
+    display: none;
+    background-color: #f4f4f4;
+    max-width: 100%;
+    z-index: 1;
+    opacity: 0;
+    margin-top: 0;
+    filter:alpha(opacity=0);
+    transition: all 5s ease-in;
+    padding: 0.5rem;
+}
+
+#findProfessionals .dropdown:hover .dropdown-content {
+    display: block;
+    background-color: rgba(189, 181, 180, 0.29);
+
+    opacity: 1;
+    filter:alpha(opacity=100);
 }
