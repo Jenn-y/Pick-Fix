@@ -2,9 +2,9 @@
 <html lang="en">
 <head>
     <?php include('Includes/head.php'); ?>
-    <link rel="stylesheet" href="CSS/index-header.css">
-    <link rel="stylesheet" href="CSS/index-style.css">
-    <link rel="stylesheet" href="CSS/footer.css">
+    <link rel="stylesheet" href="css/index-header.css">
+    <link rel="stylesheet" href="css/index-style.css">
+    <link rel="stylesheet" href="css/footer.css">
     <title>Find Professionals</title>
 </head>
 <body id="findProfessionals">

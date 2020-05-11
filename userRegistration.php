@@ -26,7 +26,7 @@ if($_POST) {
 <html lang="en">
 <head>
     <?php include('Includes/head.php'); ?>
-    <link rel="stylesheet" href="CSS/register.css">
+    <link rel="stylesheet" href="css/register.css">
     <title>Register</title>
 </head>
 <body>

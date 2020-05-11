@@ -31,7 +31,7 @@ if ($_POST) {
 <html lang="en">
 <head>
     <?php include('Includes/head.php'); ?>
-    <link rel="stylesheet" href="CSS/login.css">
+    <link rel="stylesheet" href="css/login.css">
     <title>Log in</title>
 </head>
 <body>

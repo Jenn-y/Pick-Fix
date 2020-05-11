@@ -2,9 +2,9 @@
 <html lang="en">
 <head>
     <?php include('Includes/head.php'); ?>
-    <link rel="stylesheet" href="CSS/editProfessionalsProfile.css">
-    <link href="CSS/index-header.css" rel="stylesheet">
-    <link rel="stylesheet" href="CSS/footer.css">
+    <link rel="stylesheet" href="css/editProfessionalsProfile.css">
+    <link href="css/index-header.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/footer.css">
     <title>Edit Profile</title>
 </head>
 <body>
