@@ -3,7 +3,7 @@
 <head>
     <?php include('includes/head.php'); ?>
     <link href="css/header.css" rel="stylesheet">
-    <link href="css/index-style.css" rel="stylesheet">
+    <link href="css/index.css" rel="stylesheet">
     <link rel="stylesheet" href="css/footer.css">
     <title>Pick&Fix</title>
 </head>
