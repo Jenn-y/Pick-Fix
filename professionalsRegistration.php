@@ -30,7 +30,7 @@ if ($_POST) {
 <html lang="en">
 <head>
     <?php include('includes/head.php'); ?>
-    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/professionalsRegistration.css">
     <title>Join as a Pro</title>
 </head>
 <body>

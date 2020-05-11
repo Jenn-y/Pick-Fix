@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
     <?php include('includes/head.php'); ?>
-    <link rel="stylesheet" href="css/index-header.css">
-    <link rel="stylesheet" href="css/index-style.css">
+    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="css/index.css">
     <link rel="stylesheet" href="css/footer.css">
     <title>Find Professionals</title>
 </head>
