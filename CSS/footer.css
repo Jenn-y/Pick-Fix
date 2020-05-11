@@ -79,4 +79,8 @@ footer {
     .contact p {
         padding-top: 1rem;
     }
+
+    main {
+        padding-bottom: 20rem;
+    }
 }

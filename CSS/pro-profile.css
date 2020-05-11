@@ -187,11 +187,13 @@ label span { color: #DC143C; }
 
 /****** Responsive design ******/
 
-@media (max-width: 600px) {
-    main {
-
+@media (max-width: 800px) {
+    .request-box {
+        margin-bottom: 5rem;
     }
+}
 
+@media (max-width: 600px) {
     .request-box form {
         flex-direction: column;
     }
