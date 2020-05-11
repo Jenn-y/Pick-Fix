@@ -3,7 +3,7 @@
 <head>
     <?php include('includes/head.php'); ?>
     <link rel="stylesheet" href="css/editProfessionalsProfile.css">
-    <link href="css/index-header.css" rel="stylesheet">
+    <link href="css/header.css" rel="stylesheet">
     <link rel="stylesheet" href="css/footer.css">
     <title>Edit Profile</title>
 </head>

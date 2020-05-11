@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <?php include('includes/head.php'); ?>
-    <link href="css/index-header.css" rel="stylesheet">
+    <link href="css/header.css" rel="stylesheet">
     <link href="css/pro-profile.css" rel="stylesheet">
     <link rel="stylesheet" href="css/footer.css">
 
