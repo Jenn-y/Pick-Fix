@@ -162,6 +162,11 @@ main {
     .popular-services a {
         max-width: calc(50% - 0.5rem);
         margin: 0.5rem 0;
+        transition: none;
+    }
+
+    .popular-services a:hover {
+        transform: none;
     }
 
     .popular-services a:nth-child(odd) {
