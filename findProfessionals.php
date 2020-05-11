@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <?php include('Includes/head.php'); ?>
+    <?php include('includes/head.php'); ?>
     <link rel="stylesheet" href="css/index-header.css">
     <link rel="stylesheet" href="css/index-style.css">
     <link rel="stylesheet" href="css/footer.css">
@@ -9,7 +9,7 @@
 </head>
 <body id="findProfessionals">
 <div class="page-container">
-    <?php include('Includes/header.php'); ?>
+    <?php include('includes/header.php'); ?>
 
     <div class="welcome backImage">
         <div class="color-overlay"></div>
@@ -212,7 +212,7 @@
         </section>
     </main>
 
-    <?php include('Includes/footer.php'); ?>
+    <?php include('includes/footer.php'); ?>
 </div>
 </body>
 </html>
