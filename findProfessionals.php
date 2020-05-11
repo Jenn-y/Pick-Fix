@@ -126,84 +126,84 @@
 
             <div class="displayProfessionals">
                 <a href="pro-profile.php">
-                    <img src="Images/default-user.png" alt="professional-profile">
+                    <img src="images/default-user.png" alt="professional-profile">
                     <h4>Name and Surname</h4>
                     <h6>Charge per hour: 3.99BAM</h6>
                     <p>Rating: &#11088;&#11088;&#11088;</p>
                 </a>
 
                 <a href="pro-profile.php">
-                    <img src="Images/default-user.png" alt="professional-profile">
+                    <img src="images/default-user.png" alt="professional-profile">
                     <h4>Name and Surname</h4>
                     <h6>Charge per hour: 3.99BAM</h6>
                     <p>Rating: &#11088;&#11088;&#11088;</p>
                 </a>
 
                 <a href="pro-profile.php">
-                    <img src="Images/default-user.png" alt="professional-profile">
+                    <img src="images/default-user.png" alt="professional-profile">
                     <h4>Name and Surname</h4>
                     <h6>Charge per hour: 3.99BAM</h6>
                     <p>Rating: &#11088;&#11088;&#11088;</p>
                 </a>
 
                 <a href="pro-profile.php">
-                    <img src="Images/default-user.png" alt="professional-profile">
+                    <img src="images/default-user.png" alt="professional-profile">
                     <h4>Name and Surname</h4>
                     <h6>Charge per hour: 3.99BAM</h6>
                     <p>Rating: &#11088;&#11088;&#11088;</p>
                 </a>
 
                 <a href="pro-profile.php">
-                    <img src="Images/default-user.png" alt="professional-profile">
+                    <img src="images/default-user.png" alt="professional-profile">
                     <h4>Name and Surname</h4>
                     <h6>Charge per hour: 3.99BAM</h6>
                     <p>Rating: &#11088;&#11088;&#11088;</p>
                 </a>
 
                 <a href="pro-profile.php">
-                    <img src="Images/default-user.png" alt="professional-profile">
+                    <img src="images/default-user.png" alt="professional-profile">
                     <h4>Name and Surname</h4>
                     <h6>Charge per hour: 3.99BAM</h6>
                     <p>Rating: &#11088;&#11088;&#11088;</p>
                 </a>
 
                 <a href="pro-profile.php">
-                    <img src="Images/default-user.png" alt="professional-profile">
+                    <img src="images/default-user.png" alt="professional-profile">
                     <h4>Name and Surname</h4>
                     <h6>Charge per hour: 3.99BAM</h6>
                     <p>Rating: &#11088;&#11088;&#11088;</p>
                 </a>
 
                 <a href="pro-profile.php">
-                    <img src="Images/default-user.png" alt="professional-profile">
+                    <img src="images/default-user.png" alt="professional-profile">
                     <h4>Name and Surname</h4>
                     <h6>Charge per hour: 3.99BAM</h6>
                     <p>Rating: &#11088;&#11088;&#11088;</p>
                 </a>
 
                 <a href="pro-profile.php">
-                    <img src="Images/default-user.png" alt="professional-profile">
+                    <img src="images/default-user.png" alt="professional-profile">
                     <h4>Name and Surname</h4>
                     <h6>Charge per hour: 3.99BAM</h6>
                     <p>Rating: &#11088;&#11088;&#11088;</p>
                 </a>
 
                 <a href="pro-profile.php">
-                    <img src="Images/default-user.png" alt="professional-profile">
+                    <img src="images/default-user.png" alt="professional-profile">
                     <h4>Name and Surname</h4>
                     <h6>Charge per hour: 3.99BAM</h6>
                     <p>Rating: &#11088;&#11088;&#11088;</p>
                 </a>
 
                 <a href="pro-profile.php">
-                    <img src="Images/default-user.png" alt="professional-profile">
+                    <img src="images/default-user.png" alt="professional-profile">
                     <h4>Name and Surname</h4>
                     <h6>Charge per hour: 3.99BAM</h6>
                     <p>Rating: &#11088;&#11088;&#11088;</p>
                 </a>
 
                 <a href="pro-profile.php">
-                    <img src="Images/default-user.png" alt="professional-profile">
+                    <img src="images/default-user.png" alt="professional-profile">
                     <h4>Name and Surname</h4>
                     <h6>Charge per hour: 3.99BAM</h6>
                     <p>Rating: &#11088;&#11088;&#11088;</p>

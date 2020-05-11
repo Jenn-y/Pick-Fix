@@ -15,7 +15,7 @@
     <main>
         <div class="main center">
             <div id="profilePhoto">
-                <img src="Images/default-user.png" alt="default-user-image">
+                <img src="images/default-user.png" alt="default-user-image">
                 <button class="buttonStyle">Change Profile Photo</button>
             </div>
             <form>

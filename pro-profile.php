@@ -15,7 +15,7 @@
     <main class="center">
         <div class="shadow">
             <div class="user flex-container">
-                <img src="Images/default-user.png" alt="default-user-image">
+                <img src="images/default-user.png" alt="default-user-image">
                 <div>
                     <h3>Name Surname</h3>
                     <p>Sarajevo, Bosnia and Herzegovina</p>

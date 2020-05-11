@@ -25,41 +25,41 @@
 
         <section class="popular-services flex-container center">
             <a href="#">
-                <img src="Images/repairman.jpg" alt="Repairman">
+                <img src="images/repairman.jpg" alt="Repairman">
                 <p>General repairman <i class="fa fa-angle-right" aria-hidden="true"></i></p>
             </a>
 
             <a href="#">
-                <img src="Images/electrics-resized.jpg" alt="Electrics">
+                <img src="images/electrics-resized.jpg" alt="Electrics">
                 <p>Electrician <i class="fa fa-angle-right" aria-hidden="true"></i></p>
             </a>
 
             <a href="#">
-                <img src="Images/faucet-resized.jpg" alt="Faucet">
+                <img src="images/faucet-resized.jpg" alt="Faucet">
                 <p>Faucets <i class="fa fa-angle-right" aria-hidden="true"></i></p>
             </a>
 
             <a href="#">
-                <img src="Images/furniture-resized.jpg" alt="Furniture">
+                <img src="images/furniture-resized.jpg" alt="Furniture">
                 <p>Furniture assembly <i class="fa fa-angle-right" aria-hidden="true"></i></p>
             </a>
             <a href="#">
-                <img src="Images/repairman.jpg" alt="Repairman">
+                <img src="images/repairman.jpg" alt="Repairman">
                 <p>General repairman <i class="fa fa-angle-right" aria-hidden="true"></i></p>
             </a>
 
             <a href="#">
-                <img src="Images/electrics-resized.jpg" alt="Electrics">
+                <img src="images/electrics-resized.jpg" alt="Electrics">
                 <p>Electrician <i class="fa fa-angle-right" aria-hidden="true"></i></p>
             </a>
 
             <a href="#">
-                <img src="Images/faucet-resized.jpg" alt="Faucet">
+                <img src="images/faucet-resized.jpg" alt="Faucet">
                 <p>Faucets <i class="fa fa-angle-right" aria-hidden="true"></i></p>
             </a>
 
             <a href="#">
-                <img src="Images/furniture-resized.jpg" alt="Furniture">
+                <img src="images/furniture-resized.jpg" alt="Furniture">
                 <p>Furniture assembly <i class="fa fa-angle-right" aria-hidden="true"></i></p>
             </a>
         </section>
