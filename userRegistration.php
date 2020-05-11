@@ -1,4 +1,5 @@
 <?php
+include("includes/form-functions.php");
 
 function checkRequiredField($value)
 {
@@ -35,19 +36,20 @@ if($_POST) {
             <h1>Register</h1>
             <div class="full-name flex-container">
                 <label>Full name</label>
-                <input type="text" name="first_name" placeholder="First name" value="<?php ?>" required>
-                <input type="text" name="last_name" placeholder="Last name" value="<?= isset($_POST['last_name']) ?? $_GET['last_name'] ?>" required>
+                <?php input("text", "first_name", "First name", true); ?>
+                <?php input("text", "last_name", "Last name", true); ?>
             </div>
             <label for="email">Email</label>
-            <input type="text" name="email" placeholder="Email" value="<?= isset($_POST['email']) ?? $_GET['email'] ?>" required>
+            <?php input("text", "email", "Email",true); ?>
             <label for="password">Password</label>
-            <input type="password" name="password" placeholder="Password" required>
+            <?php input("password", "password", "Password",true); ?>
 
             <label for="area_code">Area code</label>
-            <input type="number" name="area_code" placeholder="Area code" value="<?= isset($_POST['area_code']) ?? $_GET['area_code'] ?>">
+            <?php input("number", "area_code", "Area code",true); ?>
 
             <label for="phone">Phone</label>
-            <input type="tel" name="phone" placeholder="Phone number" value="<?= isset($_POST['phone']) ?? $_GET['phone'] ?>">
+            <?php input("tel", "phone", "Phone number",true); ?>
+
             <label for="city">City</label>
             <select name="city" id="city">
                 <option value="tuzla">Tuzla</option>

@@ -1,6 +1,6 @@
-<!doctype html>
-
 <?php
+include("includes/form-functions.php");
+
 define('DB_SERVER', 'localhost');
 define('DB_USERNAME', 'root');
 define('DB_PASSWORD', '');
@@ -28,6 +28,8 @@ if ($_POST) {
 }
 
 ?>
+
+<!doctype html>
 <html lang="en">
 <head>
     <?php include('includes/head.php'); ?>
@@ -40,8 +42,8 @@ if ($_POST) {
         <form method="POST">
             <div class="login flex-container">
                 <p>User Login</p>
-                <input type="email" placeholder="Email" name="uname" required>
-                <input type="password" placeholder="Password" name="psw" required>
+                <?php input("email", "uname", "Email"); ?>
+                <input type="password" placeholder="Password" name="psw">
                 <button type="submit">Login</button>
                 <div>
                     <span>Forgot</span>
