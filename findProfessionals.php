@@ -1,15 +1,15 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <?php include('Includes/head.php'); ?>
-    <link rel="stylesheet" href="CSS/index-header.css">
-    <link rel="stylesheet" href="CSS/index-style.css">
-    <link rel="stylesheet" href="CSS/footer.css">
+    <?php include('includes/head.php'); ?>
+    <link rel="stylesheet" href="css/index-header.css">
+    <link rel="stylesheet" href="css/index-style.css">
+    <link rel="stylesheet" href="css/footer.css">
     <title>Find Professionals</title>
 </head>
 <body id="findProfessionals">
 <div class="page-container">
-    <?php include('Includes/header.php'); ?>
+    <?php include('includes/header.php'); ?>
 
     <div class="welcome backImage">
         <div class="color-overlay"></div>
@@ -126,84 +126,84 @@
 
             <div class="displayProfessionals">
                 <a href="pro-profile.php">
-                    <img src="Images/default-user.png" alt="professional-profile">
+                    <img src="images/default-user.png" alt="professional-profile">
                     <h4>Name and Surname</h4>
                     <h6>Charge per hour: 3.99BAM</h6>
                     <p>Rating: &#11088;&#11088;&#11088;</p>
                 </a>
 
                 <a href="pro-profile.php">
-                    <img src="Images/default-user.png" alt="professional-profile">
+                    <img src="images/default-user.png" alt="professional-profile">
                     <h4>Name and Surname</h4>
                     <h6>Charge per hour: 3.99BAM</h6>
                     <p>Rating: &#11088;&#11088;&#11088;</p>
                 </a>
 
                 <a href="pro-profile.php">
-                    <img src="Images/default-user.png" alt="professional-profile">
+                    <img src="images/default-user.png" alt="professional-profile">
                     <h4>Name and Surname</h4>
                     <h6>Charge per hour: 3.99BAM</h6>
                     <p>Rating: &#11088;&#11088;&#11088;</p>
                 </a>
 
                 <a href="pro-profile.php">
-                    <img src="Images/default-user.png" alt="professional-profile">
+                    <img src="images/default-user.png" alt="professional-profile">
                     <h4>Name and Surname</h4>
                     <h6>Charge per hour: 3.99BAM</h6>
                     <p>Rating: &#11088;&#11088;&#11088;</p>
                 </a>
 
                 <a href="pro-profile.php">
-                    <img src="Images/default-user.png" alt="professional-profile">
+                    <img src="images/default-user.png" alt="professional-profile">
                     <h4>Name and Surname</h4>
                     <h6>Charge per hour: 3.99BAM</h6>
                     <p>Rating: &#11088;&#11088;&#11088;</p>
                 </a>
 
                 <a href="pro-profile.php">
-                    <img src="Images/default-user.png" alt="professional-profile">
+                    <img src="images/default-user.png" alt="professional-profile">
                     <h4>Name and Surname</h4>
                     <h6>Charge per hour: 3.99BAM</h6>
                     <p>Rating: &#11088;&#11088;&#11088;</p>
                 </a>
 
                 <a href="pro-profile.php">
-                    <img src="Images/default-user.png" alt="professional-profile">
+                    <img src="images/default-user.png" alt="professional-profile">
                     <h4>Name and Surname</h4>
                     <h6>Charge per hour: 3.99BAM</h6>
                     <p>Rating: &#11088;&#11088;&#11088;</p>
                 </a>
 
                 <a href="pro-profile.php">
-                    <img src="Images/default-user.png" alt="professional-profile">
+                    <img src="images/default-user.png" alt="professional-profile">
                     <h4>Name and Surname</h4>
                     <h6>Charge per hour: 3.99BAM</h6>
                     <p>Rating: &#11088;&#11088;&#11088;</p>
                 </a>
 
                 <a href="pro-profile.php">
-                    <img src="Images/default-user.png" alt="professional-profile">
+                    <img src="images/default-user.png" alt="professional-profile">
                     <h4>Name and Surname</h4>
                     <h6>Charge per hour: 3.99BAM</h6>
                     <p>Rating: &#11088;&#11088;&#11088;</p>
                 </a>
 
                 <a href="pro-profile.php">
-                    <img src="Images/default-user.png" alt="professional-profile">
+                    <img src="images/default-user.png" alt="professional-profile">
                     <h4>Name and Surname</h4>
                     <h6>Charge per hour: 3.99BAM</h6>
                     <p>Rating: &#11088;&#11088;&#11088;</p>
                 </a>
 
                 <a href="pro-profile.php">
-                    <img src="Images/default-user.png" alt="professional-profile">
+                    <img src="images/default-user.png" alt="professional-profile">
                     <h4>Name and Surname</h4>
                     <h6>Charge per hour: 3.99BAM</h6>
                     <p>Rating: &#11088;&#11088;&#11088;</p>
                 </a>
 
                 <a href="pro-profile.php">
-                    <img src="Images/default-user.png" alt="professional-profile">
+                    <img src="images/default-user.png" alt="professional-profile">
                     <h4>Name and Surname</h4>
                     <h6>Charge per hour: 3.99BAM</h6>
                     <p>Rating: &#11088;&#11088;&#11088;</p>
@@ -212,7 +212,7 @@
         </section>
     </main>
 
-    <?php include('Includes/footer.php'); ?>
+    <?php include('includes/footer.php'); ?>
 </div>
 </body>
 </html>

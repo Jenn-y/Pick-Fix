@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <?php include('Includes/head.php'); ?>
-    <link href="CSS/index-header.css" rel="stylesheet">
-    <link href="CSS/index-style.css" rel="stylesheet">
-    <link rel="stylesheet" href="CSS/footer.css">
+    <?php include('includes/head.php'); ?>
+    <link href="css/index-header.css" rel="stylesheet">
+    <link href="css/index-style.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/footer.css">
     <title>Pick&Fix</title>
 </head>
 <body>
 <div class="page-container">
-    <?php include('Includes/header-signed-in.php'); ?>
+    <?php include('includes/header-signed-in.php'); ?>
 
     <div class="welcome">
         <div class="color-overlay"></div>
@@ -25,41 +25,41 @@
 
         <section class="popular-services flex-container center">
             <a href="#">
-                <img src="Images/repairman.jpg" alt="Repairman">
+                <img src="images/repairman.jpg" alt="Repairman">
                 <p>General repairman <i class="fa fa-angle-right" aria-hidden="true"></i></p>
             </a>
 
             <a href="#">
-                <img src="Images/electrics-resized.jpg" alt="Electrics">
+                <img src="images/electrics-resized.jpg" alt="Electrics">
                 <p>Electrician <i class="fa fa-angle-right" aria-hidden="true"></i></p>
             </a>
 
             <a href="#">
-                <img src="Images/faucet-resized.jpg" alt="Faucet">
+                <img src="images/faucet-resized.jpg" alt="Faucet">
                 <p>Faucets <i class="fa fa-angle-right" aria-hidden="true"></i></p>
             </a>
 
             <a href="#">
-                <img src="Images/furniture-resized.jpg" alt="Furniture">
+                <img src="images/furniture-resized.jpg" alt="Furniture">
                 <p>Furniture assembly <i class="fa fa-angle-right" aria-hidden="true"></i></p>
             </a>
             <a href="#">
-                <img src="Images/repairman.jpg" alt="Repairman">
+                <img src="images/repairman.jpg" alt="Repairman">
                 <p>General repairman <i class="fa fa-angle-right" aria-hidden="true"></i></p>
             </a>
 
             <a href="#">
-                <img src="Images/electrics-resized.jpg" alt="Electrics">
+                <img src="images/electrics-resized.jpg" alt="Electrics">
                 <p>Electrician <i class="fa fa-angle-right" aria-hidden="true"></i></p>
             </a>
 
             <a href="#">
-                <img src="Images/faucet-resized.jpg" alt="Faucet">
+                <img src="images/faucet-resized.jpg" alt="Faucet">
                 <p>Faucets <i class="fa fa-angle-right" aria-hidden="true"></i></p>
             </a>
 
             <a href="#">
-                <img src="Images/furniture-resized.jpg" alt="Furniture">
+                <img src="images/furniture-resized.jpg" alt="Furniture">
                 <p>Furniture assembly <i class="fa fa-angle-right" aria-hidden="true"></i></p>
             </a>
         </section>
@@ -72,7 +72,7 @@
         </section>
     </main>
 
-    <?php include('Includes/footer.php'); ?>
+    <?php include('includes/footer.php'); ?>
 </div>
 </body>
 </html>

@@ -30,8 +30,8 @@ if ($_POST) {
 ?>
 <html lang="en">
 <head>
-    <?php include('Includes/head.php'); ?>
-    <link rel="stylesheet" href="CSS/login.css">
+    <?php include('includes/head.php'); ?>
+    <link rel="stylesheet" href="css/login.css">
     <title>Log in</title>
 </head>
 <body>

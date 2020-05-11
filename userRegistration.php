@@ -25,8 +25,8 @@ if($_POST) {
 <!doctype html>
 <html lang="en">
 <head>
-    <?php include('Includes/head.php'); ?>
-    <link rel="stylesheet" href="CSS/register.css">
+    <?php include('includes/head.php'); ?>
+    <link rel="stylesheet" href="css/register.css">
     <title>Register</title>
 </head>
 <body>
