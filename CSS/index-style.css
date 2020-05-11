@@ -113,12 +113,6 @@ main {
     box-shadow: 3px 3px 3px 2px #ccc;
 }
 
-.popular-services a:hover {
-    transform: scaleY(1.2);
-}
-
-
-
 .popular-services a img{
     width: 100%;
 }
@@ -128,7 +122,88 @@ main {
     padding: 1rem;
 }
 
-/* Vetted professionals section*/
+/* Our story section */
+.our-story {
+    background-color: #c1a57b;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    padding: 5rem 4rem;
+}
+
+.our-story img {
+    padding: 2rem;
+    max-width: 25%;
+    box-shadow: 3px 3px 3px 2px #ccc;
+}
+.our-story #rotate-left {
+    transform: rotate(-15deg);
+}
+
+.our-story #rotate-right {
+    transform: rotate(15deg);
+}
+
+.our-story div {
+    width: 40%;
+    padding-right: 2rem;
+}
+/* Team members section */
+
+.team-section {
+    background-color: rgba(34, 40, 49, 0.93);
+    margin-top: 0;
+    padding-top: 2rem;
+    color: white;
+}
+
+.team-section #team-overview {
+    text-align: center;
+    letter-spacing: 2px;
+}
+
+.team-section #team-overview img {
+    width: 50px;
+    padding: 2rem 0.5rem 0;
+}
+
+.team-section .team-member {
+    display: none;
+}
+
+.team-section .team-member.active {
+    display: flex;
+}
+
+.team-section .team-member {
+    padding: 2rem 18.75rem 4rem;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.team-section .team-member img {
+    max-width: 40%;
+    margin-top: 2rem;
+    animation: member-photo 10s ease-out infinite;
+}
+
+.team-section .team-member div {
+    width: 55%;
+}
+
+.team-member h2 {
+    margin-bottom: 1rem;
+    text-align: center;
+    font-size: 30px;
+}
+
+.team-section .team-member p {
+    font-size: 18px;
+    font-style: italic;
+    text-align: justify;
+}
+
+/* Vetted professionals section */
 
 .vetted-professionals {
     flex-direction: column;
@@ -151,6 +226,7 @@ main {
 .vetted-professionals span:hover {
     color: #06b3d6;
 }
+
 
 /* Footer */
 
@@ -209,6 +285,7 @@ footer {
     color: #f4f4f4;
 }
 
+
 /****** Responsive design ******/
 
 @media (max-width: 600px) {
@@ -228,6 +305,7 @@ footer {
         margin-left: 0.5rem;
     }
 }
+
 
 /* Additionals style for Find Professionals page */
 #findProfessionals{
@@ -302,4 +380,19 @@ select {
 
 #findProfessionals .dropdown:hover .dropdown-content {
     display: block;
+}
+
+/**** Animation for team members ****/
+@keyframes member-photo {
+    0% {
+        transform: scale(0.8);
+    }
+
+    50% {
+        transform: scale(1);
+    }
+
+    100% {
+        transform: scale(0.8);
+    }
 }
