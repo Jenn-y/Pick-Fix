@@ -128,21 +128,21 @@
                     eleifend
                     lectus dolor, vitae pulvinar lorem tincidunt ut.</p>
             </div>
-            <img id="rotate-left" src="images/our-story-image.png" alt="Our work">
-            <img id="rotate-right" src="images/our-story-image.png" alt="Our work">
+            <img id="rotate-left" src="Images/our-story-image.png" alt="Our work">
+            <img id="rotate-right" src="Images/our-story-image.png" alt="Our work">
         </section>
 
         <section class="team-section">
             <div id="team-overview">
                 <h1>CLICK TO GET TO KNOW US <i class="fa fa-angle-double-down"
                                                aria-hidden="true"></i></h1>
-                <img class="show-member" src="images/teamMember.png" alt="Image" data-member="1">
-                <img class="show-member" src="images/teamMember.png" alt="Image" data-member="2">
-                <img class="show-member" src="images/teamMember.png" alt="Image" data-member="3">
+                <img class="show-member" src="Images/teamMember.png" alt="Image" data-member="1">
+                <img class="show-member" src="Images/armin.png" alt="Image" data-member="2">
+                <img class="show-member" src="Images/hana.png" alt="Image" data-member="3">
             </div>
 
             <div id="member1" class="team-member center active">
-                <img id="small" src="images/teamMember.png" alt="Image">
+                <img id="small" src="Images/teamMember.png" alt="Image">
                 <div>
                     <h2> Jenn </h2>
                     <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. In condimentum orci sed interdum
@@ -163,7 +163,7 @@
             </div>
 
             <div id="member2" class="team-member center">
-                <img id="small" src="images/teamMember.png" alt="Image">
+                <img id="small" src="Images/armin.png" alt="Image">
                 <div>
                     <h2> Armin </h2>
                     <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. In condimentum orci sed interdum
@@ -184,7 +184,7 @@
             </div>
 
             <div id="member3" class="team-member center">
-                <img id="small" src="images/teamMember.png" alt="Image">
+                <img id="small" src="Images/hana.png" alt="Image">
                 <div>
                     <h2> Hana </h2>
                     <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. In condimentum orci sed interdum
