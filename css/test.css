@@ -1,0 +1,39 @@
+.user-steps .step-description {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    padding: 2rem 18rem 2rem 20rem;
+}
+
+.user-steps h2 {
+    margin-bottom: 1rem;
+    text-align: center;
+    font-size: 30px;
+    margin-top: 3rem;
+}
+
+.user-steps div img {
+    width: 40%;
+}
+.user-steps div h1 {
+    justify-content: flex-end;
+    margin-right: 2rem;
+    color: #f2ae00;
+    font-size: 5.4rem;
+    width: 35px;
+    font-family: 'Sharp Sans', 'Open Sans', sans-serif;
+    font-weight: 400;
+}
+.user-steps .step-description div {
+    width: 40%;
+    justify-content: flex-start;
+    font-weight: 700;
+    font-style: normal;
+    font-size: 1.5rem;
+}
+
+.step-description div p {
+    color: #757d88;
+    font-size: 1rem;
+    line-height: 150%;
+}

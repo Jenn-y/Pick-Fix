@@ -5,6 +5,7 @@
     <link href="CSS/header.css" rel="stylesheet">
     <link href="CSS/index.css" rel="stylesheet">
     <link rel="stylesheet" href="CSS/footer.css">
+    <link rel="stylesheet" href="CSS/test.css">
 
 
     <title>Pick&Fix</title>
@@ -61,6 +62,43 @@
 
         </section>
 
+        <section class="user-steps">
+            <h2>You need a service? <i class="fa fa-angle-double-down" aria-hidden="true"></i></h2>
+            <div class="step-description">
+                <h1>1</h1>
+                <div>
+                    <h4>Find a professional</h4>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In condimentum orci sed interdum
+                        egestas.
+                        Suspendisse lobortis odio vitae purus tincidunt, vel tempor lacus vestibulum. Ut eu lacus dui.
+                        Quisque</p>
+                </div>
+                <img src="Images/find-step.jpg" alt="first-step-find-professional">
+            </div>
+            <div class="step-description">
+                <h1>2</h1>
+                <div>
+                    <h4>Describe your problem</h4>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In condimentum orci sed interdum
+                        egestas.
+                        Suspendisse lobortis odio vitae purus tincidunt, vel tempor lacus vestibulum. Ut eu lacus dui.
+                        Quisque</p>
+                </div>
+                <img src="Images/find-step.jpg" alt="first-step-find-professional">
+            </div>
+            <div class="step-description">
+                <h1>3</h1>
+                <div>
+                    <h4>Book a professional and solve your problem</h4>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In condimentum orci sed interdum
+                        egestas.
+                        Suspendisse lobortis odio vitae purus tincidunt, vel tempor lacus vestibulum. Ut eu lacus dui.
+                        Quisque</p>
+                </div>
+                <img src="Images/find-step.jpg" alt="first-step-find-professional">
+            </div>
+        </section>
+
         <section class="our-story">
             <div>
                 <h1>Our story</h1>
@@ -85,7 +123,7 @@
         <section class="team-section">
             <div id="team-overview">
                 <h1>CLICK TO GET TO KNOW US <i class="fa fa-angle-double-down"
-                                                              aria-hidden="true"></i></h1>
+                                               aria-hidden="true"></i></h1>
                 <img class="show-member" src="Images/teamMember.png" alt="Image" data-member="1">
                 <img class="show-member" src="Images/teamMember.png" alt="Image" data-member="2">
                 <img class="show-member" src="Images/teamMember.png" alt="Image" data-member="3">
