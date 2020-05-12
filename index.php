@@ -6,6 +6,7 @@
     <link href="css/index.css" rel="stylesheet">
     <link rel="stylesheet" href="css/footer.css">
 
+
     <title>Pick&Fix</title>
 
     <script type="text/javascript">

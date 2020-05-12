@@ -134,6 +134,7 @@ main {
 
 /* User steps section */
 
+
 .user-steps .step-description {
     display: flex;
     align-items: flex-start;
@@ -156,20 +157,25 @@ main {
     border-radius: 2px;
 }
 
-.user-steps div img:before {
-    background: #28261a;
-    transition: .3s;
-    transform: scale(.7);
+.user-steps {
+    width: 65%;
+    margin: 0 auto;
 }
 
 .user-steps div img:hover::before {
     transform: scale(1.2);
-    box-shadow: 0 0 35px #28261a;
+    box-shadow: 0 0 35px #f2ae00;
 }
 
 .user-steps div img:hover {
     color: #ffee10;
-    box-shadow: 0 0 35px #28261a;
+    box-shadow: 0 0 35px #f2ae00;
+}
+
+.user-steps div img:before {
+    background: #28261a;
+    transition: .3s;
+    transform: scale(.7);
 }
 
 .user-steps div h1 {
