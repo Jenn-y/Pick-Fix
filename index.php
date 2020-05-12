@@ -62,7 +62,7 @@
 
         <section class="user-steps">
             <h2>You need a service? <i class="fa fa-angle-double-down" aria-hidden="true"></i></h2>
-            <div class="step-description">
+            <div class="step-description center">
                 <h1>1</h1>
                 <div>
                     <h4>Find a professional</h4>
@@ -73,7 +73,7 @@
                 </div>
                 <img src="images/find-step.jpg" alt="first-step-find-professional">
             </div>
-            <div class="step-description">
+            <div class="step-description center">
                 <h1>2</h1>
                 <div>
                     <h4>Describe your problem</h4>
@@ -84,7 +84,7 @@
                 </div>
                 <img src="images/describe-problem.png" alt="first-step-find-professional">
             </div>
-            <div class="step-description">
+            <div class="step-description center">
                 <h1>3</h1>
                 <div>
                     <h4>Book a professional and solve your problem</h4>
