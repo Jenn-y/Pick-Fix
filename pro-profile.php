@@ -71,7 +71,7 @@
                 </div>
                 <div class="description flex-container">
                     <label for="problem-description">Description of the problem:</label>
-                    <textarea name="problem-description" id="problem-description" cols="30" rows="10" placeholder="Please describe your problem here"></textarea>
+                    <textarea name="problem-description" id="problem-description" placeholder="Please describe your problem here"></textarea>
                 </div>
             </form>
             <div class="flex-container">
