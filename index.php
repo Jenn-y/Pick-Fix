@@ -127,7 +127,7 @@
                 <img class="show-member" src="images/teamMember.png" alt="Image" data-member="3">
             </div>
 
-            <div id="member1" class="team-member active">
+            <div id="member1" class="team-member center active">
                 <img id="small" src="images/teamMember.png" alt="Image">
                 <div>
                     <h2> Jenn </h2>
@@ -148,7 +148,7 @@
                 </div>
             </div>
 
-            <div id="member2" class="team-member">
+            <div id="member2" class="team-member center">
                 <img id="small" src="images/teamMember.png" alt="Image">
                 <div>
                     <h2> Armin </h2>
@@ -169,7 +169,7 @@
                 </div>
             </div>
 
-            <div id="member3" class="team-member">
+            <div id="member3" class="team-member center">
                 <img id="small" src="images/teamMember.png" alt="Image">
                 <div>
                     <h2> Hana </h2>
