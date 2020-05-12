@@ -249,7 +249,7 @@ main {
 }
 
 .team-section .team-member {
-    padding: 2rem 18.75rem 4rem;
+    padding: 2rem 1rem 4rem 1rem;
     justify-content: space-between;
     align-items: flex-start;
 }
