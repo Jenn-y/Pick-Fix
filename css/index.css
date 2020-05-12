@@ -277,7 +277,7 @@ main {
 .team-section .team-member {
     padding: 2rem 1rem 4rem 1rem;
     justify-content: space-between;
-    align-items: flex-start;
+    align-items: center;
 }
 
 .team-section .team-member img {
@@ -325,32 +325,6 @@ main {
 .vetted-professionals span:hover {
     color: #06b3d6;
 }
-
-/****** Responsive design ******/
-
-@media (max-width: 600px) {
-    .popular-services {
-        flex-wrap: wrap;
-    }
-
-    .popular-services a {
-        max-width: calc(50% - 0.5rem);
-        margin: 0.5rem 0;
-        transition: none;
-    }
-
-    .popular-services a:hover {
-        transform: none;
-    }
-
-    .popular-services a:nth-child(odd) {
-        margin-right: 0.5rem;
-    }
-    .popular-services a:nth-child(even) {
-        margin-left: 0.5rem;
-    }
-}
-
 
 /* Additional style for Find Professionals page */
 #findProfessionals{
@@ -439,5 +413,57 @@ select {
 
     100% {
         transform: scale(0.8);
+    }
+}
+
+/****** Responsive design ******/
+
+@media (max-width: 600px) {
+    .popular-services {
+        flex-wrap: wrap;
+    }
+
+    .popular-services a {
+        max-width: calc(50% - 0.5rem);
+        margin: 0.5rem 0;
+        transition: none;
+    }
+
+    .popular-services a:hover {
+        transform: none;
+    }
+
+    .popular-services a:nth-child(odd) {
+        margin-right: 0.5rem;
+    }
+    .popular-services a:nth-child(even) {
+        margin-left: 0.5rem;
+    }
+
+    .user-steps .step-description {
+        flex-wrap: wrap;
+        justify-content: space-evenly;
+    }
+
+    .step-description h1 {
+        margin: 0;
+    }
+
+    .step-description img {
+        margin-top: 2rem;
+        min-width: 100%;
+    }
+
+    .user-steps div img:hover {
+        box-shadow: none;
+    }
+
+    .team-section .team-member {
+        flex-direction: column;
+    }
+
+    .team-section .team-member div {
+        padding-top: 2rem;
+        width: unset;
     }
 }

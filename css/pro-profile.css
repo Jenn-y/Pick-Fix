@@ -155,7 +155,9 @@ input, textarea, select {
 }
 
 textarea { resize: none;
+    box-sizing: border-box;
     height: 100%;
+    width: 100%;
 }
 
 select {
@@ -194,6 +196,16 @@ label span { color: #DC143C; }
 }
 
 @media (max-width: 600px) {
+    .user {
+        flex-direction: column;
+    }
+
+    .user div {
+        padding-top: 2rem;
+        text-align: center;
+        margin: 0;
+    }
+
     .request-box form {
         flex-direction: column;
     }
@@ -208,5 +220,9 @@ label span { color: #DC143C; }
 
     .request-details {
         padding-right: 0;
+    }
+
+    textarea {
+        height: 10rem;
     }
 }
