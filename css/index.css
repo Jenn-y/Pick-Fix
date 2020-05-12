@@ -105,7 +105,7 @@ main {
 }
 
 .popular-services a {
-    max-width: 20%;
+    max-width: calc(25% - 1rem);
     text-decoration: none;
     color: black;
     background-color: white;
@@ -113,6 +113,10 @@ main {
     margin-bottom: 2rem;
     box-shadow: 3px 3px 3px 2px #ccc;
     transition: 0.1s all ease-in-out;
+}
+
+.popular-services a:last-child {
+    margin-right: 0;
 }
 
 .popular-services a:hover {
@@ -134,7 +138,7 @@ main {
     display: flex;
     align-items: flex-start;
     justify-content: space-between;
-    padding: 2rem 18rem 2rem 20rem;
+    padding: 2rem 1rem 2rem 1rem;
 }
 
 .user-steps h2 {
@@ -271,7 +275,7 @@ main {
 }
 
 .team-section .team-member {
-    padding: 2rem 18.75rem 4rem;
+    padding: 2rem 1rem 4rem 1rem;
     justify-content: space-between;
     align-items: flex-start;
 }
