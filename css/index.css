@@ -10,6 +10,7 @@ body {
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
+    color: #3d4548;
 }
 
 .flex-container {
@@ -189,6 +190,31 @@ main {
     font-size: 1rem;
     line-height: 150%;
     margin-top: 0.7rem;
+}
+
+/* Section for professionals */
+
+.section-for-professionals {
+    display: block;
+    margin-top: 7rem;
+    margin-bottom: 3rem;
+    text-align: center;
+    line-height: 2.5rem;
+}
+
+.section-for-professionals img {
+    margin-right: 1rem;
+}
+
+.section-for-professionals p {
+    color: #666;
+}
+
+.section-for-professionals a, .section-for-professionals i {
+    text-decoration: none;
+    font-weight: bold;
+    color: #5486a3;
+    font-size: 20px;
 }
 
 /* Our story section */

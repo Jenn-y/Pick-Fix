@@ -99,6 +99,19 @@
             </div>
         </section>
 
+        <section class="section-for-professionals">
+            <div>
+                <img src="Images/zoom.png" alt="zoom-icon">
+                <img src="Images/electronics.png" alt="electronics-icon">
+                <img src="Images/plumbing.png" alt="plumbing-icon">
+                <img src="Images/roller.png" alt="painting-icon">
+                <img src="Images/washing.png" alt="washing-icon">
+            </div>
+            <h1>Are You a Home Improvement or Service Pro?</h1>
+            <p>Find out how Pick&Fix can help your business</p>
+            <a href="professionalsRegistration.php">Learn More <i class="fa fa-angle-right" aria-hidden="true"></i></a>
+        </section>
+
         <section class="our-story">
             <div>
                 <h1>Our story</h1>
