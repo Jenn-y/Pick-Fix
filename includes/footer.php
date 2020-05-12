@@ -7,7 +7,7 @@
         </section>
         <div class="line"></div>
         <section class="contact flex-container">
-            <div>
+            <div class="flex-container center">
                 <a href="#">Contact</a>
                 <a href="#">Privacy</a>
                 <a href="#">Cookies</a>

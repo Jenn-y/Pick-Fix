@@ -1,20 +1,21 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <?php include('Includes/head.php'); ?>
-    <link rel="stylesheet" href="CSS/editProfessionalsProfile.css">
-    <link href="CSS/index-header.css" rel="stylesheet">
+    <?php include('includes/head.php'); ?>
+    <link rel="stylesheet" href="css/editProfessionalsProfile.css">
+    <link href="css/header.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/footer.css">
     <title>Edit Profile</title>
 </head>
 <body>
 
 <div id="page-container">
-    <?php include('Includes/header-signed-in.php'); ?>
+    <?php include('includes/header-signed-in.php'); ?>
 
     <main>
         <div class="main center">
             <div id="profilePhoto">
-                <img src="Images/default-user.png" alt="default-user-image">
+                <img src="images/default-user.png" alt="default-user-image">
                 <button class="buttonStyle">Change Profile Photo</button>
             </div>
             <form>
@@ -118,7 +119,7 @@
             </form>
         </div>
     </main>
-    <?php include('Includes/footer.php'); ?>
+    <?php include('includes/footer.php'); ?>
 </div>
 </body>
 </html>

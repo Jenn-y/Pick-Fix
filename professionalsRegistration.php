@@ -29,8 +29,8 @@ if ($_POST) {
 <!doctype html>
 <html lang="en">
 <head>
-    <?php include('Includes/head.php'); ?>
-    <link rel="stylesheet" href="CSS/index.css">
+    <?php include('includes/head.php'); ?>
+    <link rel="stylesheet" href="css/professionalsRegistration.css">
     <title>Join as a Pro</title>
 </head>
 <body>
@@ -199,7 +199,7 @@ if ($_POST) {
         </div>
     </main>
 
-    <?php include('Includes/footer.php'); ?>
+    <?php include('includes/footer.php'); ?>
 </div>
 </body>
 </html>

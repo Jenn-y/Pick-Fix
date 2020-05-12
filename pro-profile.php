@@ -1,20 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <?php include('Includes/head.php'); ?>
-    <link href="CSS/index-header.css" rel="stylesheet">
-    <link href="CSS/pro-profile.css" rel="stylesheet">
+    <?php include('includes/head.php'); ?>
+    <link href="css/header.css" rel="stylesheet">
+    <link href="css/pro-profile.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/footer.css">
 
     <title>Profile</title>
 </head>
 <body>
 <div id="page-container">
-    <?php include('Includes/header-signed-in.php'); ?>
+    <?php include('includes/header-signed-in.php'); ?>
 
     <main class="center">
         <div class="shadow">
             <div class="user flex-container">
-                <img src="Images/default-user.png" alt="default-user-image">
+                <img src="images/default-user.png" alt="default-user-image">
                 <div>
                     <h3>Name Surname</h3>
                     <p>Sarajevo, Bosnia and Herzegovina</p>
@@ -79,7 +80,7 @@
         </div>
     </main>
 
-    <?php include('Includes/footer.php'); ?>
+    <?php include('includes/footer.php'); ?>
 </div>
 </body>
 </html>

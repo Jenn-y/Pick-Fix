@@ -6,7 +6,7 @@
 body {
     font-family: 'Roboto', serif;
     background-color: #5e3a11;
-    background-image: url("../Images/2ndback.jpg");
+    background-image: url("../images/2ndback.jpg");
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
@@ -90,59 +90,4 @@ div input:focus, div select:focus{
 
 .flex-container {
     display: flex;
-}
-
-footer {
-    width: 100%;
-    background-color: #1d1d1d;
-    position: absolute;
-    bottom: 0;
-}
-
-.inner-footer {
-    padding: 1rem;
-}
-
-.line {
-    width: 100%;
-    height: 1px;
-    background-color: lightgray;
-    margin: 1rem 0;
-}
-
-.social-media {
-    justify-content: center;
-    padding: 1rem;
-}
-
-.social-media p {
-    color: lightgray;
-}
-
-.social-media a {
-    color: lightgray;
-    height: 2.5rem;
-    width: 2.5rem;
-    display: inline-block;
-    border-radius: 1.75rem;
-    border: 1px solid lightgray;
-    font-size: 1.125rem;
-    text-align: center;
-    line-height: 2.5rem;
-    margin-left: 2rem;
-}
-
-.contact {
-    justify-content: space-between;
-    padding: 1rem 0;
-}
-
-.contact a {
-    margin-right: 1rem;
-    color: lightgray;
-    text-decoration: none;
-}
-
-.contact p {
-    color: #f4f4f4;
 }

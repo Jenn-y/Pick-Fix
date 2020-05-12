@@ -1,4 +1,4 @@
-/* CSS for professionals' registration page */
+/* css for professionals' registration page */
 * {
     margin: 0;
     padding: 0;
@@ -7,7 +7,7 @@
 body {
     font-family: 'Roboto', serif;
     font-size: 18px;
-    background-image: url("../Images/background.jpg");
+    background-image: url("../images/background.jpg");
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;

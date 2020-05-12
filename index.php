@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <?php include('Includes/head.php'); ?>
-    <link href="CSS/index-header.css" rel="stylesheet">
-    <link href="CSS/index-style.css" rel="stylesheet">
+    <?php include('includes/head.php'); ?>
+    <link href="CSS/header.css" rel="stylesheet">
+    <link href="CSS/index.css" rel="stylesheet">
+    <link rel="stylesheet" href="CSS/footer.css">
 
 
     <title>Pick&Fix</title>
@@ -22,7 +23,7 @@
 </head>
 <body>
 <div class="page-container">
-    <?php include('Includes/header.php'); ?>
+    <?php include('includes/header.php'); ?>
 
     <div class="welcome">
         <div class="color-overlay"></div>
@@ -57,6 +58,7 @@
                 <img src="Images/furniture-resized.jpg" alt="Furniture">
                 <p>Furniture assembly <i class="fa fa-angle-right" aria-hidden="true"></i></p>
             </a>
+
         </section>
 
         <section class="our-story">
@@ -162,7 +164,7 @@
         </section>
     </main>
 
-    <?php include('Includes/footer.php'); ?>
+    <?php include('includes/footer.php'); ?>
 </div>
 </body>
 </html>
