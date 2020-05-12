@@ -5,7 +5,7 @@
     <link href="CSS/header.css" rel="stylesheet">
     <link href="CSS/index.css" rel="stylesheet">
     <link rel="stylesheet" href="CSS/footer.css">
-    <link rel="stylesheet" href="CSS/test.css">
+
 
 
     <title>Pick&Fix</title>
@@ -84,7 +84,7 @@
                         Suspendisse lobortis odio vitae purus tincidunt, vel tempor lacus vestibulum. Ut eu lacus dui.
                         Quisque</p>
                 </div>
-                <img src="Images/find-step.jpg" alt="first-step-find-professional">
+                <img src="Images/describe-problem.png" alt="first-step-find-professional">
             </div>
             <div class="step-description">
                 <h1>3</h1>
@@ -95,7 +95,7 @@
                         Suspendisse lobortis odio vitae purus tincidunt, vel tempor lacus vestibulum. Ut eu lacus dui.
                         Quisque</p>
                 </div>
-                <img src="Images/find-step.jpg" alt="first-step-find-professional">
+                <img src="Images/step3.jpg" alt="first-step-find-professional">
             </div>
         </section>
 
