@@ -2,11 +2,9 @@
 <html lang="en">
 <head>
     <?php include('includes/head.php'); ?>
-    <link href="CSS/header.css" rel="stylesheet">
-    <link href="CSS/index.css" rel="stylesheet">
-    <link rel="stylesheet" href="CSS/footer.css">
-
-
+    <link href="css/header.css" rel="stylesheet">
+    <link href="css/index.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/footer.css">
 
     <title>Pick&Fix</title>
 
@@ -41,22 +39,22 @@
 
         <section class="popular-services flex-container center">
             <a href="#">
-                <img src="Images/repairman.jpg" alt="Repairman">
+                <img src="images/repairman.jpg" alt="Repairman">
                 <p>General repairman <i class="fa fa-angle-right" aria-hidden="true"></i></p>
             </a>
 
             <a href="#">
-                <img src="Images/electrics-resized.jpg" alt="Electrics">
+                <img src="images/electrics-resized.jpg" alt="Electrics">
                 <p>Electrician <i class="fa fa-angle-right" aria-hidden="true"></i></p>
             </a>
 
             <a href="#">
-                <img src="Images/faucet-resized.jpg" alt="Faucet">
+                <img src="images/faucet-resized.jpg" alt="Faucet">
                 <p>Faucets <i class="fa fa-angle-right" aria-hidden="true"></i></p>
             </a>
 
             <a href="#">
-                <img src="Images/furniture-resized.jpg" alt="Furniture">
+                <img src="images/furniture-resized.jpg" alt="Furniture">
                 <p>Furniture assembly <i class="fa fa-angle-right" aria-hidden="true"></i></p>
             </a>
 
@@ -73,7 +71,7 @@
                         Suspendisse lobortis odio vitae purus tincidunt, vel tempor lacus vestibulum. Ut eu lacus dui.
                         Quisque</p>
                 </div>
-                <img src="Images/find-step.jpg" alt="first-step-find-professional">
+                <img src="images/find-step.jpg" alt="first-step-find-professional">
             </div>
             <div class="step-description">
                 <h1>2</h1>
@@ -84,7 +82,7 @@
                         Suspendisse lobortis odio vitae purus tincidunt, vel tempor lacus vestibulum. Ut eu lacus dui.
                         Quisque</p>
                 </div>
-                <img src="Images/describe-problem.png" alt="first-step-find-professional">
+                <img src="images/describe-problem.png" alt="first-step-find-professional">
             </div>
             <div class="step-description">
                 <h1>3</h1>
@@ -95,7 +93,7 @@
                         Suspendisse lobortis odio vitae purus tincidunt, vel tempor lacus vestibulum. Ut eu lacus dui.
                         Quisque</p>
                 </div>
-                <img src="Images/step3.jpg" alt="first-step-find-professional">
+                <img src="images/step3.jpg" alt="first-step-find-professional">
             </div>
         </section>
 
@@ -116,21 +114,21 @@
                     eleifend
                     lectus dolor, vitae pulvinar lorem tincidunt ut.</p>
             </div>
-            <img id="rotate-left" src="Images/our-story-image.png" alt="Our work">
-            <img id="rotate-right" src="Images/our-story-image.png" alt="Our work">
+            <img id="rotate-left" src="images/our-story-image.png" alt="Our work">
+            <img id="rotate-right" src="images/our-story-image.png" alt="Our work">
         </section>
 
         <section class="team-section">
             <div id="team-overview">
                 <h1>CLICK TO GET TO KNOW US <i class="fa fa-angle-double-down"
                                                aria-hidden="true"></i></h1>
-                <img class="show-member" src="Images/teamMember.png" alt="Image" data-member="1">
-                <img class="show-member" src="Images/teamMember.png" alt="Image" data-member="2">
-                <img class="show-member" src="Images/teamMember.png" alt="Image" data-member="3">
+                <img class="show-member" src="images/teamMember.png" alt="Image" data-member="1">
+                <img class="show-member" src="images/teamMember.png" alt="Image" data-member="2">
+                <img class="show-member" src="images/teamMember.png" alt="Image" data-member="3">
             </div>
 
             <div id="member1" class="team-member active">
-                <img id="small" src="Images/teamMember.png" alt="Image">
+                <img id="small" src="images/teamMember.png" alt="Image">
                 <div>
                     <h2> Jenn </h2>
                     <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. In condimentum orci sed interdum
@@ -151,7 +149,7 @@
             </div>
 
             <div id="member2" class="team-member">
-                <img id="small" src="Images/teamMember.png" alt="Image">
+                <img id="small" src="images/teamMember.png" alt="Image">
                 <div>
                     <h2> Armin </h2>
                     <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. In condimentum orci sed interdum
@@ -172,7 +170,7 @@
             </div>
 
             <div id="member3" class="team-member">
-                <img id="small" src="Images/teamMember.png" alt="Image">
+                <img id="small" src="images/teamMember.png" alt="Image">
                 <div>
                     <h2> Hana </h2>
                     <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. In condimentum orci sed interdum
