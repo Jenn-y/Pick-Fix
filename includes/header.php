@@ -4,7 +4,7 @@
         <nav id="services">
 
             <div class="dropdown">
-                <a class="dropdown-link" href="../findProfessionals.php"><i class="fa fa-angle-right"
+                <a class="dropdown-link" href="findProfessionals.php"><i class="fa fa-angle-right"
                                                                             aria-hidden="true"></i> All Services</a>
                 <div class="dropdown-content">
                     <div>
