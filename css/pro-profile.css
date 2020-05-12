@@ -196,6 +196,16 @@ label span { color: #DC143C; }
 }
 
 @media (max-width: 600px) {
+    .user {
+        flex-direction: column;
+    }
+
+    .user div {
+        padding-top: 2rem;
+        text-align: center;
+        margin: 0;
+    }
+
     .request-box form {
         flex-direction: column;
     }
