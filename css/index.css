@@ -440,6 +440,24 @@ select {
         margin-left: 0.5rem;
     }
 
+    .user-steps .step-description {
+        flex-wrap: wrap;
+        justify-content: space-evenly;
+    }
+
+    .step-description h1 {
+        margin: 0;
+    }
+
+    .step-description img {
+        margin-top: 2rem;
+        min-width: 100%;
+    }
+
+    .user-steps div img:hover {
+        box-shadow: none;
+    }
+
     .team-section .team-member {
         flex-direction: column;
     }
