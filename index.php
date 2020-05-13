@@ -2,9 +2,10 @@
 <html lang="en">
 <head>
     <?php include('includes/head.php'); ?>
-    <link href="css/header.css" rel="stylesheet">
-    <link href="css/index.css" rel="stylesheet">
-    <link rel="stylesheet" href="css/footer.css">
+    <link href="CSS/header.css" rel="stylesheet">
+    <link href="CSS/index.css" rel="stylesheet">
+    <link rel="stylesheet" href="CSS/footer.css">
+
 
 
     <title>Pick&Fix</title>
