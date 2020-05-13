@@ -157,11 +157,6 @@ main {
     border-radius: 2px;
 }
 
-.user-steps {
-    width: 65%;
-    margin: 0 auto;
-}
-
 .user-steps div img:hover::before {
     transform: scale(1.2);
     box-shadow: 0 0 35px #f2ae00;
