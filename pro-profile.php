@@ -6,6 +6,7 @@
     <link href="css/pro-profile.css" rel="stylesheet">
     <link rel="stylesheet" href="css/footer.css">
 
+
     <title>Profile</title>
 </head>
 <body>
