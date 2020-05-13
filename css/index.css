@@ -418,7 +418,7 @@ select {
 
 /****** Responsive design ******/
 
-@media (max-width: 1200px) {
+@media (max-width: 1500px) {
     .user-steps {
         width: 65%;
         margin: 0 auto;
@@ -455,8 +455,21 @@ select {
     }
 
     .user-steps .step-description {
-        flex-wrap: wrap;
-        justify-content: space-evenly;
+        display: block;
+        /*justify-content: space-evenly;*/
+    }
+
+    .user-steps .step-description h1 {
+        margin-right: 0;
+        display: inline-block;
+    }
+
+    .user-steps .step-description div {
+        float: right;
+        display: inline-block;
+        width: 80%;
+        text-align: justify;
+        margin-right: 0.5rem;
     }
 
     .step-description h1 {
@@ -479,5 +492,31 @@ select {
     .team-section .team-member div {
         padding-top: 2rem;
         width: unset;
+    }
+
+    .our-story {
+        display: block;
+        padding: 2rem 1rem;
+    }
+
+    .our-story div {
+        width: 100%;
+        text-align: justify;
+    }
+
+    .our-story div h1 {
+        text-align: center;
+        margin-bottom: 1rem;
+    }
+
+    .our-story #rotate-left{
+        transform: rotate(0deg);
+        max-width: 100%;
+        box-sizing: border-box;
+        margin-top: 1.5rem;
+    }
+
+    .our-story #rotate-right{
+        display: none;
     }
 }
