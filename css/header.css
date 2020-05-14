@@ -98,4 +98,42 @@ nav > ul > li {
     display: block;
 }
 
+/* Sidebar menu style */
 
+.side-nav {
+    height:100%;
+    width:0;
+    position:fixed;
+    z-index:1;
+    top:0;
+    left:0;
+    background-color:#111;
+    opacity:0.9;
+    overflow-x:hidden;
+    padding-top:60px;
+    transition:0.5s;
+    text-align: center;
+}
+
+#side-menu a {
+    padding:10px;
+    display: block;
+    color: #ccc;
+    width: 100%;
+    font-size: 18px;
+    transition: 0.3s;
+}
+
+#side-menu .btn-close{
+    position:absolute;
+    top:0;
+    font-size:40px;
+    margin-left:70px;
+    color: #fff;
+}
+
+#side-menu a:hover {
+    color: #fff;
+}
+
+.signed-in-header

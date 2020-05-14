@@ -327,6 +327,7 @@ main {
 }
 
 /* Additional style for Find Professionals page */
+
 #findProfessionals{
     background-image: none;
     background-color: white;
@@ -353,14 +354,14 @@ select {
     font-size: 27px;
 }
 
-#findProfessionals main .flex-container .all-services {
+#findProfessionals main .flex-container .allServices {
     width: 27%;
     text-align: center;
 }
-#findProfessionals main .flex-container .all-services .dropdown {
+#findProfessionals main .flex-container .allServices .dropdown {
     max-width: 100%;
 }
-#findProfessionals main .flex-container .all-services a {
+#findProfessionals main .flex-container .allServices a {
     background-color: #f4f4f4;
     box-shadow: none;
     display: block;
@@ -370,7 +371,7 @@ select {
     font-size: 20px;
 }
 
-#findProfessionals main .flex-container .all-services a:hover {
+#findProfessionals main .flex-container .allServices a:hover {
     transform: scaleX(1.1);
     cursor: pointer;
 }
@@ -383,12 +384,12 @@ select {
     align-items: center;
 }
 
-#findProfessionals .dropdown {
+#findProfessionals main .dropdown {
     position: relative;
     margin-bottom: 1rem;
 }
 
-#findProfessionals .dropdown-content {
+#findProfessionals main .dropdown-content {
     display: none;
     box-shadow: 3px 3px 3px 2px #ccc;
     max-width: 100%;
@@ -397,8 +398,9 @@ select {
     padding: 0.5rem;
 }
 
-#findProfessionals .dropdown:hover .dropdown-content {
+#findProfessionals main .dropdown:hover .dropdown-content {
     display: block;
+    transition: 5s;
 }
 
 /**** Animation for team members ****/
