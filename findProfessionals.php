@@ -2,14 +2,14 @@
 <html lang="en">
 <head>
     <?php include('includes/head.php'); ?>
-    <link rel="stylesheet" href="css/header.css">
-    <link rel="stylesheet" href="css/index.css">
-    <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="CSS/header.css">
+    <link rel="stylesheet" href="CSS/index.css">
+    <link rel="stylesheet" href="CSS/footer.css">
     <title>Find Professionals</title>
 </head>
 <body id="findProfessionals">
 <div class="page-container">
-    <?php include('includes/header.php'); ?>
+    <?php include('includes/header-signed-in.php'); ?>
 
     <div class="welcome backImage">
         <div class="color-overlay"></div>
@@ -46,7 +46,7 @@
             <h1>Choose a professional for your service <i class="fa fa-angle-double-down"
                                                                                  aria-hidden="true"></i></h1>
 
-            <div class="all-services">
+            <div class="allServices">
                 <h1>All services</h1>
 
                 <div class="dropdown">

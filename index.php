@@ -62,7 +62,7 @@
 
         </section>
 
-        <section class="user-steps">
+        <section class="user-steps" id="how-it-works">
             <h2>You need a service? <i class="fa fa-angle-double-down" aria-hidden="true"></i></h2>
             <div class="step-description center">
                 <h1>1</h1>
@@ -112,7 +112,7 @@
             <a href="professionalsRegistration.php">Learn More <i class="fa fa-angle-right" aria-hidden="true"></i></a>
         </section>
 
-        <section class="our-story">
+        <section class="our-story" id="story">
             <div>
                 <h1>Our story</h1>
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In condimentum orci sed interdum
@@ -206,7 +206,7 @@
             </div>
         </section>
 
-        <section class="vetted-professionals flex-container center">
+        <section class="vetted-professionals flex-container center" id="contact">
             <i class="fa fa-lock" aria-hidden="true"></i>
             <h2>Vetted, Background-Checked Professionals</h2>
             <p>Pick & Fix tasks booked and paid for directly through the Pick & Fix platform are performed by
