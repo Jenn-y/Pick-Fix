@@ -19,7 +19,7 @@
     <div class="flex-container">
         <div class="tables flex-container">
             <a href="cities/cities.php">Cities</a>
-            <a href="#">Services</a>
+            <a href="services/services.php">Services</a>
             <a href="#">Work offers</a>
             <a href="#">Users</a>
         </div>

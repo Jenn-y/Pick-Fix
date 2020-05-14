@@ -195,7 +195,7 @@ if ($_POST) {
 
         <div id="signInBlock">
             <h4>Already have an account?</h4>
-            <button type="button" class="buttonStyle">SIGN IN</button>
+            <a class="buttonStyle" href="login.php">SIGN IN</a>
         </div>
     </main>
 

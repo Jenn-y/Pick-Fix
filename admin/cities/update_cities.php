@@ -1,3 +1,4 @@
+
 <?php
 include('../../includes/db.php');
 $query1 = mysqli_query($db, "SELECT * FROM cities WHERE status=1");
@@ -23,27 +24,12 @@ $query1 = mysqli_query($db, "SELECT * FROM cities WHERE status=1");
     <div class="flex-container">
         <div class="tables flex-container">
             <a href="cities.php" id="stay">Cities <i class="fa fa-long-arrow-right" aria-hidden="true"></i></a>
-            <a href="../services/services.php">Services</a>
+            <a href="#">Services</a>
             <a href="#">Work offers</a>
             <a href="#">Users</a>
         </div>
         <div class="rows">
-            <table>
-                <tr>
-                    <th>CID</th>
-                    <th>Name</th>
-                </tr>
-                <?php while($row = mysqli_fetch_assoc($query1)): ?>
-                    <tr>
-                        <td><?= $row["cid"]; ?></td>
-                        <td><?= $row["name"]; ?></td>
-                        <td><a href="delete_city.php?id=<?=$row['cid']; ?>">delete</a></td>
-                        <td><a href="update_cities.php?id=<?=$row['cid']; ?>">edit</a></td>
-                    </tr>
-                <?php endwhile; ?>
-
-            </table>
-            <?php include('insert_city.php'); ?>
+            <?php include('edit_city.php'); ?>
         </div>
     </div>
 </main>

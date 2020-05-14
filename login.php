@@ -39,7 +39,7 @@ if ($_POST) {
 <body>
 <main class="flex-container">
     <div>
-        <form method="POST">
+        <form method="POST" action="pro-profile.php">
             <div class="login flex-container">
                 <p>User Login</p>
                 <?php input("email", "uname", "Email"); ?>
