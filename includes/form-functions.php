@@ -1,6 +1,6 @@
 <?php
 // function that creates and checks input
-function input($type, $name, $placeholder, $required = false) {
+function create_input($type, $name, $placeholder, $required = false) {
     // start input
     echo "<input type=\"$type\" placeholder=\"$placeholder\" name=\"$name\"";
 

@@ -1,11 +1,6 @@
 <?php
 include("includes/form-functions.php");
-
-define('DB_SERVER', 'localhost');
-define('DB_USERNAME', 'root');
-define('DB_PASSWORD', '');
-define('DB_DATABASE', 'pick_fix');
-$db = mysqli_connect(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_DATABASE);
+include("includes/db.php");
 
 session_start();
 if ($_POST) {
@@ -42,7 +37,7 @@ if ($_POST) {
         <form method="POST" action="pro-profile.php">
             <div class="login flex-container">
                 <p>User Login</p>
-                <?php input("email", "uname", "Email"); ?>
+                <?php create_input("email", "uname", "Email"); ?>
                 <input type="password" placeholder="Password" name="psw">
                 <button type="submit">Login</button>
                 <div>
