@@ -1,5 +1,6 @@
 <?php
 include("includes/form-functions.php");
+include("includes/db.php");
 
 function checkRequiredField($value)
 {
@@ -9,18 +10,15 @@ if($_POST) {
     if (checkRequiredField($_POST['first_name']) && checkRequiredField($_POST['last_name']) && checkRequiredField($_POST['email'])
         && checkRequiredField($_POST['password'])) {
 
-        $conn = mysqli_connect('localhost', 'root', '', 'pick_fix');
-
         $sql = "INSERT INTO users (fname, lname, email, password, area_code, phone_number, city)
-            VALUES ('{$_POST['first_name']}', '{$_POST['last_name']}', '{$_POST['email']}', '{$_POST['password']}', {$_POST['area_code']}, {$_POST['phone']}, '{$_POST['city']}')";
+                VALUES ('{$_POST['first_name']}', '{$_POST['last_name']}', '{$_POST['email']}', '{$_POST['password']}', {$_POST['area_code']}, {$_POST['phone']}, '{$_POST['city']}')";
 
-        $result = mysqli_query($conn, $sql);
+        $result = mysqli_query($db, $sql);
         if ($result) {
             exit("SUCCESSFULLY REGISTERED !!!");
         }
     }
 }
-
 ?>
 
 <!doctype html>
@@ -36,19 +34,19 @@ if($_POST) {
             <h1>Register</h1>
             <div class="full-name flex-container">
                 <label>Full name</label>
-                <?php input("text", "first_name", "First name", true); ?>
-                <?php input("text", "last_name", "Last name", true); ?>
+                <?php create_input("text", "first_name", "First name", true); ?>
+                <?php create_input("text", "last_name", "Last name", true); ?>
             </div>
             <label for="email">Email</label>
-            <?php input("text", "email", "Email",true); ?>
+            <?php create_input("text", "email", "Email",true); ?>
             <label for="password">Password</label>
-            <?php input("password", "password", "Password",true); ?>
+            <?php create_input("password", "password", "Password",true); ?>
 
             <label for="area_code">Area code</label>
-            <?php input("number", "area_code", "Area code",true); ?>
+            <?php create_input("number", "area_code", "Area code",true); ?>
 
             <label for="phone">Phone</label>
-            <?php input("tel", "phone", "Phone number",true); ?>
+            <?php create_input("tel", "phone", "Phone number",true); ?>
 
             <label for="city">City</label>
             <select name="city" id="city">
