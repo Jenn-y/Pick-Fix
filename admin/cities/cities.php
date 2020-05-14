@@ -1,6 +1,6 @@
 <?php
 include('../../includes/db.php');
-$query1 = mysqli_query($db, "SELECT * FROM cities");
+$query1 = mysqli_query($db, "SELECT * FROM cities WHERE status=1");
 ?>
 <!doctype html>
 <html lang="en">
@@ -32,13 +32,11 @@ $query1 = mysqli_query($db, "SELECT * FROM cities");
                 <tr>
                     <th>CID</th>
                     <th>Name</th>
-                    <th>Status</th>
                 </tr>
                 <?php while($row = mysqli_fetch_assoc($query1)): ?>
                     <tr>
                         <td><?= $row["cid"]; ?></td>
                         <td><?= $row["name"]; ?></td>
-                        <td><?= $row["status"]; ?></td>
                         <td><a href="delete_city.php?id=<?=$row['cid']; ?>">delete</a></td>
                     </tr>
                 <?php endwhile; ?>
