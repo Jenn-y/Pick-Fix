@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 14, 2020 at 12:06 PM
+-- Generation Time: May 14, 2020 at 02:10 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.5
 
@@ -38,10 +38,12 @@ CREATE TABLE `cities` (
 --
 
 INSERT INTO `cities` (`cid`, `name`, `status`) VALUES
-(1, 'Sarajevo', 1),
+(1, 'Zenica', 1),
 (2, 'Mostar', 1),
-(10, 'Test city 1', 1),
-(11, 'Test city 2', 0);
+(10, 'Sarajevo', 1),
+(11, 'Test city 2', 0),
+(13, 'Armin', 0),
+(14, 'Dženita', 1);
 
 -- --------------------------------------------------------
 
@@ -77,9 +79,19 @@ INSERT INTO `professionals` (`PID`, `FNAME`, `LNAME`, `EMAIL`, `PASSWORD`, `AREA
 CREATE TABLE `services` (
   `sid` int(11) NOT NULL,
   `category` varchar(20) NOT NULL,
-  `level` int(11) NOT NULL,
   `status` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `services`
+--
+
+INSERT INTO `services` (`sid`, `category`, `status`) VALUES
+(10, 'windows and doors', 1),
+(11, 'carpet', 0),
+(12, 'chimney', 1),
+(13, 'driveways', 1),
+(18, 'glass and screens', 1);
 
 -- --------------------------------------------------------
 
@@ -148,7 +160,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `cities`
 --
 ALTER TABLE `cities`
-  MODIFY `cid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `cid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `professionals`
@@ -160,7 +172,7 @@ ALTER TABLE `professionals`
 -- AUTO_INCREMENT for table `services`
 --
 ALTER TABLE `services`
-  MODIFY `sid` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `sid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `users`
