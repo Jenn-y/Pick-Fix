@@ -73,11 +73,24 @@
                 <div class="description flex-container">
                     <label for="problem-description">Description of the problem:</label>
                     <textarea name="problem-description" id="problem-description" placeholder="Please describe your problem here"></textarea>
+                    <label for="num_of_hrs">Number of hours <span>*</span></label>
+                    <input type="number" id="num_of_hrs" placeholder="Number of hours" required>
                 </div>
             </form>
             <div class="flex-container">
-                <button type="submit">Submit</button>
+                <button type="submit" onclick="getPrice()">Get Estimate Price</button>
+                <script>
+                    function getPrice() {
+                        document.getElementById('price').style.display = 'block';
+                    }
+                </script>
             </div>
+
+            <div id="price">
+                <p>27,99BAM</p>
+                <button type="submit">SEND SERVICE REQUEST</button>
+            </div>
+
         </div>
     </main>
 

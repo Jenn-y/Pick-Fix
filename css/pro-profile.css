@@ -54,6 +54,13 @@ main {
 
 .shadow { box-shadow: 5px 5px 5px #999999; }
 
+#price {
+    text-align: center;
+    margin-top: 2rem;
+    display: none;
+    transition: 2s;
+}
+
 /* Professional user requests*/
 
 table, th, td { border-collapse: collapse; }
