@@ -6,8 +6,7 @@ function checkRequiredField($value)
 }
 
 if ($_POST) {
-    if (checkRequiredField($_POST['first_name']) && checkRequiredField($_POST['last_name']) && checkRequiredField($_POST['email'])
-        && checkRequiredField($_POST['password']) && checkRequiredField($_POST['area_code']) && checkRequiredField($_POST['phone_number'])) {
+    if (checkRequiredField($_POST['area_code']) && checkRequiredField($_POST['phone_number'])) {
         $servername = "localhost";
         $username = "root";
         $password = "";
@@ -15,8 +14,8 @@ if ($_POST) {
 
         // Create connection
         $conn = mysqli_connect($servername, $username, $password, $database);
-        $sql = "INSERT INTO ACCOUNTS (FNAME, LNAME, EMAIL, PASSWORD, AREA_CODE, PHONE_NUMBER)
-        VALUES ('{$_POST['first_name']}', '{$_POST['last_name']}', '{$_POST['email']}', '{$_POST['password']}', '{$_POST['area_code']}', '{$_POST['phone_number']}')";
+        $sql = "INSERT INTO ACCOUNTS (AREA_CODE, PHONE_NUMBER)
+        VALUES ('{$_POST['area_code']}', '{$_POST['phone_number']}')";
         if (mysqli_query($conn, $sql)) {
             exit("SUCCESS !!!");
         } else {
@@ -30,16 +29,17 @@ if ($_POST) {
 <html lang="en">
 <head>
     <?php include('includes/head.php'); ?>
-    <link rel="stylesheet" href="css/professionalsRegistration.css">
-    <title>Join as a Pro</title>
+    <link href="CSS/professionalsRegistration.css" rel="stylesheet">
+
+    <title>Become a Pro</title>
 </head>
-<body>
+<body id="become-pro">
 <div id="page-container">
     <div id="header">
         <header>
             <h1><a href="index.php">pick&fix</a></h1>
             <nav>
-                <a href="index.php">Home</a>
+                <a href="pro-profile.php">Back to Profile</a>
             </nav>
         </header>
         <hr>
@@ -66,25 +66,8 @@ if ($_POST) {
 
                 <h1 id="signUp">Register as a professional</h1>
                 <form method="post">
-                    <div>
-                        <label>Full Name<br>
-                            <input name="first_name" id="first_name" type="text" placeholder="First name"
-                                   value="<?= isset($_POST['first_name']) ?? isset($_GET['first_name']) ?>" required>
-                            <input name="last_name" id="last_name" type="text" placeholder="Last name"
-                                   value="<?= isset($_POST['last_name']) ?? isset($_GET['last_name']) ?>" required>
-                        </label>
-                    </div>
-                    <div class="loginFields">
-                        <div>
-                            <label for="email">Email</label><br>
-                            <input name="email" id="email" type="email" placeholder="example: email@gmail.com"
-                                   value="<?= isset($_POST['email']) ?? isset($_GET['email']) ?>" required>
-                        </div>
-                        <div>
-                            <label for="password">Password</label><br>
-                            <input name="password" id="password" type="password" placeholder="Password">
-                        </div>
-                    </div>
+
+
                     <div class="checkboxWrapper">
                         <div>
                             <label>Available for work in:</label>
@@ -191,11 +174,6 @@ if ($_POST) {
                 </div>
                 </form>
             </div>
-        </div>
-
-        <div id="signInBlock">
-            <h4>Already have an account?</h4>
-            <a class="buttonStyle" href="login.php">SIGN IN</a>
         </div>
     </main>
 
