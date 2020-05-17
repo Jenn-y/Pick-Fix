@@ -136,4 +136,25 @@ nav > ul > li {
     color: #fff;
 }
 
-.signed-in-header
+@media (max-width: 800px) {
+    #login {
+        display: none;
+    }
+
+    #services {
+        display: none;
+    }
+
+    .open-slide {
+        order: 2;
+    }
+
+    #inner-header {
+        justify-content: space-between;
+    }
+
+    .side-nav {
+        left: unset;
+        right: 0;
+    }
+}
