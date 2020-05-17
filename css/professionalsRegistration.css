@@ -318,5 +318,24 @@ footer {
 }
 /* end of professionals' registration page */
 
+/* Additional styling for become-pro page */
+#become-pro .verticalLine {
+    height: 60%;
+    margin-top: 4rem;
+}
 
+#become-pro main .registrationWrapper {
+    align-items: flex-start;
+    margin: 0 auto;
+    height: 550px;
+}
 
+#become-pro main .registrationBlockLeft, #become-pro main .registrationBlockRight {
+    margin: 2rem auto 1rem;
+}
+
+/* Responsive */
+
+@media (min-width: 1500px) {
+
+}
