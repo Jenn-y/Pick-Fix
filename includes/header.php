@@ -14,14 +14,14 @@
         <div id="side-menu" class="side-nav">
             <a href="#" class="btn-close" onclick="closeMenu()">&times;</a>
             <a href="#">Home</a>
-            <a href="http://localhost/Pick-Fix/index.php#how-it-works" onclick="closeMenu()">How It Works?</a>
-            <a href="http://localhost/Pick-Fix/index.php#story" onclick="closeMenu()">Our Story</a>
-            <a href="http://localhost/Pick-Fix/index.php#team-overview" onclick="closeMenu()">Team Members</a>
-            <a href="http://localhost/Pick-Fix/login.php">Find a Professional</a>
-            <a href="http://localhost/Pick-Fix/login.php">Login</a>
-            <a href="http://localhost/Pick-Fix/userRegistration.php">Register</a>
-            <a href="http://localhost/Pick-Fix/professionalsRegistration.php">Join As a Pro</a>
-            <a href="http://localhost/Pick-Fix/index.php#contact" onclick="closeMenu()">Contact Us</a>
+            <a href="index.php#how-it-works" onclick="closeMenu()">How It Works?</a>
+            <a href="index.php#story" onclick="closeMenu()">Our Story</a>
+            <a href="index.php#team-overview" onclick="closeMenu()">Team Members</a>
+            <a href="login.php">Find a Professional</a>
+            <a href="login.php">Login</a>
+            <a href="userRegistration.php">Register</a>
+            <a href="professionalsRegistration.php">Join As a Pro</a>
+            <a href="index.php#contact" onclick="closeMenu()">Contact Us</a>
         </div>
 
         <div id="logo"><a href="index.php"><h1>Pick & Fix</h1></a></div>
