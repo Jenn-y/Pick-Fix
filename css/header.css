@@ -157,4 +157,8 @@ nav > ul > li {
         left: unset;
         right: 0;
     }
+
+    span a {
+        padding: 0;
+    }
 }
