@@ -18,7 +18,7 @@
             <a href="http://localhost/Pick-Fix/index.php#story" onclick="closeMenu()">Our Story</a>
             <a href="http://localhost/Pick-Fix/index.php#team-overview" onclick="closeMenu()">Team Members</a>
             <a href="http://localhost/Pick-Fix/findProfessionals.php">Find a Professional</a>
-            <a href="http://localhost/Pick-Fix/professionalsRegistration.php">Become a Professional</a>
+            <a href="http://localhost/Pick-Fix/become-pro.php">Become a Professional</a>
             <a href="http://localhost/Pick-Fix/index.php#contact" onclick="closeMenu()">Contact Us</a>
         </div>
 

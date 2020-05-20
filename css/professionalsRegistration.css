@@ -245,7 +245,7 @@ input[type="password"], #dropdown1, #dropdown2, textarea, .checkbox {
 }
 #signInBlock {
     width: 100%;
-    height: 150px;
+    height: 250px;
     position: relative;
     bottom: 60px;
     background-color: rgb(245, 245, 245);
@@ -261,61 +261,6 @@ input[type="password"], #dropdown1, #dropdown2, textarea, .checkbox {
 .flex-container {
     display: flex;
 }
-
-footer {
-    width: 100%;
-    background-color: #1d1d1d;
-    position: absolute;
-    bottom: -110px;
-}
-
-.inner-footer {
-    padding: 1rem;
-}
-
-.line {
-    width: 100%;
-    height: 1px;
-    background-color: lightgray;
-    margin: 1rem 0;
-}
-
-.social-media {
-    justify-content: center;
-    padding: 1rem;
-}
-
-.social-media p {
-    color: lightgray;
-}
-
-.social-media a {
-    color: lightgray;
-    height: 2.5rem;
-    width: 2.5rem;
-    display: inline-block;
-    border-radius: 1.75rem;
-    border: 1px solid lightgray;
-    font-size: 1.125rem;
-    text-align: center;
-    line-height: 2.5rem;
-    margin-left: 2rem;
-}
-
-.contact {
-    justify-content: space-between;
-    padding: 1rem 0;
-}
-
-.contact a {
-    margin-right: 1rem;
-    color: lightgray;
-    text-decoration: none;
-}
-
-.contact p {
-    color: #f4f4f4;
-}
 /* end of professionals' registration page */
 
 /* Additional styling for become-pro page */
@@ -326,16 +271,85 @@ footer {
 
 #become-pro main .registrationWrapper {
     align-items: flex-start;
-    margin: 0 auto;
-    height: 550px;
+    height: 650px;
+    margin: 0 auto -6rem;
 }
 
 #become-pro main .registrationBlockLeft, #become-pro main .registrationBlockRight {
     margin: 2rem auto 1rem;
 }
 
+#become-pro footer {
+    bottom: unset;
+}
+
 /* Responsive */
 
 @media (min-width: 1500px) {
 
+}
+
+@media (max-width: 600px) {
+    header h1 {
+        display: none;
+    }
+    header nav {
+        display: block;
+        margin: 0.2rem auto 0.5rem;
+    }
+    main .backShape {
+        height: 600px;
+    }
+    main .textBlockForProfessionals {
+        width: 100%;
+
+    }
+    main .textBlockForProfessionals p {
+        margin: 0 0.5rem;
+    }
+    main .registrationWrapper {
+        display: block;
+        height: 100%;
+        margin: 2.5rem auto 3.5rem;
+    }
+    main .registrationWrapper .registrationBlockRight, main .registrationWrapper .registrationBlockLeft {
+        width: 80%;
+    }
+    main #signUp {
+        padding-top: 1rem;
+    }
+    main form div {
+        display: block !important;
+    }
+    main form div > div {
+        width: 80% !important;
+    }
+    main .registrationWrapper .verticalLine {
+        width: 80%;
+        margin: 1rem auto;
+    }
+    .registrationBlockRight .title {
+        margin-top: 6rem;
+    }
+    .registrationBlockRight .acceptedCards {
+        display: block;
+        text-align: center;
+    }
+    .registrationBlockRight .acceptedCards div {
+        margin: 0.3rem auto;
+    }
+    .registrationWrapper .submission {
+        padding-bottom: 3rem;
+    }
+    main #signInBlock {
+        bottom: 75px;
+        margin-bottom: -3rem;
+    }
+
+    /* become pro page */
+    #become-pro main .registrationWrapper {
+        height: 100%;
+        margin-bottom: -23rem;
+        margin-top: -2rem;
+    }
 }

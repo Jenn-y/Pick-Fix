@@ -31,6 +31,7 @@ if ($_POST) {
 <head>
     <?php include('includes/head.php'); ?>
     <link rel="stylesheet" href="css/professionalsRegistration.css">
+    <link rel="stylesheet" href="css/footer.css">
     <title>Join as a Pro</title>
 </head>
 <body>
