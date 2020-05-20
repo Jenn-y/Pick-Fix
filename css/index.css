@@ -524,4 +524,15 @@ select {
     .our-story #rotate-right{
         display: none;
     }
+
+    #findProfessionals .allServices {
+        display: none;
+    }
+    #findProfessionals .displayProfessionals {
+        width: 100% !important;
+        margin-bottom: 3rem;
+    }
+    #findProfessionals select {
+        width: 50% !important;
+    }
 }

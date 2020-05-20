@@ -11,7 +11,7 @@
 </head>
 <body>
 <div id="page-container">
-    <?php include('includes/header-signed-in.php'); ?>
+    <?php include('includes/profile-header.php'); ?>
 
     <main class="center">
         <div class="shadow">

@@ -8,9 +8,9 @@
 
     <title>Requests</title>
 </head>
-<body>
+<body id="requests">
 <div id="page-container">
-    <?php include('includes/header-signed-in.php'); ?>
+    <?php include('includes/profile-header.php'); ?>
 
     <main class="center">
         <h2>Received Requests</h2>
@@ -58,7 +58,7 @@
         <h2 id="sentRequests">Sent Requests</h2>
 
         <div class="shadow">
-            <table class="requests">
+            <table class="sent-requests">
                 <tr>
                     <th>Request</th>
                     <th>Date</th>

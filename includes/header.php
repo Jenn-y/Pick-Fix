@@ -59,8 +59,8 @@
     </div>
 
     <script>
-        function openMenu(){
-            document.getElementById('side-menu').style.width = '250px';
+        function openMenu(x) {
+            document.getElementById('side-menu').style.width = '300px';
         }
         function closeMenu(){
             document.getElementById('side-menu').style.width = '0';

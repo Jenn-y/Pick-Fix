@@ -10,7 +10,7 @@
 <body>
 
 <div id="page-container">
-    <?php include('includes/header-signed-in.php'); ?>
+    <?php include('includes/profile-header.php'); ?>
 
     <main>
         <div class="main center">
@@ -19,7 +19,7 @@
                 <button class="buttonStyle">Change Profile Photo</button>
             </div>
             <form>
-                <fieldset>
+                <fieldset class="general">
                     <legend>General</legend>
                     <div>
                         <label for="firstName">First name</label>
