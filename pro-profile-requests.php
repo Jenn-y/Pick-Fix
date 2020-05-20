@@ -13,7 +13,7 @@
     <?php include('includes/header-signed-in.php'); ?>
 
     <main class="center">
-        <h2>Requests</h2>
+        <h2>Received Requests</h2>
 
         <div class="shadow">
             <table class="requests">
@@ -51,6 +51,48 @@
                     <td>Request 6</td>
                     <td>DD.MM.YYYY</td>
                     <td><a href="#">Approve</a><a href="#">Reject</a></td>
+                </tr>
+            </table>
+        </div>
+
+        <h2 id="sentRequests">Sent Requests</h2>
+
+        <div class="shadow">
+            <table class="requests">
+                <tr>
+                    <th>Request</th>
+                    <th>Date</th>
+                    <th>Status</th>
+                </tr>
+                <tr>
+                    <td>Request 1</td>
+                    <td>DD.MM.YYYY</td>
+                    <td><a href="#">Pending</a></td>
+                </tr>
+                <tr>
+                    <td>Request 2</td>
+                    <td>DD.MM.YYYY</td>
+                    <td><a href="#">Pending</a></td>
+                </tr>
+                <tr>
+                    <td>Request 3</td>
+                    <td>DD.MM.YYYY</td>
+                    <td><a href="#">Pending</a></td>
+                </tr>
+                <tr>
+                    <td>Request 4</td>
+                    <td>DD.MM.YYYY</td>
+                    <td><a href="#">Pending</a></td>
+                </tr>
+                <tr>
+                    <td>Request 5</td>
+                    <td>DD.MM.YYYY</td>
+                    <td><a href="#">Pending</a></td>
+                </tr>
+                <tr>
+                    <td>Request 6</td>
+                    <td>DD.MM.YYYY</td>
+                    <td><a href="#">Pending</a></td>
                 </tr>
             </table>
         </div>
