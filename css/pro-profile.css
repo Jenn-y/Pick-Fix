@@ -236,4 +236,20 @@ label span { color: #DC143C; }
     textarea {
         height: 10rem;
     }
+
+    #requests td a:nth-child(odd) {
+        margin-right: 0 !important;
+        width: 100%;
+    }
+    #requests td a:nth-child(even) {
+        margin-left: 0 !important;
+        margin-top: 0.3rem;
+        width: 100%;
+    }
+    #requests td a {
+        padding: 5px;
+    }
+    .sent-requests {
+        margin-bottom: 4rem;
+    }
 }

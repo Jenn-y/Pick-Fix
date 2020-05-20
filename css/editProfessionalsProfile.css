@@ -91,3 +91,17 @@ div input:focus, div select:focus{
 .flex-container {
     display: flex;
 }
+
+@media (max-width: 600px) {
+    main form div {
+        display: block !important;
+        text-align: center;
+        margin: 1rem;
+    }
+    .main {
+        margin-bottom: 5rem;
+    }
+    fieldset {
+        margin-bottom: 1.5rem;
+    }
+}
