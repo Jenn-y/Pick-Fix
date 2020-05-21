@@ -51,7 +51,7 @@
                     <a href="pro-profile.php">My profile</a>
                     <a href="editProfessionalsProfile.php">Edit profile</a>
                     <a href="pro-profile-requests.php">Requests</a>
-                    <a href="index.php">Log out</a>
+                    <a href="logout.php">Log out</a>
                 </div>
             </div>
         </nav>

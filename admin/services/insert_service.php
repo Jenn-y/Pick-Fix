@@ -1,15 +1,15 @@
 <?php
 if($_POST) {
-    $result = mysqli_query($db, "INSERT INTO services (category, status) 
-                VALUES('{$_POST['category']}', 1)");
+    $result = oci_parse($db, "INSERT INTO services (category) VALUES('{$_POST['category']}')");
 
-    if($result) {
-        header('Location: services.php');
+    if ($result) {
+        oci_execute($result);
+        oci_commit($db);
     }
 }
 ?>
 
-<form method="post">
+<form action="services.php" method="post">
     <label for="category">Service category name: </label>
     <input type="text" name="category">
 

@@ -21,7 +21,7 @@
             <a href="cities/cities.php">Cities</a>
             <a href="services/services.php">Services</a>
             <a href="#">Work offers</a>
-            <a href="#">Users</a>
+            <a href="users/users.php">Users</a>
         </div>
         <div class="rows"></div>
     </div>

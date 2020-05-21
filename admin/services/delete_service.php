@@ -3,8 +3,11 @@ include('../../includes/db.php');
 
 if(isset($_GET['id'])) {
     $id = $_GET['id'];
-    $result = mysqli_query($db, "UPDATE services SET status=0 WHERE sid = {$id}");
+    $result = oci_parse($db, "UPDATE services SET date_deleted = SYSDATE WHERE sid = {$id}");
     if($result) {
+        oci_execute($result);
+        oci_commit($db);
+
         header('Location: services.php');
     }
 }

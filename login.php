@@ -1,26 +1,9 @@
 <?php
+session_start();
+
 include("includes/form-functions.php");
 include("includes/db.php");
 
-session_start();
-if ($_POST) {
-
-    $username = mysqli_real_escape_string($db, $_POST['uname']);
-    $password = mysqli_real_escape_string($db, $_POST['psw']);
-
-    $query1 = mysqli_query($db, "select * from PROFESSIONALS where EMAIL = '{$username}' and PASSWORD = '{$password}'");
-    $query2 = mysqli_query($db, "select * from USERS where EMAIL = '{$username}' and PASSWORD = '{$password}'");
-
-    $row1 = mysqli_fetch_assoc($query1);
-    $row2 = mysqli_fetch_assoc($query2);
-
-    if ($row1 || $row2) {
-        exit();
-    }
-    else {
-
-    }
-}
 
 ?>
 
@@ -34,11 +17,13 @@ if ($_POST) {
 <body>
 <main class="flex-container">
     <div>
-        <form method="POST" action="pro-profile.php">
+        <form method="POST" action="includes/validateLogin.php">
             <div class="login flex-container">
                 <p>User Login</p>
-                <?php create_input("email", "uname", "Email"); ?>
-                <input type="password" placeholder="Password" name="psw">
+                <label for="email">Email</label>
+                <input type="email" name="email" id="email" placeholder="Please enter email">
+                <label for="password">Password</label>
+                <input type="password" placeholder="Password" name="password">
                 <button type="submit">Login</button>
                 <div>
                     <span>Forgot</span>
