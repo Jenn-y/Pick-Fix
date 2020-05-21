@@ -1,3 +1,11 @@
+<?php
+session_start();
+include('includes/db.php');
+$id = $_GET['id'];
+var_dump($id);
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,7 +26,7 @@
             <div class="user flex-container">
                 <img src="images/default-user.png" alt="default-user-image">
                 <div>
-                    <h3>Name Surname</h3>
+                    <h3>Name and Surname</h3>
                     <p>Sarajevo, Bosnia and Herzegovina</p>
                     <p>#(user-id)</p>
                 </div>

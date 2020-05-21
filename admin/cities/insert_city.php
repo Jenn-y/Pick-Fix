@@ -1,8 +1,11 @@
 <?php
 if($_POST) {
-    $result = mysqli_query($db, "INSERT INTO cities (name, status) VALUES('{$_POST['name']}', 1)");
+    $result = oci_parse($db, "INSERT INTO cities (cname) VALUES('{$_POST['name']}')");
 
     if($result) {
+        oci_execute($result);
+        oci_commit($db);
+
         header('Location: cities.php');
     }
 }

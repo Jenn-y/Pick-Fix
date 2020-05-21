@@ -1,7 +1,7 @@
-
 <?php
 include('../../includes/db.php');
-$query1 = mysqli_query($db, "SELECT * FROM cities WHERE status=1");
+$query1 = oci_parse($db, 'SELECT * FROM cities WHERE date_deleted IS NULL');
+oci_execute($query1);
 ?>
 <!doctype html>
 <html lang="en">

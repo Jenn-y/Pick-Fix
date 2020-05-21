@@ -16,3 +16,5 @@ function create_input($type, $name, $placeholder, $required = false) {
         echo ">";
     }
 }
+
+// create_input("email", "email", "Email");

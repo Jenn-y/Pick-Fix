@@ -1,17 +1,21 @@
 <?php
 if(isset($_GET['id']) && $_POST) {
     $id = $_GET['id'];
-    $result = mysqli_query($db, "UPDATE services SET category = '{$_POST['category']}' WHERE sid = $id");
+    $result = oci_parse($db, "UPDATE services SET category = '{$_POST['category']}' WHERE sid = $id");
 
     if($result) {
+        oci_execute($result);
+        oci_commit($db);
+
         header('Location: services.php');
     }
 }
 
 if(isset($_GET['id'])) {
     $id = $_GET['id'];
-    $query = mysqli_query($db, "SELECT category FROM services WHERE sid = $id");
-    $row = mysqli_fetch_assoc($query);
+    $query = oci_parse($db, "SELECT category FROM services WHERE sid = $id");
+    oci_execute($query);
+    $row = oci_fetch_assoc($query);
 }
 
 
@@ -20,8 +24,8 @@ if(isset($_GET['id'])) {
 <form method="post">
     <label for="category">Service category name: </label>
     <input type="text" name="category" value="<?php
-    if (isset($row["category"])){
-        echo $row["category"];
+    if (isset($row['CATEGORY'])){
+        echo $row['CATEGORY'];
     }
     ?>">
 

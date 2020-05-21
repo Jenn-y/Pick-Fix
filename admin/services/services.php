@@ -1,6 +1,7 @@
 <?php
 include('../../includes/db.php');
-$query1 = mysqli_query($db, "SELECT * FROM services WHERE status=1");
+$query1 = oci_parse($db, 'SELECT * FROM services WHERE date_deleted IS NULL');
+oci_execute($query1);
 ?>
 <!doctype html>
 <html lang="en">
@@ -25,7 +26,7 @@ $query1 = mysqli_query($db, "SELECT * FROM services WHERE status=1");
             <a href="../cities/cities.php">Cities</a>
             <a href="services.php" id="stay">Services <i class="fa fa-long-arrow-right" aria-hidden="true"></i></a>
             <a href="#">Work offers</a>
-            <a href="#">Users</a>
+            <a href="../users/users.php">Users</a>
         </div>
         <div class="rows">
             <table>
@@ -33,12 +34,12 @@ $query1 = mysqli_query($db, "SELECT * FROM services WHERE status=1");
                     <th>SID</th>
                     <th>Category</th>
                 </tr>
-                <?php while($row = mysqli_fetch_assoc($query1)): ?>
+                <?php while($row = oci_fetch_assoc($query1)): ?>
                     <tr>
-                        <td><?= $row["sid"]; ?></td>
-                        <td><?= $row["category"]; ?></td>
-                        <td><a href="delete_service.php?id=<?=$row['sid']; ?>">delete</a></td>
-                        <td><a href="update_service.php?id=<?=$row['sid']; ?>">edit</a></td>
+                        <td><?= $row['SID']; ?></td>
+                        <td><?= $row['CATEGORY']; ?></td>
+                        <td><a href="delete_service.php?id=<?=$row['SID']; ?>">delete</a></td>
+                        <td><a href="update_service.php?id=<?=$row['SID']; ?>">edit</a></td>
                     </tr>
                 <?php endwhile; ?>
 

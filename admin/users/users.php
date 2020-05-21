@@ -1,6 +1,6 @@
 <?php
 include('../../includes/db.php');
-$query1 = oci_parse($db, 'SELECT * FROM cities WHERE date_deleted IS NULL');
+$query1 = oci_parse($db, 'SELECT * FROM accounts');
 oci_execute($query1);
 ?>
 <!doctype html>
@@ -23,28 +23,33 @@ oci_execute($query1);
     <h2>Admin page</h2>
     <div class="flex-container">
         <div class="tables flex-container">
-            <a href="cities.php" id="stay">Cities <i class="fa fa-long-arrow-right" aria-hidden="true"></i></a>
+            <a href="../cities/cities.php" id="stay">Cities <i class="fa fa-long-arrow-right" aria-hidden="true"></i></a>
             <a href="../services/services.php">Services</a>
             <a href="#">Work offers</a>
-            <a href="../users/users.php">Users</a>
+            <a href="#">Users</a>
         </div>
         <div class="rows">
             <table>
                 <tr>
-                    <th>CID</th>
+                    <th>SID</th>
                     <th>Name</th>
+                    <th>Surname</th>
+                    <th>Email</th>
+                    <th>Phone Number</th>
+                    <th>Role</th>
                 </tr>
                 <?php while($row = oci_fetch_assoc($query1)): ?>
                     <tr>
                         <td><?= $row['CID']; ?></td>
-                        <td><?= $row['CNAME']; ?></td>
-                        <td><a href="delete_city.php?id=<?=$row['CID']; ?>">delete</a></td>
-                        <td><a href="update_cities.php?id=<?=$row['CID']; ?>">edit</a></td>
+                        <td><?= $row['FNAME']; ?></td>
+                        <td><?= $row['LNAME']; ?></td>
+                        <td><?= $row['EMAIL']; ?></td>
+                        <td><?= $row['AREA_CODE'] . $row['PHONE_NUMBER']; ?></td>
+                        <td><?= $row['ROLE']; ?></td>
                     </tr>
                 <?php endwhile; ?>
 
             </table>
-            <?php include('insert_city.php'); ?>
         </div>
     </div>
 </main>

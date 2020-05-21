@@ -10,10 +10,12 @@ if($_POST) {
     if (checkRequiredField($_POST['first_name']) && checkRequiredField($_POST['last_name']) && checkRequiredField($_POST['email'])
         && checkRequiredField($_POST['password'])) {
 
-        $sql = "INSERT INTO users (fname, lname, email, password, area_code, phone_number, city)
-                VALUES ('{$_POST['first_name']}', '{$_POST['last_name']}', '{$_POST['email']}', '{$_POST['password']}', {$_POST['area_code']}, {$_POST['phone']}, '{$_POST['city']}')";
+        $sql = "INSERT INTO accounts (fname, lname, email, password, area_code, phone_number, primary_city, role)
+                VALUES ('{$_POST['first_name']}', '{$_POST['last_name']}', '{$_POST['email']}', '{$_POST['password']}', {$_POST['area_code']}, {$_POST['phone']}, '{$_POST['city']}', 2)";
 
-        $result = mysqli_query($db, $sql);
+        $result = oci_parse($db, $sql);
+        oci_execute($result);
+        oci_commit($db);
         if ($result) {
             exit("SUCCESSFULLY REGISTERED !!!");
         }
