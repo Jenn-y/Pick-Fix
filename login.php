@@ -1,8 +1,30 @@
 <?php
 session_start();
 
-include("includes/form-functions.php");
-include("includes/db.php");
+include('includes/form-functions.php');
+if ($_POST) {
+    include('includes/db.php');
+
+    $email = $_POST['username'];
+    $password = $_POST['password'];
+
+    $query = oci_parse($db, "select * from accounts where email = '{$email}' and password = '{$password}'");
+
+    $row = oci_fetch_assoc($query);
+    oci_execute($row);
+    oci_execute($query);
+
+    if ($row) {
+        $_SESSION['user_id'] = $row['AID'];
+        $_SESSION['fname'] = $row['FNAME'];
+        $_SESSION['role'] = $row['ROLE'];
+
+        header('Location: pro-profile.php');
+        exit();
+    } else {
+        $_SESSION['msg'] = 'Incorrect username and/or password';
+    }
+}
 
 
 ?>
@@ -17,12 +39,10 @@ include("includes/db.php");
 <body>
 <main class="flex-container">
     <div>
-        <form method="POST" action="includes/validateLogin.php">
+        <form method="POST" action="pro-profile.php">
             <div class="login flex-container">
                 <p>User Login</p>
-                <label for="email">Email</label>
-                <input type="email" name="email" id="email" placeholder="Please enter email">
-                <label for="password">Password</label>
+                <?php create_input("email", "email", "Email"); ?>
                 <input type="password" placeholder="Password" name="password">
                 <button type="submit">Login</button>
                 <div>
