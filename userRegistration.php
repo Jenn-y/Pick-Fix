@@ -17,7 +17,7 @@ if($_POST) {
         oci_execute($result);
         oci_commit($db);
         if ($result) {
-            exit("SUCCESSFULLY REGISTERED !!!");
+            header('Location: findProfessionals.php');
         }
     }
 }
