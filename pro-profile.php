@@ -1,9 +1,19 @@
 <?php
-session_start();
-include('includes/db.php');
-$id = $_GET['id'];
-var_dump($id);
 
+session_start();
+if (!isset($_SESSION['user_id']) || empty($_SESSION['user_id'])) {
+    $_SESSION['msg'] = 'You need to login first';
+    header('Location: ../login/login.php');
+    exit();
+}
+include('includes/db.php');
+
+$aid = $_SESSION['user_id'];
+$q = "SELECT * FROM accounts WHERE aid='{$aid}'";
+$query = oci_parse($db, $q);
+oci_execute($query);
+
+$row = oci_fetch_assoc($query);
 ?>
 
 <!DOCTYPE html>
@@ -26,8 +36,8 @@ var_dump($id);
             <div class="user flex-container">
                 <img src="images/default-user.png" alt="default-user-image">
                 <div>
-                    <h3>Name and Surname</h3>
-                    <p>Sarajevo, Bosnia and Herzegovina</p>
+                    <h3><?= $row['FNAME'] . ' ' . $row['LNAME'] ?></h3>
+                    <p><?= $row['PRIMARY_CITY'] ?>, Bosnia and Herzegovina</p>
                     <p>#(user-id)</p>
                 </div>
             </div>
