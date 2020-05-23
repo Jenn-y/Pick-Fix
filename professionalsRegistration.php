@@ -1,27 +1,41 @@
 <?php
+session_start();
+include("includes/form-functions.php");
+include("includes/db.php");
 
 function checkRequiredField($value)
 {
     return isset($value) && !empty($value);
 }
 
-if ($_POST) {
-    if (checkRequiredField($_POST['first_name']) && checkRequiredField($_POST['last_name']) && checkRequiredField($_POST['email'])
-        && checkRequiredField($_POST['password']) && checkRequiredField($_POST['area_code']) && checkRequiredField($_POST['phone_number'])) {
-        $servername = "localhost";
-        $username = "root";
-        $password = "";
-        $database = "pick_fix";
+$query1 = oci_parse($db, 'SELECT * FROM cities WHERE date_deleted IS NULL');
+oci_execute($query1);
+$query2 = oci_parse($db, 'SELECT * FROM services WHERE date_deleted IS NULL ORDER BY category');
+oci_execute($query2);
+$months = [1 => 'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+$years = range(2016, date('Y'));
 
-        // Create connection
-        $conn = mysqli_connect($servername, $username, $password, $database);
-        $sql = "INSERT INTO ACCOUNTS (FNAME, LNAME, EMAIL, PASSWORD, AREA_CODE, PHONE_NUMBER)
-        VALUES ('{$_POST['first_name']}', '{$_POST['last_name']}', '{$_POST['email']}', '{$_POST['password']}', '{$_POST['area_code']}', '{$_POST['phone_number']}')";
-        if (mysqli_query($conn, $sql)) {
-            exit("SUCCESS !!!");
-        } else {
-            echo "Error: " . $sql . "<br>" . mysqli_error($conn);
-        }
+if($_POST) {
+
+    if (checkRequiredField($_POST['first_name']) && checkRequiredField($_POST['last_name']) && checkRequiredField($_POST['email'])
+        && checkRequiredField($_POST['password']) && checkRequiredField($_POST['area_code']) && checkRequiredField($_POST['phone_number'])
+        && checkRequiredField($_POST['card_num']) && checkRequiredField($_POST['month']) && checkRequiredField($_POST['year']) && checkRequiredField($_POST['cvv'])) {
+
+        $sql = "INSERT INTO accounts (fname, lname, email, password, area_code, phone_number, role)
+                VALUES ('{$_POST['first_name']}', '{$_POST['last_name']}', '{$_POST['email']}', '{$_POST['password']}', {$_POST['area_code']}, {$_POST['phone_number']}, 1)";
+        $result = oci_parse($db, $sql);
+        oci_execute($result);
+        oci_commit($db);
+
+        $query3 = "INSERT INTO fee_payments (card_number, exp_month, exp_year, cvv)
+                VALUES ({$_POST['card_num']}, {$_POST['month']}, {$_POST['year']}, {$_POST['cvv']})";
+        $result = oci_parse($db, $query3);
+        oci_execute($result);
+
+        oci_commit($db);
+        /*if ($result) {
+            header('Location: findProfessionals.php');
+        }*/
     }
 }
 ?>
@@ -69,70 +83,45 @@ if ($_POST) {
                 <form method="post">
                     <div>
                         <label>Full Name<br>
-                            <input name="first_name" id="first_name" type="text" placeholder="First name"
-                                   value="<?= isset($_POST['first_name']) ?? isset($_GET['first_name']) ?>" required>
-                            <input name="last_name" id="last_name" type="text" placeholder="Last name"
-                                   value="<?= isset($_POST['last_name']) ?? isset($_GET['last_name']) ?>" required>
+                            <?php create_input("text", "first_name", "First name", true); ?>
+                            <?php create_input("text", "last_name", "Last name", true); ?>
                         </label>
                     </div>
                     <div class="loginFields">
                         <div>
                             <label for="email">Email</label><br>
-                            <input name="email" id="email" type="email" placeholder="example: email@gmail.com"
-                                   value="<?= isset($_POST['email']) ?? isset($_GET['email']) ?>" required>
+                            <?php create_input("text", "email", "Email",true); ?>
                         </div>
                         <div>
                             <label for="password">Password</label><br>
-                            <input name="password" id="password" type="password" placeholder="Password">
+                            <?php create_input("password", "password", "Password",true); ?>
                         </div>
                     </div>
                     <div class="checkboxWrapper">
                         <div>
                             <label>Available for work in:</label>
                             <div class="checkbox">
-                                <input id="tuzla" type="checkbox">
-                                <label for="tuzla">Tuzla</label><br>
-                                <input type="checkbox" id="sarajevo">
-                                <label for="sarajevo">Sarajevo</label><br>
-                                <input type="checkbox" id="bihac">
-                                <label for="bihac">Bihac</label><br>
-                                <input type="checkbox" id="travnik">
-                                <label for="travnik">Travnik</label><br>
-                                <input type="checkbox" id="mostar">
-                                <label for="mostar">Mostar</label><br>
-                                <input type="checkbox" id="zenica">
-                                <label for="zenica">Zenica</label><br>
-                                <input type="checkbox" id="zivinice">
-                                <label for="zivinice">Zivinice</label>
+                                <?php while($row = oci_fetch_assoc($query1)): ?>
+                                <input name="[]" type="checkbox">
+                                <label><?= $row['CNAME']; ?></label><br>
+                                <?php endwhile; ?>
                             </div>
                         </div>
 
                         <div>
                             <label>Categories of work</label>
                             <div class="checkbox">
-                                <input id="furniture" type="checkbox">
-                                <label for="furniture">Furniture assembly</label><br>
-                                <input type="checkbox" id="generalRepairman">
-                                <label for="generalRepairman">General Repairman</label><br>
-                                <input type="checkbox" id="plumbing">
-                                <label for="plumbing">Plumbing</label><br>
-                                <input type="checkbox" id="faucets">
-                                <label for="faucets">Faucets</label><br>
-                                <input type="checkbox" id="toilets">
-                                <label for="toilets">Toilets</label><br>
-                                <input type="checkbox" id="electricity">
-                                <label for="electricity">Electricity</label><br>
-                                <input type="checkbox" id="movingHelp">
-                                <label for="movingHelp">Moving Help</label>
+                                <?php while($row = oci_fetch_assoc($query2)): ?>
+                                    <input name="[]" type="checkbox">
+                                    <label><?= $row['CATEGORY']; ?></label><br>
+                                <?php endwhile; ?>
                             </div>
                         </div>
                     </div>
                     <div>
                         <label>Phone Number<br>
-                            <input name="area_code" id="area_code" type="number" placeholder="Area code"
-                                   value="<?= isset($_POST['area_code']) ?? isset($_GET['area_code']) ?>" required>
-                            <input name="phone_number" id="phone_number" type="number" placeholder="Phone Number"
-                                   value="<?= $_POST['phone_number'] ?? isset($_GET['phone_number']) ?>" required>
+                            <?php create_input("number", "area_code", "Area code",true); ?>
+                            <?php create_input("number", "phone_number", "Phone number",true); ?>
                         </label>
                     </div>
 
@@ -151,39 +140,24 @@ if ($_POST) {
                         <i class="fa fa-cc-discover" style="color:orange;"></i>
                     </div>
                 </div>
-                <input type="text" class="card-number" placeholder="Card Number">
+                <input type="text" name="card_num" class="card-number" placeholder="Card Number">
                 <div class="dateAndCvv">
                     <div class="month">
-                        <select name="Month">
-                            <option value="january">January</option>
-                            <option value="february">February</option>
-                            <option value="march">March</option>
-                            <option value="april">April</option>
-                            <option value="may">May</option>
-                            <option value="june">June</option>
-                            <option value="july">July</option>
-                            <option value="august">August</option>
-                            <option value="september">September</option>
-                            <option value="october">October</option>
-                            <option value="november">November</option>
-                            <option value="december">December</option>
+                        <select name="month" id="month">
+                            <?php foreach ($months as $key => $month) { ?>
+                                <option value="<?= $key ?>"><?= $month ?></option>
+                            <?php } ?>
                         </select>
                     </div>
                     <div class="year">
-                        <select name="Year">
-                            <option value="2016">2016</option>
-                            <option value="2017">2017</option>
-                            <option value="2018">2018</option>
-                            <option value="2019">2019</option>
-                            <option value="2020">2020</option>
-                            <option value="2021">2021</option>
-                            <option value="2022">2022</option>
-                            <option value="2023">2023</option>
-                            <option value="2024">2024</option>
+                        <select name="year" id="year">
+                            <?php foreach ($years as $year) { ?>
+                                <option value="<?= $year ?>"><?= $year ?></option>
+                            <?php } ?>
                         </select>
                     </div>
                     <div class="cvv-input">
-                        <input type="text" placeholder="CVV">
+                        <?php create_input("number", "cvv", "CVV",true); ?>
                     </div>
                 </div>
                 <div class="submission">
