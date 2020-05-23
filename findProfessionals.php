@@ -1,3 +1,21 @@
+<?php
+
+session_start();
+if (!isset($_SESSION['user_id']) || empty($_SESSION['user_id'])) {
+    $_SESSION['msg'] = 'You need to login first';
+    header('Location: ../login/login.php');
+    exit();
+}
+include('includes/db.php');
+
+$aid = $_SESSION['user_id'];
+$q = "SELECT * FROM accounts WHERE aid='{$aid}'";
+$query = oci_parse($db, $q);
+oci_execute($query);
+
+$row = oci_fetch_assoc($query);
+?>
+
 <!doctype html>
 <html lang="en">
 <head>

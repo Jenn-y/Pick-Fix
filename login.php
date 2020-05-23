@@ -5,21 +5,19 @@ include('includes/form-functions.php');
 if ($_POST) {
     include('includes/db.php');
 
-    $email = $_POST['username'];
+    $email = $_POST['email'];
     $password = $_POST['password'];
 
     $query = oci_parse($db, "select * from accounts where email = '{$email}' and password = '{$password}'");
-
-    $row = oci_fetch_assoc($query);
-    oci_execute($row);
     oci_execute($query);
+    $row = oci_fetch_assoc($query);
 
     if ($row) {
         $_SESSION['user_id'] = $row['AID'];
         $_SESSION['fname'] = $row['FNAME'];
         $_SESSION['role'] = $row['ROLE'];
 
-        header('Location: pro-profile.php');
+        header('Location: findProfessionals.php');
         exit();
     } else {
         $_SESSION['msg'] = 'Incorrect username and/or password';
@@ -39,7 +37,7 @@ if ($_POST) {
 <body>
 <main class="flex-container">
     <div>
-        <form method="POST" action="pro-profile.php">
+        <form method="POST" action="findProfessionals.php">
             <div class="login flex-container">
                 <p>User Login</p>
                 <?php create_input("email", "email", "Email"); ?>

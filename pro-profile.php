@@ -38,7 +38,6 @@ $row = oci_fetch_assoc($query);
                 <div>
                     <h3><?= $row['FNAME'] . ' ' . $row['LNAME'] ?></h3>
                     <p><?= $row['PRIMARY_CITY'] ?>, Bosnia and Herzegovina</p>
-                    <p>#(user-id)</p>
                 </div>
             </div>
             <div class="about">
@@ -49,7 +48,7 @@ $row = oci_fetch_assoc($query);
                 <h4>Categories </h4>
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi, est maiores modi officiis perspiciatis recusandae totam vel veritatis voluptatem voluptatibus?</p>
                 <h4>Contact:</h4>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis, tempore!</p>
+                <p><?= '+' . $row['AREA_CODE'] . ' ' . $row['PHONE_NUMBER'] ?></p>
             </div>
         </div>
 
@@ -96,10 +95,11 @@ $row = oci_fetch_assoc($query);
                 </div>
             </form>
             <div class="flex-container">
-                <button type="submit" onclick="getPrice()">Get Estimate Price</button>
+                <button id="submitButton" type="submit" onclick="getPrice()">Get Estimate Price</button>
                 <script>
                     function getPrice() {
                         document.getElementById('price').style.display = 'block';
+                        document.getElementById('submitButton').style.display = 'none';
                     }
                 </script>
             </div>
