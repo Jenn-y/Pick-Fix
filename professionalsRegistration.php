@@ -27,12 +27,23 @@ if($_POST) {
         oci_execute($result);
         oci_commit($db);
 
-        $query3 = "INSERT INTO fee_payments (card_number, exp_month, exp_year, cvv)
-                VALUES ({$_POST['card_num']}, {$_POST['month']}, {$_POST['year']}, {$_POST['cvv']})";
-        $result = oci_parse($db, $query3);
-        oci_execute($result);
+        $email = $_POST['email'];
+        $password = $_POST['password'];
 
-        oci_commit($db);
+        $query = oci_parse($db, "select * from accounts where email = '{$email}' and password = '{$password}'");
+        oci_execute($query);
+        $row = oci_fetch_assoc($query);
+
+        if ($row) {
+            $_SESSION['user_id'] = $row['AID'];
+
+            $query3 = "INSERT INTO fee_payments (card_number, exp_month, exp_year, cvv, professional)
+                VALUES ({$_POST['card_num']}, {$_POST['month']}, {$_POST['year']}, {$_POST['cvv']}, {$row['AID']})";
+            $result = oci_parse($db, $query3);
+            oci_execute($result);
+
+            oci_commit($db);
+        }
         /*if ($result) {
             header('Location: findProfessionals.php');
         }*/
