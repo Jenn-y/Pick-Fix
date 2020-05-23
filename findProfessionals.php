@@ -1,11 +1,6 @@
 <?php
 
 session_start();
-if (!isset($_SESSION['user_id']) || empty($_SESSION['user_id'])) {
-    $_SESSION['msg'] = 'You need to login first';
-    header('Location: ../login/login.php');
-    exit();
-}
 include('includes/db.php');
 
 $aid = $_SESSION['user_id'];
@@ -20,9 +15,9 @@ $row = oci_fetch_assoc($query);
 <html lang="en">
 <head>
     <?php include('includes/head.php'); ?>
-    <link rel="stylesheet" href="CSS/header.css">
-    <link rel="stylesheet" href="CSS/index.css">
-    <link rel="stylesheet" href="CSS/footer.css">
+    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/footer.css">
     <title>Find Professionals</title>
 </head>
 <body id="findProfessionals">

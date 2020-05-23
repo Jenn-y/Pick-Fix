@@ -2,9 +2,9 @@
 <html lang="en">
 <head>
     <?php include('includes/head.php'); ?>
-    <link href="CSS/header.css" rel="stylesheet">
-    <link href="CSS/index.css" rel="stylesheet">
-    <link rel="stylesheet" href="CSS/footer.css">
+    <link href="css/header.css" rel="stylesheet">
+    <link href="css/index.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/footer.css">
 
 
 
@@ -101,11 +101,11 @@
 
         <section class="section-for-professionals">
             <div>
-                <img src="Images/zoom.png" alt="zoom-icon">
-                <img src="Images/electronics.png" alt="electronics-icon">
-                <img src="Images/plumbing.png" alt="plumbing-icon">
-                <img src="Images/roller.png" alt="painting-icon">
-                <img src="Images/washing.png" alt="washing-icon">
+                <img src="images/zoom.png" alt="zoom-icon">
+                <img src="images/electronics.png" alt="electronics-icon">
+                <img src="images/plumbing.png" alt="plumbing-icon">
+                <img src="images/roller.png" alt="painting-icon">
+                <img src="images/washing.png" alt="washing-icon">
             </div>
             <h1>Are You a Home Improvement or Service Pro?</h1>
             <p>Find out how Pick&Fix can help your business</p>
@@ -129,21 +129,21 @@
                     eleifend
                     lectus dolor, vitae pulvinar lorem tincidunt ut.</p>
             </div>
-            <img id="rotate-left" src="Images/our-story-image.png" alt="Our work">
-            <img id="rotate-right" src="Images/our-story-image.png" alt="Our work">
+            <img id="rotate-left" src="images/our-story-image.png" alt="Our work">
+            <img id="rotate-right" src="images/our-story-image.png" alt="Our work">
         </section>
 
         <section class="team-section">
             <div id="team-overview">
                 <h1>CLICK TO GET TO KNOW US <i class="fa fa-angle-double-down"
                                                aria-hidden="true"></i></h1>
-                <img class="show-member" src="Images/teamMember.png" alt="Image" data-member="1">
-                <img class="show-member" src="Images/armin.png" alt="Image" data-member="2">
-                <img class="show-member" src="Images/hana.png" alt="Image" data-member="3">
+                <img class="show-member" src="images/teamMember.png" alt="Image" data-member="1">
+                <img class="show-member" src="images/armin.png" alt="Image" data-member="2">
+                <img class="show-member" src="images/hana.png" alt="Image" data-member="3">
             </div>
 
             <div id="member1" class="team-member center active">
-                <img id="small" src="Images/teamMember.png" alt="Image">
+                <img id="small" src="images/teamMember.png" alt="Image">
                 <div>
                     <h2> Jenn </h2>
                     <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. In condimentum orci sed interdum
@@ -164,7 +164,7 @@
             </div>
 
             <div id="member2" class="team-member center">
-                <img id="small" src="Images/armin.png" alt="Image">
+                <img id="small" src="images/armin.png" alt="Image">
                 <div>
                     <h2> Armin </h2>
                     <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. In condimentum orci sed interdum
@@ -185,7 +185,7 @@
             </div>
 
             <div id="member3" class="team-member center">
-                <img id="small" src="Images/hana.png" alt="Image">
+                <img id="small" src="images/hana.png" alt="Image">
                 <div>
                     <h2> Hana </h2>
                     <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. In condimentum orci sed interdum
