@@ -3,10 +3,11 @@
 $query_services = oci_parse($db, 'SELECT * FROM services WHERE date_deleted IS NULL ORDER BY category');
 oci_execute($query_services);
 $array[] = '';
+$num_rows = 0;
 while ($row_of_services = oci_fetch_assoc($query_services)){
         $array[] = $row_of_services['CATEGORY'];
+        $num_rows++;
 };
-$num_rows = oci_fetch_all($query_services, $res);
 ?>
 
 <header>
@@ -37,17 +38,14 @@ $num_rows = oci_fetch_all($query_services, $res);
                                                                             aria-hidden="true"></i> All Services</a>
                 <div class="dropdown-content">
                     <div>
-                        <?php for ($i = 0; $i < $num_rows/2; $i++) { ?>
-                        <a href="#"><?= $array[$i]; ?></a>
+                        <?php for ($i = 1; $i < $num_rows/2+1; $i++) { ?>
+                        <a href="#"><?php echo $array[$i]; ?></a>
                         <?php } ?>
                     </div>
                     <div>
-                        <a href="#">General Repairman</a>
-                        <a href="#">Glass and Screens</a>
-                        <a href="#">Lighting</a>
-                        <a href="#">Painting</a>
-                        <a href="#">Plumbing</a>
-                        <a href="#">Windows and Doors</a>
+                        <?php for ($i = $num_rows/2+1; $i < $num_rows+1; $i++) { ?>
+                            <a href="#"><?php echo $array[$i]; ?></a>
+                        <?php } ?>
                     </div>
                 </div>
             </div>
