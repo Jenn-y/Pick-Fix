@@ -2,6 +2,9 @@
 include("includes/form-functions.php");
 include("includes/db.php");
 
+$query3 = oci_parse($db, 'SELECT * FROM cities WHERE date_deleted IS NULL ORDER BY cname');
+oci_execute($query3);
+
 function checkRequiredField($value)
 {
     return isset($value) && !empty($value);
@@ -52,13 +55,9 @@ if($_POST) {
 
             <label for="city">City</label>
             <select name="city" id="city">
-                <option value="tuzla">Tuzla</option>
-                <option value="sarajevo">Sarajevo</option>
-                <option value="bihac">Bihac</option>
-                <option value="travnik">Travnik</option>
-                <option value="mostar">Mostar</option>
-                <option value="zenica">Zenica</option>
-                <option value="zivinice">Zivinice</option>
+                <?php while($row3 = oci_fetch_assoc($query3)): ?>
+                    <option value="<?= $row3['CNAME']; ?>"><?= $row3['CNAME']; ?></option>
+                <?php endwhile; ?>
             </select>
             <button type="submit">Register</button>
             <div class="already-member flex-container">
