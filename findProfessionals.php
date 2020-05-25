@@ -1,14 +1,22 @@
 <?php
-
 session_start();
+
 include('includes/db.php');
 
-$aid = $_SESSION['user_id'];
-$q = "SELECT * FROM accounts WHERE aid='{$aid}'";
-$query = oci_parse($db, $q);
-oci_execute($query);
+if (isset($_SESSION['user_id'])) {
+    $aid = $_SESSION['user_id'];
+    $q = "SELECT * FROM accounts WHERE aid='{$aid}'";
+    $query = oci_parse($db, $q);
+    oci_execute($query);
 
-$row = oci_fetch_assoc($query);
+    $row = oci_fetch_assoc($query);
+
+
+    $query2 = oci_parse($db, 'SELECT * FROM services WHERE date_deleted IS NULL ORDER BY category');
+    oci_execute($query2);
+    $query3 = oci_parse($db, 'SELECT * FROM cities WHERE date_deleted IS NULL ORDER BY cname');
+    oci_execute($query3);
+}
 ?>
 
 <!doctype html>
@@ -29,26 +37,16 @@ $row = oci_fetch_assoc($query);
         <div class="flex-container">
             <select name="services-dropdown">
                 <option disabled selected value>Select a service</option>
-                <option value="furniture-repair">Appliances</option>
-                <option value="plumbing">Carpet</option>
-                <option value="electricity">Chimney</option>
-                <option value="electricity">Driveways</option>
-                <option value="toilets">Electrical</option>
-                <option value="moving-help">Furniture</option>
-                <option value="moving-help">General Repairman</option>
-                <option value="moving-help">Glass and Screens</option>
-                <option value="moving-help">Lighting</option>
-                <option value="moving-help">Painting</option>
-                <option value="moving-help">Plumbing</option>
-                <option value="moving-help">Windows and doors</option>
+                <?php while($row2 = oci_fetch_assoc($query2)): ?>
+                <option value="<?= $row2['CATEGORY']; ?>"><?= $row2['CATEGORY']; ?></option>
+                <?php endwhile; ?>
             </select>
+
             <select name="cities">
                 <option disabled selected value>&#128205;</option>
-                <option value="tuzla">Tuzla</option>
-                <option value="zivinice">Zivinice</option>
-                <option value="bihac">Bihac</option>
-                <option value="sarajevo">Sarajevo</option>
-                <option value="mostar">Mostar</option>
+                <?php while($row3 = oci_fetch_assoc($query3)): ?>
+                    <option value="<?= $row3['CNAME']; ?>"><?= $row3['CNAME']; ?></option>
+                <?php endwhile; ?>
             </select>
             <a href="#">Get Started</a>
         </div>
@@ -62,79 +60,14 @@ $row = oci_fetch_assoc($query);
             <div class="allServices">
                 <h1>All services</h1>
 
+                <?php while($row2 = oci_fetch_assoc($query2)): ?>
                 <div class="dropdown">
-                    <a class="dropLink">Appliances <i class="fa fa-angle-down" aria-hidden="true"></i></a>
+                    <a class="dropLink"><?= $row2['CATEGORY']; ?> <i class="fa fa-angle-down" aria-hidden="true"></i></a>
                     <div class="dropdown-content">
                         <p>Service, Installation, Maintenance</p>
                     </div>
                 </div>
-                <div class="dropdown">
-                    <a class="dropLink">Carpet <i class="fa fa-angle-down" aria-hidden="true"></i></a>
-                    <div class="dropdown-content">
-                        <p>Cleaning, Repairs, Installation</p>
-                    </div>
-                </div>
-                <div class="dropdown">
-                    <a class="dropLink">Chimney <i class="fa fa-angle-down" aria-hidden="true"></i></a>
-                    <div class="dropdown-content">
-                        <p>Annual Clean, Inspect, Cap Replacement, Fire Box Repair</p>
-                    </div>
-                </div>
-                <div class="dropdown">
-                    <a class="dropLink">Driveways <i class="fa fa-angle-down" aria-hidden="true"></i></a>
-                    <div class="dropdown-content">
-                        <p>Sealing, Repairs, Paving</p>
-                    </div>
-                </div>
-                <div class="dropdown">
-                    <a class="dropLink">Electrical <i class="fa fa-angle-down" aria-hidden="true"></i></a>
-                    <div class="dropdown-content">
-                        <p>Outlets, Switches, Service Panel, Shorts and Other Non-Operating Fixtures</p>
-                    </div>
-                </div>
-                <div class="dropdown">
-                    <a class="dropLink">Furniture <i class="fa fa-angle-down" aria-hidden="true"></i></a>
-                    <div class="dropdown-content">
-                        <p>Scratches, Repairs, Stripping, Refinishing, Restoring, Upholstery</p>
-                    </div>
-                </div>
-                <div class="dropdown">
-                    <a class="dropLink">General Repairman <i class="fa fa-angle-down" aria-hidden="true"></i></a>
-                    <div class="dropdown-content">
-                        <p>Small Repairs, Interior & Exterior</p>
-                    </div>
-                </div>
-                <div class="dropdown">
-                    <a class="dropLink">Glass and Screens <i class="fa fa-angle-down" aria-hidden="true"></i></a>
-                    <div class="dropdown-content">
-                        <p>Replace Broken Glass, Windows and Screens, Install Storm Windows & Doors</p>
-                    </div>
-                </div>
-                <div class="dropdown">
-                    <a class="dropLink">Lighting <i class="fa fa-angle-down" aria-hidden="true"></i></a>
-                    <div class="dropdown-content">
-                        <p>Bulb Replacement, Fixture Change-Outs, Lighting Design</p>
-                    </div>
-                </div>
-                <div class="dropdown">
-                    <a class="dropLink">Painting <i class="fa fa-angle-down" aria-hidden="true"></i></a>
-                    <div class="dropdown-content">
-                        <p>Interior & Exterior, Individual Rooms, Whole House, Nail Pops, Settling and Crack Repair,
-                            Powder Coating, Touch-Upse</p>
-                    </div>
-                </div>
-                <div class="dropdown">
-                    <a class="dropLink">Plumbing <i class="fa fa-angle-down" aria-hidden="true"></i></a>
-                    <div class="dropdown-content">
-                        <p>Drain Clogs, Fixtures, Installations, Pipe Leaks, Shower Heads, Toilets</p>
-                    </div>
-                </div>
-                <div class="dropdown">
-                    <a class="dropLink">Windows and Doors <i class="fa fa-angle-down" aria-hidden="true"></i></a>
-                    <div class="dropdown-content">
-                        <p>Replacement, Weather Stripping, Replacement & Repair Locksets, Window Washing</p>
-                    </div>
-                </div>
+                <?php endwhile; ?>
             </div>
 
             <div class="displayProfessionals">

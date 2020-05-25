@@ -1,3 +1,14 @@
+<?php
+
+$query_services = oci_parse($db, 'SELECT * FROM services WHERE date_deleted IS NULL ORDER BY category');
+oci_execute($query_services);
+$array[] = '';
+while ($row_of_services = oci_fetch_assoc($query_services)){
+        $array[] = $row_of_services['CATEGORY'];
+};
+$num_rows = oci_fetch_all($query_services, $res);
+?>
+
 <header>
     <div id="inner-header">
 
@@ -26,12 +37,9 @@
                                                                             aria-hidden="true"></i> All Services</a>
                 <div class="dropdown-content">
                     <div>
-                        <a href="#">Appliances</a>
-                        <a href="#">Carpet</a>
-                        <a href="#">Chimney</a>
-                        <a href="#">Driveways</a>
-                        <a href="#">Electrical</a>
-                        <a href="#">Furniture</a>
+                        <?php for ($i = 0; $i < $num_rows/2; $i++) { ?>
+                        <a href="#"><?= $array[$i]; ?></a>
+                        <?php } ?>
                     </div>
                     <div>
                         <a href="#">General Repairman</a>
@@ -46,12 +54,12 @@
         </nav>
         <nav id="login">
             <div class="dropdown">
-                <p class="dropdown-link"><i class="fa fa-user" aria-hidden="true"></i><?= ' ' . $row['FNAME'] . ' ' . $row['LNAME'] ?></p>
+                <p class="dropdown-link"><i class="fa fa-user" aria-hidden="true"></i><?php echo ' ' . $row['FNAME'] . ' ' . $row['LNAME'] ?></p>
                 <div class="dropdown-content" id="signed-profile">
                     <a href="pro-profile.php">My profile</a>
                     <a href="editProfessionalsProfile.php">Edit profile</a>
                     <a href="pro-profile-requests.php">Requests</a>
-                    <a href="logout.php">Log out</a>
+                    <a href="includes/logout.php">Log out</a>
                 </div>
             </div>
         </nav>

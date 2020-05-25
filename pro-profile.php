@@ -4,7 +4,7 @@ session_start();
 include('includes/db.php');
 
 $aid = $_SESSION['user_id'];
-$q = "SELECT * FROM accounts WHERE aid='{$aid}'";
+$q = "SELECT * FROM accounts WHERE aid={$aid}";
 $query = oci_parse($db, $q);
 oci_execute($query);
 

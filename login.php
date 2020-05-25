@@ -15,7 +15,9 @@ if ($_POST) {
     if ($row) {
         $_SESSION['user_id'] = $row['AID'];
         $_SESSION['fname'] = $row['FNAME'];
+        $_SESSION['lname'] = $row['LNAME'];
         $_SESSION['role'] = $row['ROLE'];
+
 
         header('Location: findProfessionals.php');
         exit();
@@ -37,7 +39,7 @@ if ($_POST) {
 <body>
 <main class="flex-container">
     <div>
-        <form method="POST" action="findProfessionals.php">
+        <form method="POST">
             <div class="login flex-container">
                 <p>User Login</p>
                 <?php create_input("email", "email", "Email"); ?>
