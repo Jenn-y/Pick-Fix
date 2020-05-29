@@ -399,8 +399,8 @@ select {
 }
 
 #findProfessionals main .dropdown:hover .dropdown-content {
-    display: block;
     transition: 5s;
+    display: block;
 }
 
 /**** Animation for team members ****/

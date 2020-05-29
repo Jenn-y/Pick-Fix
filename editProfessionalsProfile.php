@@ -1,3 +1,22 @@
+<?php
+session_start();
+include('includes/db.php');
+if (isset($_SESSION['user_id'])) {
+
+    $aid = $_SESSION['user_id'];
+
+    $query2 = oci_parse($db, 'SELECT * FROM services WHERE date_deleted IS NULL ORDER BY category');
+    oci_execute($query2);
+    $query3 = oci_parse($db, 'SELECT * FROM cities WHERE date_deleted IS NULL ORDER BY cname');
+    oci_execute($query3);
+    $query4 = oci_parse($db, "SELECT s.category FROM work_offers w, services s WHERE  w.service = s.sid AND w.date_deleted IS NULL AND w.professional='{$aid}'");
+    oci_execute($query4);
+    $row = oci_fetch_assoc($query4);
+    var_dump($row);
+
+}
+?>
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -51,11 +70,9 @@
                         <label for="dropdown1" id="dropdown2-label">Add category</label>
                         <select id="dropdown2">
                             <option value="select" disabled>Select one of the categories</option>
-                            <option value="fax1">Furniture repairment</option>
-                            <option value="fax2">Plumbing</option>
-                            <option value="fax3">Electricity</option>
-                            <option value="fax4">Toilets</option>
-                            <option value="fax5">Moving help</option>
+                            <?php while($row2 = oci_fetch_assoc($query2)): ?>
+                                <option value="<?= $row2['CATEGORY']; ?>"><?= $row2['CATEGORY']; ?></option>
+                            <?php endwhile; ?>
                         </select>
                     </div>
                     <div>

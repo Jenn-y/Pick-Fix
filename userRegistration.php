@@ -1,4 +1,5 @@
 <?php
+session_start();
 include("includes/form-functions.php");
 include("includes/db.php");
 
@@ -19,8 +20,23 @@ if($_POST) {
         $result = oci_parse($db, $sql);
         oci_execute($result);
         oci_commit($db);
-        if ($result) {
+
+        $email = $_POST['email'];
+        $password = $_POST['password'];
+
+        $query = oci_parse($db, "select * from accounts where email = '{$email}' and password = '{$password}'");
+        oci_execute($query);
+        $row = oci_fetch_assoc($query);
+
+        if ($row) {
+            $_SESSION['user_id'] = $row['AID'];
+            $_SESSION['fname'] = $row['FNAME'];
+            $_SESSION['lname'] = $row['LNAME'];
+            $_SESSION['role'] = $row['ROLE'];
+
+
             header('Location: findProfessionals.php');
+            exit();
         }
     }
 }

@@ -34,16 +34,14 @@ oci_execute($query1);
                     <th>SID</th>
                     <th>Name</th>
                     <th>Surname</th>
-                    <th>Email</th>
                     <th>Phone Number</th>
                     <th>Role</th>
                 </tr>
                 <?php while($row = oci_fetch_assoc($query1)): ?>
                     <tr>
-                        <td><?= $row['CID']; ?></td>
+                        <td><?= $row['AID']; ?></td>
                         <td><?= $row['FNAME']; ?></td>
                         <td><?= $row['LNAME']; ?></td>
-                        <td><?= $row['EMAIL']; ?></td>
                         <td><?= $row['AREA_CODE'] . $row['PHONE_NUMBER']; ?></td>
                         <td><?= $row['ROLE']; ?></td>
                     </tr>
