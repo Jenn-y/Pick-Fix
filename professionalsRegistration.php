@@ -14,6 +14,8 @@ $query1 = oci_parse($db, 'SELECT * FROM cities WHERE date_deleted IS NULL');
 oci_execute($query1);
 $query2 = oci_parse($db, 'SELECT * FROM services WHERE date_deleted IS NULL ORDER BY category');
 oci_execute($query2);
+$list_cities = oci_parse($db, 'SELECT * FROM cities WHERE date_deleted IS NULL ORDER BY cname');
+oci_execute($list_cities);
 $months = [1 => 'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 $years = range(2016, date('Y'));
 
@@ -21,10 +23,9 @@ if($_POST) {
 
     if (checkRequiredField($_POST['first_name']) && checkRequiredField($_POST['last_name']) && checkRequiredField($_POST['email'])
         && checkRequiredField($_POST['password']) && checkRequiredField($_POST['area_code']) && checkRequiredField($_POST['phone_number'])
-        && checkRequiredField($_POST['card_num']) && checkRequiredField($_POST['month']) && checkRequiredField($_POST['year']) && checkRequiredField($_POST['cvv']) && isset($_POST['cities']) && isset($_POST['services'])) {
+        && checkRequiredField($_POST['card_num']) && checkRequiredField($_POST['month']) && checkRequiredField($_POST['year']) && checkRequiredField($_POST['cvv']) && isset($_POST['cities']) && isset($_POST['primary_city']) && isset($_POST['services'])) {
 
-        $sql = "INSERT INTO accounts (fname, lname, email, password, area_code, phone_number, role)
-                VALUES ('{$_POST['first_name']}', '{$_POST['last_name']}', '{$_POST['email']}', '{$_POST['password']}', {$_POST['area_code']}, {$_POST['phone_number']}, 1)";
+        $sql = "INSERT INTO accounts(fname, lname, email, password, area_code, phone_number, primary_city, role) VALUES('{$_POST['first_name']}', '{$_POST['last_name']}', '{$_POST['email']}', '{$_POST['password']}', {$_POST['area_code']}, {$_POST['phone_number']}, '{$_POST['primary_city']}', 1)";
         $result = oci_parse($db, $sql);
         oci_execute($result);
         oci_commit($db);
@@ -138,12 +139,18 @@ if($_POST) {
                     <div class="checkboxWrapper">
                         <div>
                             <label>Available for work in:</label>
-                            <div class="checkbox">
+                            <div class="checkbox" id="city-checkbox">
                                 <?php while($row = oci_fetch_assoc($query1)): ?>
                                 <input name="cities[]" type="checkbox" value="<?= $row['CID']; ?>">
                                 <label><?= $row['CNAME']; ?></label><br>
                                 <?php endwhile; ?>
                             </div>
+                            <select name="primary_city" id="city">
+                                <option disabled selected value>Primary city</option>
+                                <?php while($fetch_cities = oci_fetch_assoc($list_cities)): ?>
+                                    <option value="<?= $fetch_cities['CNAME']; ?>"><?= $fetch_cities['CNAME']; ?></option>
+                                <?php endwhile; ?>
+                            </select>
                         </div>
 
                         <div>

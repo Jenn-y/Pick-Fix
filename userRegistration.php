@@ -71,6 +71,7 @@ if($_POST) {
 
             <label for="city">City</label>
             <select name="city" id="city">
+                <option disabled selected value>Select a city of residence</option>
                 <?php while($row3 = oci_fetch_assoc($query3)): ?>
                     <option value="<?= $row3['CNAME']; ?>"><?= $row3['CNAME']; ?></option>
                 <?php endwhile; ?>
