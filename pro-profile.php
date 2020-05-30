@@ -1,7 +1,8 @@
 <?php
-
-session_start();
-include('includes/db.php');
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+include_once("includes/db.php");
 
 $aid = $_SESSION['user_id'];
 $q = "SELECT * FROM accounts WHERE aid={$aid}";

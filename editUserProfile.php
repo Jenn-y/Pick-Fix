@@ -1,6 +1,8 @@
 <?php
-session_start();
-include('includes/db.php');
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+include_once("includes/db.php");
 
 if (isset($_SESSION['user_id'])) {
     $aid = $_SESSION['user_id'];
