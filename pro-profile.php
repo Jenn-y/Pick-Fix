@@ -23,6 +23,7 @@ $row = oci_fetch_assoc($query);
     <title>Profile</title>
 </head>
 <body>
+
 <div id="page-container">
     <?php include('includes/profile-header.php'); ?>
 
@@ -46,7 +47,7 @@ $row = oci_fetch_assoc($query);
                 <p><?= '+' . $row['AREA_CODE'] . ' ' . $row['PHONE_NUMBER'] ?></p>
             </div>
         </div>
-
+        <?php if ($row['FNAME'] == 1){ ?>
         <div class="request-box shadow">
             <p>Request Service Form</p>
             <form class="flex-container">
@@ -103,8 +104,8 @@ $row = oci_fetch_assoc($query);
                 <p>27,99BAM</p>
                 <button type="submit">SEND SERVICE REQUEST</button>
             </div>
-
         </div>
+        <?php } ?>
     </main>
 
     <?php include('includes/footer.php'); ?>
