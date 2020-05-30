@@ -1,3 +1,10 @@
+<?php
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+include_once("includes/db.php");
+?>
+
 <header>
     <div id="inner-header">
 
@@ -13,13 +20,13 @@
 
         <div id="side-menu" class="side-nav">
             <a href="#" class="btn-close" onclick="closeMenu()">&times;</a>
-            <a href="http://localhost/Pick-Fix/index.php">Home</a>
-            <a href="http://localhost/Pick-Fix/pro-profile.php" onclick="closeMenu()">My Profile</a>
-            <a href="http://localhost/Pick-Fix/editProfessionalsProfile.php" onclick="closeMenu()">Edit Profile</a>
-            <a href="http://localhost/Pick-Fix/pro-profile-requests.php" onclick="closeMenu()">My Requests</a>
-            <a href="http://localhost/Pick-Fix/findProfessionals.php">Find a Professional</a>
-            <a href="http://localhost/Pick-Fix/become-pro.php">Become a Professional</a>
-            <a href="http://localhost/Pick-Fix/index.php">Log out</a>
+            <a href="index.php">Home</a>
+            <a href="pro-profile.php" onclick="closeMenu()">My Profile</a>
+            <a href="editProfessionalsProfile.php" onclick="closeMenu()">Edit Profile</a>
+            <a href="pro-profile-requests.php" onclick="closeMenu()">My Requests</a>
+            <a href="findProfessionals.php">Find a Professional</a>
+            <a href="become-pro.php">Become a Professional</a>
+            <a href="index.php">Log out</a>
         </div>
 
         <div id="logo"><a href="index-signed-in.php"><h1>Pick & Fix</h1></a></div>
@@ -49,7 +56,7 @@
         </nav>
         <nav id="login">
             <div class="dropdown">
-                <p class="dropdown-link"><i class="fa fa-user" aria-hidden="true"></i> <?php echo ' ' . $row['FNAME'] . ' ' . $row['LNAME'] ?></p>
+                <p class="dropdown-link"><i class="fa fa-user" aria-hidden="true"></i> <?php echo ' ' . $_SESSION['fname'] . ' ' . $_SESSION['lname'] ?></p>
                 <div class="dropdown-content" id="signed-profile">
                     <a href="pro-profile.php">My profile</a>
                     <a href="editProfessionalsProfile.php">Edit profile</a>
