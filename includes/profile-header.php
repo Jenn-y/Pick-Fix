@@ -1,3 +1,10 @@
+<?php
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+include_once("includes/db.php");
+?>
+
 <header>
     <div id="inner-header">
 
@@ -49,7 +56,7 @@
         </nav>
         <nav id="login">
             <div class="dropdown">
-                <p class="dropdown-link"><i class="fa fa-user" aria-hidden="true"></i> <?php echo ' ' . $row['FNAME'] . ' ' . $row['LNAME'] ?></p>
+                <p class="dropdown-link"><i class="fa fa-user" aria-hidden="true"></i> <?php echo ' ' . $_SESSION['fname'] . ' ' . $_SESSION['lname'] ?></p>
                 <div class="dropdown-content" id="signed-profile">
                     <a href="pro-profile.php">My profile</a>
                     <a href="editProfessionalsProfile.php">Edit profile</a>

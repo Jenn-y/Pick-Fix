@@ -1,9 +1,11 @@
 <?php
-session_start();
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
 
 include('includes/form-functions.php');
 if ($_POST) {
-    include('includes/db.php');
+    include_once("includes/db.php");
 
     $email = $_POST['email'];
     $password = $_POST['password'];

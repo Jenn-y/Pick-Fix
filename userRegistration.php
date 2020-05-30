@@ -1,7 +1,9 @@
 <?php
-session_start();
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
 include("includes/form-functions.php");
-include("includes/db.php");
+include_once("includes/db.php");
 
 $query3 = oci_parse($db, 'SELECT * FROM cities WHERE date_deleted IS NULL ORDER BY cname');
 oci_execute($query3);
@@ -50,40 +52,40 @@ if($_POST) {
     <title>Register</title>
 </head>
 <body>
-    <main class="flex-container">
-        <form method="post">
-            <h1>Register</h1>
-            <div class="full-name flex-container">
-                <label>Full name</label>
-                <?php create_input("text", "first_name", "First name", true); ?>
-                <?php create_input("text", "last_name", "Last name", true); ?>
+<main class="flex-container">
+    <form method="post">
+        <h1>Register</h1>
+        <div class="full-name flex-container">
+            <label>Full name</label>
+            <?php create_input("text", "first_name", "First name", true); ?>
+            <?php create_input("text", "last_name", "Last name", true); ?>
+        </div>
+        <label for="email">Email</label>
+        <?php create_input("text", "email", "Email",true); ?>
+        <label for="password">Password</label>
+        <?php create_input("password", "password", "Password",true); ?>
+
+        <label for="area_code">Area code</label>
+        <?php create_input("number", "area_code", "Area code",true); ?>
+
+        <label for="phone">Phone</label>
+        <?php create_input("tel", "phone", "Phone number",true); ?>
+
+        <label for="city">City</label>
+        <select name="city" id="city">
+            <option disabled selected value>Select a city of residence</option>
+            <?php while($row3 = oci_fetch_assoc($query3)): ?>
+                <option value="<?= $row3['CNAME']; ?>"><?= $row3['CNAME']; ?></option>
+            <?php endwhile; ?>
+        </select>
+        <button type="submit">Register</button>
+        <div class="already-member flex-container">
+            <div>
+                <span>Already have an account?</span>
+                <a href="login.php">Sign in!</a>
             </div>
-            <label for="email">Email</label>
-            <?php create_input("text", "email", "Email",true); ?>
-            <label for="password">Password</label>
-            <?php create_input("password", "password", "Password",true); ?>
-
-            <label for="area_code">Area code</label>
-            <?php create_input("number", "area_code", "Area code",true); ?>
-
-            <label for="phone">Phone</label>
-            <?php create_input("tel", "phone", "Phone number",true); ?>
-
-            <label for="city">City</label>
-            <select name="city" id="city">
-                <option disabled selected value>Select a city of residence</option>
-                <?php while($row3 = oci_fetch_assoc($query3)): ?>
-                    <option value="<?= $row3['CNAME']; ?>"><?= $row3['CNAME']; ?></option>
-                <?php endwhile; ?>
-            </select>
-            <button type="submit">Register</button>
-            <div class="already-member flex-container">
-                <div>
-                    <span>Already have an account?</span>
-                    <a href="login.php">Sign in!</a>
-                </div>
-            </div>
-        </form>
-    </main>
+        </div>
+    </form>
+</main>
 </body>
 </html>

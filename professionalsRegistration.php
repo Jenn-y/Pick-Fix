@@ -1,7 +1,9 @@
 <?php
-session_start();
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
 include("includes/form-functions.php");
-include("includes/db.php");
+include_once("includes/db.php");
 
 function checkRequiredField($value)
 {
@@ -141,8 +143,8 @@ if($_POST) {
                             <label>Available for work in:</label>
                             <div class="checkbox" id="city-checkbox">
                                 <?php while($row = oci_fetch_assoc($query1)): ?>
-                                <input name="cities[]" type="checkbox" value="<?= $row['CID']; ?>">
-                                <label><?= $row['CNAME']; ?></label><br>
+                                    <input name="cities[]" type="checkbox" value="<?= $row['CID']; ?>">
+                                    <label><?= $row['CNAME']; ?></label><br>
                                 <?php endwhile; ?>
                             </div>
                             <select name="primary_city" id="city">

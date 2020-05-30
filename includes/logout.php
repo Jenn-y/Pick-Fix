@@ -1,8 +1,9 @@
 <?php
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
 
-session_start();
-
-include('includes/db.php');
+include_once("includes/db.php");
 
 $_SESSION = [];
 session_destroy();
