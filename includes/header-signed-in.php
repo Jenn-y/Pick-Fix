@@ -30,7 +30,9 @@ while ($row_of_services = oci_fetch_assoc($query_services)){
             <a href="#" class="btn-close" onclick="closeMenu()">&times;</a>
             <a href="index.php">Home</a>
             <a href="findProfessionals.php">Find a Professional</a>
+            <?php if ($row['FNAME'] == 2){ ?>
             <a href="become-pro.php">Become a Professional</a>
+            <?php } ?>
             <a href="pro-profile.php">My Profile</a>
         </div>
 
