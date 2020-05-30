@@ -23,6 +23,19 @@ if (isset($_SESSION['user_id'])) {
 
     $query6 = oci_parse($db, "SELECT * FROM accounts WHERE role = 1 AND aid != '{$aid}'");
     oci_execute($query6);
+
+    if (isset($_POST['city']) && isset($_POST['service'])){
+        $list_specific = oci_parse($db, "SELECT p.lname, p.fname, w.* FROM work_offers w, accounts p WHERE w.service = {$_POST['service']} AND w.city = {$_POST['city']} AND w.professional = p.aid");
+        oci_execute($list_specific);
+    }
+    if (!isset($_POST['city']) && isset($_POST['service'])){
+        $list_by_service = oci_parse($db, "SELECT p.lname, p.fname, w.* FROM work_offers w, accounts p WHERE w.service = {$_POST['service']} AND w.professional = p.aid");
+        oci_execute($list_by_service);
+    }
+    if (isset($_POST['city']) && !isset($_POST['service'])){
+        $list_by_city = oci_parse($db, "SELECT p.lname, p.fname, w.professional  FROM work_offers w, accounts p WHERE w.city = {$_POST['city']} AND w.professional = p.aid GROUP BY p.lname, p.fname, w.professional");
+        oci_execute($list_by_city);
+    }
 }
 ?>
 
@@ -33,6 +46,8 @@ if (isset($_SESSION['user_id'])) {
     <link rel="stylesheet" href="css/header.css">
     <link rel="stylesheet" href="css/index.css">
     <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/test.css">
+
     <title>Find Professionals</title>
 </head>
 <body id="findProfessionals">
@@ -41,22 +56,26 @@ if (isset($_SESSION['user_id'])) {
 
     <div class="welcome backImage">
         <div class="color-overlay"></div>
+        <form method="post">
         <div class="flex-container">
-            <select name="services-dropdown">
+
+            <select name="service">
                 <option disabled selected value>Select a service</option>
                 <?php while($row2 = oci_fetch_assoc($query2)): ?>
-                    <option value="<?= $row2['CATEGORY']; ?>"><?= $row2['CATEGORY']; ?></option>
+                    <option value="<?= $row2['SID']; ?>"><?= $row2['CATEGORY']; ?></option>
                 <?php endwhile; ?>
             </select>
 
-            <select name="cities">
+            <select name="city">
                 <option disabled selected value>&#128205;</option>
                 <?php while($row3 = oci_fetch_assoc($query3)): ?>
-                    <option value="<?= $row3['CNAME']; ?>"><?= $row3['CNAME']; ?></option>
+                    <option value="<?= $row3['CID']; ?>"><?= $row3['CNAME']; ?></option>
                 <?php endwhile; ?>
             </select>
-            <a href="#">Get Started</a>
+            <button id="get-professionals">Get Started</button>
+
         </div>
+        </form>
     </div>
 
     <main>
@@ -78,6 +97,34 @@ if (isset($_SESSION['user_id'])) {
             </div>
 
             <div class="displayProfessionals">
+                <?php if(isset($_POST['city']) && isset($_POST['service'])) { ?>
+                    <?php while($row5 = oci_fetch_assoc($list_specific)): ?>
+                        <a href="pro-profile.php">
+                            <img src="images/default-user.png" alt="professional-profile">
+                            <h4><?php echo $row5['FNAME'] . ' ' . $row5['LNAME'] ?></h4>
+                            <h6>Charge per hour: 3.99BAM</h6>
+                            <p>Rating: &#11088;&#11088;&#11088;</p>
+                        </a>
+                    <?php endwhile; ?>
+                <?php } else if(!isset($_POST['city']) && isset($_POST['service'])) { ?>
+                    <?php while($row6 = oci_fetch_assoc($list_by_service)): ?>
+                        <a href="pro-profile.php">
+                            <img src="images/default-user.png" alt="professional-profile">
+                            <h4><?php echo $row6['FNAME'] . ' ' . $row6['LNAME'] ?></h4>
+                            <h6>Charge per hour: 3.99BAM</h6>
+                            <p>Rating: &#11088;&#11088;&#11088;</p>
+                        </a>
+                    <?php endwhile; ?>
+                <?php } else if(isset($_POST['city']) && !isset($_POST['service'])) { ?>
+                    <?php while($row7 = oci_fetch_assoc($list_by_city)): ?>
+                        <a href="pro-profile.php">
+                            <img src="images/default-user.png" alt="professional-profile">
+                            <h4><?php echo $row7['FNAME'] . ' ' . $row7['LNAME'] ?></h4>
+                            <h6>Charge per hour: 3.99BAM</h6>
+                            <p>Rating: &#11088;&#11088;&#11088;</p>
+                        </a>
+                    <?php endwhile; ?>
+                <?php } else { ?>
                 <?php while($row5 = oci_fetch_assoc($query6)): ?>
                     <a href="pro-profile.php">
                         <img src="images/default-user.png" alt="professional-profile">
@@ -86,6 +133,7 @@ if (isset($_SESSION['user_id'])) {
                         <p>Rating: &#11088;&#11088;&#11088;</p>
                     </a>
                 <?php endwhile; ?>
+                <?php } ?>
             </div>
         </section>
     </main>

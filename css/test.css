@@ -1,0 +1,9 @@
+#findProfessionals #get-professionals {
+    color: white;
+    font-size: 18px;
+    text-decoration: none;
+    padding: 15px 50px;
+    border-radius: 3px;
+    background-color: #4dbc15;
+    z-index: 1;
+}
