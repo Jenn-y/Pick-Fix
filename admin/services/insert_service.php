@@ -6,6 +6,7 @@ if($_POST) {
         oci_execute($result);
         oci_commit($db);
     }
+    echo '<script> location.replace("services.php"); </script>';
 }
 ?>
 

@@ -18,6 +18,9 @@ if (isset($_SESSION['user_id'])) {
     oci_execute($query5);
     $query3 = oci_parse($db, 'SELECT * FROM cities WHERE date_deleted IS NULL ORDER BY cname');
     oci_execute($query3);
+
+    $query6 = oci_parse($db, "SELECT * FROM accounts WHERE role = 1 AND aid != '{$aid}'");
+    oci_execute($query6);
 }
 ?>
 
@@ -73,89 +76,14 @@ if (isset($_SESSION['user_id'])) {
             </div>
 
             <div class="displayProfessionals">
+                <?php while($row5 = oci_fetch_assoc($query6)): ?>
                 <a href="pro-profile.php">
                     <img src="images/default-user.png" alt="professional-profile">
-                    <h4>Name and Surname</h4>
+                    <h4><?php echo $row5['FNAME'] . ' ' . $row5['LNAME'] ?></h4>
                     <h6>Charge per hour: 3.99BAM</h6>
                     <p>Rating: &#11088;&#11088;&#11088;</p>
                 </a>
-
-                <a href="pro-profile.php">
-                    <img src="images/default-user.png" alt="professional-profile">
-                    <h4>Name and Surname</h4>
-                    <h6>Charge per hour: 3.99BAM</h6>
-                    <p>Rating: &#11088;&#11088;&#11088;</p>
-                </a>
-
-                <a href="pro-profile.php">
-                    <img src="images/default-user.png" alt="professional-profile">
-                    <h4>Name and Surname</h4>
-                    <h6>Charge per hour: 3.99BAM</h6>
-                    <p>Rating: &#11088;&#11088;&#11088;</p>
-                </a>
-
-                <a href="pro-profile.php">
-                    <img src="images/default-user.png" alt="professional-profile">
-                    <h4>Name and Surname</h4>
-                    <h6>Charge per hour: 3.99BAM</h6>
-                    <p>Rating: &#11088;&#11088;&#11088;</p>
-                </a>
-
-                <a href="pro-profile.php">
-                    <img src="images/default-user.png" alt="professional-profile">
-                    <h4>Name and Surname</h4>
-                    <h6>Charge per hour: 3.99BAM</h6>
-                    <p>Rating: &#11088;&#11088;&#11088;</p>
-                </a>
-
-                <a href="pro-profile.php">
-                    <img src="images/default-user.png" alt="professional-profile">
-                    <h4>Name and Surname</h4>
-                    <h6>Charge per hour: 3.99BAM</h6>
-                    <p>Rating: &#11088;&#11088;&#11088;</p>
-                </a>
-
-                <a href="pro-profile.php">
-                    <img src="images/default-user.png" alt="professional-profile">
-                    <h4>Name and Surname</h4>
-                    <h6>Charge per hour: 3.99BAM</h6>
-                    <p>Rating: &#11088;&#11088;&#11088;</p>
-                </a>
-
-                <a href="pro-profile.php">
-                    <img src="images/default-user.png" alt="professional-profile">
-                    <h4>Name and Surname</h4>
-                    <h6>Charge per hour: 3.99BAM</h6>
-                    <p>Rating: &#11088;&#11088;&#11088;</p>
-                </a>
-
-                <a href="pro-profile.php">
-                    <img src="images/default-user.png" alt="professional-profile">
-                    <h4>Name and Surname</h4>
-                    <h6>Charge per hour: 3.99BAM</h6>
-                    <p>Rating: &#11088;&#11088;&#11088;</p>
-                </a>
-
-                <a href="pro-profile.php">
-                    <img src="images/default-user.png" alt="professional-profile">
-                    <h4>Name and Surname</h4>
-                    <h6>Charge per hour: 3.99BAM</h6>
-                    <p>Rating: &#11088;&#11088;&#11088;</p>
-                </a>
-
-                <a href="pro-profile.php">
-                    <img src="images/default-user.png" alt="professional-profile">
-                    <h4>Name and Surname</h4>
-                    <h6>Charge per hour: 3.99BAM</h6>
-                    <p>Rating: &#11088;&#11088;&#11088;</p>
-                </a>
-
-                <a href="pro-profile.php">
-                    <img src="images/default-user.png" alt="professional-profile">
-                    <h4>Name and Surname</h4>
-                    <h6>Charge per hour: 3.99BAM</h6>
-                    <p>Rating: &#11088;&#11088;&#11088;</p>
-                </a>
+                <?php endwhile; ?>
             </div>
         </section>
     </main>

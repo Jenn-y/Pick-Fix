@@ -8,6 +8,8 @@ function checkRequiredField($value)
     return isset($value) && !empty($value);
 }
 
+
+
 $query1 = oci_parse($db, 'SELECT * FROM cities WHERE date_deleted IS NULL');
 oci_execute($query1);
 $query2 = oci_parse($db, 'SELECT * FROM services WHERE date_deleted IS NULL ORDER BY category');
@@ -19,7 +21,7 @@ if($_POST) {
 
     if (checkRequiredField($_POST['first_name']) && checkRequiredField($_POST['last_name']) && checkRequiredField($_POST['email'])
         && checkRequiredField($_POST['password']) && checkRequiredField($_POST['area_code']) && checkRequiredField($_POST['phone_number'])
-        && checkRequiredField($_POST['card_num']) && checkRequiredField($_POST['month']) && checkRequiredField($_POST['year']) && checkRequiredField($_POST['cvv'])) {
+        && checkRequiredField($_POST['card_num']) && checkRequiredField($_POST['month']) && checkRequiredField($_POST['year']) && checkRequiredField($_POST['cvv']) && isset($_POST['cities']) && isset($_POST['services'])) {
 
         $sql = "INSERT INTO accounts (fname, lname, email, password, area_code, phone_number, role)
                 VALUES ('{$_POST['first_name']}', '{$_POST['last_name']}', '{$_POST['email']}', '{$_POST['password']}', {$_POST['area_code']}, {$_POST['phone_number']}, 1)";
@@ -34,8 +36,22 @@ if($_POST) {
         oci_execute($query);
         $row = oci_fetch_assoc($query);
 
+
+        $cities_array = $_POST['cities'];
+        $services_array = $_POST['services'];
+        for ($i = 0; $i < count($cities_array); $i++) {
+            $city = $cities_array[$i];
+            for ($j = 0; $j < count($services_array); $j++) {
+                $service = $services_array[$j];
+                $statement = oci_parse($db, "INSERT INTO work_offers(service, city, charge_per_hour, professional) VALUES ($service, $city, 4, {$row['AID']})");
+                oci_execute($statement);
+
+                oci_commit($db);
+            }
+        }
+
+
         if ($row) {
-            $_SESSION['user_id'] = $row['AID'];
 
             $query3 = "INSERT INTO fee_payments (card_number, exp_month, exp_year, cvv, professional)
                 VALUES ({$_POST['card_num']}, {$_POST['month']}, {$_POST['year']}, {$_POST['cvv']}, {$row['AID']})";
@@ -44,9 +60,20 @@ if($_POST) {
 
             oci_commit($db);
         }
-        /*if ($result) {
+        $findProfessional = oci_parse($db, "SELECT * FROM accounts WHERE email = '{$email}' AND password = '{$password}'");
+        oci_execute($findProfessional);
+        $professional = oci_fetch_assoc($findProfessional);
+
+        if ($professional) {
+            $_SESSION['user_id'] = $professional['AID'];
+            $_SESSION['fname'] = $professional['FNAME'];
+            $_SESSION['lname'] = $professional['LNAME'];
+            $_SESSION['role'] = $professional['ROLE'];
+
+
             header('Location: findProfessionals.php');
-        }*/
+            exit();
+        }
     }
 }
 ?>
@@ -113,7 +140,7 @@ if($_POST) {
                             <label>Available for work in:</label>
                             <div class="checkbox">
                                 <?php while($row = oci_fetch_assoc($query1)): ?>
-                                <input name="[]" type="checkbox">
+                                <input name="cities[]" type="checkbox" value="<?= $row['CID']; ?>">
                                 <label><?= $row['CNAME']; ?></label><br>
                                 <?php endwhile; ?>
                             </div>
@@ -123,7 +150,7 @@ if($_POST) {
                             <label>Categories of work</label>
                             <div class="checkbox">
                                 <?php while($row = oci_fetch_assoc($query2)): ?>
-                                    <input name="[]" type="checkbox">
+                                    <input name="services[]" type="checkbox" value="<?= $row['SID']; ?>">
                                     <label><?= $row['CATEGORY']; ?></label><br>
                                 <?php endwhile; ?>
                             </div>
