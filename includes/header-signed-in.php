@@ -28,10 +28,10 @@ while ($row_of_services = oci_fetch_assoc($query_services)){
 
         <div id="side-menu" class="side-nav">
             <a href="#" class="btn-close" onclick="closeMenu()">&times;</a>
-            <a href="http://localhost/Pick-Fix/index.php">Home</a>
-            <a href="http://localhost/Pick-Fix/findProfessionals.php">Find a Professional</a>
-            <a href="http://localhost/Pick-Fix/become-pro.php">Become a Professional</a>
-            <a href="http://localhost/Pick-Fix/pro-profile.php">My Profile</a>
+            <a href="index.php">Home</a>
+            <a href="findProfessionals.php">Find a Professional</a>
+            <a href="become-pro.php">Become a Professional</a>
+            <a href="pro-profile.php">My Profile</a>
         </div>
 
         <div id="logo"><a href="index-signed-in.php"><h1>Pick & Fix</h1></a></div>
