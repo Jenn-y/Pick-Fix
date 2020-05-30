@@ -7,7 +7,7 @@ $num_rows = 0;
 while ($row_of_services = oci_fetch_assoc($query_services)){
         $array[] = $row_of_services['CATEGORY'];
         $num_rows++;
-};
+}
 ?>
 
 <header>

@@ -49,7 +49,7 @@
         </nav>
         <nav id="login">
             <div class="dropdown">
-                <p class="dropdown-link"><i class="fa fa-user" aria-hidden="true"></i> Your Profile</p>
+                <p class="dropdown-link"><i class="fa fa-user" aria-hidden="true"></i> <?php echo ' ' . $row['FNAME'] . ' ' . $row['LNAME'] ?></p>
                 <div class="dropdown-content" id="signed-profile">
                     <a href="pro-profile.php">My profile</a>
                     <a href="editProfessionalsProfile.php">Edit profile</a>

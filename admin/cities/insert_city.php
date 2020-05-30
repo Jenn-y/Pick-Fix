@@ -6,7 +6,8 @@ if($_POST) {
         oci_execute($result);
         oci_commit($db);
 
-        header('Location: cities.php');
+        echo '<script> location.replace("cities.php"); </script>';
+
     }
 }
 ?>
