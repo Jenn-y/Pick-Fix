@@ -3,6 +3,15 @@ if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
 include_once("includes/db.php");
+
+$query_services = oci_parse($db, 'SELECT * FROM services WHERE date_deleted IS NULL ORDER BY category');
+oci_execute($query_services);
+$array[] = '';
+$num_rows = 0;
+while ($row_of_services = oci_fetch_assoc($query_services)){
+    $array[] = $row_of_services['CATEGORY'];
+    $num_rows++;
+}
 ?>
 
 <header>
@@ -22,7 +31,11 @@ include_once("includes/db.php");
             <a href="#" class="btn-close" onclick="closeMenu()">&times;</a>
             <a href="index.php">Home</a>
             <a href="pro-profile.php" onclick="closeMenu()">My Profile</a>
-            <a href="editProfessionalsProfile.php" onclick="closeMenu()">Edit Profile</a>
+            <?php if ($row['FNAME'] == 1){ ?>
+                <a href="editProfessionalsProfile.php">Edit profile</a>
+            <?php } else { ?>
+                <a href="editUserProfile.php">Edit profile</a>
+            <?php } ?>
             <a href="pro-profile-requests.php" onclick="closeMenu()">My Requests</a>
             <a href="findProfessionals.php">Find a Professional</a>
             <a href="become-pro.php">Become a Professional</a>
@@ -36,20 +49,14 @@ include_once("includes/db.php");
                                                                             aria-hidden="true"></i> All Services</a>
                 <div class="dropdown-content">
                     <div>
-                        <a href="#">Appliances</a>
-                        <a href="#">Carpet</a>
-                        <a href="#">Chimney</a>
-                        <a href="#">Driveways</a>
-                        <a href="#">Electrical</a>
-                        <a href="#">Furniture</a>
+                        <?php for ($i = 1; $i < $num_rows/2+1; $i++) { ?>
+                            <a href="#"><?php echo $array[$i]; ?></a>
+                        <?php } ?>
                     </div>
                     <div>
-                        <a href="#">General Repairman</a>
-                        <a href="#">Glass and Screens</a>
-                        <a href="#">Lighting</a>
-                        <a href="#">Painting</a>
-                        <a href="#">Plumbing</a>
-                        <a href="#">Windows and Doors</a>
+                        <?php for ($i = $num_rows/2+1; $i < $num_rows+1; $i++) { ?>
+                            <a href="#"><?php echo $array[$i]; ?></a>
+                        <?php } ?>
                     </div>
                 </div>
             </div>
@@ -59,7 +66,11 @@ include_once("includes/db.php");
                 <p class="dropdown-link"><i class="fa fa-user" aria-hidden="true"></i> <?php echo ' ' . $_SESSION['fname'] . ' ' . $_SESSION['lname'] ?></p>
                 <div class="dropdown-content" id="signed-profile">
                     <a href="pro-profile.php">My profile</a>
+                    <?php if ($row['FNAME'] == 1){ ?>
                     <a href="editProfessionalsProfile.php">Edit profile</a>
+                    <?php } else { ?>
+                    <a href="editUserProfile.php">Edit profile</a>
+                    <?php } ?>
                     <a href="pro-profile-requests.php">Requests</a>
                     <a href="index.php">Log out</a>
                 </div>

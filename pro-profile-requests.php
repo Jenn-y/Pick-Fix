@@ -1,3 +1,17 @@
+<?php
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+include_once("includes/db.php");
+
+$aid = $_SESSION['user_id'];
+$q = "SELECT * FROM accounts WHERE aid={$aid}";
+$query = oci_parse($db, $q);
+oci_execute($query);
+
+$row = oci_fetch_assoc($query);
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,6 +27,7 @@
     <?php include('includes/profile-header.php'); ?>
 
     <main class="center">
+        <?php if ($row['FNAME'] == 1){ ?>
         <h2>Received Requests</h2>
 
         <div class="shadow">
@@ -54,6 +69,7 @@
                 </tr>
             </table>
         </div>
+        <?php } ?>
 
         <h2 id="sentRequests">Sent Requests</h2>
 
