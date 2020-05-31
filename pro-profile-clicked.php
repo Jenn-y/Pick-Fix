@@ -17,6 +17,46 @@ if(isset($_GET['id'])) {
     oci_execute($result);
     $fetch_professional = oci_fetch_assoc($result);
 }
+
+function checkRequiredField($value)
+{
+    return isset($value) && !empty($value);
+}
+
+if($_POST && isset($_GET['id'])) {
+
+    if (checkRequiredField($_POST['fname']) && checkRequiredField($_POST['lname']) && checkRequiredField($_POST['city'])
+        && checkRequiredField($_POST['service']) && checkRequiredField($_POST['phone']) && checkRequiredField($_POST['problem-description'])
+        && checkRequiredField($_POST['num_of_hrs'])) {
+
+        // Fetching the WID from table WORK_OFFERS
+        $query = oci_parse($db, "SELECT WID FROM WORK_OFFERS
+                                            WHERE SERVICE={$_POST['service']} AND CITY={$_POST['city']} AND PROFESSIONAL={$_GET['id']}");
+        oci_execute($query);
+        $wid = oci_fetch_assoc($query);
+
+        // Inserting a row into REQUESTS
+        $query = oci_parse($db, "insert into requests(user_id, work_offer, description, num_of_hrs)
+              VALUES ({$_GET['id']}, {$wid['WID']}, '{$_POST['problem-description']}', {$_POST['num_of_hrs']})");
+
+        oci_execute($query);
+        oci_commit($db);
+
+        $query = oci_parse($db, "SELECT * FROM REQUESTS
+                                         ORDER BY RID DESC
+                                         FETCH FIRST 1 ROWS ONLY");
+        oci_execute($query);
+        $rid = oci_fetch_assoc($query);
+
+        $query = oci_parse($db, "INSERT INTO REQUESTS_HISTORY(datetime, status, request)
+                                         VALUES (SYSDATE, 'pending', {$rid['RID']})");
+        oci_execute($query);
+        oci_commit($db);
+
+        header('Location: pro-profile-requests.php');
+        exit();
+    }
+}
 ?>
 
 <!DOCTYPE html>
@@ -26,8 +66,7 @@ if(isset($_GET['id'])) {
     <link href="css/header.css" rel="stylesheet">
     <link href="css/pro-profile.css" rel="stylesheet">
     <link rel="stylesheet" href="css/footer.css">
-
-
+    
     <title>Profile</title>
 </head>
 <body>
@@ -58,7 +97,7 @@ if(isset($_GET['id'])) {
 
         <div class="request-box shadow">
             <p>Request Service Form</p>
-            <form class="flex-container">
+            <form class="flex-container" method="post">
                 <div class="request-details flex-container">
                     <label>Full name <span>*</span></label>
                     <div class="flex-container">
@@ -68,45 +107,56 @@ if(isset($_GET['id'])) {
 
                     <label>City and Service <span>*</span></label>
                     <div class="flex-container">
-                        <select name="cities" id="cities" required>
+                        <?php
+                        $query = oci_parse($db, "SELECT DISTINCT CITY, CNAME FROM WORK_OFFERS
+                                                            JOIN CITIES
+                                                            ON CID = CITY
+                                                            ORDER BY CITY");
+                        oci_execute($query);?>
+
+                        <select name="city" id="city" required>
                             <option disabled selected value>City</option>
-                            <option value="tuzla">Tuzla</option>
-                            <option value="zivinice">Zivinice</option>
-                            <option value="bihac">Bihac</option>
-                            <option value="sarajevo">Sarajevo</option>
-                            <option value="mostar">Mostar</option>
+                            <?php while($row = oci_fetch_assoc($query)): ?>
+                                <option value="<?= $row['CITY'] ?>"><?= $row['CNAME'] ?></option>
+                            <?php endwhile; ?>
                         </select>
 
-                        <select name="services-dropdown" id="services-dropdown" required>
+                        <?php
+                        $query = oci_parse($db, "SELECT DISTINCT SERVICE, CATEGORY FROM WORK_OFFERS
+                                                            JOIN SERVICES
+                                                            ON SERVICE = SID
+                                                            ORDER BY SERVICE");
+                        oci_execute($query);?>
+                        <select name="service" id="service" required>
                             <option disabled selected value>Service</option>
-                            <option value="furniture-repair">Furniture repair</option>
-                            <option value="plumbing">Plumbing</option>
-                            <option value="electricity">Electricity</option>
-                            <option value="toilets">Toilets</option>
-                            <option value="moving-help">Moving help</option>
+                                <?php while($row = oci_fetch_assoc($query)): ?>
+                                    <option value="<?= $row['SERVICE'] ?>"><?= $row['CATEGORY'] ?></option>
+                                <?php endwhile; ?>
                         </select>
+
                     </div>
 
                     <label for="phone">Phone number <span>*</span></label>
-                    <input type="tel" id="phone" placeholder="Phone number" required>
+                    <input type="tel" name="phone" id="phone" placeholder="Phone number" required>
 
                 </div>
                 <div class="description flex-container">
                     <label for="problem-description">Description of the problem:</label>
                     <textarea name="problem-description" id="problem-description" placeholder="Please describe your problem here"></textarea>
                     <label for="num_of_hrs">Number of hours <span>*</span></label>
-                    <input type="number" id="num_of_hrs" placeholder="Number of hours" required>
+                    <input type="number" name="num_of_hrs" id="num_of_hrs" placeholder="Number of hours" required>
+                </div>
+
+                <div class="flex-container">
+                    <button id="submitButton" type="submit" onclick="getPrice()">Get Estimate Price</button>
+                    <script>
+                        function getPrice() {
+                            document.getElementById('price').style.display = 'block';
+                            document.getElementById('submitButton').style.display = 'none';
+                        }
+                    </script>
                 </div>
             </form>
-            <div class="flex-container">
-                <button id="submitButton" type="submit" onclick="getPrice()">Get Estimate Price</button>
-                <script>
-                    function getPrice() {
-                        document.getElementById('price').style.display = 'block';
-                        document.getElementById('submitButton').style.display = 'none';
-                    }
-                </script>
-            </div>
 
             <div id="price">
                 <p>27,99BAM</p>
