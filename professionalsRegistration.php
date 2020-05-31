@@ -12,7 +12,7 @@ function checkRequiredField($value)
 
 
 
-$query1 = oci_parse($db, 'SELECT * FROM cities WHERE date_deleted IS NULL');
+$query1 = oci_parse($db, 'SELECT * FROM cities WHERE date_deleted IS NULL ORDER BY cname');
 oci_execute($query1);
 $query2 = oci_parse($db, 'SELECT * FROM services WHERE date_deleted IS NULL ORDER BY category');
 oci_execute($query2);

@@ -27,7 +27,7 @@ $row = oci_fetch_assoc($query);
     <?php include('includes/profile-header.php'); ?>
 
     <main class="center">
-        <?php if ($row['FNAME'] == 1){ ?>
+        <?php if ($row['ROLE'] == 1){ ?>
         <h2>Received Requests</h2>
 
         <div class="shadow">

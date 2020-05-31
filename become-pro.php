@@ -1,28 +1,71 @@
 <?php
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+include("includes/form-functions.php");
+include_once("includes/db.php");
 
 function checkRequiredField($value)
 {
     return isset($value) && !empty($value);
 }
 
-if ($_POST) {
-    if (checkRequiredField($_POST['area_code']) && checkRequiredField($_POST['phone_number'])) {
-        $servername = "localhost";
-        $username = "root";
-        $password = "";
-        $database = "pick_fix";
+$query1 = oci_parse($db, 'SELECT * FROM cities WHERE date_deleted IS NULL ORDER BY cname');
+oci_execute($query1);
+$query2 = oci_parse($db, 'SELECT * FROM services WHERE date_deleted IS NULL ORDER BY category');
+oci_execute($query2);
+$list_cities = oci_parse($db, 'SELECT * FROM cities WHERE date_deleted IS NULL ORDER BY cname');
+oci_execute($list_cities);
+$months = [1 => 'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+$years = range(2016, date('Y'));
 
-        // Create connection
-        $conn = mysqli_connect($servername, $username, $password, $database);
-        $sql = "INSERT INTO ACCOUNTS (AREA_CODE, PHONE_NUMBER)
-        VALUES ('{$_POST['area_code']}', '{$_POST['phone_number']}')";
-        if (mysqli_query($conn, $sql)) {
-            exit("SUCCESS !!!");
-        } else {
-            echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+if($_POST && $_GET['id']) {
+
+    if (checkRequiredField($_POST['area_code']) && checkRequiredField($_POST['phone_number']) && checkRequiredField($_POST['card_num']) && checkRequiredField($_POST['month']) && checkRequiredField($_POST['year']) && checkRequiredField($_POST['cvv']) && isset($_POST['cities']) && isset($_POST['services'])) {
+
+        $sql = "UPDATE accounts SET area_code = {$_POST['area_code']}, phone_number = {$_POST['phone_number']}, role = 1 WHERE aid = {$_GET['id']}";
+        $result = oci_parse($db, $sql);
+        oci_execute($result);
+        oci_commit($db);
+
+        $cities_array = $_POST['cities'];
+        $services_array = $_POST['services'];
+        for ($i = 0; $i < count($cities_array); $i++) {
+            $city = $cities_array[$i];
+            for ($j = 0; $j < count($services_array); $j++) {
+                $service = $services_array[$j];
+                $statement = oci_parse($db, "INSERT INTO work_offers(service, city, charge_per_hour, professional) VALUES ($service, $city, 4, {$_GET['id']})");
+                oci_execute($statement);
+
+                oci_commit($db);
+            }
+        }
+
+
+        $query3 = "INSERT INTO fee_payments (card_number, exp_month, exp_year, cvv, professional)
+                VALUES ({$_POST['card_num']}, {$_POST['month']}, {$_POST['year']}, {$_POST['cvv']}, {$_GET['id']})";
+        $result = oci_parse($db, $query3);
+        oci_execute($result);
+
+        oci_commit($db);
+
+        $findProfessional = oci_parse($db, "SELECT * FROM accounts WHERE aid = {$_GET['id']}");
+        oci_execute($findProfessional);
+        $professional = oci_fetch_assoc($findProfessional);
+
+        if ($professional) {
+            $_SESSION['user_id'] = $professional['AID'];
+            $_SESSION['fname'] = $professional['FNAME'];
+            $_SESSION['lname'] = $professional['LNAME'];
+            $_SESSION['role'] = $professional['ROLE'];
+
+
+            header('Location: findProfessionals.php');
+            exit();
         }
     }
 }
+
 ?>
 
 <!doctype html>
@@ -73,40 +116,20 @@ if ($_POST) {
                         <div>
                             <label>Available for work in:</label>
                             <div class="checkbox">
-                                <input id="tuzla" type="checkbox">
-                                <label for="tuzla">Tuzla</label><br>
-                                <input type="checkbox" id="sarajevo">
-                                <label for="sarajevo">Sarajevo</label><br>
-                                <input type="checkbox" id="bihac">
-                                <label for="bihac">Bihac</label><br>
-                                <input type="checkbox" id="travnik">
-                                <label for="travnik">Travnik</label><br>
-                                <input type="checkbox" id="mostar">
-                                <label for="mostar">Mostar</label><br>
-                                <input type="checkbox" id="zenica">
-                                <label for="zenica">Zenica</label><br>
-                                <input type="checkbox" id="zivinice">
-                                <label for="zivinice">Zivinice</label>
+                                <?php while($row = oci_fetch_assoc($query1)): ?>
+                                    <input name="cities[]" type="checkbox" value="<?= $row['CID']; ?>">
+                                    <label><?= $row['CNAME']; ?></label><br>
+                                <?php endwhile; ?>
                             </div>
                         </div>
 
                         <div>
                             <label>Categories of work</label>
                             <div class="checkbox">
-                                <input id="furniture" type="checkbox">
-                                <label for="furniture">Furniture assembly</label><br>
-                                <input type="checkbox" id="generalRepairman">
-                                <label for="generalRepairman">General Repairman</label><br>
-                                <input type="checkbox" id="plumbing">
-                                <label for="plumbing">Plumbing</label><br>
-                                <input type="checkbox" id="faucets">
-                                <label for="faucets">Faucets</label><br>
-                                <input type="checkbox" id="toilets">
-                                <label for="toilets">Toilets</label><br>
-                                <input type="checkbox" id="electricity">
-                                <label for="electricity">Electricity</label><br>
-                                <input type="checkbox" id="movingHelp">
-                                <label for="movingHelp">Moving Help</label>
+                                <?php while($row = oci_fetch_assoc($query2)): ?>
+                                    <input name="services[]" type="checkbox" value="<?= $row['SID']; ?>">
+                                    <label><?= $row['CATEGORY']; ?></label><br>
+                                <?php endwhile; ?>
                             </div>
                         </div>
                     </div>
@@ -134,39 +157,24 @@ if ($_POST) {
                         <i class="fa fa-cc-discover" style="color:orange;"></i>
                     </div>
                 </div>
-                <input type="text" class="card-number" placeholder="Card Number">
+                <input type="text" name="card_num" class="card-number" placeholder="Card Number">
                 <div class="dateAndCvv">
                     <div class="month">
-                        <select name="Month">
-                            <option value="january">January</option>
-                            <option value="february">February</option>
-                            <option value="march">March</option>
-                            <option value="april">April</option>
-                            <option value="may">May</option>
-                            <option value="june">June</option>
-                            <option value="july">July</option>
-                            <option value="august">August</option>
-                            <option value="september">September</option>
-                            <option value="october">October</option>
-                            <option value="november">November</option>
-                            <option value="december">December</option>
+                        <select name="month" id="month">
+                            <?php foreach ($months as $key => $month) { ?>
+                                <option value="<?= $key ?>"><?= $month ?></option>
+                            <?php } ?>
                         </select>
                     </div>
                     <div class="year">
-                        <select name="Year">
-                            <option value="2016">2016</option>
-                            <option value="2017">2017</option>
-                            <option value="2018">2018</option>
-                            <option value="2019">2019</option>
-                            <option value="2020">2020</option>
-                            <option value="2021">2021</option>
-                            <option value="2022">2022</option>
-                            <option value="2023">2023</option>
-                            <option value="2024">2024</option>
+                        <select name="year" id="year">
+                            <?php foreach ($years as $year) { ?>
+                                <option value="<?= $year ?>"><?= $year ?></option>
+                            <?php } ?>
                         </select>
                     </div>
                     <div class="cvv-input">
-                        <input type="text" placeholder="CVV">
+                        <?php create_input("number", "cvv", "CVV",true); ?>
                     </div>
                 </div>
                 <div class="submission">
