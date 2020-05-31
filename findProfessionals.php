@@ -99,7 +99,7 @@ if (isset($_SESSION['user_id'])) {
             <div class="displayProfessionals">
                 <?php if(isset($_POST['city']) && isset($_POST['service'])) { ?>
                     <?php while($row5 = oci_fetch_assoc($list_specific)): ?>
-                        <a href="pro-profile.php">
+                        <a href="pro-profile-clicked.php?id=<?= $row5['AID']?>">
                             <img src="images/default-user.png" alt="professional-profile">
                             <h4><?php echo $row5['FNAME'] . ' ' . $row5['LNAME'] ?></h4>
                             <h6>Charge per hour: 3.99BAM</h6>
@@ -108,7 +108,7 @@ if (isset($_SESSION['user_id'])) {
                     <?php endwhile; ?>
                 <?php } else if(!isset($_POST['city']) && isset($_POST['service'])) { ?>
                     <?php while($row6 = oci_fetch_assoc($list_by_service)): ?>
-                        <a href="pro-profile.php">
+                        <a href="pro-profile-clicked.php?id=<?= $row6['AID']?>">
                             <img src="images/default-user.png" alt="professional-profile">
                             <h4><?php echo $row6['FNAME'] . ' ' . $row6['LNAME'] ?></h4>
                             <h6>Charge per hour: 3.99BAM</h6>
@@ -117,7 +117,7 @@ if (isset($_SESSION['user_id'])) {
                     <?php endwhile; ?>
                 <?php } else if(isset($_POST['city']) && !isset($_POST['service'])) { ?>
                     <?php while($row7 = oci_fetch_assoc($list_by_city)): ?>
-                        <a href="pro-profile.php">
+                        <a href="pro-profile-clicked.php?id=<?= $row7['AID']?>">
                             <img src="images/default-user.png" alt="professional-profile">
                             <h4><?php echo $row7['FNAME'] . ' ' . $row7['LNAME'] ?></h4>
                             <h6>Charge per hour: 3.99BAM</h6>
@@ -126,7 +126,7 @@ if (isset($_SESSION['user_id'])) {
                     <?php endwhile; ?>
                 <?php } else { ?>
                 <?php while($row5 = oci_fetch_assoc($query6)): ?>
-                    <a href="pro-profile.php">
+                    <a href="pro-profile-clicked.php?id=<?= $row5['AID']?>">
                         <img src="images/default-user.png" alt="professional-profile">
                         <h4><?php echo $row5['FNAME'] . ' ' . $row5['LNAME'] ?></h4>
                         <h6>Charge per hour: 3.99BAM</h6>
