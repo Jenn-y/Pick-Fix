@@ -80,36 +80,26 @@ $row = oci_fetch_assoc($query);
                     <th>Date</th>
                     <th>Status</th>
                 </tr>
+                <?php
+                    $query = oci_parse($db, "SELECT CATEGORY, STATUS, DATETIME, DESCRIPTION FROM REQUESTS
+                                                     JOIN WORK_OFFERS ON WORK_OFFER = WID
+                                                     JOIN SERVICES ON SERVICE = SID
+                                                     JOIN REQUESTS_HISTORY ON REQUEST = RID");
+                    oci_execute($query);
+                ?>
+                <?php while($row = oci_fetch_assoc($query)): ?>
                 <tr>
-                    <td>Request 1</td>
-                    <td>DD.MM.YYYY</td>
-                    <td><a href="#">Pending</a></td>
+                    <td><?= $row['CATEGORY'] ?></td>
+                    <td><?= $row['DATETIME'] ?></td>
+                    <?php if($row['STATUS'] = "pending"): ?>
+                        <td><a href="#">Pending</a></td>
+                    <?php elseif($row['STATUS'] = "approved"): ?>
+                        <td><a href="#">Approved</a></td>
+                    <?php elseif($row['STATUS'] = "rejected"): ?>
+                        <td><a href="#">Rejected</a></td>
+                    <?php endif; ?>
                 </tr>
-                <tr>
-                    <td>Request 2</td>
-                    <td>DD.MM.YYYY</td>
-                    <td><a href="#">Pending</a></td>
-                </tr>
-                <tr>
-                    <td>Request 3</td>
-                    <td>DD.MM.YYYY</td>
-                    <td><a href="#">Pending</a></td>
-                </tr>
-                <tr>
-                    <td>Request 4</td>
-                    <td>DD.MM.YYYY</td>
-                    <td><a href="#">Pending</a></td>
-                </tr>
-                <tr>
-                    <td>Request 5</td>
-                    <td>DD.MM.YYYY</td>
-                    <td><a href="#">Pending</a></td>
-                </tr>
-                <tr>
-                    <td>Request 6</td>
-                    <td>DD.MM.YYYY</td>
-                    <td><a href="#">Pending</a></td>
-                </tr>
+                <?php endwhile; ?>
             </table>
         </div>
     </main>
