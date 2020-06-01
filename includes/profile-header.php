@@ -31,11 +31,7 @@ while ($row_of_services = oci_fetch_assoc($query_services)){
             <a href="#" class="btn-close" onclick="closeMenu()">&times;</a>
             <a href="index.php">Home</a>
             <a href="pro-profile.php" onclick="closeMenu()">My Profile</a>
-            <?php if ($row['ROLE'] == 1){ ?>
-                <a href="editProfessionalsProfile.php">Edit profile</a>
-            <?php } else { ?>
-                <a href="editUserProfile.php">Edit profile</a>
-            <?php } ?>
+            <a href="editProfile.php">Edit profile</a>
             <a href="pro-profile-requests.php" onclick="closeMenu()">My Requests</a>
             <a href="findProfessionals.php">Find a Professional</a>
             <?php if ($row['ROLE'] == 2){ ?>
@@ -68,11 +64,7 @@ while ($row_of_services = oci_fetch_assoc($query_services)){
                 <p class="dropdown-link"><i class="fa fa-user" aria-hidden="true"></i> <?php echo ' ' . $_SESSION['fname'] . ' ' . $_SESSION['lname'] ?></p>
                 <div class="dropdown-content" id="signed-profile">
                     <a href="pro-profile.php">My profile</a>
-                    <?php if ($row['FNAME'] == 1){ ?>
-                    <a href="editProfessionalsProfile.php">Edit profile</a>
-                    <?php } else { ?>
-                    <a href="editUserProfile.php">Edit profile</a>
-                    <?php } ?>
+                    <a href="editProfile.php">Edit profile</a>
                     <a href="pro-profile-requests.php">Requests</a>
                     <a href="index.php">Log out</a>
                 </div>

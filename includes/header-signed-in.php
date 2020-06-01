@@ -60,7 +60,7 @@ while ($row_of_services = oci_fetch_assoc($query_services)){
                 <p class="dropdown-link"><i class="fa fa-user" aria-hidden="true"></i><?php echo ' ' . $_SESSION['fname']. ' ' . $_SESSION['lname'] ?></p>
                 <div class="dropdown-content" id="signed-profile">
                     <a href="pro-profile.php">My profile</a>
-                    <a href="editUserProfile.php">Edit profile</a>
+                    <a href="editProfile.php">Edit profile</a>
                     <a href="pro-profile-requests.php">Requests</a>
                     <a href="includes/logout.php">Log out</a>
                 </div>
