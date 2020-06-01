@@ -1,3 +1,9 @@
+<?php
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,8 +11,6 @@
     <link href="css/header.css" rel="stylesheet">
     <link href="css/index.css" rel="stylesheet">
     <link rel="stylesheet" href="css/footer.css">
-
-
 
     <title>Pick&Fix</title>
 
@@ -24,8 +28,13 @@
 </head>
 <body>
 <div class="page-container">
-    <?php include('includes/header.php'); ?>
-
+    <?php
+    if (empty($_SESSION)) {
+        include('includes/header.php');
+    } else {
+        include('includes/header-signed-in.php');
+    }
+    ?>
     <div class="welcome">
         <div class="color-overlay"></div>
         <h1>The easy, reliable way to take care of your home.</h1>

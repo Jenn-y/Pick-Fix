@@ -40,7 +40,7 @@ while ($row_of_services = oci_fetch_assoc($query_services)){
             <a href="index.php">Log out</a>
         </div>
 
-        <div id="logo"><a href="index-signed-in.php"><h1>Pick & Fix</h1></a></div>
+        <div id="logo"><a href="index.php"><h1>Pick & Fix</h1></a></div>
         <nav id="services">
             <div class="dropdown">
                 <a class="dropdown-link" href="../findProfessionals.php"><i class="fa fa-angle-right"
