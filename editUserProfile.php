@@ -9,7 +9,8 @@ function checkRequiredField($value)
 {
     return isset($value) && !empty($value);
 }
-
+$incorrect_password = false;
+$incorrect_new_password = false;
 if (isset($_SESSION['user_id'])) {
     $aid = $_SESSION['user_id'];
 
@@ -26,6 +27,20 @@ if (isset($_SESSION['user_id'])) {
             $query2 = oci_parse($db, "update accounts set short_biography = '{$_POST['about']}' where aid = $aid");
             oci_execute($query2);
             oci_commit($db);
+        }
+        if(checkRequiredField($_POST['current_password']) && checkRequiredField($_POST['new_password']) && checkRequiredField($_POST['new_password_repeat'])) {
+            $query2 = oci_parse($db, "select * from accounts where password = {$_POST['current_password']} AND aid={$_SESSION['user_id']}");
+            oci_execute($query2);
+
+            if(oci_fetch($query2)) {
+                if($_POST['new_password'] == $_POST['new_password_repeat']) {
+                    $query2 = oci_parse($db, "update accounts set password = '{$_POST['new_password']}' where aid = {$_SESSION['user_id']}");
+                    oci_execute($query2);
+                    oci_commit($db);
+                }
+                else $incorrect_new_password = true;
+            }
+            else $incorrect_password = true;
         }
     }
 }
@@ -47,6 +62,21 @@ if (isset($_SESSION['user_id'])) {
 
     <main>
         <div class="main center">
+            <?php if($incorrect_password): ?>
+                <div class="flex-container center">
+                    <p class="center">Incorrect password!</p>
+                </div>
+            <?php endif; ?>
+            <?php if($incorrect_new_password): ?>
+                <div class="flex-container center">
+                    <p class="center">Repeated password is incorrect!</p>
+                </div>
+            <?php endif; ?>
+            <?php if($incorrect_password == false && $incorrect_new_password == false): ?>
+                <div class="flex-container center">
+                    <p class="center">Success!</p>
+                </div>
+            <?php endif; ?>
             <div id="profilePhoto">
                 <img src="images/default-user.png" alt="default-user-image">
                 <button class="buttonStyle">Change Profile Photo</button>
@@ -102,6 +132,25 @@ if (isset($_SESSION['user_id'])) {
                     <button type="submit" class="buttonStyle">SAVE</button>
                 </fieldset>
 
+            </form>
+
+            <form method="post">
+                <fieldset>
+                    <legend>Password</legend>
+                    <div>
+                        <label for="currentPass">Current Password</label>
+                        <input name="current_password" id="currentPass" placeholder="Enter your current password" type="password">
+                    </div>
+                    <div>
+                        <label for="newPass">New password</label>
+                        <input name="new_password" id="newPass" placeholder="Enter your new password" type="password">
+                    </div>
+                    <div>
+                        <label for="repeatPass">Repeat New Password</label>
+                        <input name="new_password_repeat" id="repeatPass" placeholder="Repeat your new password" type="password">
+                    </div>
+                    <button type="submit" class="buttonStyle">SAVE</button>
+                </fieldset>
             </form>
 
 
