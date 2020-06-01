@@ -26,7 +26,7 @@ $row = oci_fetch_assoc($query);
 <body>
 
 <div id="page-container">
-    <?php include('includes/profile-header.php'); ?>
+    <?php include('includes/header.php'); ?>
 
     <main class="center">
         <div class="shadow">

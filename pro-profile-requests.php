@@ -24,7 +24,7 @@ $row = oci_fetch_assoc($query);
 </head>
 <body id="requests">
 <div id="page-container">
-    <?php include('includes/profile-header.php'); ?>
+    <?php include('includes/header.php'); ?>
 
     <main class="center">
         <?php if ($row['ROLE'] == 1){ ?>

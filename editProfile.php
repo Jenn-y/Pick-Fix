@@ -60,7 +60,7 @@ if (isset($_SESSION['user_id'])) {
 <body>
 
 <div id="page-container">
-    <?php include('includes/profile-header.php'); ?>
+    <?php include('includes/header.php'); ?>
 
     <main>
         <div class="main center">
