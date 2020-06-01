@@ -52,7 +52,7 @@ if (isset($_SESSION['user_id'])) {
 <html lang="en">
 <head>
     <?php include('includes/head.php'); ?>
-    <link rel="stylesheet" href="css/editProfessionalsProfile.css">
+    <link rel="stylesheet" href="css/editProfile.css">
     <link href="css/header.css" rel="stylesheet">
     <link rel="stylesheet" href="css/footer.css">
     <title>Edit Profile</title>
