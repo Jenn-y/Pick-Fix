@@ -39,12 +39,17 @@ $row = oci_fetch_assoc($query);
             </div>
             <div class="about">
                 <h4>About: </h4>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad aliquam aliquid aut consectetur consequatur cum dolorum excepturi facere harum ipsam ipsum magni, minima mollitia numquam, porro quia quod recusandae similique sit suscipit tenetur vitae voluptate voluptatum! Adipisci dolorem ea earum eius, eligendi harum id obcaecati, omnis quibusdam quis tenetur, vero.</p>
+                <?php if($row['SHORT_BIOGRAPHY'] == null): ?>
+                    <p><i>No profile description provided . . .</i></p>
+                <?php else: ?>
+                    <p><?= $row['SHORT_BIOGRAPHY'] ?></p>
+                <?php endif; ?>
+
                 <?php if ($row['ROLE'] == 1){ ?>
-                <h4>Areas Served: </h4>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi, est maiores modi officiis perspiciatis recusandae totam vel veritatis voluptatem voluptatibus?</p>
-                <h4>Categories </h4>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi, est maiores modi officiis perspiciatis recusandae totam vel veritatis voluptatem voluptatibus?</p>
+                    <h4>Areas Served: </h4>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi, est maiores modi officiis perspiciatis recusandae totam vel veritatis voluptatem voluptatibus?</p>
+                    <h4>Categories </h4>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi, est maiores modi officiis perspiciatis recusandae totam vel veritatis voluptatem voluptatibus?</p>
                 <?php } ?>
                 <h4>Contact:</h4>
                 <p><?= '+' . $row['AREA_CODE'] . ' ' . $row['PHONE_NUMBER'] ?></p>
