@@ -11,6 +11,7 @@ function checkRequiredField($value)
 }
 $incorrect_password = false;
 $incorrect_new_password = false;
+$success = false;
 if (isset($_SESSION['user_id'])) {
     $aid = $_SESSION['user_id'];
 
@@ -37,6 +38,7 @@ if (isset($_SESSION['user_id'])) {
                     $query2 = oci_parse($db, "update accounts set password = '{$_POST['new_password']}' where aid = {$_SESSION['user_id']}");
                     oci_execute($query2);
                     oci_commit($db);
+                    $success = true;
                 }
                 else $incorrect_new_password = true;
             }
@@ -72,7 +74,7 @@ if (isset($_SESSION['user_id'])) {
                     <p class="center">Repeated password is incorrect!</p>
                 </div>
             <?php endif; ?>
-            <?php if($incorrect_password == false && $incorrect_new_password == false): ?>
+            <?php if($success): ?>
                 <div class="flex-container center">
                     <p class="center">Success!</p>
                 </div>
@@ -153,9 +155,64 @@ if (isset($_SESSION['user_id'])) {
                 </fieldset>
             </form>
 
+            <?php if($row['ROLE'] == 1): ?>
+                <fieldset>
+                    <legend>Credit card</legend>
+                    <button class="buttonStyle">Update Credit Card Information</button>
+                </fieldset>
 
+                <fieldset>
+                    <legend>Category</legend>
+                    <div>
+                        <label for="dropdown1" id="dropdown2-label">Add category</label>
+                        <select id="dropdown2">
+                            <option value="select" disabled>Select one of the categories</option>
+                            <?php while($row2 = oci_fetch_assoc($query2)): ?>
+                                <option value="<?= $row2['CATEGORY']; ?>"><?= $row2['CATEGORY']; ?></option>
+                            <?php endwhile; ?>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="dropdown1" id="dropdown2-label">Delete category</label>
+                        <select id="dropdown2">
+                            <option value="select" disabled>Select one of the categories</option>
+                            <option value="fax1">Furniture repairment</option>
+                            <option value="fax2">Plumbing</option>
+                            <option value="fax3">Electricity</option>
+                            <option value="fax4">Toilets</option>
+                            <option value="fax5">Moving help</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="buttonStyle">SAVE</button>
+                </fieldset>
 
-
+                <fieldset>
+                    <legend>City</legend>
+                    <div>
+                        <label for="dropdown1" id="dropdown1-label">Add city</label>
+                        <select id="dropdown1">
+                            <option value="select" disabled>Select one of the cities</option>
+                            <option value="fax1">Tuzla</option>
+                            <option value="fax2">Zivinice</option>
+                            <option value="fax3">Bihac</option>
+                            <option value="fax4">Sarajevo</option>
+                            <option value="fax5">Mostar</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="dropdown1" id="dropdown1-label">Delete city</label>
+                        <select id="dropdown1">
+                            <option value="select" disabled>Select one of the cities</option>
+                            <option value="fax1">Tuzla</option>
+                            <option value="fax2">Zivinice</option>
+                            <option value="fax3">Bihac</option>
+                            <option value="fax4">Sarajevo</option>
+                            <option value="fax5">Mostar</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="buttonStyle">SAVE</button>
+                </fieldset>
+            <?php endif; ?>
         </div>
     </main>
     <?php include('includes/footer.php'); ?>
