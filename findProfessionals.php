@@ -52,29 +52,29 @@ if (isset($_SESSION['user_id'])) {
 </head>
 <body id="findProfessionals">
 <div class="page-container">
-    <?php include('includes/header-signed-in.php'); ?>
+    <?php include('includes/header.php'); ?>
 
     <div class="welcome backImage">
         <div class="color-overlay"></div>
         <form method="post">
-        <div class="flex-container">
+            <div class="flex-container">
 
-            <select name="service">
-                <option disabled selected value>Select a service</option>
-                <?php while($row2 = oci_fetch_assoc($query2)): ?>
-                    <option value="<?= $row2['SID']; ?>"><?= $row2['CATEGORY']; ?></option>
-                <?php endwhile; ?>
-            </select>
+                <select name="service">
+                    <option disabled selected value>Select a service</option>
+                    <?php while($row2 = oci_fetch_assoc($query2)): ?>
+                        <option value="<?= $row2['SID']; ?>"><?= $row2['CATEGORY']; ?></option>
+                    <?php endwhile; ?>
+                </select>
 
-            <select name="city">
-                <option disabled selected value>&#128205;</option>
-                <?php while($row3 = oci_fetch_assoc($query3)): ?>
-                    <option value="<?= $row3['CID']; ?>"><?= $row3['CNAME']; ?></option>
-                <?php endwhile; ?>
-            </select>
-            <button id="get-professionals">Get Started</button>
+                <select name="city">
+                    <option disabled selected value>&#128205;</option>
+                    <?php while($row3 = oci_fetch_assoc($query3)): ?>
+                        <option value="<?= $row3['CID']; ?>"><?= $row3['CNAME']; ?></option>
+                    <?php endwhile; ?>
+                </select>
+                <button id="get-professionals">Get Started</button>
 
-        </div>
+            </div>
         </form>
     </div>
 
@@ -125,14 +125,14 @@ if (isset($_SESSION['user_id'])) {
                         </a>
                     <?php endwhile; ?>
                 <?php } else { ?>
-                <?php while($row5 = oci_fetch_assoc($query6)): ?>
-                    <a href="pro-profile-clicked.php?id=<?= $row5['AID']?>">
-                        <img src="images/default-user.png" alt="professional-profile">
-                        <h4><?php echo $row5['FNAME'] . ' ' . $row5['LNAME'] ?></h4>
-                        <h6>Charge per hour: 3.99BAM</h6>
-                        <p>Rating: &#11088;&#11088;&#11088;</p>
-                    </a>
-                <?php endwhile; ?>
+                    <?php while($row5 = oci_fetch_assoc($query6)): ?>
+                        <a href="pro-profile-clicked.php?id=<?= $row5['AID']?>">
+                            <img src="images/default-user.png" alt="professional-profile">
+                            <h4><?php echo $row5['FNAME'] . ' ' . $row5['LNAME'] ?></h4>
+                            <h6>Charge per hour: 3.99BAM</h6>
+                            <p>Rating: &#11088;&#11088;&#11088;</p>
+                        </a>
+                    <?php endwhile; ?>
                 <?php } ?>
             </div>
         </section>

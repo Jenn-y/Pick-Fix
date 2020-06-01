@@ -29,11 +29,7 @@ if (session_status() == PHP_SESSION_NONE) {
 <body>
 <div class="page-container">
     <?php
-    if (empty($_SESSION)) {
-        include('includes/header.php');
-    } else {
-        include('includes/header-signed-in.php');
-    }
+    include('includes/header.php');
     ?>
     <div class="welcome">
         <div class="color-overlay"></div>
@@ -45,7 +41,7 @@ if (session_status() == PHP_SESSION_NONE) {
         <div class="text center">
             <h2>Pick & Fix Tasks</h2>
             <p>Instantly book highly rated pros for cleaning and handyman tasks at a fixed price. <span>See All <i
-                        class="fa fa-angle-right" aria-hidden="true"></i></span></p>
+                            class="fa fa-angle-right" aria-hidden="true"></i></span></p>
         </div>
 
         <section class="popular-services flex-container center">
