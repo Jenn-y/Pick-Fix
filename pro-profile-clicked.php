@@ -37,7 +37,7 @@ if($_POST && isset($_GET['id'])) {
 
         // Inserting a row into REQUESTS
         $query = oci_parse($db, "insert into requests(user_id, work_offer, description, num_of_hrs)
-              VALUES ({$_GET['id']}, {$wid['WID']}, '{$_POST['problem-description']}', {$_POST['num_of_hrs']})");
+              VALUES ({$_SESSION['user_id']}, {$wid['WID']}, '{$_POST['problem-description']}', {$_POST['num_of_hrs']})");
 
         oci_execute($query);
         oci_commit($db);
@@ -66,7 +66,7 @@ if($_POST && isset($_GET['id'])) {
     <link href="css/header.css" rel="stylesheet">
     <link href="css/pro-profile.css" rel="stylesheet">
     <link rel="stylesheet" href="css/footer.css">
-    
+
     <title>Profile</title>
 </head>
 <body>
@@ -129,9 +129,9 @@ if($_POST && isset($_GET['id'])) {
                         oci_execute($query);?>
                         <select name="service" id="service" required>
                             <option disabled selected value>Service</option>
-                                <?php while($row = oci_fetch_assoc($query)): ?>
-                                    <option value="<?= $row['SERVICE'] ?>"><?= $row['CATEGORY'] ?></option>
-                                <?php endwhile; ?>
+                            <?php while($row = oci_fetch_assoc($query)): ?>
+                                <option value="<?= $row['SERVICE'] ?>"><?= $row['CATEGORY'] ?></option>
+                            <?php endwhile; ?>
                         </select>
 
                     </div>
