@@ -1,3 +1,9 @@
+<?php
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,8 +11,6 @@
     <link href="css/header.css" rel="stylesheet">
     <link href="css/index.css" rel="stylesheet">
     <link rel="stylesheet" href="css/footer.css">
-
-
 
     <title>Pick&Fix</title>
 
@@ -24,8 +28,9 @@
 </head>
 <body>
 <div class="page-container">
-    <?php include('includes/header.php'); ?>
-
+    <?php
+    include('includes/header.php');
+    ?>
     <div class="welcome">
         <div class="color-overlay"></div>
         <h1>The easy, reliable way to take care of your home.</h1>
@@ -36,7 +41,7 @@
         <div class="text center">
             <h2>Pick & Fix Tasks</h2>
             <p>Instantly book highly rated pros for cleaning and handyman tasks at a fixed price. <span>See All <i
-                        class="fa fa-angle-right" aria-hidden="true"></i></span></p>
+                            class="fa fa-angle-right" aria-hidden="true"></i></span></p>
         </div>
 
         <section class="popular-services flex-container center">

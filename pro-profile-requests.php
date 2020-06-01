@@ -26,7 +26,7 @@ $query_requests = oci_parse($db, "SELECT r.* FROM requests, request_")
 </head>
 <body id="requests">
 <div id="page-container">
-    <?php include('includes/profile-header.php'); ?>
+    <?php include('includes/header.php'); ?>
 
     <main class="center">
         <?php if ($row['ROLE'] == 1){ ?>

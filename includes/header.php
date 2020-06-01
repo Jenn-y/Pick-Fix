@@ -1,3 +1,18 @@
+<?php
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+include_once("includes/db.php");
+$query_services = oci_parse($db, 'SELECT * FROM services WHERE date_deleted IS NULL ORDER BY category');
+oci_execute($query_services);
+$array[] = '';
+$num_rows = 0;
+while ($row_of_services = oci_fetch_assoc($query_services)){
+    $array[] = $row_of_services['CATEGORY'];
+    $num_rows++;
+}
+?>
+
 <header>
     <div id="inner-header">
 
@@ -11,6 +26,27 @@
             </a>
         </span>
 
+        <div id="logo"><a href="index.php"><h1>Pick & Fix</h1></a></div>
+        <nav id="services">
+            <div class="dropdown">
+                <a class="dropdown-link" href="findProfessionals.php"><i class="fa fa-angle-right"
+                                                                         aria-hidden="true"></i> All Services</a>
+                <div class="dropdown-content">
+                    <div>
+                        <?php for ($i = 1; $i < $num_rows/2+1; $i++) { ?>
+                            <a href="#"><?php echo $array[$i]; ?></a>
+                        <?php } ?>
+                    </div>
+                    <div>
+                        <?php for ($i = $num_rows/2+1; $i < $num_rows+1; $i++) { ?>
+                            <a href="#"><?php echo $array[$i]; ?></a>
+                        <?php } ?>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <?php if(empty($_SESSION)): ?>
         <div id="side-menu" class="side-nav">
             <a href="#" class="btn-close" onclick="closeMenu()">&times;</a>
             <a href="#">Home</a>
@@ -24,32 +60,6 @@
             <a href="index.php#contact" onclick="closeMenu()">Contact Us</a>
         </div>
 
-        <div id="logo"><a href="index.php"><h1>Pick & Fix</h1></a></div>
-        <nav id="services">
-
-            <div class="dropdown">
-                <a class="dropdown-link" href="findProfessionals.php"><i class="fa fa-angle-right"
-                                                                         aria-hidden="true"></i> All Services</a>
-                <div class="dropdown-content">
-                    <div>
-                        <a href="#">Appliances</a>
-                        <a href="#">Carpet</a>
-                        <a href="#">Chimney</a>
-                        <a href="#">Driveways</a>
-                        <a href="#">Electrical</a>
-                        <a href="#">Furniture</a>
-                    </div>
-                    <div>
-                        <a href="#">General Repairman</a>
-                        <a href="#">Glass and Screens</a>
-                        <a href="#">Lighting</a>
-                        <a href="#">Painting</a>
-                        <a href="#">Plumbing</a>
-                        <a href="#">Windows and Doors</a>
-                    </div>
-                </div>
-            </div>
-        </nav>
         <nav id="login">
             <ul>
                 <li><a href="login.php"><i class="fa fa-sign-in"></i> Log In</a></li>
@@ -57,6 +67,45 @@
             </ul>
         </nav>
     </div>
+    <?php else: ?>
+        <nav id="login">
+            <div class="dropdown">
+                <p class="dropdown-link"><i class="fa fa-user" aria-hidden="true"></i><?php echo ' ' . $_SESSION['fname']. ' ' . $_SESSION['lname'] ?></p>
+                <div class="dropdown-content" id="signed-profile">
+                    <a href="pro-profile.php">My profile</a>
+                    <a href="editProfile.php">Edit profile</a>
+                    <a href="pro-profile-requests.php">Requests</a>
+                    <a href="includes/logout.php">Log out</a>
+                </div>
+            </div>
+        </nav>
+        </div>
+    <?php endif; ?>
+
+    <?php if(basename($_SERVER['REQUEST_URI']) == "pro-profile.php" || basename($_SERVER['REQUEST_URI']) == "editProfile.php" || basename($_SERVER['REQUEST_URI']) == "pro-profile-requests.php"): ?>
+        <div id="side-menu" class="side-nav">
+            <a href="#" class="btn-close" onclick="closeMenu()">&times;</a>
+            <a href="index.php">Home</a>
+            <a href="pro-profile.php" onclick="closeMenu()">My Profile</a>
+            <a href="editProfile.php">Edit profile</a>
+            <a href="pro-profile-requests.php" onclick="closeMenu()">My Requests</a>
+            <a href="findProfessionals.php">Find a Professional</a>
+            <?php if ($row['ROLE'] == 2){ ?>
+                <a href="become-pro.php?id=<?= $_SESSION['user_id']?>">Become a Professional</a>
+            <?php } ?>
+            <a href="index.php">Log out</a>
+        </div>
+    <?php else: ?>
+        <div id="side-menu" class="side-nav">
+            <a href="#" class="btn-close" onclick="closeMenu()">&times;</a>
+            <a href="index.php">Home</a>
+            <a href="findProfessionals.php">Find a Professional</a>
+            <?php if ($row['ROLE'] == 2){ ?>
+                <a href="become-pro.php">Become a Professional</a>
+            <?php } ?>
+            <a href="pro-profile.php">My Profile</a>
+        </div>
+    <?php endif; ?>
 
     <script>
         function openMenu(x) {

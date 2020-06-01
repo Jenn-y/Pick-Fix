@@ -95,7 +95,7 @@ if ($_POST && isset($_GET['id'])) {
 <body>
 
 <div id="page-container">
-    <?php include('includes/header-signed-in.php'); ?>
+    <?php include('includes/header.php'); ?>
 
     <main class="center">
         <div class="shadow">
