@@ -10,6 +10,8 @@ $query = oci_parse($db, $q);
 oci_execute($query);
 
 $row = oci_fetch_assoc($query);
+
+$query_requests = oci_parse($db, "SELECT r.* FROM requests, request_")
 ?>
 
 <!DOCTYPE html>
@@ -28,44 +30,20 @@ $row = oci_fetch_assoc($query);
 
     <main class="center">
         <?php if ($row['ROLE'] == 1){ ?>
-            <h2>Received Requests</h2>
+            <h2>New Requests</h2>
+            <?php
+            $query = oci_parse($db, "SELECT * FROM REQUESTS
+                                                 WHERE USER_ID = {$_SESSION['user_id']}");
+            oci_execute($query);
 
+            //if(oci_fetch($query)):
+                ?>
             <div class="shadow">
                 <table class="requests">
                     <tr>
                         <th>Request</th>
                         <th>Date</th>
                         <th>Status</th>
-                    </tr>
-                    <tr>
-                        <td>Request 1</td>
-                        <td>DD.MM.YYYY</td>
-                        <td><a href="#">Approve</a><a href="#">Reject</a></td>
-                    </tr>
-                    <tr>
-                        <td>Request 2</td>
-                        <td>DD.MM.YYYY</td>
-                        <td><a href="#">Approve</a><a href="#">Reject</a></td>
-                    </tr>
-                    <tr>
-                        <td>Request 3</td>
-                        <td>DD.MM.YYYY</td>
-                        <td><a href="#">Approve</a><a href="#">Reject</a></td>
-                    </tr>
-                    <tr>
-                        <td>Request 4</td>
-                        <td>DD.MM.YYYY</td>
-                        <td><a href="#">Approve</a><a href="#">Reject</a></td>
-                    </tr>
-                    <tr>
-                        <td>Request 5</td>
-                        <td>DD.MM.YYYY</td>
-                        <td><a href="#">Approve</a><a href="#">Reject</a></td>
-                    </tr>
-                    <tr>
-                        <td>Request 6</td>
-                        <td>DD.MM.YYYY</td>
-                        <td><a href="#">Approve</a><a href="#">Reject</a></td>
                     </tr>
                 </table>
             </div>
@@ -99,11 +77,11 @@ $row = oci_fetch_assoc($query);
                     <tr>
                         <td><?= $row['CATEGORY'] ?></td>
                         <td><?= $row['DATETIME'] ?></td>
-                        <?php if($row['STATUS'] = "pending"): ?>
+                        <?php if($row['STATUS'] = 0): ?>
                             <td><a href="#">Pending</a></td>
-                        <?php elseif($row['STATUS'] = "approved"): ?>
+                        <?php elseif($row['STATUS'] = 1): ?>
                             <td><a href="#">Approved</a></td>
-                        <?php elseif($row['STATUS'] = "rejected"): ?>
+                        <?php elseif($row['STATUS'] = 2): ?>
                             <td><a href="#">Rejected</a></td>
                         <?php endif; ?>
                     </tr>
