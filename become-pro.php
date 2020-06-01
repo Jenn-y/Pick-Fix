@@ -72,8 +72,8 @@ if($_POST && $_GET['id']) {
 <html lang="en">
 <head>
     <?php include('includes/head.php'); ?>
-    <link href="CSS/professionalsRegistration.css" rel="stylesheet">
-    <link href="CSS/footer.css" rel="stylesheet">
+    <link href="css/professionalsRegistration.css" rel="stylesheet">
+    <link href="css/footer.css" rel="stylesheet">
 
     <title>Become a Pro</title>
 </head>
