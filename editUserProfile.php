@@ -4,6 +4,12 @@ if (session_status() == PHP_SESSION_NONE) {
 }
 include_once("includes/db.php");
 
+
+function checkRequiredField($value)
+{
+    return isset($value) && !empty($value);
+}
+
 if (isset($_SESSION['user_id'])) {
     $aid = $_SESSION['user_id'];
 
@@ -11,9 +17,16 @@ if (isset($_SESSION['user_id'])) {
     oci_execute($query);
     $row = oci_fetch_assoc($query);
     if ($_POST){
-        $result = oci_parse($db, "update accounts set fname = '{$_POST['fname']}', lname = '{$_POST['lname']}', email = '{$_POST['email']}', phone_number = '{$_POST['phone_number']}' where aid = '{$aid}'");
-        oci_execute($result);
-        oci_commit($db);
+        if(checkRequiredField($_POST['fname']) && checkRequiredField($_POST['lname']) && checkRequiredField($_POST['email']) && checkRequiredField($_POST['phone_number'])) {
+            $result = oci_parse($db, "update accounts set fname = '{$_POST['fname']}', lname = '{$_POST['lname']}', email = '{$_POST['email']}', phone_number = '{$_POST['phone_number']}' where aid = '{$aid}'");
+            oci_execute($result);
+            oci_commit($db);
+        }
+        if(checkRequiredField($_POST['about'])) {
+            $query2 = oci_parse($db, "update accounts set short_biography = '{$_POST['about']}' where aid = $aid");
+            oci_execute($query2);
+            oci_commit($db);
+        }
     }
 }
 ?>
@@ -38,6 +51,7 @@ if (isset($_SESSION['user_id'])) {
                 <img src="images/default-user.png" alt="default-user-image">
                 <button class="buttonStyle">Change Profile Photo</button>
             </div>
+
             <form method="post">
                 <fieldset class="general">
                     <legend>General</legend>
@@ -47,7 +61,7 @@ if (isset($_SESSION['user_id'])) {
                         if (isset($row['FNAME'])){
                             echo $row['FNAME'];
                         }
-                        ?>"">
+                        ?>">
                     </div>
                     <div>
                         <label for="lastName">Last name</label>
@@ -55,7 +69,7 @@ if (isset($_SESSION['user_id'])) {
                         if (isset($row['LNAME'])){
                             echo $row['LNAME'];
                         }
-                        ?>"">
+                        ?>">
                     </div>
                     <div>
                         <label for="email">Email</label>
@@ -63,7 +77,7 @@ if (isset($_SESSION['user_id'])) {
                         if (isset($row['EMAIL'])){
                             echo $row['EMAIL'];
                         }
-                        ?>"">
+                        ?>">
                     </div>
                     <div>
                         <label for="phoneNum">Phone number</label>
@@ -71,29 +85,28 @@ if (isset($_SESSION['user_id'])) {
                         if (isset($row['PHONE_NUMBER'])){
                             echo $row['PHONE_NUMBER'];
                         }
-                        ?>"">
-                    </div>
-                    <button type="submit" class="buttonStyle">SAVE</button>
-                </fieldset>
-
-                <fieldset>
-                    <legend>Password</legend>
-                    <div>
-                        <label for="currentPass">Current Password</label>
-                        <input id="currentPass" placeholder="Enter your current password" type="password">
-                        <h5><a href="#">  Forgot your password?</a></h5>
-                    </div>
-                    <div>
-                        <label for="newPass">New password</label>
-                        <input id="newPass" placeholder="Enter your new password" type="password">
-                    </div>
-                    <div>
-                        <label for="repeatPass">Repeat New Password</label>
-                        <input id="repeatPass" placeholder="Repeat your new password" type="password">
+                        ?>">
                     </div>
                     <button type="submit" class="buttonStyle">SAVE</button>
                 </fieldset>
             </form>
+
+            <form method="post">
+                <fieldset>
+                    <legend>About</legend>
+                    <div class="center">
+                        <textarea class="center" name="about" id="about" placeholder="Please tell us a little about yourself"><?php
+                            if(isset($row['SHORT_BIOGRAPHY'])) { echo "{$row['SHORT_BIOGRAPHY']}"; }
+                            ?></textarea>
+                    </div>
+                    <button type="submit" class="buttonStyle">SAVE</button>
+                </fieldset>
+
+            </form>
+
+
+
+
         </div>
     </main>
     <?php include('includes/footer.php'); ?>
