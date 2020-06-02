@@ -83,7 +83,7 @@ if($_POST && $_GET['id']) {
         <header>
             <h1><a href="index.php">pick&fix</a></h1>
             <nav>
-                <a href="pro-profile.php">Back to Profile</a>
+                <a href="profile.php">Back to Profile</a>
             </nav>
         </header>
         <hr>

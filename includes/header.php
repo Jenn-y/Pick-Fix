@@ -72,9 +72,9 @@ while ($row_of_services = oci_fetch_assoc($query_services)){
             <div class="dropdown">
                 <p class="dropdown-link"><i class="fa fa-user" aria-hidden="true"></i><?php echo ' ' . $_SESSION['fname']. ' ' . $_SESSION['lname'] ?></p>
                 <div class="dropdown-content" id="signed-profile">
-                    <a href="pro-profile.php">My profile</a>
+                    <a href="profile.php">My profile</a>
                     <a href="editProfile.php">Edit profile</a>
-                    <a href="pro-profile-requests.php">Requests</a>
+                    <a href="requests.php">Requests</a>
                     <a href="includes/logout.php">Log out</a>
                 </div>
             </div>
@@ -82,13 +82,13 @@ while ($row_of_services = oci_fetch_assoc($query_services)){
         </div>
     <?php endif; ?>
 
-    <?php if(basename($_SERVER['REQUEST_URI']) == "pro-profile.php" || basename($_SERVER['REQUEST_URI']) == "editProfile.php" || basename($_SERVER['REQUEST_URI']) == "pro-profile-requests.php"): ?>
+    <?php if(basename($_SERVER['REQUEST_URI']) == "profile.php" || basename($_SERVER['REQUEST_URI']) == "editProfile.php" || basename($_SERVER['REQUEST_URI']) == "requests.php"): ?>
         <div id="side-menu" class="side-nav">
             <a href="#" class="btn-close" onclick="closeMenu()">&times;</a>
             <a href="index.php">Home</a>
-            <a href="pro-profile.php" onclick="closeMenu()">My Profile</a>
+            <a href="profile.php" onclick="closeMenu()">My Profile</a>
             <a href="editProfile.php">Edit profile</a>
-            <a href="pro-profile-requests.php" onclick="closeMenu()">My Requests</a>
+            <a href="requests.php" onclick="closeMenu()">My Requests</a>
             <a href="findProfessionals.php">Find a Professional</a>
             <?php if ($row['ROLE'] == 2){ ?>
                 <a href="become-pro.php?id=<?= $_SESSION['user_id']?>">Become a Professional</a>
@@ -103,7 +103,7 @@ while ($row_of_services = oci_fetch_assoc($query_services)){
             <?php if ($row['ROLE'] == 2){ ?>
                 <a href="become-pro.php">Become a Professional</a>
             <?php } ?>
-            <a href="pro-profile.php">My Profile</a>
+            <a href="profile.php">My Profile</a>
         </div>
     <?php endif; ?>
 
