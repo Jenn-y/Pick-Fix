@@ -137,17 +137,19 @@ td a:nth-child(odd):hover { background-color: #44a512; }
 }
 
 form > div {
-    width: 45%;
+    width: 50%;
 }
 
 .description {
     flex-direction: column;
     padding-left: 1.5rem;
+    box-sizing: border-box;
 }
 
 .request-details {
     flex-direction: column;
     padding-right: 1.5rem;
+    box-sizing: border-box;
 }
 
 .request-details div input, select {
