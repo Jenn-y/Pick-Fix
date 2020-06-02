@@ -217,6 +217,9 @@ label span { color: #DC143C; }
     .request-box {
         margin-bottom: 5rem;
     }
+    .about {
+        margin-bottom: 5rem;
+    }
 }
 
 @media (max-width: 600px) {
