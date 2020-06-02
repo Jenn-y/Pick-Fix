@@ -10,7 +10,7 @@
 <header>
     <div class="inner-header flex-container center">
         <h1><a href="#">Pick&Fix</a></h1>
-        <a href="#">Log out</a>
+        <a href="../includes/logout.php">Log out</a>
     </div>
 </header>
 
