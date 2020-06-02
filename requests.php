@@ -11,7 +11,7 @@ oci_execute($query);
 
 $row = oci_fetch_assoc($query);
 
-$query_requests = oci_parse($db, "SELECT r.* FROM requests, request_")
+/*$query_requests = oci_parse($db, "SELECT r.* FROM requests, request_")*/
 ?>
 
 <!DOCTYPE html>
@@ -19,7 +19,7 @@ $query_requests = oci_parse($db, "SELECT r.* FROM requests, request_")
 <head>
     <?php include('includes/head.php'); ?>
     <link href="css/header.css" rel="stylesheet">
-    <link href="css/pro-profile.css" rel="stylesheet">
+    <link href="css/profile.css" rel="stylesheet">
     <link rel="stylesheet" href="css/footer.css">
 
     <title>Requests</title>
