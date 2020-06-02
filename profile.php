@@ -58,7 +58,7 @@ if ($_POST && isset($_GET['id'])) {
         oci_commit($db);
 
 
-        header('Location: pro-profile-requests.php');
+        header('Location: requests.php');
         exit();
     }
 }
@@ -69,7 +69,7 @@ if ($_POST && isset($_GET['id'])) {
 <head>
     <?php include('includes/head.php'); ?>
     <link href="css/header.css" rel="stylesheet">
-    <link href="css/pro-profile.css" rel="stylesheet">
+    <link href="css/profile.css" rel="stylesheet">
     <link rel="stylesheet" href="css/footer.css">
     <link rel="stylesheet" href="css/test.css">
 
