@@ -47,6 +47,9 @@ if ($_POST) {
                 <?php create_input("email", "email", "Email"); ?>
                 <input type="password" placeholder="Password" name="password">
                 <button type="submit">Login</button>
+                <?php if(isset($_SESSION['msg'])): ?>
+                    <p id="incorrect-password"><?= $_SESSION['msg'] ?></p>
+                <?php endif; ?>
                 <div>
                     <span>Forgot</span>
                     <a href="#">Username / Password?</a>
