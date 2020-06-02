@@ -32,8 +32,9 @@ $row = oci_fetch_assoc($query);
         <?php if ($row['ROLE'] == 1){ ?>
             <h2>New Requests</h2>
             <?php
-            $query = oci_parse($db, "SELECT * FROM REQUESTS
-                                                 WHERE USER_ID = {$_SESSION['user_id']}");
+            $query = oci_parse($db, "SELECT * FROM REQUESTS R, WORK_OFFERS W
+                                                 WHERE W.
+                                                 USER_ID = {$_SESSION['user_id']}");
             oci_execute($query);
 
             //if(oci_fetch($query)):

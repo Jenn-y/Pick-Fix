@@ -21,8 +21,14 @@ if ($_POST) {
         $_SESSION['role'] = $row['ROLE'];
 
 
-        header('Location: findProfessionals.php');
-        exit();
+        if ($_SESSION['role'] == 0) {
+            header('Location: admin/admin.php');
+            exit();
+        }
+        else {
+            header('Location: findProfessionals.php');
+            exit();
+        }
     } else {
         $_SESSION['msg'] = 'Incorrect username and/or password';
     }

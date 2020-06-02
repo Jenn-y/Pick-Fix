@@ -1,7 +1,7 @@
 <?php
 if(isset($_GET['id']) && $_POST) {
     $id = $_GET['id'];
-    $result = oci_parse($db, "UPDATE services SET category = '{$_POST['category']}' WHERE sid = $id");
+    $result = oci_parse($db, "UPDATE services SET category = '{$_POST['category']}', cat_description = '{$_POST['cat_description']}' WHERE sid = $id");
 
     if($result) {
         oci_execute($result);
@@ -13,7 +13,7 @@ if(isset($_GET['id']) && $_POST) {
 
 if(isset($_GET['id'])) {
     $id = $_GET['id'];
-    $query = oci_parse($db, "SELECT category FROM services WHERE sid = $id");
+    $query = oci_parse($db, "SELECT category, cat_description FROM services WHERE sid = $id");
     oci_execute($query);
     $row = oci_fetch_assoc($query);
 }
@@ -26,6 +26,12 @@ if(isset($_GET['id'])) {
     <input type="text" name="category" value="<?php
     if (isset($row['CATEGORY'])){
         echo $row['CATEGORY'];
+    }
+    ?>"><br>
+    <label for="cat_description">Category description: </label>
+    <input type="text" name="cat_description" value="<?php
+    if (isset($row['CAT_DESCRIPTION'])){
+        echo $row['CAT_DESCRIPTION'];
     }
     ?>">
 

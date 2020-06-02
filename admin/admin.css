@@ -80,3 +80,6 @@ table a:hover {
 #stay {
     color: black;
 }
+#get-services {
+    display: none;
+}
