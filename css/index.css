@@ -200,10 +200,9 @@ main {
 
 .section-for-professionals {
     display: block;
-    margin-top: 7rem;
-    margin-bottom: 3rem;
     text-align: center;
     line-height: 2.5rem;
+    padding: 3rem 1rem;
 }
 
 .section-for-professionals img {
