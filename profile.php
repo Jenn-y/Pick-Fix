@@ -36,24 +36,16 @@ if ($_POST && isset($_GET['id'])) {
         // Inserting a row into REQUESTS
         $query_request = oci_parse($db, "INSERT INTO requests(user_id, work_offer, description, charge_per_hour, num_of_hrs)
               VALUES ({$_SESSION['user_id']}, {$wid['WID']}, '{$_POST['problem-description']}', {$wid['CHARGE_PER_HOUR']}, 
-              {$_POST['num_of_hrs']})");
+              {$_POST['num_of_hrs']}) returning rid INTO :id");
 
         oci_execute($query_request);
         oci_commit($db);
 
-        //returning rid INTO :id");
+        oci_bind_by_name($query_request, ':id', $newId);
+        oci_execute($query_request);
+        oci_commit($db);
 
-        // oci_bind_by_name($query_request, ':id', $newId);
-        //var_dump($newId);
-
-        $query = oci_parse($db, "SELECT * FROM REQUESTS
-                                         ORDER BY RID DESC
-                                         FETCH FIRST 1 ROWS ONLY");
-        oci_execute($query);
-        $rid = oci_fetch_assoc($query);
-
-
-        $query_history = oci_parse($db, "INSERT INTO REQUESTS_HISTORY(datetime, status, request) VALUES (SYSDATE, 0, {$rid['RID']})");
+        $query_history = oci_parse($db, "INSERT INTO REQUESTS_HISTORY(datetime, status, request) VALUES (SYSDATE, 0, {$newId})");
         oci_execute($query_history);
         oci_commit($db);
 
@@ -113,11 +105,34 @@ if ($_POST && isset($_GET['id'])) {
 
                 <?php if ($row['ROLE'] == 1){ ?>
                     <h4>Areas Served: </h4>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi, est maiores modi officiis perspiciatis recusandae totam vel veritatis voluptatem voluptatibus?</p>
-                    <h4>Categories </h4>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi, est maiores modi officiis perspiciatis recusandae totam vel veritatis voluptatem voluptatibus?</p>
+                    <?php
+                    $query = oci_parse($db, "SELECT DISTINCT CITY, CNAME FROM WORK_OFFERS
+                                                            JOIN CITIES
+                                                            ON CID = CITY
+                                                            where professional = {$_GET['id']}
+                                                            ORDER BY CITY");
+                    oci_execute($query);
+
+                    while ($row3 = oci_fetch_assoc($query)) :
+                    ?>
+                    <span><?= $row3['CNAME'] . ' ~ '?></span>
+                    <?php endwhile; ?>
+
+                    <br><br><h4>Categories </h4>
+                    <?php
+                    $query = oci_parse($db, "SELECT DISTINCT SERVICE, CATEGORY FROM WORK_OFFERS
+                                                            JOIN SERVICES
+                                                            ON SERVICE = SID
+                                                            where professional = {$_GET['id']}
+                                                            ORDER BY SERVICE");
+                    oci_execute($query);
+
+                    while ($row2 = oci_fetch_assoc($query)) :
+                        ?>
+                        <span><?= $row2['CATEGORY'] . ' ~ ' ?></span>
+                    <?php endwhile; ?>
                 <?php } ?>
-                <h4>Contact:</h4>
+                <br><br><h4>Contact:</h4>
                 <p><?= '+' . $row['AREA_CODE'] . ' ' . $row['PHONE_NUMBER'] ?></p>
             </div>
         </div>
