@@ -125,9 +125,10 @@ if (isset($_SESSION['user_id'])) {
 
             <form method="post">
                 <fieldset>
-                    <legend>About</legend>
-                    <div class="center">
-                        <textarea class="center" name="about" id="about" placeholder="Please tell us a little about yourself"><?php
+                    <legend>Info</legend>
+                    <div class="about">
+                        <label for="about">About</label>
+                        <textarea name="about" id="about" placeholder="Please tell us a little about yourself"><?php
                             if(isset($row['SHORT_BIOGRAPHY'])) { echo "{$row['SHORT_BIOGRAPHY']}"; }
                             ?></textarea>
                     </div>

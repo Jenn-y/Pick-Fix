@@ -62,7 +62,6 @@ input[type="password"] {
 
 div label {
     width: 50%;
-    text-align: right;
     margin-right: 20px;
     color: #4d3534;
 }
@@ -70,6 +69,7 @@ div label {
 main form div {
     display: flex;
     justify-content: flex-start;
+    text-align: right;
     align-items: center;
     width: inherit;
     margin-bottom: 20px;
@@ -79,6 +79,20 @@ div input:hover, div textarea:hover, div select:hover,
 div input:focus, div select:focus{
     box-shadow: 2px 2px 7px 1px #634b30;
     outline: none;
+}
+
+#about {
+    resize: none;
+    border-radius: 8px;
+    border: 1px solid #4d3534;
+    padding: 5px;
+    font-family: inherit;
+    height: 8rem;
+    width: 230px;
+}
+
+.about {
+    padding: 1rem;
 }
 
 /* Footer */
@@ -94,12 +108,19 @@ div input:focus, div select:focus{
 
 @media (max-width: 600px) {
     main form div {
-        display: block !important;
+        flex-direction: column;
         text-align: center;
-        margin: 1rem;
+        margin: 0 1rem;
+        justify-content: center;
+        align-items: center;
     }
     .main {
         margin-bottom: 5rem;
+    }
+    label {
+        text-align: unset;
+        margin-right: unset;
+        padding: 1rem 0;
     }
     fieldset {
         margin-bottom: 1.5rem;

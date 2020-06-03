@@ -102,7 +102,7 @@ if (isset($_SESSION['user_id'])) {
                         <a href="profile.php?id=<?= $row5['AID']?>">
                             <img src="images/default-user.png" alt="professional-profile">
                             <h4><?php echo $row5['FNAME'] . ' ' . $row5['LNAME'] ?></h4>
-                            <h6>Charge per hour: 3.99BAM</h6>
+                            <h5>Charge per hour: 3.99BAM</h5>
                             <p>Rating: &#11088;&#11088;&#11088;</p>
                         </a>
                     <?php endwhile; ?>
@@ -111,7 +111,7 @@ if (isset($_SESSION['user_id'])) {
                         <a href="profile.php?id=<?= $row6['AID']?>">
                             <img src="images/default-user.png" alt="professional-profile">
                             <h4><?php echo $row6['FNAME'] . ' ' . $row6['LNAME'] ?></h4>
-                            <h6>Charge per hour: 3.99BAM</h6>
+                            <h5>Charge per hour: 3.99BAM</h5>
                             <p>Rating: &#11088;&#11088;&#11088;</p>
                         </a>
                     <?php endwhile; ?>
@@ -120,7 +120,7 @@ if (isset($_SESSION['user_id'])) {
                         <a href="profile.php?id=<?= $row7['AID']?>">
                             <img src="images/default-user.png" alt="professional-profile">
                             <h4><?php echo $row7['FNAME'] . ' ' . $row7['LNAME'] ?></h4>
-                            <h6>Charge per hour: 3.99BAM</h6>
+                            <h5>Charge per hour: 3.99BAM</h5>
                             <p>Rating: &#11088;&#11088;&#11088;</p>
                         </a>
                     <?php endwhile; ?>
@@ -129,7 +129,7 @@ if (isset($_SESSION['user_id'])) {
                         <a href="profile.php?id=<?= $row5['AID']?>">
                             <img src="images/default-user.png" alt="professional-profile">
                             <h4><?php echo $row5['FNAME'] . ' ' . $row5['LNAME'] ?></h4>
-                            <h6>Charge per hour: 3.99BAM</h6>
+                            <h5>Charge per hour: 3.99BAM</h5>
                             <p>Rating: &#11088;&#11088;&#11088;</p>
                         </a>
                     <?php endwhile; ?>
