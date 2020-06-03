@@ -98,6 +98,11 @@ main {
     color: #06b3d6;
 }
 
+.text span a {
+    text-decoration: none;
+    color: unset;
+}
+
 /* Popular services section */
 
 .popular-services {
@@ -265,6 +270,10 @@ main {
     padding: 2rem 0.5rem 0;
 }
 
+#team-overview {
+    font-size: 24px;
+}
+
 .team-section .team-member {
     display: none;
 }
@@ -388,9 +397,18 @@ select {
 #findProfessionals main .flex-container .displayProfessionals {
     width: 70%;
     display: flex;
-    justify-content: space-around;
+    justify-content: flex-start;
     flex-wrap: wrap;
     align-items: center;
+}
+
+.displayProfessionals h4{
+    text-align: center;
+    padding: 1rem;
+}
+.displayProfessionals h5 {
+    text-align: center;
+    padding: 0 1rem;
 }
 
 #findProfessionals main .dropdown {

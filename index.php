@@ -40,8 +40,7 @@ if (session_status() == PHP_SESSION_NONE) {
     <main>
         <div class="text center">
             <h2>Pick & Fix Tasks</h2>
-            <p>Instantly book highly rated pros for cleaning and handyman tasks at a fixed price. <span>See All <i
-                            class="fa fa-angle-right" aria-hidden="true"></i></span></p>
+            <p>Instantly book highly rated pros for cleaning and handyman tasks at a fixed price. <span><a href="findProfessionals.php">See All <i class="fa fa-angle-right" aria-hidden="true"></i></a></span></p>
         </div>
 
         <section class="popular-services flex-container center">
@@ -70,7 +69,7 @@ if (session_status() == PHP_SESSION_NONE) {
         <section class="user-steps" id="how-it-works">
             <h2>You need a service? <i class="fa fa-angle-double-down" aria-hidden="true"></i></h2>
             <div class="step-description center">
-                <h1>1</h1>
+                <h2>1</h2>
                 <div>
                     <h4>Find a professional</h4>
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In condimentum orci sed interdum
@@ -81,7 +80,7 @@ if (session_status() == PHP_SESSION_NONE) {
                 <img src="images/find-step.jpg" alt="first-step-find-professional">
             </div>
             <div class="step-description center">
-                <h1>2</h1>
+                <h2>2</h2>
                 <div>
                     <h4>Describe your problem</h4>
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In condimentum orci sed interdum
@@ -92,7 +91,7 @@ if (session_status() == PHP_SESSION_NONE) {
                 <img src="images/describe-problem.png" alt="first-step-find-professional">
             </div>
             <div class="step-description center">
-                <h1>3</h1>
+                <h2>3</h2>
                 <div>
                     <h4>Book a professional and solve your problem</h4>
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In condimentum orci sed interdum
@@ -112,14 +111,14 @@ if (session_status() == PHP_SESSION_NONE) {
                 <img src="images/roller.png" alt="painting-icon">
                 <img src="images/washing.png" alt="washing-icon">
             </div>
-            <h1>Are You a Home Improvement or Service Pro?</h1>
+            <h2>Are You a Home Improvement or Service Pro?</h2>
             <p>Find out how Pick&Fix can help your business</p>
             <a href="professionalsRegistration.php">Learn More <i class="fa fa-angle-right" aria-hidden="true"></i></a>
         </section>
 
         <section class="our-story" id="story">
             <div>
-                <h1>Our story</h1>
+                <h2>Our story</h2>
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In condimentum orci sed interdum
                     egestas.
                     Suspendisse lobortis odio vitae purus tincidunt, vel tempor lacus vestibulum. Ut eu lacus dui.
@@ -140,8 +139,7 @@ if (session_status() == PHP_SESSION_NONE) {
 
         <section class="team-section">
             <div id="team-overview">
-                <h1>CLICK TO GET TO KNOW US <i class="fa fa-angle-double-down"
-                                               aria-hidden="true"></i></h1>
+                <p>CLICK TO GET TO KNOW US <i class="fa fa-angle-double-down" aria-hidden="true"></i></p>
                 <img class="show-member" src="images/teamMember.png" alt="Image" data-member="1">
                 <img class="show-member" src="images/armin.png" alt="Image" data-member="2">
                 <img class="show-member" src="images/hana.png" alt="Image" data-member="3">

@@ -10,8 +10,6 @@ function checkRequiredField($value)
     return isset($value) && !empty($value);
 }
 
-
-
 $query1 = oci_parse($db, 'SELECT * FROM cities WHERE date_deleted IS NULL ORDER BY cname');
 oci_execute($query1);
 $query2 = oci_parse($db, 'SELECT * FROM services WHERE date_deleted IS NULL ORDER BY category');
@@ -48,19 +46,15 @@ if($_POST) {
                 $service = $services_array[$j];
                 $statement = oci_parse($db, "INSERT INTO work_offers(service, city, charge_per_hour, professional) VALUES ($service, $city, 4, {$row['AID']})");
                 oci_execute($statement);
-
                 oci_commit($db);
             }
         }
 
-
         if ($row) {
-
             $query3 = "INSERT INTO fee_payments (card_number, exp_month, exp_year, cvv, professional)
                 VALUES ({$_POST['card_num']}, {$_POST['month']}, {$_POST['year']}, {$_POST['cvv']}, {$row['AID']})";
             $result = oci_parse($db, $query3);
             oci_execute($result);
-
             oci_commit($db);
         }
         $findProfessional = oci_parse($db, "SELECT * FROM accounts WHERE email = '{$email}' AND password = '{$password}'");
@@ -72,7 +66,6 @@ if($_POST) {
             $_SESSION['fname'] = $professional['FNAME'];
             $_SESSION['lname'] = $professional['LNAME'];
             $_SESSION['role'] = $professional['ROLE'];
-
 
             header('Location: findProfessionals.php');
             exit();
@@ -102,7 +95,6 @@ if($_POST) {
     </div>
 
     <main>
-
         <div class="backShape">
             <div class="textBlockForProfessionals">
                 <h3>WANT TO JOIN US?</h3>
@@ -154,7 +146,6 @@ if($_POST) {
                                 <?php endwhile; ?>
                             </select>
                         </div>
-
                         <div>
                             <label>Categories of work</label>
                             <div class="checkbox">
@@ -171,8 +162,8 @@ if($_POST) {
                             <?php create_input("number", "phone_number", "Phone number",true); ?>
                         </label>
                     </div>
-
             </div>
+
             <div class="verticalLine"></div>
 
             <div class="registrationBlockRight">
