@@ -10,27 +10,33 @@ if ($_POST) {
     $email = $_POST['email'];
     $password = $_POST['password'];
 
-    $query = oci_parse($db, "select * from accounts where email = '{$email}' and password = '{$password}'");
+    $query = oci_parse($db, "select * from accounts where email = '{$email}'");
     oci_execute($query);
     $row = oci_fetch_assoc($query);
 
+
+
     if ($row) {
-        $_SESSION['user_id'] = $row['AID'];
-        $_SESSION['fname'] = $row['FNAME'];
-        $_SESSION['lname'] = $row['LNAME'];
-        $_SESSION['role'] = $row['ROLE'];
+        if(password_verify($password, $row['PASSWORD'])) {
 
 
-        if ($_SESSION['role'] == 0) {
-            header('Location: admin/admin.php');
-            exit();
+            $_SESSION['user_id'] = $row['AID'];
+            $_SESSION['fname'] = $row['FNAME'];
+            $_SESSION['lname'] = $row['LNAME'];
+            $_SESSION['role'] = $row['ROLE'];
+
+
+            if ($_SESSION['role'] == 0) {
+                header('Location: admin/admin.php');
+                exit();
+            } else {
+                header('Location: findProfessionals.php');
+                exit();
+            }
         }
         else {
-            header('Location: findProfessionals.php');
-            exit();
+            $_SESSION['msg'] = 'Incorrect username and/or password';
         }
-    } else {
-        $_SESSION['msg'] = 'Incorrect username and/or password';
     }
 }
 

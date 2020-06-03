@@ -30,12 +30,15 @@ if (isset($_SESSION['user_id'])) {
             oci_commit($db);
         }
         if(checkRequiredField($_POST['current_password']) && checkRequiredField($_POST['new_password']) && checkRequiredField($_POST['new_password_repeat'])) {
-            $query2 = oci_parse($db, "select * from accounts where password = {$_POST['current_password']} AND aid={$_SESSION['user_id']}");
+            $query2 = oci_parse($db, "select * from accounts where aid={$_SESSION['user_id']}"); //where password = {$_POST['current_password']} AND
             oci_execute($query2);
 
-            if(oci_fetch($query2)) {
+            $curr = oci_fetch_assoc($query2);
+
+            if(password_verify($_POST['current_password'], $curr['PASSWORD'])) {
                 if($_POST['new_password'] == $_POST['new_password_repeat']) {
-                    $query2 = oci_parse($db, "update accounts set password = '{$_POST['new_password']}' where aid = {$_SESSION['user_id']}");
+                    $password = password_hash($_POST['new_password'], PASSWORD_DEFAULT);
+                    $query2 = oci_parse($db, "update accounts set password = '$password' where aid = {$_SESSION['user_id']}");
                     oci_execute($query2);
                     oci_commit($db);
                     $success = true;
