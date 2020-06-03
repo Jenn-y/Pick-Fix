@@ -24,6 +24,10 @@ if($_POST) {
         oci_execute($result);
         oci_commit($db);
 
+        $query = oci_parse($db, "select * from accounts where email = '{$_POST['email']}'");
+        oci_execute($query);
+        $row = oci_fetch_assoc($query);
+
         $_SESSION['user_id'] = $row['AID'];
         $_SESSION['fname'] = $row['FNAME'];
         $_SESSION['lname'] = $row['LNAME'];
