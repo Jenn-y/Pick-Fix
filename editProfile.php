@@ -18,17 +18,21 @@ if (isset($_SESSION['user_id'])) {
     $query = oci_parse($db, "select * from accounts where aid = '{$aid}'");
     oci_execute($query);
     $row = oci_fetch_assoc($query);
-    if ($_POST){
-        if(checkRequiredField($_POST['fname']) && checkRequiredField($_POST['lname']) && checkRequiredField($_POST['email']) && checkRequiredField($_POST['phone_number'])) {
+    if (isset($_POST['fname'])) {
+        if (checkRequiredField($_POST['fname']) && checkRequiredField($_POST['lname']) && checkRequiredField($_POST['email']) && checkRequiredField($_POST['phone_number'])) {
             $result = oci_parse($db, "update accounts set fname = '{$_POST['fname']}', lname = '{$_POST['lname']}', email = '{$_POST['email']}', phone_number = '{$_POST['phone_number']}' where aid = '{$aid}'");
             oci_execute($result);
             oci_commit($db);
         }
-        if(checkRequiredField($_POST['about'])) {
+    }
+    else if(isset($_POST['about'])) {
+        if (checkRequiredField($_POST['about'])) {
             $query2 = oci_parse($db, "update accounts set short_biography = '{$_POST['about']}' where aid = $aid");
             oci_execute($query2);
             oci_commit($db);
         }
+    }
+    else if(isset($_POST['current_password'])) {
         if(checkRequiredField($_POST['current_password']) && checkRequiredField($_POST['new_password']) && checkRequiredField($_POST['new_password_repeat'])) {
             $query2 = oci_parse($db, "select * from accounts where aid={$_SESSION['user_id']}"); //where password = {$_POST['current_password']} AND
             oci_execute($query2);
