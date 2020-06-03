@@ -25,7 +25,9 @@ if($_POST) {
         && checkRequiredField($_POST['password']) && checkRequiredField($_POST['area_code']) && checkRequiredField($_POST['phone_number'])
         && checkRequiredField($_POST['card_num']) && checkRequiredField($_POST['month']) && checkRequiredField($_POST['year']) && checkRequiredField($_POST['cvv']) && isset($_POST['cities']) && isset($_POST['primary_city']) && isset($_POST['services'])) {
 
-        $sql = "INSERT INTO accounts(fname, lname, email, password, area_code, phone_number, primary_city, role) VALUES('{$_POST['first_name']}', '{$_POST['last_name']}', '{$_POST['email']}', '{$_POST['password']}', {$_POST['area_code']}, {$_POST['phone_number']}, '{$_POST['primary_city']}', 1)";
+        $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
+
+        $sql = "INSERT INTO accounts(fname, lname, email, password, area_code, phone_number, primary_city, role) VALUES('{$_POST['first_name']}', '{$_POST['last_name']}', '{$_POST['email']}', '$password', {$_POST['area_code']}, {$_POST['phone_number']}, '{$_POST['primary_city']}', 1)";
         $result = oci_parse($db, $sql);
         oci_execute($result);
         oci_commit($db);
@@ -33,10 +35,9 @@ if($_POST) {
         $email = $_POST['email'];
         $password = $_POST['password'];
 
-        $query = oci_parse($db, "select * from accounts where email = '{$email}' and password = '{$password}'");
+        $query = oci_parse($db, "select * from accounts where email = '{$email}'");
         oci_execute($query);
         $row = oci_fetch_assoc($query);
-
 
         $cities_array = $_POST['cities'];
         $services_array = $_POST['services'];
@@ -57,19 +58,13 @@ if($_POST) {
             oci_execute($result);
             oci_commit($db);
         }
-        $findProfessional = oci_parse($db, "SELECT * FROM accounts WHERE email = '{$email}' AND password = '{$password}'");
-        oci_execute($findProfessional);
-        $professional = oci_fetch_assoc($findProfessional);
+        $_SESSION['user_id'] = $row['AID'];
+        $_SESSION['fname'] = $row['FNAME'];
+        $_SESSION['lname'] = $row['LNAME'];
+        $_SESSION['role'] = $row['ROLE'];
 
-        if ($professional) {
-            $_SESSION['user_id'] = $professional['AID'];
-            $_SESSION['fname'] = $professional['FNAME'];
-            $_SESSION['lname'] = $professional['LNAME'];
-            $_SESSION['role'] = $professional['ROLE'];
-
-            header('Location: findProfessionals.php');
-            exit();
-        }
+        header('Location: findProfessionals.php');
+        exit();
     }
 }
 ?>

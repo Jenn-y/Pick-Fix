@@ -16,30 +16,21 @@ if($_POST) {
     if (checkRequiredField($_POST['first_name']) && checkRequiredField($_POST['last_name']) && checkRequiredField($_POST['email'])
         && checkRequiredField($_POST['password'])) {
 
+        $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
         $sql = "INSERT INTO accounts (fname, lname, email, password, area_code, phone_number, primary_city, role)
-                VALUES ('{$_POST['first_name']}', '{$_POST['last_name']}', '{$_POST['email']}', '{$_POST['password']}', {$_POST['area_code']}, {$_POST['phone']}, '{$_POST['city']}', 2)";
+                VALUES ('{$_POST['first_name']}', '{$_POST['last_name']}', '{$_POST['email']}', '$password', {$_POST['area_code']}, {$_POST['phone']}, '{$_POST['city']}', 2)";
 
         $result = oci_parse($db, $sql);
         oci_execute($result);
         oci_commit($db);
 
-        $email = $_POST['email'];
-        $password = $_POST['password'];
+        $_SESSION['user_id'] = $row['AID'];
+        $_SESSION['fname'] = $row['FNAME'];
+        $_SESSION['lname'] = $row['LNAME'];
+        $_SESSION['role'] = $row['ROLE'];
 
-        $query = oci_parse($db, "select * from accounts where email = '{$email}' and password = '{$password}'");
-        oci_execute($query);
-        $row = oci_fetch_assoc($query);
-
-        if ($row) {
-            $_SESSION['user_id'] = $row['AID'];
-            $_SESSION['fname'] = $row['FNAME'];
-            $_SESSION['lname'] = $row['LNAME'];
-            $_SESSION['role'] = $row['ROLE'];
-
-
-            header('Location: findProfessionals.php');
-            exit();
-        }
+        header('Location: findProfessionals.php');
+        exit();
     }
 }
 ?>
