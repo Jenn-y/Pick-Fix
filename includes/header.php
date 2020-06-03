@@ -72,7 +72,7 @@ while ($row_of_services = oci_fetch_assoc($query_services)){
             <div class="dropdown">
                 <p class="dropdown-link"><i class="fa fa-user" aria-hidden="true"></i><?php echo ' ' . $_SESSION['fname']. ' ' . $_SESSION['lname'] ?></p>
                 <div class="dropdown-content" id="signed-profile">
-                    <?php if($row['ROLE'] == 1): ?>
+                    <?php if(isset($row['ROLE']) && $row['ROLE'] == 1): ?>
                         <a href="profile.php?id=<?= $row['AID'] ?>" onclick="closeMenu()">My Profile</a>
                     <?php else: ?>
                         <a href="profile.php">My profile</a>
