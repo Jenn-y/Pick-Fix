@@ -177,7 +177,7 @@ main {
     transform: scale(.7);
 }
 
-.user-steps div h1 {
+.user-steps div h2 {
     justify-content: flex-end;
     margin-right: 2rem;
     color: #f2ae00;
@@ -365,7 +365,7 @@ select {
     z-index: 1;
 }
 
-#findProfessionals .flex-container h1 {
+#findProfessionals .flex-container h2 {
     width: 100%;
     text-align: center;
     margin: 2.5rem auto;
@@ -488,7 +488,7 @@ select {
         /*justify-content: space-evenly;*/
     }
 
-    .user-steps .step-description h1 {
+    .user-steps .step-description h2 {
         margin-right: 0;
         display: inline-block;
     }
@@ -501,7 +501,7 @@ select {
         margin-right: 0.5rem;
     }
 
-    .step-description h1 {
+    .step-description h2 {
         margin: 0;
     }
 
@@ -536,7 +536,7 @@ select {
         padding: 0;
     }
 
-    .our-story div h1 {
+    .our-story div h2 {
         text-align: center;
         margin-bottom: 1rem;
     }
