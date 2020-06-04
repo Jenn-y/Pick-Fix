@@ -67,18 +67,22 @@ if ($_POST && isset($_GET['id'])) {
     <title>Profile</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script>
-        $(document).ready(function() {
 
-            $("#get-price").click(function() {
+        function reqListener () {
+            document.getElementById("estimate_price").innerHTML = this.responseText + 'BAM';
+        }
 
-                //here the value is stored in variable.
-                let x = $("#num_of_hrs").val();
-
-                document.getElementById("estimate_price").innerHTML = x;
-            });
-
-        });
+        function testJavascriptRequest() {
+            var oReq = new XMLHttpRequest();
+            oReq.addEventListener("load", reqListener);
+            var city = $('#city').val();
+            var service = $('#service').val();
+            var numOfHrs = $('#num_of_hrs').val();
+            oReq.open("GET", "service_price.php?p_id=<?= $_GET['id']?>&c_id=" + city + '&s_id=' + service + '&num_of_hrs=' + numOfHrs);
+            oReq.send();
+        }
     </script>
+
 </head>
 <body>
 
@@ -198,6 +202,7 @@ if ($_POST && isset($_GET['id'])) {
                             function getPrice() {
                                 document.getElementById('price').style.display = 'block';
                                 document.getElementById('get-price').style.display = 'none';
+                                testJavascriptRequest();
                             }
                         </script>
                     </div>
