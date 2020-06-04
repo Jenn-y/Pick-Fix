@@ -108,7 +108,7 @@ if ($_POST && isset($_GET['id'])) {
                     $query = oci_parse($db, "SELECT DISTINCT CITY, CNAME FROM WORK_OFFERS
                                                             JOIN CITIES
                                                             ON CID = CITY
-                                                            where professional = {$_SESSION['user_id']}
+                                                            where professional = {$aid}
                                                             ORDER BY CITY");
                     oci_execute($query);
 
@@ -122,7 +122,7 @@ if ($_POST && isset($_GET['id'])) {
                     $query = oci_parse($db, "SELECT DISTINCT SERVICE, CATEGORY FROM WORK_OFFERS
                                                             JOIN SERVICES
                                                             ON SERVICE = SID
-                                                            where professional = {$_SESSION['user_id']}
+                                                            where professional = {$aid}
                                                             ORDER BY SERVICE");
                     oci_execute($query);
 
@@ -153,7 +153,7 @@ if ($_POST && isset($_GET['id'])) {
                             $query = oci_parse($db, "SELECT DISTINCT CITY, CNAME FROM WORK_OFFERS
                                                             JOIN CITIES
                                                             ON CID = CITY
-                                                            where professional = {$_GET['id']}
+                                                            where professional = {$aid}
                                                             ORDER BY CITY");
                             oci_execute($query); ?>
 
@@ -168,7 +168,7 @@ if ($_POST && isset($_GET['id'])) {
                             $query = oci_parse($db, "SELECT DISTINCT SERVICE, CATEGORY FROM WORK_OFFERS
                                                             JOIN SERVICES
                                                             ON SERVICE = SID
-                                                            where professional = {$_GET['id']}
+                                                            where professional = {$aid}
                                                             ORDER BY SERVICE");
                             oci_execute($query); ?>
                             <select name="service" id="service" required>
