@@ -10,6 +10,7 @@
 
 .flex-container {
     display: flex;
+    justify-content: space-between;
 }
 
 body {
@@ -45,7 +46,7 @@ h2 {
 }
 
 .tables {
-    width: 25%;
+    width: 30%;
     flex-direction: column;
 }
 
@@ -80,6 +81,12 @@ table a:hover {
 #stay {
     color: black;
 }
-#get-services {
+
+#filter_block {
+    display: block;
+    width: 150%;
+}
+
+#display_services, #display_cities {
     display: none;
 }
