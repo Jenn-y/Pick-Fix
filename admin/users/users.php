@@ -51,7 +51,7 @@ if (isset($_POST['role'])){
             <a href="../cities/cities.php">Cities</a>
             <a href="../services/services.php">Services</a>
             <a href="#">Work offers</a>
-            <a href="#" id="stay">Users <i class="fa fa-long-arrow-right" aria-hidden="true"></i></a>
+            <a href="users.php" id="stay">Users <i class="fa fa-long-arrow-right" aria-hidden="true"></i></a>
         </div>
 <div id="filter_block">
         <form method="post">
