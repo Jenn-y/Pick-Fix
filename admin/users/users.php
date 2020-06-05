@@ -53,6 +53,7 @@ if (isset($_POST['role'])){
             <a href="../work_offers/work_offers.php">Work offers</a>
             <a href="#" id="stay">Users <i class="fa fa-long-arrow-right" aria-hidden="true"></i></a>
         </div>
+
 <div id="filter_block">
         <form method="post">
             <select name="role" id="role">
