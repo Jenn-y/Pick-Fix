@@ -170,55 +170,13 @@ if (isset($_SESSION['user_id'])) {
                 </fieldset>
 
                 <fieldset>
-                    <legend>Category</legend>
-                    <div>
-                        <label for="dropdown1" id="dropdown2-label">Add category</label>
-                        <select id="dropdown2">
-                            <option value="select" disabled>Select one of the categories</option>
-                            <?php while($row2 = oci_fetch_assoc($query2)): ?>
-                                <option value="<?= $row2['CATEGORY']; ?>"><?= $row2['CATEGORY']; ?></option>
-                            <?php endwhile; ?>
-                        </select>
-                    </div>
-                    <div>
-                        <label for="dropdown1" id="dropdown2-label">Delete category</label>
-                        <select id="dropdown2">
-                            <option value="select" disabled>Select one of the categories</option>
-                            <option value="fax1">Furniture repairment</option>
-                            <option value="fax2">Plumbing</option>
-                            <option value="fax3">Electricity</option>
-                            <option value="fax4">Toilets</option>
-                            <option value="fax5">Moving help</option>
-                        </select>
-                    </div>
-                    <button type="submit" class="buttonStyle">SAVE</button>
+                    <legend>Service Categories</legend>
+                    <a href="editServices.php" class="buttonStyle">Update Service Categories</a>
                 </fieldset>
 
                 <fieldset>
-                    <legend>City</legend>
-                    <div>
-                        <label for="dropdown1" id="dropdown1-label">Add city</label>
-                        <select id="dropdown1">
-                            <option value="select" disabled>Select one of the cities</option>
-                            <option value="fax1">Tuzla</option>
-                            <option value="fax2">Zivinice</option>
-                            <option value="fax3">Bihac</option>
-                            <option value="fax4">Sarajevo</option>
-                            <option value="fax5">Mostar</option>
-                        </select>
-                    </div>
-                    <div>
-                        <label for="dropdown1" id="dropdown1-label">Delete city</label>
-                        <select id="dropdown1">
-                            <option value="select" disabled>Select one of the cities</option>
-                            <option value="fax1">Tuzla</option>
-                            <option value="fax2">Zivinice</option>
-                            <option value="fax3">Bihac</option>
-                            <option value="fax4">Sarajevo</option>
-                            <option value="fax5">Mostar</option>
-                        </select>
-                    </div>
-                    <button type="submit" class="buttonStyle">SAVE</button>
+                    <legend>Service Cities</legend>
+                    <button class="buttonStyle">Update Service Cities</button>
                 </fieldset>
             <?php endif; ?>
         </div>

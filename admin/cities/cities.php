@@ -27,7 +27,7 @@ oci_execute($query2);
         <div class="tables flex-container">
             <a href="cities.php" id="stay">Cities <i class="fa fa-long-arrow-right" aria-hidden="true"></i></a>
             <a href="../services/services.php">Services</a>
-            <a href="#">Work offers</a>
+            <a href="../work_offers/work_offers.php">Work offers</a>
             <a href="../users/users.php">Users</a>
         </div>
         <div class="rows">

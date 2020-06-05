@@ -126,3 +126,11 @@ div input:focus, div select:focus{
         margin-bottom: 1.5rem;
     }
 }
+
+/* Edit Services Page Additional Styling */
+
+#editServices table {
+    border-bottom: 2px solid grey;
+    width: 100%;
+    margin-bottom: 1rem;
+}

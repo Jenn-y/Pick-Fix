@@ -45,7 +45,7 @@ if($_POST) {
             $city = $cities_array[$i];
             for ($j = 0; $j < count($services_array); $j++) {
                 $service = $services_array[$j];
-                $statement = oci_parse($db, "INSERT INTO work_offers(service, city, charge_per_hour, professional) VALUES ($service, $city, 4, {$row['AID']})");
+                $statement = oci_parse($db, "INSERT INTO work_offers(service, city, charge_per_hour, professional, service_level) VALUES ($service, $city, 4, {$row['AID']}, 'Beginner')");
                 oci_execute($statement);
                 oci_commit($db);
             }
