@@ -1,20 +1,18 @@
 <?php
 include('../../includes/db.php');
-$query1 = oci_parse($db, 'SELECT * FROM services WHERE date_deleted IS NULL');
+$query1 = oci_parse($db, 'SELECT * FROM services
+                                    LEFT JOIN (SELECT service, COUNT(*) as no_of_pros
+                                    FROM ( 
+                                         SELECT service, professional FROM work_offers 
+                                         GROUP BY service, professional
+                                         )
+                                    GROUP BY service)
+                                    ON sid = service
+                                    WHERE date_deleted IS NULL
+                                    ORDER BY sid');
 oci_execute($query1);
 $query2 = oci_parse($db, 'SELECT * FROM services WHERE date_deleted IS NOT NULL');
 oci_execute($query2);
-$query3 = oci_parse($db, 'SELECT service, COUNT(*) as no_of_pros
-                                  FROM ( 
-  	                                    SELECT service, professional FROM work_offers 
-  	                                    GROUP BY service, professional
-                                        )
-                                  GROUP BY service');
-oci_execute($query3);
-$no_of_professionals = array();
-while($row = oci_fetch_assoc($query3)) {
-    $no_of_professionals += array("{$row['SERVICE']}" => $row['NO_OF_PROS']);
-}
 ?>
 <!doctype html>
 <html lang="en">
@@ -46,16 +44,16 @@ while($row = oci_fetch_assoc($query3)) {
                 <tr>
                     <th>SID</th>
                     <th>Category</th>
-                    <th>Professionals</th>
+                    <th>No. of Pros</th>
                 </tr>
                 <?php while($row = oci_fetch_assoc($query1)): ?>
                     <tr>
                         <td><?= $row['SID']; ?></td>
                         <td><?= $row['CATEGORY']; ?></td>
-                        <?php if(isset($no_of_professionals[$row['SID']])): ?>
-                            <td><?= $no_of_professionals[$row['SID']] ?></td>
-                        <?php else: ?>
+                        <?php if($row['NO_OF_PROS'] == NULL): ?>
                             <td>0</td>
+                        <?php else: ?>
+                            <td><?= $row['NO_OF_PROS']; ?></td>
                         <?php endif; ?>
                         <td><a href="delete_service.php?id=<?=$row['SID']; ?>">delete</a></td>
                         <td><a href="update_service.php?id=<?=$row['SID']; ?>">edit</a></td>
