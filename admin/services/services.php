@@ -2,11 +2,11 @@
 include('../../includes/db.php');
 $query1 = oci_parse($db, 'SELECT * FROM services
                                     LEFT JOIN (SELECT service, COUNT(*) as no_of_pros
-                                    FROM ( 
-                                         SELECT service, professional FROM work_offers 
-                                         GROUP BY service, professional
-                                         )
-                                    GROUP BY service)
+                                               FROM ( 
+                                                     SELECT service, professional FROM work_offers 
+                                                     GROUP BY service, professional
+                                                     )
+                                                GROUP BY service)
                                     ON sid = service
                                     WHERE date_deleted IS NULL
                                     ORDER BY sid');
