@@ -3,12 +3,15 @@ if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
 include_once("includes/db.php");
-
+include ("includes/form-functions.php");
 
 function checkRequiredField($value)
 {
     return isset($value) && !empty($value);
 }
+
+$months = [1 => 'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+$years = range(2020, date('Y') + 5);
 $incorrect_password = false;
 $incorrect_new_password = false;
 $success = false;
@@ -17,7 +20,15 @@ if (isset($_SESSION['user_id'])) {
 
     $query = oci_parse($db, "select * from accounts where aid = '{$aid}'");
     oci_execute($query);
-    $row = oci_fetch_assoc($query);
+    $row2 = oci_fetch_assoc($query);
+    $query2 = oci_parse($db, "SELECT DISTINCT W.SERVICE, S.CATEGORY, S.SID
+                                     FROM WORK_OFFERS W, SERVICES S
+                                     WHERE W.SERVICE = S.SID
+                                     AND W.PROFESSIONAL = {$aid}
+                                     AND W.DATE_DELETED IS NULL
+                                     ORDER BY S.CATEGORY");
+    oci_execute($query2);
+
     if (isset($_POST['fname'])) {
         if (checkRequiredField($_POST['fname']) && checkRequiredField($_POST['lname']) && checkRequiredField($_POST['email']) && checkRequiredField($_POST['phone_number'])) {
             $result = oci_parse($db, "update accounts set fname = '{$_POST['fname']}', lname = '{$_POST['lname']}', email = '{$_POST['email']}', phone_number = '{$_POST['phone_number']}' where aid = '{$aid}'");
@@ -52,7 +63,70 @@ if (isset($_SESSION['user_id'])) {
             else $incorrect_password = true;
         }
     }
+    else if (isset($_POST['new_city'])) {
+        while ($row = oci_fetch_assoc($query2)) {
+            $service = $row['SID'];
+            $check_deleted = oci_parse($db, "SELECT W.* 
+                                                    FROM WORK_OFFERS W
+                                                    WHERE W.PROFESSIONAL = {$aid}
+                                                    AND W.SERVICE = {$service}
+                                                    AND W.CITY = {$_POST['new_city']} 
+                                                    AND W.DATE_DELETED IS NOT NULL");
+            oci_execute($check_deleted);
+            if (!oci_fetch_assoc($check_deleted)) {
+                $sql = oci_parse($db, "INSERT INTO WORK_OFFERS (SERVICE, CITY, CHARGE_PER_HOUR, PROFESSIONAL, SERVICE_LEVEL)
+                                          VALUES ({$service}, {$_POST['new_city']}, 4, {$aid}, 'Beginner')");
+                oci_execute($sql);
+                oci_commit($db);
+            } else {
+                $sql = oci_parse($db, "UPDATE WORK_OFFERS SET DATE_DELETED = NULL
+                                          WHERE CITY = {$_POST['new_city']}
+                                          AND SERVICE = {$service}
+                                          AND PROFESSIONAL = {$aid}");
+                oci_execute($sql);
+                oci_commit($db);
+            }
+        }
+    }
+    else if (isset($_POST['deleted_city'])) {
+        while ($row = oci_fetch_assoc($query2)) {
+            $service = $row['SID'];
+            $sql = oci_parse($db, "UPDATE WORK_OFFERS SET DATE_DELETED = SYSDATE 
+                                          WHERE CITY = {$_POST['deleted_city']}
+                                          AND SERVICE = {$service}
+                                          AND PROFESSIONAL = {$aid}");
+            oci_execute($sql);
+            oci_commit($db);
+        }
+    }
+    else if (isset($_POST['card_num'])) {
+        if (checkRequiredField($_POST['card_num']) && isset($_POST['month']) && isset($_POST['year']) && checkRequiredField($_POST['cvv'])){
+            $sql = oci_parse($db, "UPDATE FEE_PAYMENTS
+                                          SET CARD_NUMBER = {$_POST['card_num']},
+                                          EXP_MONTH = {$_POST['month']},
+                                          EXP_YEAR = {$_POST['year']},
+                                          CVV = {$_POST['cvv']}
+                                          WHERE PROFESSIONAL = {$aid}");
+            oci_execute($sql);
+            oci_commit($db);
+        }
+    }
+
+    $query4 = oci_parse($db, "SELECT C.CID, C.CNAME
+                                     FROM CITIES C
+                                     WHERE C.DATE_DELETED IS NULL AND C.CID NOT IN
+                                     (SELECT W.CITY FROM WORK_OFFERS W, CITIES C WHERE W.CITY = C.CID AND W.PROFESSIONAL = {$aid} AND W.DATE_DELETED IS NULL)
+                                     ORDER BY C.CNAME");
+    oci_execute($query4);
+    $query5 = oci_parse($db, "SELECT DISTINCT W.CITY, C.CNAME, C.CID
+                                     FROM WORK_OFFERS W, CITIES C
+                                     WHERE W.CITY = C.CID
+                                     AND W.PROFESSIONAL = {$aid}
+                                     AND W.DATE_DELETED IS NULL
+                                     ORDER BY C.CNAME");
+    oci_execute($query5);
 }
+
 ?>
 
 <!doctype html>
@@ -62,6 +136,7 @@ if (isset($_SESSION['user_id'])) {
     <link rel="stylesheet" href="css/editProfile.css">
     <link href="css/header.css" rel="stylesheet">
     <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/test.css">
     <title>Edit Profile</title>
 </head>
 <body>
@@ -163,10 +238,57 @@ if (isset($_SESSION['user_id'])) {
                 </fieldset>
             </form>
 
-            <?php if($row['ROLE'] == 1): ?>
+            <?php if($row2['ROLE'] == 1): ?>
                 <fieldset>
                     <legend>Credit card</legend>
-                    <button class="buttonStyle">Update Credit Card Information</button>
+                    <div class="credit-card_fieldset" id="get_credit_info">
+                        <form method="post">
+                        <div class="acceptedCards">
+                            <label>Accepted Cards</label>
+                            <div class="icon-container">
+                                <i class="fa fa-cc-visa" style="color:navy;"></i>
+                                <i class="fa fa-cc-amex" style="color:blue;"></i>
+                                <i class="fa fa-cc-mastercard" style="color:red;"></i>
+                                <i class="fa fa-cc-discover" style="color:orange;"></i>
+                            </div>
+                        </div>
+                        <div class="card_num">
+                        <label for="card_num">Card number</label>
+                        <input type="text" name="card_num" class="card-number" id="card_num" placeholder="Card Number">
+                        </div>
+                        <div class="dateAndCvv">
+                            <div class="month">
+                                <label for="month">Expiration month</label>
+                                <select name="month" id="month">
+                                    <?php foreach ($months as $key => $month) { ?>
+                                        <option value="<?= $key ?>"><?= $month ?></option>
+                                    <?php } ?>
+                                </select>
+                            </div>
+                            <div class="year">
+                                <label for="year">Expiration year</label>
+                                <select name="year" id="year">
+                                    <?php foreach ($years as $year) { ?>
+                                        <option value="<?= $year ?>"><?= $year ?></option>
+                                    <?php } ?>
+                                </select>
+                            </div>
+                            <div class="cvv-input">
+                                <label for="cvv">CVV</label>
+                                <?php create_input("number", "cvv", "CVV",true); ?>
+                            </div>
+                        </div>
+                        <button class="buttonStyle" type="submit">Save</button>
+                        </form>
+                    </div>
+                        <button class="buttonStyle" onclick="get_credit()" id="remove_button">Update Credit Card Information</button>
+                        <script>
+                            function get_credit() {
+                                document.getElementById('get_credit_info').style.display = 'block';
+                                document.getElementById('remove_button').style.display = 'none';
+                            }
+                        </script>
+
                 </fieldset>
 
                 <fieldset>
@@ -174,9 +296,28 @@ if (isset($_SESSION['user_id'])) {
                     <a href="editServices.php" class="buttonStyle">Update Service Categories</a>
                 </fieldset>
 
-                <fieldset>
+                <fieldset id="cities_fieldset">
                     <legend>Service Cities</legend>
-                    <button class="buttonStyle">Update Service Cities</button>
+                    <form method="post">
+                        <label for="new_city">Add a new city</label>
+                        <select name="new_city">
+                            <option disabled selected value>Choose a city</option>
+                            <?php while ($get_cities = oci_fetch_assoc($query4)) : ?>
+                                <option value="<?= $get_cities['CID'] ?>"><?= $get_cities['CNAME'] ?></option>
+                            <?php endwhile; ?>
+                        </select>
+                        <button type="submit" class="buttonStyle">ADD</button>
+                    </form>
+                    <form method="post">
+                        <label for="deleted_city">Delete a city</label>
+                        <select name="deleted_city">
+                            <option disabled selected value>Choose a city</option>
+                            <?php while ($get_cities = oci_fetch_assoc($query5)) : ?>
+                                <option value="<?= $get_cities['CID'] ?>"><?= $get_cities['CNAME'] ?></option>
+                            <?php endwhile; ?>
+                        </select>
+                        <button type="submit" class="buttonStyle">DELETE</button>
+                    </form>
                 </fieldset>
             <?php endif; ?>
         </div>

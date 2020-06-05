@@ -17,7 +17,7 @@ oci_execute($query2);
 $list_cities = oci_parse($db, 'SELECT * FROM cities WHERE date_deleted IS NULL ORDER BY cname');
 oci_execute($list_cities);
 $months = [1 => 'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-$years = range(2016, date('Y'));
+$years = range(2020, date('Y') + 5);
 
 if($_POST) {
 
