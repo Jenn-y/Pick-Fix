@@ -5,6 +5,14 @@ footer {
     bottom: 0;
 }
 
+.center {
+    max-width: 75rem;
+    margin: 0 auto;
+}
+.flex-container {
+    display: flex;
+}
+
 .inner-footer {
     padding: 1rem;
 }
