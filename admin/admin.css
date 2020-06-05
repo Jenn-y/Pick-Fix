@@ -10,7 +10,6 @@
 
 .flex-container {
     display: flex;
-    justify-content: space-between;
 }
 
 body {
