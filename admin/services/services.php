@@ -1,15 +1,17 @@
 <?php
 include('../../includes/db.php');
 $query1 = oci_parse($db, 'SELECT * FROM services
-                                    LEFT JOIN (SELECT service, COUNT(*) as no_of_pros
-                                               FROM ( 
-                                                     SELECT service, professional FROM work_offers 
-                                                     GROUP BY service, professional
-                                                     )
-                                                GROUP BY service)
-                                    ON sid = service
-                                    WHERE date_deleted IS NULL
-                                    ORDER BY sid');
+                                  LEFT JOIN (
+                                             SELECT service, COUNT(*) as no_of_pros
+                                             FROM ( 
+                                                   SELECT service, professional FROM work_offers 
+                                                   GROUP BY service, professional
+                                                   )
+                                             GROUP BY service
+                                             )
+                                  ON sid = service
+                                  WHERE date_deleted IS NULL
+                                  ORDER BY sid');
 oci_execute($query1);
 $query2 = oci_parse($db, 'SELECT * FROM services WHERE date_deleted IS NOT NULL');
 oci_execute($query2);
