@@ -80,8 +80,8 @@ if (isset($_SESSION['user_id'])) {
 
     <main>
         <section class="flex-container popular-services">
-            <h1>Choose a professional for your service <i class="fa fa-angle-double-down"
-                                                          aria-hidden="true"></i></h1>
+            <h2>Choose a professional for your service <i class="fa fa-angle-double-down"
+                                                          aria-hidden="true"></i></h2>
 
             <div class="allServices">
                 <h1>All services</h1>
