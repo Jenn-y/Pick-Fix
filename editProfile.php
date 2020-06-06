@@ -57,14 +57,14 @@ if (isset($_SESSION['user_id'])) {
         }
     }
     else if (isset($_POST['new_city'])) {
-            /*$check_deleted = oci_parse($db, "SELECT W.*
+            $check_deleted = oci_parse($db, "SELECT W.*
                                                     FROM WORK_OFFERS W
                                                     WHERE W.PROFESSIONAL = {$aid}
                                                     AND W.CITY = {$_POST['new_city']} 
                                                     AND W.DATE_DELETED IS NOT NULL");
             oci_execute($check_deleted);
             $check = oci_fetch_assoc($check_deleted);
-            if (!$check) {*/
+            if (!$check) {
                 $query2 = oci_parse($db, "SELECT DISTINCT W.SERVICE, S.CATEGORY
                                                  FROM WORK_OFFERS W, SERVICES S, CITIES C
                                                  WHERE W.SERVICE = S.SID
@@ -83,7 +83,7 @@ if (isset($_SESSION['user_id'])) {
 
 
 
-            }   /*else {
+            }  }else {
                 $query2 = oci_parse($db, "SELECT DISTINCT W.SERVICE, S.CATEGORY, S.SID
                                      FROM WORK_OFFERS W, SERVICES S
                                      WHERE W.SERVICE = S.SID
@@ -99,7 +99,7 @@ if (isset($_SESSION['user_id'])) {
                     oci_execute($sql2);
                     oci_commit($db);
                 }
-            }*/
+            }
 
     }
     else if (isset($_POST['deleted_city'])) {
