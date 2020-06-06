@@ -62,7 +62,6 @@ if ($_POST && isset($_GET['id'])) {
     <link href="css/header.css" rel="stylesheet">
     <link href="css/profile.css" rel="stylesheet">
     <link rel="stylesheet" href="css/footer.css">
-    <link rel="stylesheet" href="css/test.css">
 
     <title>Profile</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>

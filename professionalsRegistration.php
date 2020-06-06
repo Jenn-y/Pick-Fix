@@ -17,7 +17,7 @@ oci_execute($query2);
 $list_cities = oci_parse($db, 'SELECT * FROM cities WHERE date_deleted IS NULL ORDER BY cname');
 oci_execute($list_cities);
 $months = [1 => 'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-$years = range(2016, date('Y'));
+$years = range(2020, date('Y') + 5);
 
 if($_POST) {
 
@@ -45,7 +45,7 @@ if($_POST) {
             $city = $cities_array[$i];
             for ($j = 0; $j < count($services_array); $j++) {
                 $service = $services_array[$j];
-                $statement = oci_parse($db, "INSERT INTO work_offers(service, city, charge_per_hour, professional) VALUES ($service, $city, 4, {$row['AID']})");
+                $statement = oci_parse($db, "INSERT INTO work_offers(service, city, charge_per_hour, professional, service_level) VALUES ($service, $city, 4, {$row['AID']}, 'Beginner')");
                 oci_execute($statement);
                 oci_commit($db);
             }

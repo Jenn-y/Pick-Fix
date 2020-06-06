@@ -33,7 +33,7 @@ if (isset($_POST['role'])){
 <head>
     <?php include('../../includes/head.php') ?>
     <link rel="stylesheet" href="../admin.css">
-    <title>Admin | Cities</title>
+    <title>Admin | Users</title>
 </head>
 <body>
 
@@ -50,9 +50,10 @@ if (isset($_POST['role'])){
         <div class="tables flex-container">
             <a href="../cities/cities.php">Cities</a>
             <a href="../services/services.php">Services</a>
-            <a href="#">Work offers</a>
-            <a href="users.php" id="stay">Users <i class="fa fa-long-arrow-right" aria-hidden="true"></i></a>
+            <a href="../work_offers/work_offers.php">Work offers</a>
+            <a href="#" id="stay">Users <i class="fa fa-long-arrow-right" aria-hidden="true"></i></a>
         </div>
+
 <div id="filter_block">
         <form method="post">
             <select name="role" id="role">

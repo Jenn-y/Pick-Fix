@@ -1,12 +1,35 @@
-#get-price {
-    margin: 0 auto;
-    box-sizing:border-box;
-    padding: 1rem;
-    border: none;
-    cursor: pointer;
-    background-color: #4dbc15;
-    color: white;
-    font-weight: bold;
-    width: 25%;
-    text-align: center;
+#cities_fieldset form {
+    display: flex;
+    justify-content: flex-start;
+    text-align: right;
+    align-items: center;
+    width: inherit;
+    margin-bottom: -10px;
+}
+
+.acceptedCards div {
+    margin-left: 30px;
+    justify-content: flex-start;
+}
+.acceptedCards {
+    display: flex;
+    text-align: right;
+    margin-bottom: 20px;
+}
+
+.cvv-input, .dateAndCvv .month, .dateAndCvv .year, .card_num {
+    display: flex;
+    justify-content: flex-start;
+    text-align: right;
+    align-items: center;
+    width: inherit;
+    margin-bottom: 20px;
+}
+
+#get_credit_info {
+    display: none;
+}
+
+main .credit-card_fieldset form .dateAndCvv{
+    display: unset !important;
 }
