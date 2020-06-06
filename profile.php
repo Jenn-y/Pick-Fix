@@ -66,7 +66,6 @@ if ($_POST && isset($_GET['id'])) {
     <title>Profile</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script>
-
         function reqListener () {
             document.getElementById("estimate_price").innerHTML = this.responseText + 'BAM';
         }
