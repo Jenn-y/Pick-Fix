@@ -33,41 +33,34 @@ if (isset($_SESSION['user_id'])) {
 
 
     if (isset($_POST['new_service'])) {
-        $query2 = oci_parse($db, "SELECT count(distinct W.CITY)
+        $query2 = oci_parse($db, "SELECT DISTINCT W.CITY
                                      FROM WORK_OFFERS W, CITIES C
                                      WHERE W.CITY = C.CID
-                                     AND W.PROFESSIONAL = {$aid}
-                                     ORDER BY C.CNAME");
+                                     AND W.DATE_DELETED IS NULL
+                                     AND W.PROFESSIONAL = {$aid}");
         oci_execute($query2);
-        for ($i = 0; $i < oci_fetch_assoc($query2); $i++) {
-            $queryX = oci_parse($db, "SELECT C.CID
-                                     FROM WORK_OFFERS W, CITIES C
-                                     WHERE W.CITY = C.CID
-                                     AND W.PROFESSIONAL = {$aid}
-                                     ORDER BY C.CNAME");
-            oci_execute($queryX);
-            $row = oci_fetch_assoc($queryX);
-            $city = $row['CID'];
-            /*$check_deleted = oci_parse($db, "SELECT W.*
+        while($row = oci_fetch_assoc($query2)) {
+            $city = $row['CITY'];
+            $check_deleted = oci_parse($db, "SELECT W.*
                                                     FROM WORK_OFFERS W 
                                                     WHERE W.PROFESSIONAL = {$aid}
                                                     AND W.CITY = {$city}
                                                     AND W.SERVICE = {$_POST['new_service']}
                                                     AND W.DATE_DELETED IS NOT NULL");
             oci_execute($check_deleted);
-            if (!oci_fetch_assoc($check_deleted)) {*/
+            if (!oci_fetch_assoc($check_deleted)) {
             $sql = oci_parse($db, "INSERT INTO WORK_OFFERS (SERVICE, CITY, CHARGE_PER_HOUR, PROFESSIONAL, SERVICE_LEVEL)
                                           VALUES ({$_POST['new_service']}, {$city}, 4, {$aid}, 'Beginner')");
             oci_execute($sql);
             oci_commit($db);
-            /* } else {
+             } else {
                  $sql = oci_parse($db, "UPDATE WORK_OFFERS SET DATE_DELETED = NULL
                                            WHERE CITY = {$city}
                                            AND SERVICE = {$_POST['new_service']}
                                            AND PROFESSIONAL = {$aid}");
                  oci_execute($sql);
                  oci_commit($db);
-             }*/
+             }
         }
     }
     if (isset($_POST['deleted_service'])) {
@@ -143,7 +136,7 @@ if (isset($_SESSION['user_id'])) {
             $city_id = $row['CID']; ?>
             <table>
                 <tr>
-                    <th colspan="5"><?= $row['CNAME'] ?></th>
+                    <th colspan="5" id="city_header"><?= $row['CNAME'] ?></th>
                 </tr>
 
                 <?php $query3 = oci_parse($db, "SELECT W.*, S.CATEGORY, S.CAT_DESCRIPTION, C.CNAME

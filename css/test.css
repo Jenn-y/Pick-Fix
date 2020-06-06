@@ -70,3 +70,8 @@ main .credit-card_fieldset form .dateAndCvv{
 #editServices table {
     margin-top: 4rem;
 }
+#editServices table #city_header {
+    font-size: 30px;
+    font-weight: bolder;
+    padding-bottom: 2rem;
+}
