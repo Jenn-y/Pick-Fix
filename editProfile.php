@@ -21,13 +21,6 @@ if (isset($_SESSION['user_id'])) {
     $query = oci_parse($db, "select * from accounts where aid = '{$aid}'");
     oci_execute($query);
     $row2 = oci_fetch_assoc($query);
-    $query2 = oci_parse($db, "SELECT DISTINCT W.SERVICE, S.CATEGORY, S.SID
-                                     FROM WORK_OFFERS W, SERVICES S
-                                     WHERE W.SERVICE = S.SID
-                                     AND W.PROFESSIONAL = {$aid}
-                                     AND W.DATE_DELETED IS NULL
-                                     ORDER BY S.CATEGORY");
-    oci_execute($query2);
 
     if (isset($_POST['fname'])) {
         if (checkRequiredField($_POST['fname']) && checkRequiredField($_POST['lname']) && checkRequiredField($_POST['email']) && checkRequiredField($_POST['phone_number'])) {
@@ -64,31 +57,58 @@ if (isset($_SESSION['user_id'])) {
         }
     }
     else if (isset($_POST['new_city'])) {
-        while ($row = oci_fetch_assoc($query2)) {
-            $service = $row['SID'];
-            $check_deleted = oci_parse($db, "SELECT W.* 
+            /*$check_deleted = oci_parse($db, "SELECT W.*
                                                     FROM WORK_OFFERS W
                                                     WHERE W.PROFESSIONAL = {$aid}
-                                                    AND W.SERVICE = {$service}
                                                     AND W.CITY = {$_POST['new_city']} 
                                                     AND W.DATE_DELETED IS NOT NULL");
             oci_execute($check_deleted);
-            if (!oci_fetch_assoc($check_deleted)) {
-                $sql = oci_parse($db, "INSERT INTO WORK_OFFERS (SERVICE, CITY, CHARGE_PER_HOUR, PROFESSIONAL, SERVICE_LEVEL)
+            $check = oci_fetch_assoc($check_deleted);
+            if (!$check) {*/
+                $query2 = oci_parse($db, "SELECT DISTINCT W.SERVICE, S.CATEGORY
+                                                 FROM WORK_OFFERS W, SERVICES S, CITIES C
+                                                 WHERE W.SERVICE = S.SID
+                                                 AND W.CITY = C.CID
+                                                 AND W.DATE_DELETED IS NULL
+                                                 AND W.PROFESSIONAL = {$aid}
+                                                 ORDER BY S.CATEGORY");
+                oci_execute($query2);
+                while ($services = oci_fetch_assoc($query2)){
+                    $service = $services['SERVICE'];
+
+                    $sql1 = oci_parse($db, "INSERT INTO WORK_OFFERS (SERVICE, CITY, CHARGE_PER_HOUR, PROFESSIONAL, SERVICE_LEVEL)
                                           VALUES ({$service}, {$_POST['new_city']}, 4, {$aid}, 'Beginner')");
-                oci_execute($sql);
-                oci_commit($db);
-            } else {
-                $sql = oci_parse($db, "UPDATE WORK_OFFERS SET DATE_DELETED = NULL
+                    oci_execute($sql1);
+                    oci_commit($db);
+
+
+
+            }   /*else {
+                $query2 = oci_parse($db, "SELECT DISTINCT W.SERVICE, S.CATEGORY, S.SID
+                                     FROM WORK_OFFERS W, SERVICES S
+                                     WHERE W.SERVICE = S.SID
+                                     AND W.PROFESSIONAL = {$aid}
+                                     ORDER BY S.CATEGORY");
+                oci_execute($query2);
+                while ($row = oci_fetch_assoc($query2)) {
+                    $service = $row['SERVICE'];
+                    $sql2 = oci_parse($db, "UPDATE WORK_OFFERS SET DATE_DELETED = NULL
                                           WHERE CITY = {$_POST['new_city']}
                                           AND SERVICE = {$service}
                                           AND PROFESSIONAL = {$aid}");
-                oci_execute($sql);
-                oci_commit($db);
-            }
-        }
+                    oci_execute($sql2);
+                    oci_commit($db);
+                }
+            }*/
+
     }
     else if (isset($_POST['deleted_city'])) {
+        $query2 = oci_parse($db, "SELECT DISTINCT W.SERVICE, S.CATEGORY, S.SID
+                                     FROM WORK_OFFERS W, SERVICES S
+                                     WHERE W.SERVICE = S.SID
+                                     AND W.PROFESSIONAL = {$aid}
+                                     ORDER BY S.CATEGORY");
+        oci_execute($query2);
         while ($row = oci_fetch_assoc($query2)) {
             $service = $row['SID'];
             $sql = oci_parse($db, "UPDATE WORK_OFFERS SET DATE_DELETED = SYSDATE 
@@ -293,7 +313,7 @@ if (isset($_SESSION['user_id'])) {
 
                 <fieldset>
                     <legend>Service Categories</legend>
-                    <a href="editServices.php" class="buttonStyle">Update Service Categories</a>
+                    <a href="editServices.php" class="buttonStyle" id="services_link">Update Service Categories</a>
                 </fieldset>
 
                 <fieldset id="cities_fieldset">
