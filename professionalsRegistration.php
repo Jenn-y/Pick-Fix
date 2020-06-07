@@ -52,8 +52,21 @@ if($_POST) {
         }
 
         if ($row) {
-            $query3 = "INSERT INTO fee_payments (card_number, exp_month, exp_year, cvv, professional)
-                VALUES ({$_POST['card_num']}, {$_POST['month']}, {$_POST['year']}, {$_POST['cvv']}, {$row['AID']})";
+            $amount = 11.95;
+            $num_of_months = 1;
+            if ($_GET['plan'] == 1){
+                $amount = 83.88;
+                $num_of_months = 12;
+            } else if ($_GET['plan'] == 2){
+                $amount = 119.76;
+                $num_of_months = 24;
+            } else if ($_GET['plan'] == 3){
+                $amount = 125.64;
+                $num_of_months = 36;
+            }
+
+            $query3 = "INSERT INTO fee_payments (card_number, exp_month, exp_year, cvv, payment_plan, professional, date_paid, amount, payment_expiration)
+                VALUES ({$_POST['card_num']}, {$_POST['month']}, {$_POST['year']}, {$_POST['cvv']}, {$_GET['plan']}, {$row['AID']}, SYSDATE, {$amount}, ADD_MONTHS(SYSDATE, {$num_of_months}))";
             $result = oci_parse($db, $query3);
             oci_execute($result);
             oci_commit($db);

@@ -29,7 +29,7 @@ while ($row_of_services = oci_fetch_assoc($query_services)){
         <div id="logo"><a href="index.php"><h1>Pick & Fix</h1></a></div>
         <nav id="services">
             <div class="dropdown">
-                <a class="dropdown-link" href="findProfessionals.php"><i class="fa fa-angle-right"
+                <a class="dropdown-link" href="login.php"><i class="fa fa-angle-right"
                                                                          aria-hidden="true"></i> All Services</a>
                 <div class="dropdown-content">
                     <div>
@@ -56,14 +56,14 @@ while ($row_of_services = oci_fetch_assoc($query_services)){
             <a href="login.php">Find a Professional</a>
             <a href="login.php">Login</a>
             <a href="userRegistration.php">Register</a>
-            <a href="professionalsRegistration.php">Join As a Pro</a>
+            <a href="pricing.php">Join As a Pro</a>
             <a href="index.php#contact" onclick="closeMenu()">Contact Us</a>
         </div>
 
         <nav id="login">
             <ul>
                 <li><a href="login.php"><i class="fa fa-sign-in"></i> Log In</a></li>
-                <li><a href="professionalsRegistration.php"><i class="fa fa-star" aria-hidden="true"></i> Join as a Pro</a></li>
+                <li><a href="pricing.php"><i class="fa fa-star" aria-hidden="true"></i> Join as a Pro</a></li>
             </ul>
         </nav>
     </div>
