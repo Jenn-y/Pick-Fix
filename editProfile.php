@@ -23,11 +23,12 @@ if (isset($_SESSION['user_id'])) {
     $row = oci_fetch_assoc($query);
 
     if (isset($_POST['fname'])) {
-        if (checkRequiredField($_POST['fname']) && checkRequiredField($_POST['lname']) && checkRequiredField($_POST['email']) && checkRequiredField($_POST['phone_number'])) {
-            $result = oci_parse($db, "update accounts set fname = '{$_POST['fname']}', lname = '{$_POST['lname']}', email = '{$_POST['email']}', phone_number = '{$_POST['phone_number']}' where aid = '{$aid}'");
+        if (checkRequiredField($_POST['fname']) && checkRequiredField($_POST['lname']) && checkRequiredField($_POST['email']) && checkRequiredField($_POST['phone_number']) && checkRequiredField($_POST['primary_city'])) {
+            $result = oci_parse($db, "update accounts set fname = '{$_POST['fname']}', lname = '{$_POST['lname']}', email = '{$_POST['email']}', phone_number = '{$_POST['phone_number']}', primary_city = '{$_POST['primary_city']}' where aid = '{$aid}'");
             oci_execute($result);
             oci_commit($db);
         }
+        echo '<script> location.replace("editProfile.php"); </script>';
     }
     else if(isset($_POST['about'])) {
         if (checkRequiredField($_POST['about'])) {
@@ -35,6 +36,7 @@ if (isset($_SESSION['user_id'])) {
             oci_execute($query2);
             oci_commit($db);
         }
+        echo '<script> location.replace("editProfile.php"); </script>';
     }
     else if(isset($_POST['current_password'])) {
         if(checkRequiredField($_POST['current_password']) && checkRequiredField($_POST['new_password']) && checkRequiredField($_POST['new_password_repeat'])) {
@@ -130,6 +132,7 @@ if (isset($_SESSION['user_id'])) {
             oci_execute($sql);
             oci_commit($db);
         }
+        echo '<script> location.replace("editProfile.php"); </script>';
     }
 
     $query4 = oci_parse($db, "SELECT C.CID, C.CNAME
@@ -192,32 +195,40 @@ if (isset($_SESSION['user_id'])) {
                     <div>
                         <label for="firstName">First name</label>
                         <input id="firstName" name="fname" type="text" value="<?php
-                        if (isset($row2['FNAME'])){
-                            echo $row2['FNAME'];
+                        if (isset($row['FNAME'])){
+                            echo $row['FNAME'];
                         }
                         ?>">
                     </div>
                     <div>
                         <label for="lastName">Last name</label>
                         <input id="lastName" name="lname" type="text" value="<?php
-                        if (isset($row2['LNAME'])){
-                            echo $row2['LNAME'];
+                        if (isset($row['LNAME'])){
+                            echo $row['LNAME'];
                         }
                         ?>">
                     </div>
                     <div>
                         <label for="email">Email</label>
                         <input id="email" name="email" type="email" value="<?php
-                        if (isset($row2['EMAIL'])){
-                            echo $row2['EMAIL'];
+                        if (isset($row['EMAIL'])){
+                            echo $row['EMAIL'];
                         }
                         ?>">
                     </div>
                     <div>
                         <label for="phoneNum">Phone number</label>
                         <input id="phoneNum" name="phone_number" type="number" value="<?php
-                        if (isset($row2['PHONE_NUMBER'])){
-                            echo $row2['PHONE_NUMBER'];
+                        if (isset($row['PHONE_NUMBER'])){
+                            echo $row['PHONE_NUMBER'];
+                        }
+                        ?>">
+                    </div>
+                    <div>
+                        <label for="primary_city">City of residence</label>
+                        <input id="primary_city" name="primary_city" type="text" value="<?php
+                        if (isset($row['PRIMARY_CITY'])){
+                            echo $row['PRIMARY_CITY'];
                         }
                         ?>">
                     </div>
@@ -231,7 +242,7 @@ if (isset($_SESSION['user_id'])) {
                     <div class="about">
                         <label for="about">About</label>
                         <textarea name="about" id="about" placeholder="Please tell us a little about yourself"><?php
-                            if(isset($row2['SHORT_BIOGRAPHY'])) { echo "{$row2['SHORT_BIOGRAPHY']}"; }
+                            if(isset($row['SHORT_BIOGRAPHY'])) { echo "{$row['SHORT_BIOGRAPHY']}"; }
                             ?></textarea>
                     </div>
                     <button type="submit" class="buttonStyle">SAVE</button>
