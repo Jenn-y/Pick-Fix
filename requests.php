@@ -126,7 +126,7 @@ $row = oci_fetch_assoc($query);
                             <th>STATUS</th>
                         </tr>
                         <?php
-                        $query3 = oci_parse($db, "SELECT R.*, H.DATETIME, H.STATUS, S.CATEGORY, C.CNAME, A.FNAME, A.LNAME 
+                        $query3 = oci_parse($db, "SELECT R.*, H.DATETIME, H.STATUS, S.CATEGORY, C.CNAME, A.FNAME, A.LNAME, A.AREA_CODE, A.PHONE_NUMBER 
                                      FROM REQUESTS R, REQUESTS_HISTORY H, WORK_OFFERS W, SERVICES S, ACCOUNTS A, CITIES C
                                      WHERE R.WORK_OFFER = W.WID 
                                      AND R.USER_ID = A.AID
@@ -151,7 +151,8 @@ $row = oci_fetch_assoc($query);
                             </tr>
                             </tr>
                             <tr>
-                                <td colspan="8">PROBLEM DESCRIPTION:<br><?= $row3['DESCRIPTION'] ?></td>
+                                <td colspan="1">CONTACT:<br><?= '+' . $row3['AREA_CODE'] . ' ' . $row['PHONE_NUMBER'] ?></td>
+                                <td colspan="7">PROBLEM DESCRIPTION:<br><?= $row3['DESCRIPTION'] ?></td>
                             </tr>
                         <?php endwhile; ?>
                     </table>
