@@ -25,15 +25,15 @@ if (isset($_SESSION['user_id'])) {
     oci_execute($query6);
 
     if (isset($_POST['city']) && isset($_POST['service'])){
-        $list_specific = oci_parse($db, "SELECT p.lname, p.fname, w.* FROM work_offers w, accounts p WHERE w.service = {$_POST['service']} AND w.city = {$_POST['city']} AND w.professional = p.aid");
+        $list_specific = oci_parse($db, "SELECT p.lname, p.fname, w.* FROM work_offers w, accounts p WHERE w.service = {$_POST['service']} AND w.city = {$_POST['city']} AND w.professional = p.aid AND w.professional != '{$aid}'");
         oci_execute($list_specific);
     }
     if (!isset($_POST['city']) && isset($_POST['service'])){
-        $list_by_service = oci_parse($db, "SELECT p.lname, p.fname, w.* FROM work_offers w, accounts p WHERE w.service = {$_POST['service']} AND w.professional = p.aid");
+        $list_by_service = oci_parse($db, "SELECT p.lname, p.fname, w.* FROM work_offers w, accounts p WHERE w.service = {$_POST['service']} AND w.professional = p.aid AND w.professional != '{$aid}'");
         oci_execute($list_by_service);
     }
     if (isset($_POST['city']) && !isset($_POST['service'])){
-        $list_by_city = oci_parse($db, "SELECT p.lname, p.fname, w.professional  FROM work_offers w, accounts p WHERE w.city = {$_POST['city']} AND w.professional = p.aid GROUP BY p.lname, p.fname, w.professional");
+        $list_by_city = oci_parse($db, "SELECT p.lname, p.fname, w.professional  FROM work_offers w, accounts p WHERE w.city = {$_POST['city']} AND w.professional = p.aid GROUP BY p.lname, p.fname, w.professional AND w.professional != '{$aid}'");
         oci_execute($list_by_city);
     }
 }

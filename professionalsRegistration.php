@@ -81,7 +81,7 @@ if($_POST) {
 <div id="page-container">
     <div id="header">
         <header>
-            <h1><a href="index.php">pick&fix</a></h1>
+            <h1><a href="index.php">Pick & Fix</a></h1>
             <nav>
                 <a href="index.php">Home</a>
             </nav>
@@ -135,7 +135,7 @@ if($_POST) {
                                 <?php endwhile; ?>
                             </div>
                             <select name="primary_city" id="city">
-                                <option disabled selected value>Primary city</option>
+                                <option disabled selected value>City of residence</option>
                                 <?php while($fetch_cities = oci_fetch_assoc($list_cities)): ?>
                                     <option value="<?= $fetch_cities['CNAME']; ?>"><?= $fetch_cities['CNAME']; ?></option>
                                 <?php endwhile; ?>

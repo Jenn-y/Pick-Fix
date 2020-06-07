@@ -83,7 +83,6 @@ th, td {
 
 td {
     text-align: center;
-    width: 33%;
 }
 
 table tr:nth-child(odd) { background-color: dodgerblue; }
