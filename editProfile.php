@@ -20,7 +20,7 @@ if (isset($_SESSION['user_id'])) {
 
     $query = oci_parse($db, "select * from accounts where aid = '{$aid}'");
     oci_execute($query);
-    $row2 = oci_fetch_assoc($query);
+    $row = oci_fetch_assoc($query);
 
     if (isset($_POST['fname'])) {
         if (checkRequiredField($_POST['fname']) && checkRequiredField($_POST['lname']) && checkRequiredField($_POST['email']) && checkRequiredField($_POST['phone_number'])) {
@@ -90,8 +90,8 @@ if (isset($_SESSION['user_id'])) {
                                      AND W.PROFESSIONAL = {$aid}
                                      ORDER BY S.CATEGORY");
                 oci_execute($query2);
-                while ($row = oci_fetch_assoc($query2)) {
-                    $service = $row['SERVICE'];
+                while ($row2 = oci_fetch_assoc($query2)) {
+                    $service = $row2['SERVICE'];
                     $sql2 = oci_parse($db, "UPDATE WORK_OFFERS SET DATE_DELETED = NULL
                                           WHERE CITY = {$_POST['new_city']}
                                           AND SERVICE = {$service}
@@ -192,32 +192,32 @@ if (isset($_SESSION['user_id'])) {
                     <div>
                         <label for="firstName">First name</label>
                         <input id="firstName" name="fname" type="text" value="<?php
-                        if (isset($row['FNAME'])){
-                            echo $row['FNAME'];
+                        if (isset($row2['FNAME'])){
+                            echo $row2['FNAME'];
                         }
                         ?>">
                     </div>
                     <div>
                         <label for="lastName">Last name</label>
                         <input id="lastName" name="lname" type="text" value="<?php
-                        if (isset($row['LNAME'])){
-                            echo $row['LNAME'];
+                        if (isset($row2['LNAME'])){
+                            echo $row2['LNAME'];
                         }
                         ?>">
                     </div>
                     <div>
                         <label for="email">Email</label>
                         <input id="email" name="email" type="email" value="<?php
-                        if (isset($row['EMAIL'])){
-                            echo $row['EMAIL'];
+                        if (isset($row2['EMAIL'])){
+                            echo $row2['EMAIL'];
                         }
                         ?>">
                     </div>
                     <div>
                         <label for="phoneNum">Phone number</label>
                         <input id="phoneNum" name="phone_number" type="number" value="<?php
-                        if (isset($row['PHONE_NUMBER'])){
-                            echo $row['PHONE_NUMBER'];
+                        if (isset($row2['PHONE_NUMBER'])){
+                            echo $row2['PHONE_NUMBER'];
                         }
                         ?>">
                     </div>
@@ -231,7 +231,7 @@ if (isset($_SESSION['user_id'])) {
                     <div class="about">
                         <label for="about">About</label>
                         <textarea name="about" id="about" placeholder="Please tell us a little about yourself"><?php
-                            if(isset($row['SHORT_BIOGRAPHY'])) { echo "{$row['SHORT_BIOGRAPHY']}"; }
+                            if(isset($row2['SHORT_BIOGRAPHY'])) { echo "{$row2['SHORT_BIOGRAPHY']}"; }
                             ?></textarea>
                     </div>
                     <button type="submit" class="buttonStyle">SAVE</button>
@@ -258,7 +258,7 @@ if (isset($_SESSION['user_id'])) {
                 </fieldset>
             </form>
 
-            <?php if($row2['ROLE'] == 1): ?>
+            <?php if($row['ROLE'] == 1): ?>
                 <fieldset>
                     <legend>Credit card</legend>
                     <div class="credit-card_fieldset" id="get_credit_info">

@@ -48,9 +48,10 @@ if ($_POST) {
 <head>
     <?php include('includes/head.php'); ?>
     <link rel="stylesheet" href="css/login.css">
+    <link rel="stylesheet" href="css/test2.css">
     <title>Log in</title>
 </head>
-<body>
+<body id="login_body">
 <main class="flex-container">
     <div>
         <form method="POST">
@@ -71,7 +72,7 @@ if ($_POST) {
     </div>
     <div class="new-account flex-container">
         <a href="userRegistration.php">Create your Account <i class="fa fa-long-arrow-right m-l-5" aria-hidden="true"></i></a>
-        <a href="professionalsRegistration.php">Join as a pro <i class="fa fa-star" aria-hidden="true"></i></a>
+        <a href="professionalsRegistration.php">Join as a Pro <i class="fa fa-star" aria-hidden="true"></i></a>
     </div>
 </main>
 </body>

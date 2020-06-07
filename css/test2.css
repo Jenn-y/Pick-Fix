@@ -1,0 +1,4 @@
+/* login background */
+#login_body {
+    background-image: linear-gradient( to bottom, #023161, #DAD299, rgb(36, 11, 54));
+}
