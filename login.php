@@ -15,9 +15,8 @@ if ($_POST) {
     $row = oci_fetch_assoc($query);
 
 
-
     if ($row) {
-        if(password_verify($password, $row['PASSWORD'])) {
+        if (password_verify($password, $row['PASSWORD'])) {
 
 
             $_SESSION['user_id'] = $row['AID'];
@@ -25,16 +24,28 @@ if ($_POST) {
             $_SESSION['lname'] = $row['LNAME'];
             $_SESSION['role'] = $row['ROLE'];
 
-
             if ($_SESSION['role'] == 0) {
                 header('Location: admin/admin.php');
                 exit();
             } else {
-                header('Location: findProfessionals.php');
-                exit();
+
+                $sql = oci_parse($db, "select MAX(F.PAYMENT_EXPIRATION)
+                                          from ACCOUNTS A, FEE_PAYMENTS F
+                                          where F.PROFESSIONAL = A.AID
+                                          and A.AID = {$row['AID']}");
+                oci_execute($sql);
+
+                $expiration_date = oci_fetch_assoc($sql);
+
+                if (strtotime(date("Y/m/d")) >= strtotime($expiration_date["MAX(F.PAYMENT_EXPIRATION)"])) {
+                    header('Location: pricing.php');
+                    exit();
+                } else {
+                    header('Location: findProfessionals.php');
+                    exit();
+                }
             }
-        }
-        else {
+        } else {
             $_SESSION['msg'] = 'Incorrect username and/or password';
         }
     }
@@ -60,7 +71,7 @@ if ($_POST) {
                 <?php create_input("email", "email", "Email"); ?>
                 <input type="password" placeholder="Password" name="password">
                 <button type="submit">Login</button>
-                <?php if(isset($_SESSION['msg'])): ?>
+                <?php if (isset($_SESSION['msg'])): ?>
                     <p id="incorrect-password"><?= $_SESSION['msg'] ?></p>
                 <?php endif; ?>
                 <div>
@@ -71,7 +82,8 @@ if ($_POST) {
         </form>
     </div>
     <div class="new-account flex-container">
-        <a href="userRegistration.php">Create your Account <i class="fa fa-long-arrow-right m-l-5" aria-hidden="true"></i></a>
+        <a href="userRegistration.php">Create your Account <i class="fa fa-long-arrow-right m-l-5"
+                                                              aria-hidden="true"></i></a>
         <a href="professionalsRegistration.php">Join as a Pro <i class="fa fa-star" aria-hidden="true"></i></a>
     </div>
 </main>
