@@ -62,11 +62,12 @@ if ($_POST && isset($_GET['id'])) {
     <link href="css/header.css" rel="stylesheet">
     <link href="css/profile.css" rel="stylesheet">
     <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/test2.css">
 
     <title>Profile</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script>
-        function reqListener () {
+        function reqListener() {
             document.getElementById("estimate_price").innerHTML = this.responseText + 'BAM';
         }
 
@@ -97,48 +98,57 @@ if ($_POST && isset($_GET['id'])) {
                 </div>
             </div>
             <div class="about">
-                <h4>About: </h4>
-                <?php if($row['SHORT_BIOGRAPHY'] == null): ?>
-                    <p><i>No profile description provided . . .</i></p>
+                <h2>About: </h2>
+                <?php if ($row['SHORT_BIOGRAPHY'] == null): ?>
+                    <p><i>- No profile description provided -</i></p>
                 <?php else: ?>
                     <p><?= $row['SHORT_BIOGRAPHY'] ?></p>
                 <?php endif; ?>
 
-                <?php if ($row['ROLE'] == 1){ ?>
-                    <h4>Areas Served: </h4>
-                    <?php
-                    $query = oci_parse($db, "SELECT DISTINCT CITY, CNAME FROM WORK_OFFERS
+                <?php if ($row['ROLE'] == 1) { ?>
+                    <div class="flex-container areas_categories">
+                        <div>
+                            <h3>Areas Served: </h3><br>
+                            <ul>
+                            <?php
+                            $query = oci_parse($db, "SELECT DISTINCT CITY, CNAME FROM WORK_OFFERS
                                                             JOIN CITIES
                                                             ON CID = CITY
                                                             where professional = {$aid}
-                                                            ORDER BY CITY");
-                    oci_execute($query);
+                                                            ORDER BY CNAME");
+                            oci_execute($query);
 
-                    while ($row3 = oci_fetch_assoc($query)) :
-                    ?>
-                    <span><?= $row3['CNAME'] . ' ~ '?></span>
-                    <?php endwhile; ?>
-
-                    <br><br><h4>Categories </h4>
-                    <?php
-                    $query = oci_parse($db, "SELECT DISTINCT SERVICE, CATEGORY FROM WORK_OFFERS
+                            while ($row3 = oci_fetch_assoc($query)) :
+                                ?>
+                                <li><?= $row3['CNAME'] ?></li>
+                            <?php endwhile; ?>
+                            </ul>
+                        </div>
+                        <div>
+                            <h3>Categories </h3><br>
+                            <ul>
+                            <?php
+                            $query = oci_parse($db, "SELECT DISTINCT SERVICE, CATEGORY FROM WORK_OFFERS
                                                             JOIN SERVICES
                                                             ON SERVICE = SID
                                                             where professional = {$aid}
-                                                            ORDER BY SERVICE");
-                    oci_execute($query);
+                                                            ORDER BY CATEGORY");
+                            oci_execute($query);
 
-                    while ($row2 = oci_fetch_assoc($query)) :
-                        ?>
-                        <span><?= $row2['CATEGORY'] . ' ~ ' ?></span>
-                    <?php endwhile; ?>
+                            while ($row2 = oci_fetch_assoc($query)) :
+                                ?>
+                                <li><?= $row2['CATEGORY']?></li>
+                            <?php endwhile; ?>
+                            </ul>
+                        </div>
+                    </div>
                 <?php } ?>
-                <br><br><h4>Contact:</h4>
+                <br><br><h2>Contact:</h2>
                 <p><?= '+' . $row['AREA_CODE'] . ' ' . $row['PHONE_NUMBER'] ?></p>
             </div>
         </div>
 
-        <?php if(isset($_GET['id'])): ?>
+        <?php if (isset($_GET['id'])): ?>
             <div class="request-box shadow">
                 <p>Request Service Form</p>
                 <form class="flex-container" method="post">
