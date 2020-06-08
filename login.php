@@ -59,10 +59,9 @@ if ($_POST) {
 <head>
     <?php include('includes/head.php'); ?>
     <link rel="stylesheet" href="css/login.css">
-    <link rel="stylesheet" href="css/test2.css">
     <title>Log in</title>
 </head>
-<body id="login_body">
+<body>
 <main class="flex-container">
     <div>
         <form method="POST">

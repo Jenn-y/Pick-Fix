@@ -5,7 +5,8 @@
 
 body {
     font-family: 'Roboto', serif;
-    /*background: linear-gradient(-45deg,#ac32e4,#7918f2,#4801ff);*/
+    background-image: linear-gradient(to right bottom, #7470e0, #676cd7, #5967ce, #4c63c5, #3e5ebc, #2b66bd, #176dbc, #0073ba, #0084bc, #0093b7, #00a0ae, #48aca5);
+
 
     display: flex;
     justify-content: center;

@@ -59,49 +59,49 @@ if (isset($_SESSION['user_id'])) {
         }
     }
     else if (isset($_POST['new_city'])) {
-            $check_deleted = oci_parse($db, "SELECT W.*
+        $check_deleted = oci_parse($db, "SELECT W.*
                                                     FROM WORK_OFFERS W
                                                     WHERE W.PROFESSIONAL = {$aid}
                                                     AND W.CITY = {$_POST['new_city']} 
                                                     AND W.DATE_DELETED IS NOT NULL");
-            oci_execute($check_deleted);
-            $check = oci_fetch_assoc($check_deleted);
-            if (!$check) {
-                $query2 = oci_parse($db, "SELECT DISTINCT W.SERVICE, S.CATEGORY
+        oci_execute($check_deleted);
+        $check = oci_fetch_assoc($check_deleted);
+        if (!$check) {
+            $query2 = oci_parse($db, "SELECT DISTINCT W.SERVICE, S.CATEGORY
                                                  FROM WORK_OFFERS W, SERVICES S, CITIES C
                                                  WHERE W.SERVICE = S.SID
                                                  AND W.CITY = C.CID
                                                  AND W.DATE_DELETED IS NULL
                                                  AND W.PROFESSIONAL = {$aid}
                                                  ORDER BY S.CATEGORY");
-                oci_execute($query2);
-                while ($services = oci_fetch_assoc($query2)){
-                    $service = $services['SERVICE'];
+            oci_execute($query2);
+            while ($services = oci_fetch_assoc($query2)){
+                $service = $services['SERVICE'];
 
-                    $sql1 = oci_parse($db, "INSERT INTO WORK_OFFERS (SERVICE, CITY, CHARGE_PER_HOUR, PROFESSIONAL, SERVICE_LEVEL)
+                $sql1 = oci_parse($db, "INSERT INTO WORK_OFFERS (SERVICE, CITY, CHARGE_PER_HOUR, PROFESSIONAL, SERVICE_LEVEL)
                                           VALUES ({$service}, {$_POST['new_city']}, 4, {$aid}, 'Beginner')");
-                    oci_execute($sql1);
-                    oci_commit($db);
+                oci_execute($sql1);
+                oci_commit($db);
 
 
 
             }  }else {
-                $query2 = oci_parse($db, "SELECT DISTINCT W.SERVICE, S.CATEGORY, S.SID
+            $query2 = oci_parse($db, "SELECT DISTINCT W.SERVICE, S.CATEGORY, S.SID
                                      FROM WORK_OFFERS W, SERVICES S
                                      WHERE W.SERVICE = S.SID
                                      AND W.PROFESSIONAL = {$aid}
                                      ORDER BY S.CATEGORY");
-                oci_execute($query2);
-                while ($row2 = oci_fetch_assoc($query2)) {
-                    $service = $row2['SERVICE'];
-                    $sql2 = oci_parse($db, "UPDATE WORK_OFFERS SET DATE_DELETED = NULL
+            oci_execute($query2);
+            while ($row2 = oci_fetch_assoc($query2)) {
+                $service = $row2['SERVICE'];
+                $sql2 = oci_parse($db, "UPDATE WORK_OFFERS SET DATE_DELETED = NULL
                                           WHERE CITY = {$_POST['new_city']}
                                           AND SERVICE = {$service}
                                           AND PROFESSIONAL = {$aid}");
-                    oci_execute($sql2);
-                    oci_commit($db);
-                }
+                oci_execute($sql2);
+                oci_commit($db);
             }
+        }
 
     }
     else if (isset($_POST['deleted_city'])) {
@@ -159,7 +159,6 @@ if (isset($_SESSION['user_id'])) {
     <link rel="stylesheet" href="css/editProfile.css">
     <link href="css/header.css" rel="stylesheet">
     <link rel="stylesheet" href="css/footer.css">
-    <link rel="stylesheet" href="css/test.css">
     <title>Edit Profile</title>
 </head>
 <body>
@@ -274,51 +273,51 @@ if (isset($_SESSION['user_id'])) {
                     <legend>Credit card</legend>
                     <div class="credit-card_fieldset" id="get_credit_info">
                         <form method="post">
-                        <div class="acceptedCards">
-                            <label>Accepted Cards</label>
-                            <div class="icon-container">
-                                <i class="fa fa-cc-visa" style="color:navy;"></i>
-                                <i class="fa fa-cc-amex" style="color:blue;"></i>
-                                <i class="fa fa-cc-mastercard" style="color:red;"></i>
-                                <i class="fa fa-cc-discover" style="color:orange;"></i>
+                            <div class="acceptedCards">
+                                <label>Accepted Cards</label>
+                                <div class="icon-container">
+                                    <i class="fa fa-cc-visa" style="color:navy;"></i>
+                                    <i class="fa fa-cc-amex" style="color:blue;"></i>
+                                    <i class="fa fa-cc-mastercard" style="color:red;"></i>
+                                    <i class="fa fa-cc-discover" style="color:orange;"></i>
+                                </div>
                             </div>
-                        </div>
-                        <div class="card_num">
-                        <label for="card_num">Card number</label>
-                        <input type="text" name="card_num" class="card-number" id="card_num" placeholder="Card Number">
-                        </div>
-                        <div class="dateAndCvv">
-                            <div class="month">
-                                <label for="month">Expiration month</label>
-                                <select name="month" id="month">
-                                    <?php foreach ($months as $key => $month) { ?>
-                                        <option value="<?= $key ?>"><?= $month ?></option>
-                                    <?php } ?>
-                                </select>
+                            <div class="card_num">
+                                <label for="card_num">Card number</label>
+                                <input type="text" name="card_num" class="card-number" id="card_num" placeholder="Card Number">
                             </div>
-                            <div class="year">
-                                <label for="year">Expiration year</label>
-                                <select name="year" id="year">
-                                    <?php foreach ($years as $year) { ?>
-                                        <option value="<?= $year ?>"><?= $year ?></option>
-                                    <?php } ?>
-                                </select>
+                            <div class="dateAndCvv">
+                                <div class="month">
+                                    <label for="month">Expiration month</label>
+                                    <select name="month" id="month">
+                                        <?php foreach ($months as $key => $month) { ?>
+                                            <option value="<?= $key ?>"><?= $month ?></option>
+                                        <?php } ?>
+                                    </select>
+                                </div>
+                                <div class="year">
+                                    <label for="year">Expiration year</label>
+                                    <select name="year" id="year">
+                                        <?php foreach ($years as $year) { ?>
+                                            <option value="<?= $year ?>"><?= $year ?></option>
+                                        <?php } ?>
+                                    </select>
+                                </div>
+                                <div class="cvv-input">
+                                    <label for="cvv">CVV</label>
+                                    <?php create_input("number", "cvv", "CVV",true); ?>
+                                </div>
                             </div>
-                            <div class="cvv-input">
-                                <label for="cvv">CVV</label>
-                                <?php create_input("number", "cvv", "CVV",true); ?>
-                            </div>
-                        </div>
-                        <button class="buttonStyle" type="submit">Save</button>
+                            <button class="buttonStyle" type="submit">Save</button>
                         </form>
                     </div>
-                        <button class="buttonStyle" onclick="get_credit()" id="remove_button">Update Credit Card Information</button>
-                        <script>
-                            function get_credit() {
-                                document.getElementById('get_credit_info').style.display = 'block';
-                                document.getElementById('remove_button').style.display = 'none';
-                            }
-                        </script>
+                    <button class="buttonStyle" onclick="get_credit()" id="remove_button">Update Credit Card Information</button>
+                    <script>
+                        function get_credit() {
+                            document.getElementById('get_credit_info').style.display = 'block';
+                            document.getElementById('remove_button').style.display = 'none';
+                        }
+                    </script>
 
                 </fieldset>
 
