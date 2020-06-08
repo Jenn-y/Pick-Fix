@@ -402,13 +402,12 @@ select {
     align-items: center;
 }
 
-.displayProfessionals h4{
+.displayProfessionals h3 {
     text-align: center;
     padding: 1rem;
 }
-.displayProfessionals h5 {
+.displayProfessionals h4 {
     text-align: center;
-    padding: 0 1rem;
 }
 
 #findProfessionals main .dropdown {

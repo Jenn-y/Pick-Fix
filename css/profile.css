@@ -40,6 +40,10 @@ body {
     border-radius: 50%;
 }
 
+.user #username {
+    color: white;
+    margin-bottom: 0.5rem;
+}
 .user div { margin-left: 2rem; }
 
 .about {
