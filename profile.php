@@ -3,11 +3,7 @@ if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
 include_once("includes/db.php");
-
-function checkRequiredField($value)
-{
-    return isset($value) && !empty($value);
-}
+include("includes/functions.php");
 
 $aid = -1;
 
@@ -53,6 +49,7 @@ if ($_POST && isset($_GET['id'])) {
         exit();
     }
 }
+
 ?>
 
 <!DOCTYPE html>
@@ -90,7 +87,7 @@ if ($_POST && isset($_GET['id'])) {
     <main class="center">
         <div class="shadow">
             <div class="user flex-container">
-                <img src="images/default-user.png" alt="default-user-image">
+                <img src="<?= fetch_profile_image($row['AID'], $row['IMG_TYPE']); ?>" alt="default-user-image">
                 <div>
                     <h3><?= $row['FNAME'] . ' ' . $row['LNAME'] ?></h3>
                     <p><?= $row['PRIMARY_CITY'] ?>, Bosnia and Herzegovina</p>

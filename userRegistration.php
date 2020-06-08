@@ -2,16 +2,12 @@
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
-include("includes/form-functions.php");
+include("includes/functions.php");
 include_once("includes/db.php");
 
 $query3 = oci_parse($db, 'SELECT * FROM cities WHERE date_deleted IS NULL ORDER BY cname');
 oci_execute($query3);
 
-function checkRequiredField($value)
-{
-    return isset($value) && !empty($value);
-}
 if($_POST) {
     if (checkRequiredField($_POST['first_name']) && checkRequiredField($_POST['last_name']) && checkRequiredField($_POST['email'])
         && checkRequiredField($_POST['password'])) {

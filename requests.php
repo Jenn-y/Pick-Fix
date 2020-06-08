@@ -10,8 +10,6 @@ $query = oci_parse($db, $q);
 oci_execute($query);
 
 $row = oci_fetch_assoc($query);
-
-/*$query_requests = oci_parse($db, "SELECT r.* FROM requests, request_")*/
 ?>
 
 <!DOCTYPE html>
