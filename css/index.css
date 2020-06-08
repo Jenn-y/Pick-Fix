@@ -124,9 +124,9 @@ main {
     margin-right: 0;
 }
 
-.popular-services a:hover {
+/*.popular-services a:hover {
     transform: scale(1.1);
-}
+}*/
 
 .popular-services a img{
     width: 100%;
@@ -427,6 +427,13 @@ select {
 #findProfessionals main .dropdown:hover .dropdown-content {
     transition: 5s;
     display: block;
+}
+
+.displayProfessionals img {
+    object-fit: cover;
+    object-position: center center;
+    max-width: 250px;
+    height: 250px;
 }
 
 /**** Animation for team members ****/

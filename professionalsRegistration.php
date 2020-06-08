@@ -2,13 +2,8 @@
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
-include("includes/form-functions.php");
+include("includes/functions.php");
 include_once("includes/db.php");
-
-function checkRequiredField($value)
-{
-    return isset($value) && !empty($value);
-}
 
 $query1 = oci_parse($db, 'SELECT * FROM cities WHERE date_deleted IS NULL ORDER BY cname');
 oci_execute($query1);

@@ -28,11 +28,18 @@ main {
     padding: 3rem 0 15rem 0;
 }
 
+#profilePhoto {
+    flex-direction: column;
+}
+
 #profilePhoto img {
-    display: block;
-    max-width: 180px;
+    object-fit: cover;
+    object-position: center center;
+    width: 180px;
+    height: 180px;
     border-radius: 50%;
-    margin: 20px auto;
+    margin: 0 auto;
+    margin-bottom: 1rem;
 }
 
 .buttonStyle {
@@ -68,7 +75,6 @@ div label, label {
 
 main form div {
     display: flex;
-    justify-content: flex-start;
     text-align: right;
     align-items: center;
     width: inherit;

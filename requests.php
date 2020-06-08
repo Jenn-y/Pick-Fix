@@ -10,7 +10,6 @@ $query = oci_parse($db, $q);
 oci_execute($query);
 
 $row = oci_fetch_assoc($query);
-
 ?>
 
 <!DOCTYPE html>

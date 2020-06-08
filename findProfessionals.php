@@ -4,6 +4,7 @@ if (session_status() == PHP_SESSION_NONE) {
 }
 
 include_once("includes/db.php");
+include("includes/functions.php");
 
 if (isset($_SESSION['user_id'])) {
     $aid = $_SESSION['user_id'];
@@ -54,6 +55,7 @@ if (isset($_SESSION['user_id'])) {
         oci_execute($list_by_city);
     }
 }
+
 ?>
 
 <!doctype html>
@@ -98,9 +100,7 @@ if (isset($_SESSION['user_id'])) {
 
     <main>
         <section class="flex-container popular-services">
-            <h2>Choose a professional for your service <i class="fa fa-angle-double-down"
-                                                          aria-hidden="true"></i></h2>
-
+            <h2>Choose a professional for your service <i class="fa fa-angle-double-down" aria-hidden="true"></i></h2>
             <div class="allServices">
                 <h1>All services</h1>
 
@@ -128,7 +128,8 @@ if (isset($_SESSION['user_id'])) {
                         oci_execute($completed_jobs);
                         $jobs = oci_fetch_assoc($completed_jobs); ?>
                         <a href="profile.php?id=<?= $row5['AID']?>">
-                            <img src="images/default-user.png" alt="professional-profile">
+
+                            <img src="<?= fetch_profile_image($row5['AID'], $row5['IMG_TYPE']); ?>" alt="professional-profile">
                             <h3><?php echo $row5['FNAME'] . ' ' . $row5['LNAME']; ?></h3>
                             <h4>Service: <?php echo $row5['CATEGORY']; ?></h4>
                             <h4>City: <?php echo $row5['CNAME']; ?></h4>
@@ -185,7 +186,7 @@ if (isset($_SESSION['user_id'])) {
                         oci_execute($completed_jobs);
                         $jobs = oci_fetch_assoc($completed_jobs); ?>
                         <a href="profile.php?id=<?= $row6['AID']?>">
-                            <img src="images/default-user.png" alt="professional-profile">
+                            <img src="<?= fetch_profile_image($row6['AID'], $row6['IMG_TYPE']); ?>" alt="professional-profile">
                             <h3><?php echo $row6['FNAME'] . ' ' . $row6['LNAME']; ?></h3>
                             <h4>Service: <?php echo $row6['CATEGORY']; ?></h4>
                             <h4>Jobs completed: <?php echo $jobs['JOBS'];?></h4>
@@ -239,7 +240,7 @@ if (isset($_SESSION['user_id'])) {
                         oci_execute($completed_jobs);
                         $jobs = oci_fetch_assoc($completed_jobs); ?>
                         <a href="profile.php?id=<?= $row7['AID']?>">
-                            <img src="images/default-user.png" alt="professional-profile">
+                            <img src="<?= fetch_profile_image($row7['AID'], $row7['IMG_TYPE']); ?>" alt="professional-profile">
                             <h3><?php echo $row7['FNAME'] . ' ' . $row7['LNAME']; ?></h3>
                             <h4>City: <?php echo $row7['CNAME']; ?></h4>
                             <h4>Jobs completed: <?php echo $jobs['JOBS'];?></h4>
@@ -293,7 +294,7 @@ if (isset($_SESSION['user_id'])) {
                         $jobs = oci_fetch_assoc($completed_jobs);
                         ?>
                         <a href="profile.php?id=<?= $row5['AID']?>">
-                            <img src="images/default-user.png" alt="professional-profile">
+                            <img src="<?= fetch_profile_image($row5['AID'], $row5['IMG_TYPE']); ?>" alt="professional-profile">
                             <h3><?php echo $row5['FNAME'] . ' ' . $row5['LNAME']; ?></h3>
                             <h4>Jobs completed: <?php echo $jobs['JOBS'];?></h4>
                         <?php $sql = oci_parse($db, "SELECT R.JOB_RATING

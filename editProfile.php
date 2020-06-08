@@ -3,12 +3,7 @@ if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
 include_once("includes/db.php");
-include ("includes/form-functions.php");
-
-function checkRequiredField($value)
-{
-    return isset($value) && !empty($value);
-}
+include("includes/functions.php");
 
 $months = [1 => 'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 $years = range(2020, date('Y') + 5);
@@ -134,6 +129,21 @@ if (isset($_SESSION['user_id'])) {
         }
         echo '<script> location.replace("editProfile.php"); </script>';
     }
+    else if(isset($_POST['submit'])) {
+        if (isset($_FILES)) {
+            $imageSrc = $_FILES['image']['tmp_name'];
+            $imageType = $_FILES['image']['type'];
+            $ext = substr($imageType, 6);
+
+            $path = "images/profiles/" . $aid . "." . $ext;
+            move_uploaded_file($_FILES['image']['tmp_name'], $path);
+
+            $r = oci_parse($db, "UPDATE accounts SET img_type = '{$ext}' WHERE aid = {$aid}");
+            oci_execute($r);
+            oci_commit($db);
+            echo '<script> location.replace("editProfile.php"); </script>';
+        }
+    }
 
     $query4 = oci_parse($db, "SELECT C.CID, C.CNAME
                                      FROM CITIES C
@@ -148,6 +158,7 @@ if (isset($_SESSION['user_id'])) {
                                      AND W.DATE_DELETED IS NULL
                                      ORDER BY C.CNAME");
     oci_execute($query5);
+
 }
 
 ?>
@@ -183,10 +194,13 @@ if (isset($_SESSION['user_id'])) {
                     <p class="center">Success!</p>
                 </div>
             <?php endif; ?>
-            <div id="profilePhoto">
-                <img src="images/default-user.png" alt="default-user-image">
-                <button class="buttonStyle">Change Profile Photo</button>
-            </div>
+            <form method="post" enctype="multipart/form-data">
+                <div id="profilePhoto">
+                    <img src="<?= fetch_profile_image($row['AID'], $row['IMG_TYPE']); ?>" alt="default-user-image">
+                    <input type="file" name="image">
+                    <button type="submit" name="submit" class="buttonStyle">Change Profile Photo</button>
+                </div>
+            </form>
 
             <form method="post">
                 <fieldset class="general">

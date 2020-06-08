@@ -3,7 +3,7 @@ if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
 
-include('includes/form-functions.php');
+include('includes/functions.php');
 if ($_POST) {
     include_once("includes/db.php");
 
@@ -14,10 +14,8 @@ if ($_POST) {
     oci_execute($query);
     $row = oci_fetch_assoc($query);
 
-
     if ($row) {
         if (password_verify($password, $row['PASSWORD'])) {
-
 
             $_SESSION['user_id'] = $row['AID'];
             $_SESSION['fname'] = $row['FNAME'];

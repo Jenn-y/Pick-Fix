@@ -83,6 +83,23 @@ nav > ul > li {
     position: relative;
 }
 
+nav img {
+    object-fit: cover;
+    object-position: center center;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    margin-right: 0.75rem;
+}
+
+.flex-container {
+    display: flex;
+}
+
+.pic {
+    align-items: center;
+}
+
 /* Signed-in additional dropdown style */
 
 #login #signed-profile {
