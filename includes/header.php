@@ -3,6 +3,7 @@ if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
 include_once("includes/db.php");
+include_once("includes/functions.php");
 $query_services = oci_parse($db, 'SELECT * FROM services WHERE date_deleted IS NULL ORDER BY category');
 oci_execute($query_services);
 $array[] = '';
@@ -10,6 +11,11 @@ $num_rows = 0;
 while ($row_of_services = oci_fetch_assoc($query_services)){
     $array[] = $row_of_services['CATEGORY'];
     $num_rows++;
+}
+
+if(isset($_SESSION['user_id'])) {
+    $query = oci_parse($db, "SELECT * FROM accounts WHERE aid = {$_SESSION['user_id']}");
+    oci_execute($query);
 }
 ?>
 
@@ -70,7 +76,10 @@ while ($row_of_services = oci_fetch_assoc($query_services)){
     <?php else: ?>
         <nav id="login">
             <div class="dropdown">
-                <p class="dropdown-link"><i class="fa fa-user" aria-hidden="true"></i><?php echo ' ' . $_SESSION['fname']. ' ' . $_SESSION['lname'] ?></p>
+                <div class="pic flex-container">
+                    <img src="<?= fetch_profile_image($row['AID'], $row['IMG_TYPE']); ?>" alt="nope">
+                    <p class="dropdown-link"><?php echo ' ' . $_SESSION['fname']. ' ' . $_SESSION['lname'] ?></p>
+                </div>
                 <div class="dropdown-content" id="signed-profile">
                     <a href="profile.php">My profile</a>
                     <a href="editProfile.php">Edit profile</a>
