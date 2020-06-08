@@ -105,7 +105,7 @@ if (isset($_POST['plan'])) {
                 </label>
             </div>
             <div class="submit flex-container">
-                <button type="submit">CONTINUE</button>
+                <button type="submit">Continue</button>
             </div>
         </form>
     </main>
