@@ -49,18 +49,18 @@ if (isset($_SESSION['user_id'])) {
                                                     AND W.DATE_DELETED IS NOT NULL");
             oci_execute($check_deleted);
             if (!oci_fetch_assoc($check_deleted)) {
-            $sql = oci_parse($db, "INSERT INTO WORK_OFFERS (SERVICE, CITY, CHARGE_PER_HOUR, PROFESSIONAL, SERVICE_LEVEL)
+                $sql = oci_parse($db, "INSERT INTO WORK_OFFERS (SERVICE, CITY, CHARGE_PER_HOUR, PROFESSIONAL, SERVICE_LEVEL)
                                           VALUES ({$_POST['new_service']}, {$city}, 4, {$aid}, 'Beginner')");
-            oci_execute($sql);
-            oci_commit($db);
-             } else {
-                 $sql = oci_parse($db, "UPDATE WORK_OFFERS SET DATE_DELETED = NULL
+                oci_execute($sql);
+                oci_commit($db);
+            } else {
+                $sql = oci_parse($db, "UPDATE WORK_OFFERS SET DATE_DELETED = NULL
                                            WHERE CITY = {$city}
                                            AND SERVICE = {$_POST['new_service']}
                                            AND PROFESSIONAL = {$aid}");
-                 oci_execute($sql);
-                 oci_commit($db);
-             }
+                oci_execute($sql);
+                oci_commit($db);
+            }
         }
     }
     if (isset($_POST['deleted_service'])) {
@@ -99,7 +99,6 @@ if (isset($_SESSION['user_id'])) {
     <link rel="stylesheet" href="css/editProfile.css">
     <link href="css/header.css" rel="stylesheet">
     <link rel="stylesheet" href="css/footer.css">
-    <link rel="stylesheet" href="css/test.css">
     <title>Edit Service Categories</title>
 </head>
 <body id="editServices">

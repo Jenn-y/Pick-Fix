@@ -62,7 +62,6 @@ if ($_POST && isset($_GET['id'])) {
     <link href="css/header.css" rel="stylesheet">
     <link href="css/profile.css" rel="stylesheet">
     <link rel="stylesheet" href="css/footer.css">
-    <link rel="stylesheet" href="css/test2.css">
 
     <title>Profile</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -110,35 +109,35 @@ if ($_POST && isset($_GET['id'])) {
                         <div>
                             <h3>Areas Served: </h3><br>
                             <ul>
-                            <?php
-                            $query = oci_parse($db, "SELECT DISTINCT CITY, CNAME FROM WORK_OFFERS
+                                <?php
+                                $query = oci_parse($db, "SELECT DISTINCT CITY, CNAME FROM WORK_OFFERS
                                                             JOIN CITIES
                                                             ON CID = CITY
                                                             where professional = {$aid}
                                                             ORDER BY CNAME");
-                            oci_execute($query);
+                                oci_execute($query);
 
-                            while ($row3 = oci_fetch_assoc($query)) :
-                                ?>
-                                <li><?= $row3['CNAME'] ?></li>
-                            <?php endwhile; ?>
+                                while ($row3 = oci_fetch_assoc($query)) :
+                                    ?>
+                                    <li><?= $row3['CNAME'] ?></li>
+                                <?php endwhile; ?>
                             </ul>
                         </div>
                         <div>
                             <h3>Categories </h3><br>
                             <ul>
-                            <?php
-                            $query = oci_parse($db, "SELECT DISTINCT SERVICE, CATEGORY FROM WORK_OFFERS
+                                <?php
+                                $query = oci_parse($db, "SELECT DISTINCT SERVICE, CATEGORY FROM WORK_OFFERS
                                                             JOIN SERVICES
                                                             ON SERVICE = SID
                                                             where professional = {$aid}
                                                             ORDER BY CATEGORY");
-                            oci_execute($query);
+                                oci_execute($query);
 
-                            while ($row2 = oci_fetch_assoc($query)) :
-                                ?>
-                                <li><?= $row2['CATEGORY']?></li>
-                            <?php endwhile; ?>
+                                while ($row2 = oci_fetch_assoc($query)) :
+                                    ?>
+                                    <li><?= $row2['CATEGORY']?></li>
+                                <?php endwhile; ?>
                             </ul>
                         </div>
                     </div>

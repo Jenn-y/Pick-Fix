@@ -192,7 +192,7 @@ button, #get-price {
     padding: 1rem;
     border: none;
     cursor: pointer;
-    //background-color: #4dbc15;
+//background-color: #4dbc15;
     background-color: #4dbc15;
     color: white;
     font-weight: bold;
@@ -210,6 +210,24 @@ label span { color: #DC143C; }
 
 #submit-box {
     width: 100%;
+}
+
+/***** Area categories *****/
+.areas_categories div {
+    margin-right: 3rem;
+    line-height: 1.5rem;
+}
+
+.areas_categories ul {
+    list-style: none;
+}
+
+.areas_categories li::before {
+    content: "\2726";
+    color: #8e040a;
+    display: inline-block;
+    width: 1em;
+    margin-left: -1em;
 }
 
 /****** Responsive design ******/
