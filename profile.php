@@ -58,6 +58,7 @@ if ($_POST && isset($_GET['id'])) {
     <?php include('includes/head.php'); ?>
     <link href="css/header.css" rel="stylesheet">
     <link href="css/profile.css" rel="stylesheet">
+    <link href="css/test.css" rel="stylesheet">
     <link rel="stylesheet" href="css/footer.css">
 
     <title>Profile</title>
@@ -89,8 +90,45 @@ if ($_POST && isset($_GET['id'])) {
             <div class="user flex-container">
                 <img src="<?= fetch_profile_image($row['AID'], $row['IMG_TYPE']); ?>" alt="default-user-image">
                 <div>
-                    <h3><?= $row['FNAME'] . ' ' . $row['LNAME'] ?></h3>
+                    <h2 id="username"><?= $row['FNAME'] . ' ' . $row['LNAME'] ?></h2>
                     <p><?= $row['PRIMARY_CITY'] ?>, Bosnia and Herzegovina</p>
+                    <?php if ($row['ROLE'] == 1) {
+                        $sql = oci_parse($db, "SELECT R.JOB_RATING
+                                                       FROM REQUESTS R, WORK_OFFERS W
+                                                       WHERE R.WORK_OFFER = W.WID
+                                                       AND W.PROFESSIONAL = {$aid}
+                                                       AND R.JOB_RATING IS NOT NULL");
+                        oci_execute($sql);
+
+                        $sum_rates = 0;
+                        $num_of_rates = 0;
+
+                        while ($request_row = oci_fetch_assoc($sql)) {
+                            $sum_rates = $sum_rates + $request_row['JOB_RATING'];
+                            $num_of_rates++;
+                        }
+                        $rating = 1.0;
+                        if ($num_of_rates != 0) {
+                            $rating = $sum_rates / $num_of_rates;
+                        }
+                        $empty_stars = 5;
+                        ?>
+                        <br><span>Service Rating: <span style="color: #FFDF00;"><?php echo $rating; ?><br></span></span>
+                        <?php while ($rating >= 1) :
+                            $rating--;
+                            $empty_stars--; ?>
+                            <span><i class="fa fa-star" style="color: #FFDF00;"></i></span>
+                        <?php endwhile;
+                        if ($rating > 0) :
+                            $empty_stars--; ?>
+                            <span><i class="fa fa-star-half-empty" style="color: #FFDF00"></i></span>
+                        <?php endif;
+                        while ($empty_stars >= 1) :
+                            $empty_stars--; ?>
+                            <span><i class="fa fa-star-o"></i></span>
+                        <?php endwhile; ?>
+                        <span style="color:#C0C0C0;">(<?php echo $num_of_rates; ?> reviews)</span>
+                    <?php } ?>
                 </div>
             </div>
             <div class="about">
@@ -133,13 +171,14 @@ if ($_POST && isset($_GET['id'])) {
 
                                 while ($row2 = oci_fetch_assoc($query)) :
                                     ?>
-                                    <li><?= $row2['CATEGORY']?></li>
+                                    <li><?= $row2['CATEGORY'] ?></li>
                                 <?php endwhile; ?>
                             </ul>
                         </div>
                     </div>
                 <?php } ?>
-                <br><br><h2>Contact:</h2>
+                <br><br>
+                <h2>Contact:</h2>
                 <p><?= '+' . $row['AREA_CODE'] . ' ' . $row['PHONE_NUMBER'] ?></p>
             </div>
         </div>
@@ -219,6 +258,52 @@ if ($_POST && isset($_GET['id'])) {
             </div>
         <?php endif; ?>
 
+        <?php if ($_SESSION['role'] == 1 || isset($aid)) { ?>
+            <div class="comments_section shadow">
+                <h1>Review Comments</h1>
+                <?php
+                $qry = oci_parse($db, "SELECT R.PRO_RECOMMENDATION, R.JOB_RATING, A.FNAME, A.LNAME, A.AID, S.CATEGORY
+                                                       FROM REQUESTS R, WORK_OFFERS W, ACCOUNTS A, SERVICES S
+                                                       WHERE R.WORK_OFFER = W.WID
+                                                       AND W.PROFESSIONAL = {$aid}
+                                                       AND W.SERVICE = S.SID
+                                                       AND R.PRO_RECOMMENDATION IS NOT NULL
+                                                       AND R.USER_ID = A.AID
+                                                       ORDER BY R.JOB_RATING DESC");
+                oci_execute($qry);
+                $no_comment = true;
+                while ($comment = oci_fetch_assoc($qry)) {
+                    $no_comment = false; ?>
+                    <div class="comment">
+                        <?php if ($_SESSION['user_id'] == $comment['AID']) { ?>
+                            <h3>You</h3>
+                        <?php } else { ?>
+                            <h2><?php echo $comment['FNAME'] . ' ' . $comment['LNAME']; ?></h2>
+                        <?php } ?>
+                        <h4>Service: <?php echo $comment['CATEGORY']; ?></h4>
+                        <div>
+                            <span>Rating: </span>
+                            <?php $stars = $comment['JOB_RATING'];
+                            $empty = 5 - $stars;
+                            while ($stars >= 1) {
+                                $stars--; ?>
+                                <span><i class="fa fa-star" style="color: #FFDF00;"></i></span>
+                            <?php }
+                            while ($empty >= 1) {
+                                $empty--; ?>
+                                <span><i class="fa fa-star-o"></i></span>
+                            <?php } ?>
+                        </div>
+                        <p><?php echo $comment['PRO_RECOMMENDATION']; ?></p>
+                    </div>
+                <?php } ?>
+                <?php if ($no_comment) { ?>
+                    <div class="no_comment comment">
+                        <p>No comments available</p>
+                    </div>
+                <?php } ?>
+            </div>
+        <?php } ?>
     </main>
 
     <?php include('includes/footer.php'); ?>
