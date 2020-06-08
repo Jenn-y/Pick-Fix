@@ -16,3 +16,15 @@ function create_input($type, $name, $placeholder, $required = false) {
         echo ">";
     }
 }
+
+function fetch_profile_image($user_id, $type) {
+    if($type == null) {
+        return "images/default-user.png";
+    }
+    return "images/profiles/" . $user_id . "." . $type;
+}
+
+function checkRequiredField($value)
+{
+    return isset($value) && !empty($value);
+}
