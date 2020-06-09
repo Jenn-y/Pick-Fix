@@ -2,9 +2,9 @@
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
-
-include_once("includes/db.php");
 include("includes/functions.php");
+check_if_logged_in();
+include_once("includes/db.php");
 
 if (isset($_SESSION['user_id'])) {
     $aid = $_SESSION['user_id'];
@@ -65,8 +65,6 @@ if (isset($_SESSION['user_id'])) {
     <link rel="stylesheet" href="css/header.css">
     <link rel="stylesheet" href="css/index.css">
     <link rel="stylesheet" href="css/footer.css">
-    <link rel="stylesheet" href="css/test.css">
-
 
     <title>Find Professionals</title>
 </head>

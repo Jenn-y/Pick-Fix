@@ -14,8 +14,9 @@ while ($row_of_services = oci_fetch_assoc($query_services)){
 }
 
 if(isset($_SESSION['user_id'])) {
-    $query = oci_parse($db, "SELECT * FROM accounts WHERE aid = {$_SESSION['user_id']}");
-    oci_execute($query);
+    $header_query = oci_parse($db, "SELECT * FROM accounts WHERE aid = {$_SESSION['user_id']}");
+    oci_execute($header_query);
+    $header_row = oci_fetch_assoc($header_query);
 }
 ?>
 
@@ -35,8 +36,7 @@ if(isset($_SESSION['user_id'])) {
         <div id="logo"><a href="index.php"><h1>Pick & Fix</h1></a></div>
         <nav id="services">
             <div class="dropdown">
-                <a class="dropdown-link" href="login.php"><i class="fa fa-angle-right"
-                                                                         aria-hidden="true"></i> All Services</a>
+                <a class="dropdown-link" href="<?= empty($_SESSION) ? "login.php" : "findProfessionals.php" ?>"><i class="fa fa-angle-right" aria-hidden="true"></i> All Services</a>
                 <div class="dropdown-content">
                     <div>
                         <?php for ($i = 1; $i < $num_rows/2+1; $i++): ?>
@@ -76,10 +76,12 @@ if(isset($_SESSION['user_id'])) {
     <?php else: ?>
         <nav id="login">
             <div class="dropdown">
-                <div class="pic flex-container">
-                    <img src="<?= fetch_profile_image($row['AID'], $row['IMG_TYPE']); ?>" alt="nope">
-                    <p class="dropdown-link"><?php echo ' ' . $_SESSION['fname']. ' ' . $_SESSION['lname'] ?></p>
-                </div>
+                <a href="profile.php">
+                    <div class="pic flex-container">
+                        <img src="<?= fetch_profile_image($header_row['AID'], $header_row['IMG_TYPE']); ?>" alt="nope">
+                        <p class="dropdown-link"><?php echo ' ' . $_SESSION['fname']. ' ' . $_SESSION['lname'] ?></p>
+                    </div>
+                </a>
                 <div class="dropdown-content" id="signed-profile">
                     <a href="profile.php">My profile</a>
                     <a href="editProfile.php">Edit profile</a>

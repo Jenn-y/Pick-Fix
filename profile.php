@@ -2,8 +2,9 @@
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
-include_once("includes/db.php");
 include("includes/functions.php");
+check_if_logged_in();
+include_once("includes/db.php");
 
 $aid = -1;
 
@@ -58,7 +59,6 @@ if ($_POST && isset($_GET['id'])) {
     <?php include('includes/head.php'); ?>
     <link href="css/header.css" rel="stylesheet">
     <link href="css/profile.css" rel="stylesheet">
-    <link href="css/test.css" rel="stylesheet">
     <link rel="stylesheet" href="css/footer.css">
 
     <title>Profile</title>

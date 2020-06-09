@@ -2,8 +2,9 @@
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
-include_once("includes/db.php");
 include("includes/functions.php");
+check_if_logged_in();
+include_once("includes/db.php");
 
 $months = [1 => 'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 $years = range(2020, date('Y') + 5);
