@@ -7,16 +7,16 @@ include_once('includes/db.php');
 
 if (isset($_POST['plan'])) {
 
-    if (isset($_SESSION['user_id'])){
+    if (isset($_SESSION['user_id']) && $_SESSION['role'] == 1) {
         $amount = 11.95;
         $num_of_months = 1;
-        if ($_POST['plan'] == 1){
+        if ($_POST['plan'] == 1) {
             $amount = 83.88;
             $num_of_months = 12;
-        } else if ($_POST['plan'] == 2){
+        } else if ($_POST['plan'] == 2) {
             $amount = 119.76;
             $num_of_months = 24;
-        } else if ($_POST['plan'] == 3){
+        } else if ($_POST['plan'] == 3) {
             $amount = 125.64;
             $num_of_months = 36;
         }
@@ -28,8 +28,9 @@ if (isset($_POST['plan'])) {
         oci_commit($db);
 
         header("Location: findProfessionals.php");
-    }
-    else {
+    } else if ($_SESSION['role'] == 2) {
+        header("Location: become-pro.php?plan={$_POST['plan']}");
+    } else {
         header("Location: professionalsRegistration.php?plan={$_POST['plan']}");
     }
 }

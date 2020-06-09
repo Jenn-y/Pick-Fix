@@ -39,7 +39,7 @@ if (isset($_POST['role'])){
 
 <header>
     <div class="inner-header flex-container center">
-        <h1><a href="#">Pick&Fix</a></h1>
+        <h1><a href="../admin.php">Pick&Fix</a></h1>
         <a href="../../includes/logout.php">Log out</a>
     </div>
 </header>
@@ -52,6 +52,7 @@ if (isset($_POST['role'])){
             <a href="../services/services.php">Services</a>
             <a href="../work_offers/work_offers.php">Work offers</a>
             <a href="#" id="stay">Users <i class="fa fa-long-arrow-right" aria-hidden="true"></i></a>
+            <a href="#">Payments</a>
         </div>
 
 <div id="filter_block">

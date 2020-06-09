@@ -46,8 +46,8 @@ if (isset($_SESSION['user_id'])) {
                                                     AND W.DATE_DELETED IS NOT NULL");
             oci_execute($check_deleted);
             if (!oci_fetch_assoc($check_deleted)) {
-                $sql = oci_parse($db, "INSERT INTO WORK_OFFERS (SERVICE, CITY, CHARGE_PER_HOUR, PROFESSIONAL, SERVICE_LEVEL)
-                                          VALUES ({$_POST['new_service']}, {$city}, 4, {$aid}, 'Beginner')");
+                $sql = oci_parse($db, "INSERT INTO WORK_OFFERS (SERVICE, CITY, CHARGE_PER_HOUR, PROFESSIONAL)
+                                          VALUES ({$_POST['new_service']}, {$city}, 4, {$aid})");
                 oci_execute($sql);
                 oci_commit($db);
             } else {
@@ -132,7 +132,7 @@ if (isset($_SESSION['user_id'])) {
             $city_id = $row['CID']; ?>
             <table>
                 <tr>
-                    <th colspan="5" id="city_header"><?= $row['CNAME'] ?></th>
+                    <th colspan="4" id="city_header"><?= $row['CNAME'] ?></th>
                 </tr>
 
                 <?php $query3 = oci_parse($db, "SELECT W.*, S.CATEGORY, S.CAT_DESCRIPTION, C.CNAME
@@ -149,7 +149,6 @@ if (isset($_SESSION['user_id'])) {
                     <th>Services</th>
                     <th>Category Description</th>
                     <th>Charge per Hour</th>
-                    <th>Service Level</th>
                     <th>Save</th>
                 </tr>
 
@@ -166,26 +165,19 @@ if (isset($_SESSION['user_id'])) {
                                            echo $row_offer['CHARGE_PER_HOUR'];
                                        }
                                        ?>">
-                            </td>
-                            <td><input id="service_level" name="service_level" type="text" value="<?php
-                                if (isset($row_offer['SERVICE_LEVEL'])) {
-                                    echo $row_offer['SERVICE_LEVEL'];
-                                }
-                                ?>">
                                 <input type="hidden" name="wid" value="<?= $row_offer['WID']; ?>">
                             </td>
                             <td><input type="submit" name="submit" value="Save" class="buttonStyle">
                                 <?php
-                                if (isset($_POST['charge_per_hour']) && isset($_POST['service']) && isset($_POST['wid']) && isset($_POST['service_level'])) {
+                                if (isset($_POST['charge_per_hour']) && isset($_POST['service']) && isset($_POST['wid'])) {
                                     if (checkRequiredField($_POST['charge_per_hour'])) {
                                         $charge = $_POST['charge_per_hour'];
                                         $service = $_POST['service'];
-                                        $service_level = $_POST['service_level'];
                                         $wid = $_POST['wid'];
                                         $city = $row_offer['CITY'];
 
                                         $query = oci_parse($db, "UPDATE WORK_OFFERS
-                                                                                        SET CHARGE_PER_HOUR = {$charge}, SERVICE_LEVEL = '{$service_level}'
+                                                                                        SET CHARGE_PER_HOUR = {$charge}
                                                                                         WHERE SERVICE={$service} 
                                                                                         AND CITY={$city} 
                                                                                         AND PROFESSIONAL={$aid}

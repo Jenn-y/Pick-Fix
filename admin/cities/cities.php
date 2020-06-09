@@ -16,7 +16,7 @@ oci_execute($query2);
 
 <header>
     <div class="inner-header flex-container center">
-        <h1><a href="#">Pick&Fix</a></h1>
+        <h1><a href="../admin.php">Pick&Fix</a></h1>
         <a href="../../includes/logout.php">Log out</a>
     </div>
 </header>
@@ -29,6 +29,7 @@ oci_execute($query2);
             <a href="../services/services.php">Services</a>
             <a href="../work_offers/work_offers.php">Work offers</a>
             <a href="../users/users.php">Users</a>
+            <a href="#">Payments</a>
         </div>
         <div class="rows">
             <table>
@@ -40,7 +41,7 @@ oci_execute($query2);
                     <tr>
                         <td><?= $row['CID']; ?></td>
                         <td><?= $row['CNAME']; ?></td>
-                        <td><a href="delete_city.php?id=<?=$row['CID']; ?>">delete</a></td>
+                        <td><a href="delete_city.php?id=<?=$row['CID']; ?>" onclick="return confirm('Are you sure that you want to delete city <?=$row['CNAME']; ?>?')">delete</a></td>
                         <td><a href="update_cities.php?id=<?=$row['CID']; ?>">edit</a></td>
                     </tr>
                 <?php endwhile; ?>

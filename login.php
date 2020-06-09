@@ -25,7 +25,7 @@ if ($_POST) {
             if ($_SESSION['role'] == 0) {
                 header('Location: admin/admin.php');
                 exit();
-            } else {
+            } else if ($_SESSION['role'] == 1) {
 
                 $sql = oci_parse($db, "select MAX(F.PAYMENT_EXPIRATION)
                                           from ACCOUNTS A, FEE_PAYMENTS F
@@ -42,6 +42,9 @@ if ($_POST) {
                     header('Location: findProfessionals.php');
                     exit();
                 }
+            } else {
+                header('Location: findProfessionals.php');
+                exit();
             }
         } else {
             $_SESSION['msg'] = 'Incorrect username and/or password';

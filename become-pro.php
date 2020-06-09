@@ -13,13 +13,13 @@ oci_execute($query2);
 $list_cities = oci_parse($db, 'SELECT * FROM cities WHERE date_deleted IS NULL ORDER BY cname');
 oci_execute($list_cities);
 $months = [1 => 'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-$years = range(2016, date('Y'));
+$years = range(2020, date('Y')+5);
 
-if($_POST && $_GET['id']) {
+if($_POST && $_GET['plan']) {
 
     if (checkRequiredField($_POST['area_code']) && checkRequiredField($_POST['phone_number']) && checkRequiredField($_POST['card_num']) && checkRequiredField($_POST['month']) && checkRequiredField($_POST['year']) && checkRequiredField($_POST['cvv']) && isset($_POST['cities']) && isset($_POST['services'])) {
 
-        $sql = "UPDATE accounts SET area_code = {$_POST['area_code']}, phone_number = {$_POST['phone_number']}, role = 1 WHERE aid = {$_GET['id']}";
+        $sql = "UPDATE accounts SET area_code = {$_POST['area_code']}, phone_number = {$_POST['phone_number']}, role = 1 WHERE aid = {$_SESSION['user_id']}";
         $result = oci_parse($db, $sql);
         oci_execute($result);
         oci_commit($db);
@@ -30,29 +30,38 @@ if($_POST && $_GET['id']) {
             $city = $cities_array[$i];
             for ($j = 0; $j < count($services_array); $j++) {
                 $service = $services_array[$j];
-                $statement = oci_parse($db, "INSERT INTO work_offers(service, city, charge_per_hour, professional) VALUES ($service, $city, 4, {$_GET['id']})");
+                $statement = oci_parse($db, "INSERT INTO work_offers(service, city, charge_per_hour, professional) VALUES ($service, $city, 4, {$_SESSION['user_id']})");
                 oci_execute($statement);
 
                 oci_commit($db);
             }
         }
 
+        $amount = 11.95;
+        $num_of_months = 1;
+        if ($_GET['plan'] == 1){
+            $amount = 83.88;
+            $num_of_months = 12;
+        } else if ($_GET['plan'] == 2){
+            $amount = 119.76;
+            $num_of_months = 24;
+        } else if ($_GET['plan'] == 3){
+            $amount = 125.64;
+            $num_of_months = 36;
+        }
 
-        $query3 = "INSERT INTO fee_payments (card_number, exp_month, exp_year, cvv, professional)
-                VALUES ({$_POST['card_num']}, {$_POST['month']}, {$_POST['year']}, {$_POST['cvv']}, {$_GET['id']})";
+        $query3 = "INSERT INTO fee_payments (card_number, exp_month, exp_year, cvv, professional, plan, amount, payment_expiration, date_paid)
+                VALUES ({$_POST['card_num']}, {$_POST['month']}, {$_POST['year']}, {$_POST['cvv']}, {$_SESSION['user_id']}, {$_GET['plan']}, {$amount}, ADD_MONTHS(SYSDATE, {$num_of_months}), SYSDATE)";
         $result = oci_parse($db, $query3);
         oci_execute($result);
 
         oci_commit($db);
 
-        $findProfessional = oci_parse($db, "SELECT * FROM accounts WHERE aid = {$_GET['id']}");
+        $findProfessional = oci_parse($db, "SELECT * FROM accounts WHERE aid = {$_SESSION['user_id']}");
         oci_execute($findProfessional);
         $professional = oci_fetch_assoc($findProfessional);
 
         if ($professional) {
-            $_SESSION['user_id'] = $professional['AID'];
-            $_SESSION['fname'] = $professional['FNAME'];
-            $_SESSION['lname'] = $professional['LNAME'];
             $_SESSION['role'] = $professional['ROLE'];
 
 

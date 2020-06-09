@@ -102,7 +102,7 @@ if(isset($_SESSION['user_id'])) {
             <a href="requests.php" onclick="closeMenu()">My Requests</a>
             <a href="findProfessionals.php">Find a Professional</a>
             <?php if ($row['ROLE'] == 2): ?>
-                <a href="become-pro.php?id=<?= $_SESSION['user_id']?>">Become a Professional</a>
+                <a href="pricing.php">Become a Professional</a>
             <?php endif; ?>
             <a href="index.php">Log out</a>
         </div>
@@ -112,9 +112,10 @@ if(isset($_SESSION['user_id'])) {
             <a href="index.php">Home</a>
             <a href="findProfessionals.php">Find a Professional</a>
             <?php if ($row['ROLE'] == 2): ?>
-                <a href="profile.php">My Profile</a>
+                <a href="pricing.php">Become a Professional</a>
             <?php endif; ?>
-            <a href="become-pro.php">Become a Professional</a>
+            <a href="profile.php">My Profile</a>
+
 
         </div>
     <?php endif; ?>

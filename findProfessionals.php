@@ -26,7 +26,7 @@ if (isset($_SESSION['user_id'])) {
     oci_execute($query6);
 
     if (isset($_POST['city']) && isset($_POST['service'])){
-        $list_specific = oci_parse($db, "SELECT p.aid, p.lname, p.fname, w.*, s.category, c.cname
+        $list_specific = oci_parse($db, "SELECT p.aid, p.lname, p.fname, w.*, s.category, c.cname, P.IMG_TYPE
                                                 FROM work_offers w, accounts p, services s, cities c
                                                 WHERE w.service = {$_POST['service']} 
                                                 AND w.city = {$_POST['city']} 
@@ -37,7 +37,7 @@ if (isset($_SESSION['user_id'])) {
         oci_execute($list_specific);
     }
     if (!isset($_POST['city']) && isset($_POST['service'])){
-        $list_by_service = oci_parse($db, "SELECT DISTINCT W.PROFESSIONAL, P.FNAME, P.LNAME, P.AID, s.category
+        $list_by_service = oci_parse($db, "SELECT DISTINCT W.PROFESSIONAL, P.FNAME, P.LNAME, P.AID, s.category, P.IMG_TYPE
                                                   FROM work_offers w, accounts p, services s 
                                                   WHERE w.service = {$_POST['service']} 
                                                   AND w.professional = p.aid 
@@ -46,7 +46,7 @@ if (isset($_SESSION['user_id'])) {
         oci_execute($list_by_service);
     }
     if (isset($_POST['city']) && !isset($_POST['service'])){
-        $list_by_city = oci_parse($db, "SELECT DISTINCT W.PROFESSIONAL, P.FNAME, P.LNAME, P.AID, C.CNAME
+        $list_by_city = oci_parse($db, "SELECT DISTINCT W.PROFESSIONAL, P.FNAME, P.LNAME, P.AID, C.CNAME, P.IMG_TYPE
                                                 FROM work_offers w, accounts p, cities c
                                                 WHERE w.city = {$_POST['city']}
                                                 and w.city = c.cid
