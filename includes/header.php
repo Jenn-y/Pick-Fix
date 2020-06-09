@@ -76,7 +76,7 @@ if(isset($_SESSION['user_id'])) {
     <?php else: ?>
         <nav id="login">
             <div class="dropdown">
-                <a href="">
+                <a href="profile.php">
                     <div class="pic flex-container">
                         <img src="<?= fetch_profile_image($header_row['AID'], $header_row['IMG_TYPE']); ?>" alt="nope">
                         <p class="dropdown-link"><?php echo ' ' . $_SESSION['fname']. ' ' . $_SESSION['lname'] ?></p>
