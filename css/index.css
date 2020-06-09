@@ -436,6 +436,24 @@ select {
     height: 250px;
 }
 
+.rating_pro {
+    margin: 1rem 0.5rem;
+    text-align: center;
+    font-style: italic;
+}
+.displayProfessionals h4 {
+    margin: 0.7rem 1rem -0.5rem;
+    font-weight: unset;
+}
+
+.allServices h1 {
+    margin-bottom: 2rem;
+}
+
+.displayProfessionals a {
+    color: #353b3e;
+}
+
 /**** Animation for team members ****/
 @keyframes member-photo {
     0% {

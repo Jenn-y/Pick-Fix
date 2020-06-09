@@ -23,8 +23,6 @@ body {
 
 .flex-container { display: flex; }
 
-
-
 /* Professional user profile */
 
 .user {
@@ -200,11 +198,11 @@ button, #get-price {
     padding: 1rem;
     border: none;
     cursor: pointer;
-//background-color: #4dbc15;
     background-color: #4dbc15;
     color: white;
     font-weight: bold;
     width: 25%;
+    text-align: center;
 }
 
 button:hover { background-color: #44a512; }
@@ -236,6 +234,69 @@ label span { color: #DC143C; }
     display: inline-block;
     width: 1em;
     margin-left: -1em;
+}
+
+/***** Comments section ******/
+
+.comments_section {
+    background-color: white;
+    margin-top: 2.5rem;
+    padding: 1rem;
+    color: rgba(61, 55, 55, 0.95);
+}
+.comments_section .comment div {
+    padding-bottom: 2rem;
+    font-style: italic;
+}
+
+.comments_section .comment {
+    margin-top: 1.5rem;
+    line-height: 1.5;
+    background-color: rgba(192, 192, 192, 0.25);
+    padding: 1.5rem 2.5rem;
+    box-shadow: 3px 3px 3px rgba(153, 153, 153, 0.68);
+}
+
+.comments_section .comment p {
+    text-indent: 40px;
+    text-align: justify;
+    font-size: 20px;
+}
+
+.no_comment p {
+    color: #3d4548;
+    text-align: center;
+}
+
+/* Requests page */
+.rating_click {
+    background-color: unset;
+    font-size: 18px;
+    color: rgba(0, 0, 0, 0.82);
+}
+
+.rating_area #submit_button {
+    width: 100%;
+    margin-bottom: 2rem;
+}
+
+.rating_area td {
+}
+.rating_area textarea {
+    height: 70px;
+
+}
+.rating_area select {
+    width: 100%;
+}
+.review_table {
+    border: 0.01rem solid lightblue;
+}
+.review_header {
+    background-color: lightblue !important;
+}
+.requests {
+    color: rgba(0, 0, 0, 0.82);
 }
 
 /****** Responsive design ******/
