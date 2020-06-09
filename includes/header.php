@@ -36,7 +36,7 @@ if(isset($_SESSION['user_id'])) {
         <div id="logo"><a href="index.php"><h1>Pick & Fix</h1></a></div>
         <nav id="services">
             <div class="dropdown">
-                <a class="dropdown-link" href="login.php"><i class="fa fa-angle-right" aria-hidden="true"></i> All Services</a>
+                <a class="dropdown-link" href="<?= empty($_SESSION) ? "login.php" : "findProfessionals.php" ?>"><i class="fa fa-angle-right" aria-hidden="true"></i> All Services</a>
                 <div class="dropdown-content">
                     <div>
                         <?php for ($i = 1; $i < $num_rows/2+1; $i++): ?>
