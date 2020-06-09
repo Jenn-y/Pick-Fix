@@ -57,7 +57,7 @@ oci_execute($query2);
                         <?php else: ?>
                             <td><?= $row['NO_OF_PROS']; ?></td>
                         <?php endif; ?>
-                        <td><a href="delete_service.php?id=<?=$row['SID']; ?>">delete</a></td>
+                        <td><a href="delete_service.php?id=<?=$row['SID']; ?>" onclick="return confirm('Are you sure that you want to delete category <?=$row['CATEGORY']; ?>?')">delete</a></td>
                         <td><a href="update_service.php?id=<?=$row['SID']; ?>">edit</a></td>
                     </tr>
                 <?php endwhile; ?>

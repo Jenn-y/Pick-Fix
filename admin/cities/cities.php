@@ -40,7 +40,7 @@ oci_execute($query2);
                     <tr>
                         <td><?= $row['CID']; ?></td>
                         <td><?= $row['CNAME']; ?></td>
-                        <td><a href="delete_city.php?id=<?=$row['CID']; ?>">delete</a></td>
+                        <td><a href="delete_city.php?id=<?=$row['CID']; ?>" onclick="return confirm('Are you sure that you want to delete city <?=$row['CNAME']; ?>?')">delete</a></td>
                         <td><a href="update_cities.php?id=<?=$row['CID']; ?>">edit</a></td>
                     </tr>
                 <?php endwhile; ?>
