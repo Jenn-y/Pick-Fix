@@ -58,7 +58,6 @@ if ($_POST && isset($_GET['id'])) {
     <?php include('includes/head.php'); ?>
     <link href="css/header.css" rel="stylesheet">
     <link href="css/profile.css" rel="stylesheet">
-    <link href="css/test.css" rel="stylesheet">
     <link rel="stylesheet" href="css/footer.css">
 
     <title>Profile</title>

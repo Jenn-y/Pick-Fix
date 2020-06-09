@@ -65,8 +65,6 @@ if (isset($_SESSION['user_id'])) {
     <link rel="stylesheet" href="css/header.css">
     <link rel="stylesheet" href="css/index.css">
     <link rel="stylesheet" href="css/footer.css">
-    <link rel="stylesheet" href="css/test.css">
-
 
     <title>Find Professionals</title>
 </head>
