@@ -104,8 +104,8 @@ if($_POST && $_GET['plan']) {
                     broad set of skills on our platform.
                     <br><strong>Start receiving job requests in one place - easy and fast!</strong></p>
                 <h4>HOW</h4>
-                <p>Fill out the registration form below, and with a monthly fee of only 3,99BAM
-                    enjoy all the benefits of our platform. Sign up for your 14-day FREE trial today!</p>
+                <p>Fill out the registration form below, and with a chosen payment plan
+                    enjoy all the benefits of our platform. Sign up for your 30-day FREE trial today!</p>
                 <div class="arrow_box"></div>
             </div>
         </div>
