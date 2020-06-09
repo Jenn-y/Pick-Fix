@@ -74,8 +74,8 @@ if (isset($_SESSION['user_id'])) {
             while ($services = oci_fetch_assoc($query2)){
                 $service = $services['SERVICE'];
 
-                $sql1 = oci_parse($db, "INSERT INTO WORK_OFFERS (SERVICE, CITY, CHARGE_PER_HOUR, PROFESSIONAL, SERVICE_LEVEL)
-                                          VALUES ({$service}, {$_POST['new_city']}, 4, {$aid}, 'Beginner')");
+                $sql1 = oci_parse($db, "INSERT INTO WORK_OFFERS(SERVICE, CITY, CHARGE_PER_HOUR, PROFESSIONAL)
+                                          VALUES ({$service}, {$_POST['new_city']}, 4, {$aid})");
                 oci_execute($sql1);
                 oci_commit($db);
 
@@ -116,6 +116,7 @@ if (isset($_SESSION['user_id'])) {
             oci_execute($sql);
             oci_commit($db);
         }
+        echo '<script> location.replace("editProfile.php"); </script>';
     }
     else if (isset($_POST['card_num'])) {
         if (checkRequiredField($_POST['card_num']) && isset($_POST['month']) && isset($_POST['year']) && checkRequiredField($_POST['cvv'])){

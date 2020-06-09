@@ -1,6 +1,10 @@
 <?php
 include('../../includes/db.php');
-$query = oci_parse($db, "SELECT DISTINCT C.CITY, C.CNAME, P.FNAME, P.LNAME, W.SERVICE, S.CATEGORY 
+
+
+
+
+$query = oci_parse($db, "SELECT DISTINCT C.CID, C.CNAME, P.FNAME, P.LNAME, P.AID, P.AREA_CODE, P.PHONE_NUMBER, P.ROLE, W.SERVICE, S.CATEGORY 
                                 FROM WORK_OFFERS W, SERVICES S, ACCOUNTS P, CITIES C
                                 WHERE W.SERVICE = S.SID 
                                 AND W.CITY = C.CID
@@ -18,7 +22,7 @@ oci_execute($query);
 
 <header>
     <div class="inner-header flex-container center">
-        <h1><a href="#">Pick&Fix</a></h1>
+        <h1><a href="../admin.php">Pick&Fix</a></h1>
         <a href="../../includes/logout.php">Log out</a>
     </div>
 </header>
@@ -31,6 +35,7 @@ oci_execute($query);
             <a href="../services/services.php">Services</a>
             <a href="#" id="stay">Work offers <i class="fa fa-long-arrow-right" aria-hidden="true"></i></a>
             <a href="../users/users.php">Users</a>
+            <a href="#">Payments</a>
         </div>
         <div class="rows">
             <table>
@@ -41,7 +46,7 @@ oci_execute($query);
                     <th>Phone Number</th>
                     <th>Role</th>
                 </tr>
-                <?php while($row = oci_fetch_assoc($query1)): ?>
+                <?php while($row = oci_fetch_assoc($query)): ?>
                     <tr>
                         <td><?= $row['AID']; ?></td>
                         <td><?= $row['FNAME']; ?></td>

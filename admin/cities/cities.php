@@ -16,7 +16,7 @@ oci_execute($query2);
 
 <header>
     <div class="inner-header flex-container center">
-        <h1><a href="#">Pick&Fix</a></h1>
+        <h1><a href="../admin.php">Pick&Fix</a></h1>
         <a href="../../includes/logout.php">Log out</a>
     </div>
 </header>
@@ -29,6 +29,7 @@ oci_execute($query2);
             <a href="../services/services.php">Services</a>
             <a href="../work_offers/work_offers.php">Work offers</a>
             <a href="../users/users.php">Users</a>
+            <a href="#">Payments</a>
         </div>
         <div class="rows">
             <table>
