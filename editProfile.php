@@ -196,10 +196,23 @@ if (isset($_SESSION['user_id'])) {
                     <p class="center">Success!</p>
                 </div>
             <?php endif; ?>
+            <div>
+                <?php
+                $sql = oci_parse($db, "select MAX(F.PAYMENT_EXPIRATION)
+                                          from ACCOUNTS A, FEE_PAYMENTS F
+                                          where F.PROFESSIONAL = A.AID
+                                          and A.AID = {$aid}");
+                oci_execute($sql);
+
+                $exp_row = oci_fetch_assoc($sql);
+
+                ?>
+                <h4 style="color: #d42626; font-weight: unset; font-style: italic; ">Payment expires on: <?php echo $exp_row['MAX(F.PAYMENT_EXPIRATION)']; ?></h4>
+            </div>
             <form method="post" enctype="multipart/form-data">
                 <div id="profilePhoto">
                     <img src="<?= fetch_profile_image($row['AID'], $row['IMG_TYPE']); ?>" alt="default-user-image">
-                    <input type="file" name="image">
+                    <input type="file" name="image" style="margin-left: 5rem;">
                     <button type="submit" name="submit" class="buttonStyle">Change Profile Photo</button>
                 </div>
             </form>
