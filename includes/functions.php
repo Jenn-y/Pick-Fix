@@ -28,3 +28,9 @@ function checkRequiredField($value)
 {
     return isset($value) && !empty($value);
 }
+
+function check_if_logged_in() {
+    if(empty($_SESSION)) {
+        echo '<script> location.replace("includes/redirect.php"); </script>';
+    }
+}

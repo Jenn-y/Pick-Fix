@@ -2,8 +2,9 @@
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
-include_once("includes/db.php");
 include("includes/functions.php");
+check_if_logged_in();
+include_once("includes/db.php");
 
 $aid = -1;
 
