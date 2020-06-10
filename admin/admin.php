@@ -28,7 +28,7 @@
         <div>
             <h1>WELCOME TO ADMIN PAGE</h1>
             <ul>
-                <li>X -List all the services a specific professional offers. services </li>
+                <li>X - List all the services a specific professional offers. services </li>
                 <li>X - List services and the number of professionals that are offering them. services</li>
                 <br>
                 <li>List the professionals and the amount of money they earned in a given period.
@@ -37,8 +37,8 @@
                 <li>List the professionals and the amount of money they paid us for the usage of this system, for a
                     given period. payments</li>
                 <br>
-                <li>List all professionals for a specific service in the specific city. work_offers</li>
-                <li> List all those professionals that offer the service regardless even out of their place of
+                <li>X - List all professionals for a specific service in the specific city. work_offers</li>
+                <li>x - List all those professionals that offer the service regardless even out of their place of
                     residence. work_offers </li>
                 <li>list cities outside of place of residence work_offers</li>
                 <br>
