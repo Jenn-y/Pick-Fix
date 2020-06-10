@@ -89,3 +89,6 @@ table a:hover {
 #display_services, #display_cities {
     display: none;
 }
+#work_offers .tables a {
+    width: 100%;
+}

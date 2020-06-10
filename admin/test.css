@@ -1,0 +1,8 @@
+#work_offers .flex-container .report-view {
+    margin-left: 10rem;
+}
+
+#work_offers .tables a {
+    width: 100%;
+    color: red;
+}
