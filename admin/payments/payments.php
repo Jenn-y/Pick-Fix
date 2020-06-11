@@ -52,7 +52,7 @@ if($_POST) {
                                       FULL JOIN (
                                         SELECT user_id, sum(num_of_hrs*charge_per_hour) AS total_paid FROM requests
                                         JOIN requests_history ON rid = request
-                                        WHERE status = 1 AND datetime >= to_date('11-06-2020','DD-MM-YYYY') AND datetime <= to_date('30-06-2020','DD-MM-YYYY')
+                                        WHERE status = 1 AND datetime >= to_date('{$from_date}','DD-MM-YYYY') AND datetime <= to_date('{$to_date}','DD-MM-YYYY')
                                         GROUP BY user_id
                                         )
                                       ON aid = user_id
