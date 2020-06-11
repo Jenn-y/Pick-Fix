@@ -62,9 +62,9 @@ if($_POST) {
         <label for="phone">Phone</label>
         <?php create_input("tel", "phone", "Phone number",true); ?>
 
-        <label for="city">City</label>
+        <label for="city">City of residence</label>
         <select name="city" id="city">
-            <option disabled selected value>Select a city of residence</option>
+            <option disabled selected value>Select a city</option>
             <?php while($row3 = oci_fetch_assoc($query3)): ?>
                 <option value="<?= $row3['CNAME']; ?>"><?= $row3['CNAME']; ?></option>
             <?php endwhile; ?>

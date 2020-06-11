@@ -158,7 +158,7 @@ if (isset($_SESSION['user_id'])) {
                         <tr>
                             <td><?= $row_offer['CATEGORY']; ?>
                                 <input type="hidden" name="service" value="<?= $row_offer['SERVICE']; ?>"></td>
-                            <td><?= $row_offer['CAT_DESCRIPTION'] ?></td>
+                            <td style="padding: 0 3rem;"><?= $row_offer['CAT_DESCRIPTION'] ?></td>
                             <td><input id="charge_per_hour" name="charge_per_hour" type="number"
                                        value="<?php
                                        if (isset($row_offer['CHARGE_PER_HOUR'])) {

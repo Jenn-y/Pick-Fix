@@ -172,9 +172,10 @@ if (isset($_SESSION['user_id'])) {
     <link rel="stylesheet" href="css/editProfile.css">
     <link href="css/header.css" rel="stylesheet">
     <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/test.css">
     <title>Edit Profile</title>
 </head>
-<body>
+<body id="edit_profile">
 
 <div id="page-container">
     <?php include('includes/header.php'); ?>
@@ -196,6 +197,7 @@ if (isset($_SESSION['user_id'])) {
                     <p class="center">Success!</p>
                 </div>
             <?php endif; ?>
+            <?php if($row['ROLE'] == 1): ?>
             <div>
                 <?php
                 $sql = oci_parse($db, "select MAX(F.PAYMENT_EXPIRATION)
@@ -209,6 +211,7 @@ if (isset($_SESSION['user_id'])) {
                 ?>
                 <h4 style="color: #d42626; font-weight: unset; font-style: italic; ">Payment expires on: <?php echo $exp_row['MAX(F.PAYMENT_EXPIRATION)']; ?></h4>
             </div>
+            <?php endif; ?>
             <form method="post" enctype="multipart/form-data">
                 <div id="profilePhoto">
                     <img src="<?= fetch_profile_image($row['AID'], $row['IMG_TYPE']); ?>" alt="default-user-image">
