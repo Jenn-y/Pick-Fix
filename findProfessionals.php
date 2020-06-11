@@ -64,6 +64,7 @@ if (isset($_SESSION['user_id'])) {
     <link rel="stylesheet" href="css/header.css">
     <link rel="stylesheet" href="css/index.css">
     <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/test.css">
 
     <title>Find Professionals</title>
 </head>
@@ -113,7 +114,8 @@ if (isset($_SESSION['user_id'])) {
             </div>
 
             <div class="displayProfessionals">
-                <?php if (isset($_POST['city']) && isset($_POST['service'])) { ?>
+                <?php if (isset($_POST['city']) && isset($_POST['service'])) {
+                    $num = 0; ?>
                     <?php while ($row5 = oci_fetch_assoc($list_specific)):
                         $completed_jobs = oci_parse($db, "SELECT COUNT (*) AS JOBS
                         FROM REQUESTS R, WORK_OFFERS W, REQUESTS_HISTORY H, CITIES C
@@ -131,7 +133,8 @@ if (isset($_SESSION['user_id'])) {
                                           and A.AID = {$row5['AID']}");
                         oci_execute($exp);
                         $expiration_date = oci_fetch_assoc($exp);
-                        if (strtotime(date("Y/m/d")) <= strtotime($expiration_date["MAX(F.PAYMENT_EXPIRATION)"])) { ?>
+                        if (strtotime(date("Y/m/d")) <= strtotime($expiration_date["MAX(F.PAYMENT_EXPIRATION)"])) {
+                            $num++; ?>
                             <a href="profile.php?id=<?= $row5['AID'] ?>">
 
                                 <img src="<?= fetch_profile_image($row5['AID'], $row5['IMG_TYPE']); ?>"
@@ -181,7 +184,13 @@ if (isset($_SESSION['user_id'])) {
                             </a>
                         <?php } ?>
                     <?php endwhile; ?>
-                <?php } else if (!isset($_POST['city']) && isset($_POST['service'])) { ?>
+                    <?php if ($num == 0) { ?>
+                        <h4 class="display_message">No professional available</h4>
+                    <?php } else { ?>
+                        <h4 class="display_available"><?php echo $num; ?> professional(s) available</h4>
+                    <?php } ?>
+                <?php } else if (!isset($_POST['city']) && isset($_POST['service'])) {
+                    $num = 0; ?>
                     <?php while ($row6 = oci_fetch_assoc($list_by_service)):
                         $completed_jobs = oci_parse($db, "SELECT COUNT (*) AS JOBS
                                                        FROM REQUESTS R, WORK_OFFERS W, REQUESTS_HISTORY H
@@ -198,7 +207,8 @@ if (isset($_SESSION['user_id'])) {
                                           and A.AID = {$row6['AID']}");
                         oci_execute($exp);
                         $expiration_date = oci_fetch_assoc($exp);
-                        if (strtotime(date("Y/m/d")) <= strtotime($expiration_date["MAX(F.PAYMENT_EXPIRATION)"])) { ?>
+                        if (strtotime(date("Y/m/d")) <= strtotime($expiration_date["MAX(F.PAYMENT_EXPIRATION)"])) {
+                            $num++; ?>
                             <a href="profile.php?id=<?= $row6['AID'] ?>">
                                 <img src="<?= fetch_profile_image($row6['AID'], $row6['IMG_TYPE']); ?>"
                                      alt="professional-profile">
@@ -244,7 +254,13 @@ if (isset($_SESSION['user_id'])) {
                             </a>
                         <?php } ?>
                     <?php endwhile; ?>
-                <?php } else if (isset($_POST['city']) && !isset($_POST['service'])) { ?>
+                    <?php if ($num == 0) { ?>
+                        <h4 class="display_message">No professional available</h4>
+                    <?php } else { ?>
+                        <h4 class="display_available"><?php echo $num; ?> professional(s) available</h4>
+                    <?php } ?>
+                <?php } else if (isset($_POST['city']) && !isset($_POST['service'])) {
+                    $num = 0; ?>
                     <?php while ($row7 = oci_fetch_assoc($list_by_city)):
                         $completed_jobs = oci_parse($db, "SELECT COUNT (*) AS JOBS
                         FROM REQUESTS R, WORK_OFFERS W, REQUESTS_HISTORY H
@@ -261,7 +277,8 @@ if (isset($_SESSION['user_id'])) {
                                           and A.AID = {$row7['AID']}");
                         oci_execute($exp);
                         $expiration_date = oci_fetch_assoc($exp);
-                        if (strtotime(date("Y/m/d")) <= strtotime($expiration_date["MAX(F.PAYMENT_EXPIRATION)"])) { ?>
+                        if (strtotime(date("Y/m/d")) <= strtotime($expiration_date["MAX(F.PAYMENT_EXPIRATION)"])) {
+                            $num++; ?>
                             <a href="profile.php?id=<?= $row7['AID'] ?>">
                                 <img src="<?= fetch_profile_image($row7['AID'], $row7['IMG_TYPE']); ?>"
                                      alt="professional-profile">
@@ -307,7 +324,13 @@ if (isset($_SESSION['user_id'])) {
                             </a>
                         <?php } ?>
                     <?php endwhile; ?>
-                <?php } else { ?>
+                    <?php if ($num == 0) { ?>
+                        <h4 class="display_message">No professional available</h4>
+                    <?php } else { ?>
+                        <h4 class="display_available"><?php echo $num; ?> professional(s) available</h4>
+                    <?php } ?>
+                <?php } else {
+                    $num = 0; ?>
                     <?php while ($row5 = oci_fetch_assoc($query6)):
                         $completed_jobs = oci_parse($db, "SELECT COUNT (*) AS JOBS
                                                        FROM REQUESTS R, WORK_OFFERS W, REQUESTS_HISTORY H
@@ -324,7 +347,7 @@ if (isset($_SESSION['user_id'])) {
                         oci_execute($exp);
                         $expiration_date = oci_fetch_assoc($exp);
                         if (strtotime(date("Y/m/d")) <= strtotime($expiration_date["MAX(F.PAYMENT_EXPIRATION)"])) {
-                            ?>
+                            $num++; ?>
                             <a href="profile.php?id=<?= $row5['AID'] ?>">
                                 <img src="<?= fetch_profile_image($row5['AID'], $row5['IMG_TYPE']); ?>"
                                      alt="professional-profile">
@@ -368,6 +391,11 @@ if (isset($_SESSION['user_id'])) {
                             </a>
                         <?php } ?>
                     <?php endwhile; ?>
+                    <?php if ($num == 0) { ?>
+                        <h4 class="display_message">No professional available</h4>
+                    <?php } else { ?>
+                        <h4 class="display_available"><?php echo $num; ?> professional(s) available</h4>
+                    <?php } ?>
                 <?php } ?>
             </div>
         </section>

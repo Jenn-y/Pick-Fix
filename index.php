@@ -11,6 +11,7 @@ if (session_status() == PHP_SESSION_NONE) {
     <link href="css/header.css" rel="stylesheet">
     <link href="css/index.css" rel="stylesheet">
     <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/test.css">
 
     <title>Pick&Fix</title>
 
@@ -34,34 +35,34 @@ if (session_status() == PHP_SESSION_NONE) {
     <div class="welcome">
         <div class="color-overlay"></div>
         <h1>The easy, reliable way to take care of your home.</h1>
-        <a href="findProfessionals.php">Get Started</a>
+        <a href="<?= empty($_SESSION) ? "login.php" : "findProfessionals.php" ?>">Get Started</a>
     </div>
 
     <main>
         <div class="text center">
-            <h2>Pick & Fix Tasks</h2>
-            <p>Instantly book highly rated pros for cleaning and handyman tasks at a fixed price. <span><a href="findProfessionals.php">See All <i class="fa fa-angle-right" aria-hidden="true"></i></a></span></p>
+            <h2>Pick & Fix Services</h2>
+            <p>Instantly book highly rated pros for all in-house services at the best price. <span><a href="<?= empty($_SESSION) ? "login.php" : "findProfessionals.php" ?>">See All <i class="fa fa-angle-right" aria-hidden="true"></i></a></span></p>
         </div>
 
         <section class="popular-services flex-container center">
-            <a href="#">
+            <a href="<?= empty($_SESSION) ? "login.php" : "findProfessionals.php" ?>">
                 <img src="images/repairman.jpg" alt="Repairman">
                 <p>General repairman <i class="fa fa-angle-right" aria-hidden="true"></i></p>
             </a>
 
-            <a href="#">
+            <a href="<?= empty($_SESSION) ? "login.php" : "findProfessionals.php" ?>">
                 <img src="images/electrics-resized.jpg" alt="Electrics">
-                <p>Electrician <i class="fa fa-angle-right" aria-hidden="true"></i></p>
+                <p>Electrical <i class="fa fa-angle-right" aria-hidden="true"></i></p>
             </a>
 
-            <a href="#">
+            <a href="<?= empty($_SESSION) ? "login.php" : "findProfessionals.php" ?>">
                 <img src="images/faucet-resized.jpg" alt="Faucet">
-                <p>Faucets <i class="fa fa-angle-right" aria-hidden="true"></i></p>
+                <p>Plumbing <i class="fa fa-angle-right" aria-hidden="true"></i></p>
             </a>
 
-            <a href="#">
+            <a href="<?= empty($_SESSION) ? "login.php" : "findProfessionals.php" ?>">
                 <img src="images/furniture-resized.jpg" alt="Furniture">
-                <p>Furniture assembly <i class="fa fa-angle-right" aria-hidden="true"></i></p>
+                <p>Furniture <i class="fa fa-angle-right" aria-hidden="true"></i></p>
             </a>
 
         </section>
@@ -72,10 +73,8 @@ if (session_status() == PHP_SESSION_NONE) {
                 <h2>1</h2>
                 <div>
                     <h4>Find a professional</h4>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In condimentum orci sed interdum
-                        egestas.
-                        Suspendisse lobortis odio vitae purus tincidunt, vel tempor lacus vestibulum. Ut eu lacus dui.
-                        Quisque</p>
+                    <p>Good news - you are on the right place!
+                    Just register on our website and you will be taken to the page to find the right professional for your required service.</p>
                 </div>
                 <img src="images/find-step.jpg" alt="first-step-find-professional">
             </div>
@@ -83,10 +82,8 @@ if (session_status() == PHP_SESSION_NONE) {
                 <h2>2</h2>
                 <div>
                     <h4>Describe your problem</h4>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In condimentum orci sed interdum
-                        egestas.
-                        Suspendisse lobortis odio vitae purus tincidunt, vel tempor lacus vestibulum. Ut eu lacus dui.
-                        Quisque</p>
+                    <p>Once a professional is chosen, fill out the form with specified problem description and contact details to
+                    let the professional know your requirements.</p>
                 </div>
                 <img src="images/describe-problem.png" alt="first-step-find-professional">
             </div>
@@ -94,10 +91,10 @@ if (session_status() == PHP_SESSION_NONE) {
                 <h2>3</h2>
                 <div>
                     <h4>Book a professional and solve your problem</h4>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In condimentum orci sed interdum
-                        egestas.
-                        Suspendisse lobortis odio vitae purus tincidunt, vel tempor lacus vestibulum. Ut eu lacus dui.
-                        Quisque</p>
+                    <p>If you agree with the calculated estimate price - hit SEND!
+                    Your chosen professional will contact you and your problem is solved. <br>
+                    It is that easy now. <br> No more waiting, time to <i class="fa fa-angle-right" aria-hidden="true"></i>
+                         <a href="<?= empty($_SESSION) ? "login.php" : "findProfessionals.php" ?>" style="text-decoration: none;"> REGISTER</a> </p>
                 </div>
                 <img src="images/step3.jpg" alt="first-step-find-professional">
             </div>
@@ -113,14 +110,20 @@ if (session_status() == PHP_SESSION_NONE) {
             </div>
             <h2>Are You a Home Improvement or Service Pro?</h2>
             <p>Find out how Pick&Fix can help your business</p>
-            <a href="professionalsRegistration.php">Learn More <i class="fa fa-angle-right" aria-hidden="true"></i></a>
+            <a href="pricing.php">Learn More <i class="fa fa-angle-right" aria-hidden="true"></i></a>
         </section>
 
         <section class="our-story" id="story">
             <div>
-                <h2>Our story</h2>
-                <p>Great companies are born from dreams and strength of will. <br>
-                    The story of a company is made up of ideas, challenges, investments, sacrifices, and progress. The story begins with a date: March 15th, 2018, with a place: Sarajevo, and with 3 names: Armin Salihovic, Dzenita Djulovic, and Hana Lihovac. For years people struggled with finding a good professional for the job that needs to be done. They were losing time, patience, and money. In two years, we developed a web application that provides users everything they need to find a professional in one place. Our secret is in knowing the struggles that users were having with the finding right professionals and using most advanced technology for full user experience, integrated into constant research towards the development of new solutions. At this moment we have a platform for 10,000 users and 50,000 professionals in 30 different categories.
+                <h1>Our story</h1> <br>
+                <h4>Great companies are born from dreams and strength of will.</h4><br>
+                <p>The story begins with a date: March 15th, 2018, with a place: Sarajevo, and with 3 names: Armin Salihovic,
+                    Dzenita Djulovic, and Hana Lihovac. For years people struggled with finding a right professional for the
+                    job that needs to be done. They were losing time, patience, and money. Not anymore, as we have developed a web
+                    application that provides users everything they need to find the professional - all in one place. Our secret is
+                    in knowing the struggles that users were having in finding the right professionals and using most
+                    advanced technology for full user experience, integrated into constant research towards the development
+                    of new solutions. <br><br> <b>Join us and let's grow together! </b>
                 </p>
             </div>
             <img id="rotate-left" src="images/our-story-image.png" alt="Our work">
@@ -139,20 +142,15 @@ if (session_status() == PHP_SESSION_NONE) {
                 <img id="small" src="images/teamMember.png" alt="Image">
                 <div>
                     <h2> Jenn </h2>
-                    <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. In condimentum orci sed interdum
-                        egestas.
-                        Suspendisse lobortis odio vitae purus tincidunt, vel tempor lacus vestibulum. Ut eu lacus dui.
-                        Quisque
-                        faucibus nisl ac dui rutrum accumsan. Fusce ultrices massa vel sem tincidunt ultricies. Nunc
-                        rutrum
-                        tristique tincidunt. Fusce ullamcorper urna vel ante elementum placerat. Cras sed tortor at
-                        neque
-                        suscipit placerat vel quis leo. Cras dapibus commodo nunc ac accumsan. Morbi eget nunc semper,
-                        feugiat
-                        tortor vitae, vehicula velit. Maecenas scelerisque sollicitudin massa at rhoncus. Vivamus
-                        eleifend
-                        lectus dolor, vitae pulvinar lorem tincidunt ut.
+                    <p> Ambitious and hard-working young engineer coming from Zivinice
+                        and currently enrolled in bachelor studies of Computer Science and Information Systems.
+                        Passionate about giving back to the community and inspiring new generations of leaders
+                        through her volunteering and activism in a broad range of organizations. Strong advocate of both
+                        formal and informal education with the objective
+                        to help other young people in realizing their potential and using the available opportunities.
+                        Connect on <i class="fa fa-angle-right" aria-hidden="true"></i> <a href="https://www.linkedin.com/in/dzenita-djulovic/" style="text-decoration: none; color: white;" target="_blank">LinkedIn</a>
                     </p>
+
                 </div>
             </div>
 
@@ -193,9 +191,9 @@ if (session_status() == PHP_SESSION_NONE) {
         <section class="vetted-professionals flex-container center" id="contact">
             <i class="fa fa-lock" aria-hidden="true"></i>
             <h2>Vetted, Background-Checked Professionals</h2>
-            <p>Pick & Fix tasks booked and paid for directly through the Pick & Fix platform are performed by
+            <p>Pick & Fix - all services booked directly through the Pick & Fix platform are performed by
                 experienced, background-checked professionals</p>
-            <p>who are highly rated by customers like you. <span> Learn more.</span></p>
+            <p>who are highly rated by customers like you. <a href="<?= empty($_SESSION) ? "login.php" : "findProfessionals.php" ?>" style="text-decoration: none;"><span>Learn more. </span></a></p>
         </section>
     </main>
 

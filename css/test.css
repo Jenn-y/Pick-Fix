@@ -1,0 +1,21 @@
+.our-story img {
+    margin-bottom: 3rem;
+}
+
+.our-story div {
+    line-height: 1.3rem;
+    text-align: justify;
+}
+
+#findProfessionals .display_message {
+    margin: auto;
+    font-size: 35px;
+    color: rgba(0, 0, 0, 0.23);
+}
+
+#findProfessionals .display_available {
+    width: 100%;
+    font-size: 20px;
+    margin-bottom: 2rem;
+    color: rgba(0, 0, 0, 0.34);
+}
