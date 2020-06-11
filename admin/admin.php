@@ -22,7 +22,7 @@
             <a href="services/services.php">Services</a>
             <a href="work_offers/work_offers.php">Work offers</a>
             <a href="users/users.php">Users</a>
-            <a href="#">Payments</a>
+            <a href="payments/payments.php">Payments</a>
         </div>
 
         <div>
@@ -31,10 +31,10 @@
                 <li>X - List all the services a specific professional offers. services </li>
                 <li>X - List services and the number of professionals that are offering them. services</li>
                 <br>
-                <li>List the professionals and the amount of money they earned in a given period.
-                    combined - List the services and the minimum, maximum, average and total amount billed for a given period - payments </li>
+                <li>X List the professionals and the amount of money they earned in a given period.
+                    X List the services and the minimum, maximum, average and total amount billed for a given period - payments </li>
                 <li>List the people and the amount of money they paid in a given period. payments</li>
-                <li>List the professionals and the amount of money they paid us for the usage of this system, for a
+                <li>X List the professionals and the amount of money they paid us for the usage of this system, for a
                     given period. payments</li>
                 <br>
                 <li>X - List all professionals for a specific service in the specific city. work_offers</li>
