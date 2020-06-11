@@ -63,7 +63,7 @@ if (isset($_POST['city']) && !isset($_POST['service'])) {
             <a href="../services/services.php">Services</a>
             <a href="#" id="stay">Work offers <i class="fa fa-long-arrow-right" aria-hidden="true"></i></a>
             <a href="../users/users.php">Users</a>
-            <a href="#">Payments</a>
+            <a href="../payments/payments.php">Payments</a>
         </div>
         <div class="report-view">
             <form method="post">

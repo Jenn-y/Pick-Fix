@@ -29,7 +29,7 @@ oci_execute($query2);
             <a href="../services/services.php">Services</a>
             <a href="../work_offers/work_offers.php">Work offers</a>
             <a href="../users/users.php">Users</a>
-            <a href="#">Payments</a>
+            <a href="../payments/payments.php">Payments</a>
         </div>
         <div class="rows">
             <table>
