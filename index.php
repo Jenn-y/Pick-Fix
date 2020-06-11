@@ -119,19 +119,9 @@ if (session_status() == PHP_SESSION_NONE) {
         <section class="our-story" id="story">
             <div>
                 <h2>Our story</h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In condimentum orci sed interdum
-                    egestas.
-                    Suspendisse lobortis odio vitae purus tincidunt, vel tempor lacus vestibulum. Ut eu lacus dui.
-                    Quisque
-                    faucibus nisl ac dui rutrum accumsan. Fusce ultrices massa vel sem tincidunt ultricies. Nunc
-                    rutrum
-                    tristique tincidunt. Fusce ullamcorper urna vel ante elementum placerat. Cras sed tortor at
-                    neque
-                    suscipit placerat vel quis leo. Cras dapibus commodo nunc ac accumsan. Morbi eget nunc semper,
-                    feugiat
-                    tortor vitae, vehicula velit. Maecenas scelerisque sollicitudin massa at rhoncus. Vivamus
-                    eleifend
-                    lectus dolor, vitae pulvinar lorem tincidunt ut.</p>
+                <p>Great companies are born from dreams and strength of will. <br>
+                    The story of a company is made up of ideas, challenges, investments, sacrifices, and progress. The story begins with a date: March 15th, 2018, with a place: Sarajevo, and with 3 names: Armin Salihovic, Dzenita Djulovic, and Hana Lihovac. For years people struggled with finding a good professional for the job that needs to be done. They were losing time, patience, and money. In two years, we developed a web application that provides users everything they need to find a professional in one place. Our secret is in knowing the struggles that users were having with the finding right professionals and using most advanced technology for full user experience, integrated into constant research towards the development of new solutions. At this moment we have a platform for 10,000 users and 50,000 professionals in 30 different categories.
+                </p>
             </div>
             <img id="rotate-left" src="images/our-story-image.png" alt="Our work">
             <img id="rotate-right" src="images/our-story-image.png" alt="Our work">
@@ -191,19 +181,10 @@ if (session_status() == PHP_SESSION_NONE) {
                 <img id="small" src="images/hana.png" alt="Image">
                 <div>
                     <h2> Hana </h2>
-                    <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. In condimentum orci sed interdum
-                        egestas.
-                        Suspendisse lobortis odio vitae purus tincidunt, vel tempor lacus vestibulum. Ut eu lacus dui.
-                        Quisque
-                        faucibus nisl ac dui rutrum accumsan. Fusce ultrices massa vel sem tincidunt ultricies. Nunc
-                        rutrum
-                        tristique tincidunt. Fusce ullamcorper urna vel ante elementum placerat. Cras sed tortor at
-                        neque
-                        suscipit placerat vel quis leo. Cras dapibus commodo nunc ac accumsan. Morbi eget nunc semper,
-                        feugiat
-                        tortor vitae, vehicula velit. Maecenas scelerisque sollicitudin massa at rhoncus. Vivamus
-                        eleifend
-                        lectus dolor, vitae pulvinar lorem tincidunt ut.
+                    <p>Dedicated Computer Science student pursuing a diploma degree at SSST.
+                        Having a great interest in mathematics and computer science developing skills
+                        into data science professionals, particularly in the fields of machine learning
+                        and artificial intelligence.
                     </p>
                 </div>
             </div>
