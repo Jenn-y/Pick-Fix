@@ -113,7 +113,7 @@ if ($_POST && isset($_GET['id'])) {
                         }
                         $empty_stars = 5;
                         ?>
-                        <br><span>Service Rating: <span style="color: #FFDF00;"><?php echo $rating; ?><br></span></span>
+                        <br><span>Service Rating: <span><?php echo $rating; ?><br></span></span>
                         <?php while ($rating >= 1) :
                             $rating--;
                             $empty_stars--; ?>
