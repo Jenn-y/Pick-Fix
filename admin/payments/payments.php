@@ -5,13 +5,12 @@ include_once('../../includes/db.php');
 $months = [1 => 'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 $years = range(2019, 2022);
 
+$flag = 0;
+
 if($_POST) {
     $from_date = "{$_POST['from_day']}-{$_POST['from_month']}-{$_POST['from_year']}";
     $to_date = "{$_POST['to_day']}-{$_POST['to_month']}-{$_POST['to_year']}";
 
-    /**/
-
-    echo "FROM $from_date TO $to_date";
 
     $query = oci_parse($db, "SELECT aid, fname, lname, money_earned FROM accounts
                                      FULL JOIN (
@@ -113,6 +112,7 @@ if($_POST) {
                 </select>
                 <button type="submit" style="padding: 0 2rem">Go</button>
             </form>
+            <?php if(!empty($_POST)): ?>
             <table>
                 <tr>
                     <th>aid</th>
@@ -165,6 +165,10 @@ if($_POST) {
                     </tr>
                 <?php endwhile; ?>
             </table>
+            <?php else: ?>
+            <h2>No query submitted</h2>
+            <?php endif; ?>
+
         </div>
     </div>
 </main>
