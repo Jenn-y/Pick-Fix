@@ -238,6 +238,7 @@ main {
     padding: 2rem;
     max-width: 25%;
     box-shadow: 3px 3px 3px 2px #ccc;
+    margin-bottom: 3rem;
 }
 .our-story #rotate-left {
     transform: rotate(-15deg);
