@@ -44,6 +44,7 @@ if (isset($_POST['city']) && !isset($_POST['service'])) {
     <?php include('../../includes/head.php') ?>
     <link rel="stylesheet" href="../admin.css">
     <link rel="stylesheet" href="../test.css">
+    <link rel="icon" href="../../images/hammer.png">
     <title>Admin | Work Offers</title>
 </head>
 <body id="work_offers">
@@ -328,6 +329,7 @@ if (isset($_POST['city']) && !isset($_POST['service'])) {
                 </table>
             </div>
         </div>
+        
     </div>
 </main>
 </body>

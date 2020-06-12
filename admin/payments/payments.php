@@ -65,9 +65,11 @@ if($_POST) {
 <head>
     <?php include('../../includes/head.php') ?>
     <link rel="stylesheet" href="../admin.css">
+    <link rel="stylesheet" href="../test.css">
+    <link rel="icon" href="../../images/hammer.png">
     <title>Admin | Payments</title>
 </head>
-<body>
+<body id="payments">
 
 <header>
     <div class="inner-header flex-container center">

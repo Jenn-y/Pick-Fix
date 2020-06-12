@@ -2,7 +2,6 @@
     margin-left: 10rem;
 }
 
-#work_offers .tables a {
+#work_offers .tables a, #payments .tables a {
     width: 100%;
-    color: red;
 }
