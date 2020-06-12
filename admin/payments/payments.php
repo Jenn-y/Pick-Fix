@@ -124,6 +124,7 @@ if($_POST) {
 
             <table>
                 <h3>Services -> minimum, maximum, average and total amount billed for a given period</h3>
+                <h3>+ The total amount of accepted requests for each service</h3>
                 <tr>
                     <th>SID</th>
                     <th>Category</th>
