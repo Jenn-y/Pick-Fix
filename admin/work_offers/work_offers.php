@@ -483,8 +483,104 @@ if (isset($_POST['city']) && !isset($_POST['service'])) {
                     <?php } ?>
                 </table>
             </div>
+
+        <div class="flex-container">
+            <?php
+            $services = oci_parse($db, "SELECT * FROM SERVICES WHERE DATE_DELETED IS NULL ORDER BY CATEGORY");
+            oci_execute($services);
+            $cities = oci_parse($db, "SELECT * FROM CITIES WHERE DATE_DELETED IS NULL ORDER BY CNAME");
+            oci_execute($cities);
+            ?>
+            <table>
+                <tr>
+                    <th>Service</th>
+                    <th>Rating</th>
+                </tr>
+                <?php while ($all_services = oci_fetch_assoc($services)) :
+                    $rating = oci_parse($db, "SELECT R.JOB_RATING
+                                                       FROM REQUESTS R, WORK_OFFERS W
+                                                       WHERE R.WORK_OFFER = W.WID
+                                                       AND W.SERVICE = {$all_services['SID']}
+                                                       AND R.JOB_RATING IS NOT NULL");
+                    oci_execute($rating);
+
+                    $sum_rates = 0;
+                    $num_of_rates = 0;
+
+                    while ($request_row = oci_fetch_assoc($rating)) {
+                        $sum_rates = $sum_rates + $request_row['JOB_RATING'];
+                        $num_of_rates++;
+                    }
+                    $rat = 1;
+                    if ($num_of_rates != 0) {
+                        $rat = $sum_rates / $num_of_rates;
+                    }
+                    $empty_stars = 5;?>
+                <tr>
+                    <td><?= $all_services['CATEGORY'] ?></td>
+                    <td>
+                        <?php while ($rat >= 1) :
+                            $rat--;
+                            $empty_stars--; ?>
+                            <span><i class="fa fa-star" style="color: #FFDF00;"></i></span>
+                        <?php endwhile;
+                        if ($rat > 0) :
+                            $empty_stars--; ?>
+                            <span><i class="fa fa-star-half-empty" style="color: #FFDF00"></i></span>
+                        <?php endif;
+                        while ($empty_stars >= 1) :
+                            $empty_stars--; ?>
+                            <span><i class="fa fa-star-o"></i></span>
+                        <?php endwhile; ?></td>
+                </tr>
+                <?php endwhile; ?>
+            </table>
+            <table>
+                <tr>
+                    <th>City</th>
+                    <th>Rating</th>
+                </tr>
+                <?php while ($all_cities = oci_fetch_assoc($cities)) :
+                    $rating = oci_parse($db, "SELECT R.JOB_RATING
+                                                       FROM REQUESTS R, WORK_OFFERS W
+                                                       WHERE R.WORK_OFFER = W.WID
+                                                       AND W.SERVICE = {$all_cities['CID']}
+                                                       AND R.JOB_RATING IS NOT NULL");
+                    oci_execute($rating);
+
+                    $sum_rates = 0;
+                    $num_of_rates = 0;
+
+                    while ($request_row = oci_fetch_assoc($rating)) {
+                        $sum_rates = $sum_rates + $request_row['JOB_RATING'];
+                        $num_of_rates++;
+                    }
+                    $rat = 1;
+                    if ($num_of_rates != 0) {
+                        $rat = $sum_rates / $num_of_rates;
+                    }
+                    $empty_stars = 5;?>
+                    <tr>
+                        <td><?= $all_cities['CNAME'] ?></td>
+                        <td>
+                            <?php while ($rat >= 1) :
+                                $rat--;
+                                $empty_stars--; ?>
+                                <span><i class="fa fa-star" style="color: #FFDF00;"></i></span>
+                            <?php endwhile;
+                            if ($rat > 0) :
+                                $empty_stars--; ?>
+                                <span><i class="fa fa-star-half-empty" style="color: #FFDF00"></i></span>
+                            <?php endif;
+                            while ($empty_stars >= 1) :
+                                $empty_stars--; ?>
+                                <span><i class="fa fa-star-o"></i></span>
+                            <?php endwhile; ?></td>
+                    </tr>
+                <?php endwhile; ?>
+            </table>
         </div>
-        
+        </div>
     </div>
 </main>
 </body>
