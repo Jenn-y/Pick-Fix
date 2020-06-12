@@ -158,20 +158,7 @@ if (session_status() == PHP_SESSION_NONE) {
                 <img id="small" src="images/armin.png" alt="Image">
                 <div>
                     <h2> Armin </h2>
-                    <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. In condimentum orci sed interdum
-                        egestas.
-                        Suspendisse lobortis odio vitae purus tincidunt, vel tempor lacus vestibulum. Ut eu lacus dui.
-                        Quisque
-                        faucibus nisl ac dui rutrum accumsan. Fusce ultrices massa vel sem tincidunt ultricies. Nunc
-                        rutrum
-                        tristique tincidunt. Fusce ullamcorper urna vel ante elementum placerat. Cras sed tortor at
-                        neque
-                        suscipit placerat vel quis leo. Cras dapibus commodo nunc ac accumsan. Morbi eget nunc semper,
-                        feugiat
-                        tortor vitae, vehicula velit. Maecenas scelerisque sollicitudin massa at rhoncus. Vivamus
-                        eleifend
-                        lectus dolor, vitae pulvinar lorem tincidunt ut.
-                    </p>
+                    <p>Easygoing second year student at SSST University studying Computer Science. Passionate about Computers and Electronics.</p>
                 </div>
             </div>
 
