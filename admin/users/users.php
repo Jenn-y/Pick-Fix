@@ -99,7 +99,7 @@ if (isset($_POST['role'])){
                     <?php endif; ?>
                     <?php if($row['ROLE'] == 1 && $_POST['role'] == 1) { ?>
                     <td>
-                        <button class="display_services">Display services</button>
+                        <button class="display_services">SHOW</button>
                         <div class="all_services" style="display: none;">
                         <?php $query = oci_parse($db, "SELECT DISTINCT W.SERVICE, S.CATEGORY 
                                                                     FROM WORK_OFFERS W, SERVICES S
@@ -115,7 +115,7 @@ if (isset($_POST['role'])){
                     <?php } ?>
                     <?php if($row['ROLE'] == 1 && $_POST['role'] == 1) { ?>
                         <td>
-                            <button class="display_cities">Display cities</button>
+                            <button class="display_cities">SHOW</button>
                             <div class="all_cities" style="display: none;">
                                 <?php $query2 = oci_parse($db, "SELECT DISTINCT W.CITY, C.CNAME 
                                                                         FROM WORK_OFFERS W, CITIES C
@@ -160,7 +160,7 @@ if (isset($_POST['role'])){
                         <?php endif; ?>
                         <?php if($row['ROLE'] == 1) { ?>
                             <td>
-                                <button class="display_services" id="buttonS">SHOW</button>
+                                <button class="display_services">SHOW</button>
                                 <div class="all_services" style="display: none;">
                                     <?php $row = oci_fetch_assoc($query1);
                                     $query = oci_parse($db, "SELECT DISTINCT W.SERVICE, S.CATEGORY 
@@ -179,7 +179,7 @@ if (isset($_POST['role'])){
                         <?php } ?>
                         <?php if($row['ROLE'] == 1) { ?>
                             <td>
-                                <button class="display_cities" id="buttonC">SHOW</button>
+                                <button class="display_cities">SHOW</button>
                                 <div class="all_cities" style="display: none; ">
                                     <?php $query2 = oci_parse($db, "SELECT DISTINCT W.CITY, C.CNAME 
                                                                             FROM WORK_OFFERS W, CITIES C
@@ -203,29 +203,27 @@ if (isset($_POST['role'])){
     <script>
         $(document).ready(function() {
             let counter1 = 1;
-            let service = document.getElementById('buttonS');
             $('.display_services').click(function() {
                 if (counter1 % 2 == 0) {
-                    service.innerHTML = 'SHOW';
+                    $(this).html('SHOW');
                     $(this).siblings().hide();
                     counter1++;
                 }
                 else {
-                    service.innerHTML = 'HIDE';
+                    $(this).html('HIDE');
                     $(this).siblings().show();
                     counter1++;
                 }
             })
             let counter2 = 1;
-            let city = document.getElementById('buttonC');
             $('.display_cities').click(function() {
                 if (counter2 % 2 == 0) {
-                    city.innerHTML = 'SHOW';
+                    $(this).html('SHOW');
                     $(this).siblings().hide();
                     counter2++;
                 }
                 else {
-                    city.innerHTML = 'HIDE';
+                    $(this).html('HIDE');
                     $(this).siblings().show();
                     counter2++;
                 }
