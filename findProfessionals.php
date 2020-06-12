@@ -186,9 +186,11 @@ if (isset($_SESSION['user_id'])) {
                     <?php endwhile; ?>
                     <?php if ($num == 0) { ?>
                         <h4 class="display_message">No professional available</h4>
-                    <?php } else { ?>
-                        <h4 class="display_available"><?php echo $num; ?> professional(s) available</h4>
-                    <?php } ?>
+                    <?php } else if ($num == 1) { ?>
+                        <h4 class="display_available"><?php echo $num; ?> professional available</h4>
+                    <?php }  else { ?>
+                <h4 class="display_available"><?php echo $num; ?> professionals available</h4>
+                <?php } ?>
                 <?php } else if (!isset($_POST['city']) && isset($_POST['service'])) {
                     $num = 0; ?>
                     <?php while ($row6 = oci_fetch_assoc($list_by_service)):
@@ -256,8 +258,10 @@ if (isset($_SESSION['user_id'])) {
                     <?php endwhile; ?>
                     <?php if ($num == 0) { ?>
                         <h4 class="display_message">No professional available</h4>
+                    <?php } else if ($num == 1) { ?>
+                        <h4 class="display_available"><?php echo $num; ?> professional available</h4>
                     <?php } else { ?>
-                        <h4 class="display_available"><?php echo $num; ?> professional(s) available</h4>
+                        <h4 class="display_available"><?php echo $num; ?> professionals available</h4>
                     <?php } ?>
                 <?php } else if (isset($_POST['city']) && !isset($_POST['service'])) {
                     $num = 0; ?>
@@ -326,8 +330,10 @@ if (isset($_SESSION['user_id'])) {
                     <?php endwhile; ?>
                     <?php if ($num == 0) { ?>
                         <h4 class="display_message">No professional available</h4>
-                    <?php } else { ?>
-                        <h4 class="display_available"><?php echo $num; ?> professional(s) available</h4>
+                    <?php } else if ($num == 1) { ?>
+                        <h4 class="display_available"><?php echo $num; ?> professional available</h4>
+                    <?php }  else { ?>
+                        <h4 class="display_available"><?php echo $num; ?> professionals available</h4>
                     <?php } ?>
                 <?php } else {
                     $num = 0; ?>
@@ -393,8 +399,10 @@ if (isset($_SESSION['user_id'])) {
                     <?php endwhile; ?>
                     <?php if ($num == 0) { ?>
                         <h4 class="display_message">No professional available</h4>
-                    <?php } else { ?>
-                        <h4 class="display_available"><?php echo $num; ?> professional(s) available</h4>
+                    <?php } else if ($num == 1) { ?>
+                        <h4 class="display_available"><?php echo $num; ?> professional available</h4>
+                    <?php }  else { ?>
+                        <h4 class="display_available"><?php echo $num; ?> professionals available</h4>
                     <?php } ?>
                 <?php } ?>
             </div>

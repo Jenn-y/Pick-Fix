@@ -1,0 +1,13 @@
+#users .rows {
+    width: 100%;
+}
+
+.button_style {
+    padding: 0.5rem;
+    border-radius: 8px;
+    margin-bottom: 0.5rem;
+}
+
+#users table th, #users table td {
+    text-align: center;
+}
