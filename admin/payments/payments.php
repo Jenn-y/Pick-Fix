@@ -8,16 +8,15 @@ $years = range(2019, 2022);
 $flag = 0;
 
 if($_POST) {
-    $from_date = "{$_POST['from_day']}-{$_POST['from_month']}-{$_POST['from_year']}";
-    $to_date = "{$_POST['to_day']}-{$_POST['to_month']}-{$_POST['to_year']}";
-
+    $from_date = $_POST['from_date'];
+    $to_date = $_POST['to_date'];
 
     $query = oci_parse($db, "SELECT aid, fname, lname, money_earned FROM accounts
                                      FULL JOIN (
                                         SELECT professional, sum(num_of_hrs*REQUESTS.charge_per_hour) AS money_earned FROM requests_history
                                         JOIN REQUESTS ON request = rid
                                         JOIN WORK_OFFERS ON work_offer = wid
-                                        WHERE status = 1 AND datetime >= to_date('{$from_date}','DD-MM-YYYY') AND datetime <= to_date('{$to_date}','DD-MM-YYYY')
+                                        WHERE status = 1 AND datetime >= to_date('{$from_date}','YYYY-MM-DD') AND datetime <= to_date('{$to_date}','YYYY-MM-DD')
                                         GROUP BY professional
                                         )
                                      ON aid = professional
@@ -25,13 +24,13 @@ if($_POST) {
                                      ORDER BY aid");
     oci_execute($query);
 
-    $query2 = oci_parse($db, "SELECT sid, category, min_billed, max_billed, avg_billed FROM services
+    $query2 = oci_parse($db, "SELECT sid, category, min_billed, max_billed, avg_billed, n_of_requests FROM services
                                       FULL JOIN (
-                                        SELECT service, MIN(num_of_hrs*REQUESTS.charge_per_hour) AS min_billed, MAX(num_of_hrs*REQUESTS.charge_per_hour) AS max_billed, ROUND(AVG(num_of_hrs*REQUESTS.charge_per_hour), 3) AS avg_billed, status 
+                                        SELECT service, MIN(num_of_hrs*REQUESTS.charge_per_hour) AS min_billed, MAX(num_of_hrs*REQUESTS.charge_per_hour) AS max_billed, ROUND(AVG(num_of_hrs*REQUESTS.charge_per_hour), 3) AS avg_billed, count(*) AS n_of_requests, status 
                                         FROM REQUESTS_HISTORY
                                         JOIN REQUESTS ON request = rid
                                         JOIN WORK_OFFERS ON work_offer = wid
-                                        WHERE status = 1 AND datetime >= to_date('{$from_date}','DD-MM-YYYY') AND datetime <= to_date('{$to_date}','DD-MM-YYYY')
+                                        WHERE status = 1 AND datetime >= to_date('{$from_date}','YYYY-MM-DD') AND datetime <= to_date('{$to_date}','YYYY-MM-DD')
                                         GROUP BY service, status
                                         )
                                       ON sid = service
@@ -41,7 +40,7 @@ if($_POST) {
     $query3 = oci_parse($db, "SELECT aid, fname, lname, total_money_spent FROM accounts
                                       FULL JOIN (
                                         SELECT professional, sum(amount) total_money_spent FROM fee_payments
-                                        WHERE date_paid >= to_date('{$from_date}','DD-MM-YYYY') AND date_paid <= to_date('{$to_date}','DD-MM-YYYY')
+                                        WHERE date_paid >= to_date('{$from_date}','YYYY-MM-DD') AND date_paid <= to_date('{$to_date}','YYYY-MM-DD')
                                         GROUP BY professional
                                         )
                                       ON aid = professional
@@ -52,7 +51,7 @@ if($_POST) {
                                       FULL JOIN (
                                         SELECT user_id, sum(num_of_hrs*charge_per_hour) AS total_paid FROM requests
                                         JOIN requests_history ON rid = request
-                                        WHERE status = 1 AND datetime >= to_date('{$from_date}','DD-MM-YYYY') AND datetime <= to_date('{$to_date}','DD-MM-YYYY')
+                                        WHERE status = 1 AND datetime >= to_date('{$from_date}','YYYY-MM-DD') AND datetime <= to_date('{$to_date}','YYYY-MM-DD')
                                         GROUP BY user_id
                                         )
                                       ON aid = user_id
@@ -68,6 +67,11 @@ if($_POST) {
     <link rel="stylesheet" href="../test.css">
     <link rel="icon" href="../../images/hammer.png">
     <title>Admin | Payments</title>
+    <style>
+        h3 {
+            padding-top: 1rem;
+        }
+    </style>
 </head>
 <body id="payments">
 
@@ -91,47 +95,21 @@ if($_POST) {
         <div>
             <form method="post">
                 <label for="from">From</label>
-                <select name="from_day" id="from">
-                    <?php for($i = 1; $i < 31; $i++): ?>
-                        <option value="<?= $i ?>"><?= $i ?></option>
-                    <?php endfor; ?>
-                </select>
-                <select name="from_month" id="from">
-                    <?php for($i = 1; $i <= 12; $i++): ?>
-                        <option value="<?= $i ?>"><?= $months["$i"]; ?></option>
-                    <?php endfor; ?>
-                </select>
-                <select name="from_year" id="from">
-                    <?php for($i = 2019; $i <= 2022; $i++): ?>
-                        <option value="<?= $i ?>"><?= $i ?></option>
-                    <?php endfor; ?>
-                </select>
-
+                <input name="from_date" type="date" id="from">
+                
                 <label for="to">To</label>
-                <select name="to_day" id="to">
-                    <?php for($i = 1; $i < 31; $i++): ?>
-                        <option value="<?= $i ?>"><?= $i ?></option>
-                    <?php endfor; ?>
-                </select>
-                <select name="to_month" id="to">
-                    <?php for($i = 1; $i <= 12; $i++): ?>
-                        <option value="<?= $i ?>"><?= $months["$i"]; ?></option>
-                    <?php endfor; ?>
-                </select>
-                <select name="to_year" id="to">
-                    <?php for($i = 2019; $i <= 2022; $i++): ?>
-                        <option value="<?= $i ?>"><?= $i ?></option>
-                    <?php endfor; ?>
-                </select>
+                <input name="to_date" type="date" id="to">
+                
                 <button type="submit" style="padding: 0 2rem">Go</button>
             </form>
             <?php if(!empty($_POST)): ?>
+            <h3>Amount of money professionals earned in a given period</h3>
             <table>
                 <tr>
-                    <th>aid</th>
-                    <th>fname</th>
-                    <th>lname</th>
-                    <th>amount earned</th>
+                    <th>AID</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Amount Earned</th>
                 </tr>
                 <?php while($row = oci_fetch_assoc($query)): ?>
                 <tr>
@@ -144,12 +122,14 @@ if($_POST) {
             </table>
 
             <table>
+                <h3>Services -> minimum, maximum, average and total amount billed for a given period</h3>
                 <tr>
-                    <th>sid</th>
-                    <th>category</th>
-                    <th>min billed</th>
-                    <th>max billed</th>
-                    <th>avg billed</th>
+                    <th>SID</th>
+                    <th>Category</th>
+                    <th>Min billed</th>
+                    <th>Max billed</th>
+                    <th>Avg billed</th>
+                    <th>Number of requests</th>
                 </tr>
                 <?php while($row = oci_fetch_assoc($query2)): ?>
                     <tr>
@@ -158,16 +138,18 @@ if($_POST) {
                         <td><?= $row['MIN_BILLED'] ?? 0?></td>
                         <td><?= $row['MAX_BILLED'] ?? 0?></td>
                         <td><?= $row['AVG_BILLED'] ?? 0?></td>
+                        <td><?= $row['N_OF_REQUESTS'] ?? 0?></td>
                     </tr>
                 <?php endwhile; ?>
             </table>
 
+            <h3>Amount of money professionals paid us for the usage of this system</h3>
             <table>
                 <tr>
-                    <th>aid</th>
-                    <th>fname</th>
-                    <th>lname</th>
-                    <th>total money spent on Pick-Fix</th>
+                    <th>AID</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Amount</th>
                 </tr>
                 <?php while($row = oci_fetch_assoc($query3)): ?>
                     <tr>
@@ -178,12 +160,13 @@ if($_POST) {
                     </tr>
                 <?php endwhile; ?>
             </table>
+            <h3>Amount of money users paid in a given period</h3>
             <table>
                 <tr>
-                    <th>aid</th>
-                    <th>fname</th>
-                    <th>lname</th>
-                    <th>total money spent on services by users</th>
+                    <th>AID</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Amount</th>
                 </tr>
                 <?php while($row = oci_fetch_assoc($query4)): ?>
                     <tr>
@@ -196,7 +179,7 @@ if($_POST) {
             </table>
 
             <?php else: ?>
-            <h2>No query submitted</h2>
+            <h3>No query submitted</h3>
             <?php endif; ?>
 
         </div>
