@@ -34,6 +34,7 @@ if($_POST) {
                                         GROUP BY service, status
                                         )
                                       ON sid = service
+                                      WHERE date_deleted IS NULL
                                       ORDER BY sid");
     oci_execute($query2);
 
