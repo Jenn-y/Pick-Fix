@@ -8,6 +8,7 @@ oci_execute($query1);
 <head>
     <?php include('../../includes/head.php') ?>
     <link rel="stylesheet" href="../admin.css">
+    <link rel="stylesheet" href="../test.css">
     <title>Admin | Cities</title>
 </head>
 <body>

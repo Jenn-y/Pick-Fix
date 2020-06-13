@@ -1,7 +1,62 @@
-#work_offers .flex-container .report-view {
-    margin-left: 10rem;
+.flex-container .report-view {
+    margin-left: 5rem;
+}
+#cities .report-view .flex-container:first-child {
+    width: 120%;
 }
 
-#work_offers .tables a, #payments .tables a {
+#cities .report-view table th, #cities .report-view td {
+    text-align: center;
+}
+#cities .rows table th, #cities .rows table td {
     width: 100%;
+    padding: 0.5rem 0.2rem;
+}
+.tables a{
+    width: 100%;
+}
+#cities .rows table {
+    border: none;
+}
+
+#cities #add_city {
+    padding: 2rem;
+}
+
+input {
+    background: #e6e6e6;
+    border-radius: 10px;
+    padding-left: 1rem;
+    margin-bottom: 0.5rem;
+    font-size: 1.2em;
+    color: #333333;
+    outline: none;
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+    -moz-appearance: textfield;
+}
+
+button, .report-view a {
+    margin: 1rem 0;
+    color: black;
+    background: rgba(51, 51, 51, 0.16);
+    padding: 0.2rem 15px;
+    border-radius: 5px;
+    font-size: 1em;
+    transition: all 0.25s ease-in;
+    letter-spacing: 0.1rem;
+    cursor: pointer;
+}
+
+button:hover, .report-view a:hover {
+    background-color: rgba(87, 184, 70, 0.77);
 }
