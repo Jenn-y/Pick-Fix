@@ -21,7 +21,7 @@
 </head>
 <body onload="redirect()">
 <main>
-    <h1>You need to be logged in to do that</h1>
+    <h1>You need to be logged in to access this page</h1>
     <h2>Redirecting you to login in 5 seconds . . .</h2>
 </main>
 </body>

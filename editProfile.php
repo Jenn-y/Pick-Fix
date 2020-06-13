@@ -36,7 +36,7 @@ if (isset($_SESSION['user_id'])) {
     }
     else if(isset($_POST['current_password'])) {
         if(checkRequiredField($_POST['current_password']) && checkRequiredField($_POST['new_password']) && checkRequiredField($_POST['new_password_repeat'])) {
-            $query2 = oci_parse($db, "select * from accounts where aid={$_SESSION['user_id']}"); //where password = {$_POST['current_password']} AND
+            $query2 = oci_parse($db, "select * from accounts where aid={$_SESSION['user_id']}");
             oci_execute($query2);
 
             $curr = oci_fetch_assoc($query2);
