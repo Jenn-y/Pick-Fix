@@ -22,18 +22,22 @@ if(isset($_GET['id'])) {
 ?>
 
 <form method="post">
+    <div>
     <label for="category">Service category name: </label>
     <input type="text" name="category" value="<?php
     if (isset($row['CATEGORY'])){
         echo $row['CATEGORY'];
     }
-    ?>"><br>
+    ?>"></div>
+    <div>
     <label for="cat_description">Category description: </label>
     <input type="text" name="cat_description" value="<?php
     if (isset($row['CAT_DESCRIPTION'])){
         echo $row['CAT_DESCRIPTION'];
     }
     ?>">
-
+    </div>
+    <div>
     <button type="submit">SAVE</button>
+    </div>
 </form>
