@@ -91,9 +91,10 @@ if (isset($_POST['city']) && !isset($_POST['service'])) {
                 <?php if (isset($_POST['service']) && isset($_POST['city'])) { ?>
                 <table>
                     <tr>
-                        <th colspan="5">PROFESSIONALS</th>
+                        <th colspan="8">PROFESSIONALS</th>
                     </tr>
                     <tr>
+                        <th>#</th>
                         <th>Name</th>
                         <th>Surname</th>
                         <th># accepted <br> requests</th>
@@ -102,7 +103,8 @@ if (isset($_POST['city']) && !isset($_POST['service'])) {
                         <th>Rating per <br> work_offer</th>
                         <th>% of being rated</th>
                     </tr>
-                    <?php while ($row = oci_fetch_assoc($list_specific)):
+                    <?php $num = 1;
+                        while ($row = oci_fetch_assoc($list_specific)):
                         $sql = oci_parse($db, "SELECT COUNT(*) AS ACCEPTED
                                                       FROM REQUESTS R, REQUESTS_HISTORY H, WORK_OFFERS W
                                                       WHERE R.RID = H.REQUEST
@@ -148,6 +150,7 @@ if (isset($_POST['city']) && !isset($_POST['service'])) {
                             $num_of_rates++;
                         }
                         $rat = 1;
+                        $percentage = 0;
                         if ($num_of_rates != 0 && $num_of_accepted['ACCEPTED'] != 0) {
                             $rat = $sum_rates / $num_of_rates;
                             $percentage = ($num_of_rates/$num_of_accepted['ACCEPTED']) * 100;
@@ -155,6 +158,7 @@ if (isset($_POST['city']) && !isset($_POST['service'])) {
                         $empty_stars = 5;
                         ?>
                         <tr>
+                            <td><?php echo $num++; ?></td>
                             <td><?= $row['FNAME']; ?></td>
                             <td><?= $row['LNAME']; ?></td>
                             <td><?= $num_of_accepted['ACCEPTED']; ?></td>
@@ -182,9 +186,10 @@ if (isset($_POST['city']) && !isset($_POST['service'])) {
                 <?php } else if (!isset($_POST['service']) && isset($_POST['city'])) { ?>
                     <table>
                         <tr>
-                            <th colspan="5">PROFESSIONALS</th>
+                            <th colspan="8">PROFESSIONALS</th>
                         </tr>
                         <tr>
+                            <th>#</th>
                             <th>Name</th>
                             <th>Surname</th>
                             <th># accepted <br> requests</th>
@@ -193,7 +198,8 @@ if (isset($_POST['city']) && !isset($_POST['service'])) {
                             <th>Rating per <br> city</th>
                             <th>% of being rated</th>
                         </tr>
-                        <?php while ($row = oci_fetch_assoc($list_by_city)):
+                        <?php $num = 1;
+                            while ($row = oci_fetch_assoc($list_by_city)):
                             $sql = oci_parse($db, "SELECT COUNT(*) AS ACCEPTED
                                                       FROM REQUESTS R, REQUESTS_HISTORY H, WORK_OFFERS W
                                                       WHERE R.RID = H.REQUEST
@@ -243,6 +249,7 @@ if (isset($_POST['city']) && !isset($_POST['service'])) {
                             $empty_stars = 5;
                             ?>
                             <tr>
+                                <td><?php echo $num++; ?></td>
                                 <td><?= $row['FNAME']; ?></td>
                                 <td><?= $row['LNAME']; ?></td>
                                 <td><?= $num_of_accepted['ACCEPTED']; ?></td>
@@ -270,9 +277,10 @@ if (isset($_POST['city']) && !isset($_POST['service'])) {
                 <?php } else if (isset($_POST['service']) && !isset($_POST['city'])) { ?>
                     <table>
                         <tr>
-                            <th colspan="5">PROFESSIONALS</th>
+                            <th colspan="8">PROFESSIONALS</th>
                         </tr>
                         <tr>
+                            <th>#</th>
                             <th>Name</th>
                             <th>Surname</th>
                             <th># accepted <br> requests</th>
@@ -281,7 +289,8 @@ if (isset($_POST['city']) && !isset($_POST['service'])) {
                             <th>Rating per <br> service</th>
                             <th>% of being rated</th>
                         </tr>
-                        <?php while ($row = oci_fetch_assoc($list_by_service)):
+                        <?php $num = 1;
+                            while ($row = oci_fetch_assoc($list_by_service)):
                             $sql = oci_parse($db, "SELECT COUNT(*) AS ACCEPTED
                                                       FROM REQUESTS R, REQUESTS_HISTORY H, WORK_OFFERS W
                                                       WHERE R.RID = H.REQUEST
@@ -331,6 +340,7 @@ if (isset($_POST['city']) && !isset($_POST['service'])) {
                             $empty_stars = 5;
                             ?>
                             <tr>
+                                <td><?php echo $num++; ?></td>
                                 <td><?= $row['FNAME']; ?></td>
                                 <td><?= $row['LNAME']; ?></td>
                                 <td><?= $num_of_accepted['ACCEPTED']; ?></td>
@@ -358,9 +368,10 @@ if (isset($_POST['city']) && !isset($_POST['service'])) {
                 <?php } else { ?>
                     <table>
                         <tr>
-                            <th colspan="5">PROFESSIONALS</th>
+                            <th colspan="8">PROFESSIONALS</th>
                         </tr>
                         <tr>
+                            <th>#</th>
                             <th>Name</th>
                             <th>Surname</th>
                             <th># accepted <br> requests</th>
@@ -369,7 +380,8 @@ if (isset($_POST['city']) && !isset($_POST['service'])) {
                             <th>General Rating</th>
                             <th>% of being rated</th>
                         </tr>
-                        <?php while ($row = oci_fetch_assoc($query4)):
+                        <?php $num = 1;
+                            while ($row = oci_fetch_assoc($query4)):
                             $sql = oci_parse($db, "SELECT COUNT(*) AS ACCEPTED
                                                       FROM REQUESTS R, REQUESTS_HISTORY H, WORK_OFFERS W
                                                       WHERE R.RID = H.REQUEST
@@ -415,6 +427,7 @@ if (isset($_POST['city']) && !isset($_POST['service'])) {
                             $empty_stars = 5;
                             ?>
                             <tr>
+                                <td><?php echo $num++; ?></td>
                                 <td><?= $row['FNAME']; ?></td>
                                 <td><?= $row['LNAME']; ?></td>
                                 <td><?= $num_of_accepted['ACCEPTED']; ?></td>
@@ -452,7 +465,7 @@ if (isset($_POST['city']) && !isset($_POST['service'])) {
                 oci_execute($query_c);
                 ?>
                 <table>
-                    <tr><th colspan="4">List of users that ask for services outside of their place of residence</th></tr>
+                    <tr><th colspan="5">- List of users that ask for services outside of their place of residence -</th></tr>
                     <tr>
                         <th>#</th>
                         <th>Name</th>
@@ -494,8 +507,8 @@ if (isset($_POST['city']) && !isset($_POST['service'])) {
                                                   ORDER BY A.FNAME, A.LNAME");
                 oci_execute($query_c);
                 ?>
-                <table>
-                    <tr><th colspan="4">List of professionals that offer services outside of their place of residence</th></tr>
+                <table style="border-bottom: none !important;">
+                    <tr><th colspan="5">- List of professionals that offer services outside of their place of residence -</th></tr>
                     <tr>
                         <th>#</th>
                         <th>Name</th>
@@ -527,20 +540,26 @@ if (isset($_POST['city']) && !isset($_POST['service'])) {
                     <?php } ?>
                 </table>
             </div>
+            <hr>
 
-        <div class="flex-container">
+        <div class="flex-container" id="services_cities">
             <?php
             $services = oci_parse($db, "SELECT * FROM SERVICES WHERE DATE_DELETED IS NULL ORDER BY CATEGORY");
             oci_execute($services);
             $cities = oci_parse($db, "SELECT * FROM CITIES WHERE DATE_DELETED IS NULL ORDER BY CNAME");
             oci_execute($cities);
             ?>
-            <table>
+            <table style="border-bottom: none !important;">
                 <tr>
+                    <th colspan="3">RATING PER SERVICE</th>
+                </tr>
+                <tr>
+                    <th>#</th>
                     <th>Service</th>
                     <th>Rating</th>
                 </tr>
-                <?php while ($all_services = oci_fetch_assoc($services)) :
+                <?php $num = 1;
+                    while ($all_services = oci_fetch_assoc($services)) :
                     $rating = oci_parse($db, "SELECT R.JOB_RATING
                                                        FROM REQUESTS R, WORK_OFFERS W
                                                        WHERE R.WORK_OFFER = W.WID
@@ -561,6 +580,7 @@ if (isset($_POST['city']) && !isset($_POST['service'])) {
                     }
                     $empty_stars = 5;?>
                 <tr>
+                    <td><?php echo $num++; ?></td>
                     <td><?= $all_services['CATEGORY'] ?></td>
                     <td>
                         <?php while ($rat >= 1) :
@@ -579,12 +599,17 @@ if (isset($_POST['city']) && !isset($_POST['service'])) {
                 </tr>
                 <?php endwhile; ?>
             </table>
-            <table>
+            <table style="border-bottom: none !important;">
                 <tr>
+                    <th colspan="3">RATING PER CITY</th>
+                </tr>
+                <tr>
+                    <th>#</th>
                     <th>City</th>
                     <th>Rating</th>
                 </tr>
-                <?php while ($all_cities = oci_fetch_assoc($cities)) :
+                <?php $num = 1;
+                    while ($all_cities = oci_fetch_assoc($cities)) :
                     $rating = oci_parse($db, "SELECT R.JOB_RATING
                                                        FROM REQUESTS R, WORK_OFFERS W
                                                        WHERE R.WORK_OFFER = W.WID
@@ -605,6 +630,7 @@ if (isset($_POST['city']) && !isset($_POST['service'])) {
                     }
                     $empty_stars = 5;?>
                     <tr>
+                        <td><?php echo $num++; ?></td>
                         <td><?= $all_cities['CNAME'] ?></td>
                         <td>
                             <?php while ($rat >= 1) :
@@ -624,6 +650,7 @@ if (isset($_POST['city']) && !isset($_POST['service'])) {
                 <?php endwhile; ?>
             </table>
         </div>
+            <hr>
         </div>
     </div>
 </main>

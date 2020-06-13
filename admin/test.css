@@ -81,8 +81,37 @@ button, .report-view a {
     transition: all 0.25s ease-in;
     letter-spacing: 0.1rem;
     cursor: pointer;
+    border-color: rgba(51, 51, 51, 0.16);
 }
 
 button:hover, .report-view a:hover {
     background-color: rgba(87, 184, 70, 0.77);
 }
+
+#work_offers .rows table th, #work_offers .rows table td {
+    width: unset !important;
+    box-sizing: border-box !important;
+    padding: 0.5rem 0 !important;
+}
+
+#work_offers .report-view .rows table {
+    border-bottom: 2px solid grey !important;
+    margin-bottom: 2.5rem !important;
+}
+
+#work_offers select {
+    height: 30px;
+    width: 150px;
+    margin: 1rem 0;
+    border-radius: 5px;
+    border-color: rgba(51, 51, 51, 0.16);
+}
+
+#work_offers #services_cities {
+    margin-top: 2.5rem;
+}
+
+#work_offers #services_cities table tr td, #work_offers #services_cities table tr th {
+    padding: 0.5rem 0.2rem;
+}
+
