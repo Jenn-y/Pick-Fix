@@ -39,7 +39,7 @@ oci_execute($query2);
         </div>
             <div class="flex-container">
         <div class="rows">
-            <h4 style="margin-left: 2.8rem;">ACTIVE CITIES</h4>
+            <h4>ACTIVE CITIES</h4>
             <table>
                 <tr>
                     <th>#</th>
@@ -60,16 +60,16 @@ oci_execute($query2);
                         <td><?php echo $num++; ?></td>
                         <td><?= $row['CNAME']; ?></td>
                         <td><?php echo $pro_num['PRO_NUM']; ?></td>
-                        <td><a href="delete_city.php?id=<?=$row['CID']; ?>" onclick="return confirm('Are you sure that you want to delete city <?=$row['CNAME']; ?>?')">DELETE</a></td>
-                        <td><a href="update_city.php?id=<?=$row['CID']; ?>">EDIT</a></td>
+                        <td><a href="delete_city.php?id=<?=$row['CID']; ?>" onclick="return confirm('Are you sure that you want to delete city <?=$row['CNAME']; ?>?')">delete</a></td>
+                        <td><a href="update_city.php?id=<?=$row['CID']; ?>">edit</a></td>
                     </tr>
                 <?php endwhile; ?>
 
             </table>
         </div>
-                <hr style="margin-left: 2rem;">
+                <hr>
         <div class="rows">
-            <h4 style="margin-left: 2.8rem;">DELETED CITIES</h4>
+            <h4>DELETED CITIES</h4>
             <table>
                 <tr>
                     <th>#</th>
@@ -81,7 +81,7 @@ oci_execute($query2);
                     <tr>
                         <td><?php echo $num++; ?></td>
                         <td><?= $row['CNAME']; ?></td>
-                        <td><a href="update_deleted_city.php?id=<?=$row['CID']; ?>" onclick="return confirm('Are you sure that you want to add again city <?=$row['CNAME']; ?>?')">RE-ADD</a></td>
+                        <td><a href="update_deleted_city.php?id=<?=$row['CID']; ?>" onclick="return confirm('Are you sure that you want to add again city <?=$row['CNAME']; ?>?')">re-add</a></td>
                     </tr>
                 <?php endwhile; ?>
 

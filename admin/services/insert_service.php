@@ -21,10 +21,15 @@ WHERE date_deleted IS NOT NULL AND UPPER ('{$_POST['category']}') = UPPER (categ
 ?>
 
 <form action="services.php" method="post">
+    <div>
     <label for="category">Service category name: </label>
-    <input type="text" name="category"><br>
-    <label for="cat_description">Category description </label>
-    <input type="text" name="cat_description"><br>
-
+    <input type="text" name="category">
+    </div>
+    <div>
+    <label for="cat_description">Category description: </label>
+    <input type="text" name="cat_description">
+    </div>
+<div>
     <button type="submit">ADD</button>
+</div>
 </form>

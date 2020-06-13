@@ -1,22 +1,48 @@
 .flex-container .report-view {
     margin-left: 5rem;
 }
-#cities .report-view .flex-container:first-child {
+.report-view .flex-container:first-child {
     width: 120%;
 }
 
-#cities .report-view table th, #cities .report-view td {
+.report-view table th, .report-view td {
     text-align: center;
 }
-#cities .rows table th, #cities .rows table td {
+.rows table th, .rows table td {
     width: 100%;
     padding: 0.5rem 0.2rem;
 }
 .tables a{
     width: 100%;
 }
-#cities .rows table {
-    border: none;
+.flex-container .rows table {
+    border: none !important;
+}
+
+#add_service div, #update_service .rows div {
+    text-align: center;
+    display: flex;
+}
+#add_service label, #update_service .rows label {
+    width: 50%;
+    text-align: right;
+    margin-right: 1.5rem;
+}
+
+#add_service button, #update_service .rows button {
+    margin: 1rem auto 2rem;
+}
+
+#update_service .rows {
+    width: 45%;
+}
+
+h4 {
+    margin-left: 2.8rem;
+}
+
+.flex-container .report-view hr {
+    margin-left: 2rem;
 }
 
 #cities #add_city {

@@ -11,9 +11,9 @@ $query1 = oci_parse($db, 'SELECT * FROM services
                                              )
                                   ON sid = service
                                   WHERE date_deleted IS NULL
-                                  ORDER BY sid');
+                                  ORDER BY CATEGORY');
 oci_execute($query1);
-$query2 = oci_parse($db, 'SELECT * FROM services WHERE date_deleted IS NOT NULL');
+$query2 = oci_parse($db, 'SELECT * FROM services WHERE date_deleted IS NOT NULL ORDER BY CATEGORY');
 oci_execute($query2);
 ?>
 <!doctype html>
@@ -21,6 +21,7 @@ oci_execute($query2);
 <head>
     <?php include('../../includes/head.php') ?>
     <link rel="stylesheet" href="../admin.css">
+    <link rel="stylesheet" href="../test.css">
     <link rel="icon" href="../../images/hammer.png">
     <title>Admin | Services</title>
 </head>
@@ -43,16 +44,25 @@ oci_execute($query2);
             <a href="../users/users.php">Users</a>
             <a href="../payments/payments.php">Payments</a>
         </div>
+        <div class="report-view">
+        <div id="add_service">
+            <?php include('insert_service.php'); ?>
+        </div>
+            <div class="flex-container">
         <div class="rows">
+            <h4>ACTIVE CATEGORIES</h4>
             <table>
                 <tr>
-                    <th>SID</th>
+                    <th>#</th>
                     <th>Category</th>
-                    <th>No. of Pros</th>
+                    <th># of Pros</th>
+                    <th>DELETE</th>
+                    <th>EDIT</th>
                 </tr>
-                <?php while($row = oci_fetch_assoc($query1)): ?>
+                <?php $num = 1;
+                while($row = oci_fetch_assoc($query1)): ?>
                     <tr>
-                        <td><?= $row['SID']; ?></td>
+                        <td><?php echo $num++; ?></td>
                         <td><?= $row['CATEGORY']; ?></td>
                         <?php if($row['NO_OF_PROS'] == NULL): ?>
                             <td>0</td>
@@ -64,22 +74,29 @@ oci_execute($query2);
                     </tr>
                 <?php endwhile; ?>
             </table>
-            <?php include('insert_service.php'); ?>
         </div>
+                <hr>
         <div class="rows">
+            <h4>DELETED CATEGORIES</h4>
             <table>
                 <tr>
-                    <th>SID</th>
+                    <th>#</th>
                     <th>Category</th>
+                    <th>RE-ADD</th>
                 </tr>
-                <?php while($row = oci_fetch_assoc($query2)): ?>
+                <?php $num = 1;
+                while($row = oci_fetch_assoc($query2)): ?>
                     <tr>
-                        <td><?= $row['SID']; ?></td>
+                        <td><?php echo $num++; ?></td>
                         <td><?= $row['CATEGORY']; ?></td>
-                        <td><a href="update_deleted_service.php?id=<?=$row['SID']; ?>">re-add</a></td>
+                        <td><a href="update_deleted_service.php?id=<?=$row['SID']; ?>" onclick="return confirm('Are you sure that you want to add again category <?=$row['CATEGORY']; ?>?')">re-add</a></td>
                     </tr>
                 <?php endwhile; ?>
             </table>
+        </div>
+
+        </div>
+            <hr>
         </div>
     </div>
 </main>
