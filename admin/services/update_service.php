@@ -8,7 +8,6 @@ $query1 = oci_parse($db, 'SELECT * FROM services WHERE date_deleted IS NULL');
 <head>
     <?php include('../../includes/head.php') ?>
     <link rel="stylesheet" href="../admin.css">
-    <link rel="stylesheet" href="../test.css">
     <title>Admin | Services</title>
 </head>
 <body id="update_service">

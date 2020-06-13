@@ -21,7 +21,6 @@ oci_execute($query2);
 <head>
     <?php include('../../includes/head.php') ?>
     <link rel="stylesheet" href="../admin.css">
-    <link rel="stylesheet" href="../test.css">
     <link rel="icon" href="../../images/hammer.png">
     <title>Admin | Services</title>
 </head>

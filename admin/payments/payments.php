@@ -86,7 +86,6 @@ if (isset($_POST['from_date4']) && isset($_POST['to_date4'])) {
 <head>
     <?php include('../../includes/head.php') ?>
     <link rel="stylesheet" href="../admin.css">
-    <link rel="stylesheet" href="../test.css">
     <link rel="icon" href="../../images/hammer.png">
     <title>Admin | Payments</title>
     <style>
@@ -112,7 +111,7 @@ if (isset($_POST['from_date4']) && isset($_POST['to_date4'])) {
             <a href="../services/services.php">Services</a>
             <a href="../work_offers/work_offers.php">Work offers</a>
             <a href="../users/users.php">Users</a>
-            <a href="#" id="stay">Payments <i class="fa fa-long-arrow-right" aria-hidden="true"></i></a>
+            <a href="payments.php" id="stay">Payments <i class="fa fa-long-arrow-right" aria-hidden="true"></i></a>
         </div>
         <div class="report-view">
 
