@@ -99,7 +99,7 @@ button:hover, .report-view a:hover {
     margin-bottom: 2.5rem !important;
 }
 
-#work_offers select {
+#work_offers select, #users select {
     height: 30px;
     width: 150px;
     margin: 1rem 0;
@@ -113,5 +113,12 @@ button:hover, .report-view a:hover {
 
 #work_offers #services_cities table tr td, #work_offers #services_cities table tr th {
     padding: 0.5rem 0.2rem;
+}
+
+#users button {
+    margin: 0.2rem 0;
+}
+#users .rows table th, #users .rows table td {
+    padding: 0.2rem;
 }
 
