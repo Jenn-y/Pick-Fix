@@ -180,7 +180,7 @@ if (isset($_SESSION['user_id'])) {
 <div id="page-container">
     <?php include('includes/header.php'); ?>
 
-    <main>
+    <main id="main">
         <div class="main center">
             <?php if($incorrect_password): ?>
                 <div class="flex-container center">
