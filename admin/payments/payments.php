@@ -11,9 +11,9 @@ if($_POST) {
     $from_date = $_POST['from_date'];
     $to_date = $_POST['to_date'];
 
-    $query = oci_parse($db, "SELECT aid, fname, lname, money_earned FROM accounts
+    $query = oci_parse($db, "SELECT aid, fname, lname, money_earned, jobs FROM accounts
                                      FULL JOIN (
-                                        SELECT professional, sum(num_of_hrs*REQUESTS.charge_per_hour) AS money_earned FROM requests_history
+                                        SELECT professional, sum(num_of_hrs*REQUESTS.charge_per_hour) AS money_earned, count (rhid) AS jobs FROM requests_history
                                         JOIN REQUESTS ON request = rid
                                         JOIN WORK_OFFERS ON work_offer = wid
                                         WHERE status = 1 AND datetime >= to_date('{$from_date}','YYYY-MM-DD') AND datetime <= to_date('{$to_date}','YYYY-MM-DD')
@@ -111,6 +111,7 @@ if($_POST) {
                     <th>First Name</th>
                     <th>Last Name</th>
                     <th>Amount Earned</th>
+                    <th># of accepted <br> jobs</th>
                 </tr>
                 <?php while($row = oci_fetch_assoc($query)): ?>
                 <tr>
@@ -118,6 +119,7 @@ if($_POST) {
                     <td><?= $row['FNAME'] ?></td>
                     <td><?= $row['LNAME'] ?></td>
                     <td><?= $row['MONEY_EARNED'] ?? 0 ?></td>
+                    <td><?= $row['JOBS'] ?? 0?></td>
                 </tr>
                 <?php endwhile; ?>
             </table>
@@ -161,6 +163,19 @@ if($_POST) {
                         <td><?= $row['TOTAL_MONEY_SPENT'] ?? 0?></td>
                     </tr>
                 <?php endwhile; ?>
+            </table>
+            <table>
+                <tr>
+                    <td>Number of professionals that continued payment after the 1st payment plan expiration: </td>
+                    <?php  $sql = oci_parse($db, "SELECT COUNT (A.AID) AS CONT, COUNT(F.FID) AS PAYMENT
+                                                          FROM FEE_PAYMENTS F, ACCOUNTS A
+                                                          WHERE F.PROFESSIONAL = A.AID
+                                                          HAVING COUNT (F.FID) > 1");
+                    oci_execute($sql);
+                    $num_of_pros = oci_fetch_assoc($sql);
+                    ?>
+                    <td><?php echo $num_of_pros['CONT']; ?></td>
+                </tr>
             </table>
             <h3>Amount of money users paid in a given period</h3>
             <table>

@@ -442,6 +442,50 @@ if (isset($_POST['city']) && !isset($_POST['service'])) {
                 <?php } ?>
                 <?php
                 $query_c = oci_parse($db, "SELECT DISTINCT A.AID, A.FNAME, A.LNAME, A.PRIMARY_CITY
+                                                  FROM ACCOUNTS A, CITIES C, REQUESTS R, WORK_OFFERS W
+                                                  WHERE A.AID = R.USER_ID
+                                                  AND R.WORK_OFFER = W.WID
+                                                  AND W.CITY = C.CID
+                                                  AND UPPER (C.CNAME) NOT IN (SELECT UPPER (PRIMARY_CITY) FROM ACCOUNTS
+                                                                              WHERE AID = A.AID)
+                                                  ORDER BY A.FNAME, A.LNAME");
+                oci_execute($query_c);
+                ?>
+                <table>
+                    <tr><th colspan="4">List of users that ask for services outside of their place of residence</th></tr>
+                    <tr>
+                        <th>#</th>
+                        <th>Name</th>
+                        <th>Surname</th>
+                        <th>City of Residence</th>
+                        <th>Service requested in: </th>
+                    </tr>
+                    <?php
+                    $num = 1;
+                    while ($users = oci_fetch_assoc($query_c)) {
+                        $cities = oci_parse($db, "SELECT DISTINCT W.CITY, C.CNAME
+                                                         FROM WORK_OFFERS W, CITIES C, REQUESTS R
+                                                         WHERE R.USER_ID = {$users['AID']}
+                                                         AND R.WORK_OFFER = W.WID
+                                                         AND W.CITY = C.CID
+                                                         AND UPPER(C.CNAME) != UPPER('{$users['PRIMARY_CITY']}')");
+                        oci_execute($cities);
+                        ?>
+                    <tr>
+                        <td><?php echo $num; $num++; ?></td>
+                        <td><?= $users['FNAME'] ?></td>
+                        <td><?= $users['LNAME'] ?></td>
+                        <td><?= $users['PRIMARY_CITY'] ?></td>
+                        <td>
+                        <?php while ($list_cities = oci_fetch_assoc($cities)) : ?>
+                        <p><?= $list_cities['CNAME'] ?></p>
+                        <?php endwhile; ?>
+                        </td>
+                    </tr>
+                    <?php } ?>
+                </table>
+                <?php
+                $query_c = oci_parse($db, "SELECT DISTINCT A.AID, A.FNAME, A.LNAME, A.PRIMARY_CITY
                                                   FROM ACCOUNTS A, WORK_OFFERS W, CITIES C 
                                                   WHERE W.PROFESSIONAL = A.AID
                                                   AND W.CITY = C.CID
@@ -469,17 +513,17 @@ if (isset($_POST['city']) && !isset($_POST['service'])) {
                                                          AND UPPER(C.CNAME) != UPPER('{$professionals['PRIMARY_CITY']}')");
                         oci_execute($cities);
                         ?>
-                    <tr>
-                        <td><?php echo $num; $num++; ?></td>
-                        <td><?= $professionals['FNAME'] ?></td>
-                        <td><?= $professionals['LNAME'] ?></td>
-                        <td><?= $professionals['PRIMARY_CITY'] ?></td>
-                        <td>
-                        <?php while ($list_cities = oci_fetch_assoc($cities)) : ?>
-                        <p><?= $list_cities['CNAME'] ?></p>
-                        <?php endwhile; ?>
-                        </td>
-                    </tr>
+                        <tr>
+                            <td><?php echo $num; $num++; ?></td>
+                            <td><?= $professionals['FNAME'] ?></td>
+                            <td><?= $professionals['LNAME'] ?></td>
+                            <td><?= $professionals['PRIMARY_CITY'] ?></td>
+                            <td>
+                                <?php while ($list_cities = oci_fetch_assoc($cities)) : ?>
+                                    <p><?= $list_cities['CNAME'] ?></p>
+                                <?php endwhile; ?>
+                            </td>
+                        </tr>
                     <?php } ?>
                 </table>
             </div>
