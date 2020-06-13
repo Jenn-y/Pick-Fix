@@ -94,14 +94,12 @@ div input:focus, div select:focus{
     padding: 5px;
     font-family: inherit;
     height: 8rem;
-    width: 230px;
+    max-width: 242px;
 }
 
 .about {
     padding: 1rem;
 }
-
-/***** from test.css *****/
 
 #cities_fieldset form {
     display: flex;
@@ -181,37 +179,8 @@ main .credit-card_fieldset form .dateAndCvv{
     padding-bottom: 2rem;
 }
 
-
-/* Footer */
-
-.center {
-    margin: 0 auto;
-    max-width: 75rem;
-}
-
-.flex-container {
-    display: flex;
-}
-
-@media (max-width: 600px) {
-    main form div {
-        flex-direction: column;
-        text-align: center;
-        margin: 0 1rem;
-        justify-content: center;
-        align-items: center;
-    }
-    .main {
-        margin-bottom: 5rem;
-    }
-    label {
-        text-align: unset;
-        margin-right: unset;
-        padding: 1rem 0;
-    }
-    fieldset {
-        margin-bottom: 1.5rem;
-    }
+#edit_profile .no_comment p {
+    text-align: center;
 }
 
 /* Edit Services Page Additional Styling */
@@ -261,4 +230,44 @@ main .credit-card_fieldset form .dateAndCvv{
 
 main .credit-card_fieldset form .dateAndCvv{
     display: unset !important;
+}
+
+/* Footer */
+
+.center {
+    margin: 0 auto;
+    max-width: 75rem;
+}
+
+.flex-container {
+    display: flex;
+}
+
+@media (max-width: 800px) {
+    #main {
+        padding-bottom: 25rem;
+    }
+}
+
+@media (max-width: 600px) {
+
+    main form div {
+        flex-direction: column;
+        text-align: center;
+        margin: 0 1rem;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .main {
+        margin-bottom: 5rem;
+    }
+    label {
+        text-align: unset;
+        margin-right: unset;
+        padding: 1rem 0;
+    }
+    fieldset {
+        margin-bottom: 1.5rem;
+    }
 }

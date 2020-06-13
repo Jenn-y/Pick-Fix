@@ -201,7 +201,7 @@ button, #get-price {
     background-color: #4dbc15;
     color: white;
     font-weight: bold;
-    width: 25%;
+    border-radius: 5px;
     text-align: center;
 }
 
@@ -299,6 +299,8 @@ label span { color: #DC143C; }
     color: rgba(0, 0, 0, 0.82);
 }
 
+.mobile { visibility:hidden; }
+
 /****** Responsive design ******/
 
 @media (max-width: 800px) {
@@ -307,6 +309,13 @@ label span { color: #DC143C; }
     }
     .about {
         margin-bottom: 5rem;
+    }
+    .sent-requests {
+        margin-bottom: 4rem;
+    }
+    .desktop { display: none; }
+    .mobile {
+        visibility: visible;
     }
 }
 
@@ -353,7 +362,8 @@ label span { color: #DC143C; }
     #requests td a {
         padding: 5px;
     }
-    .sent-requests {
-        margin-bottom: 4rem;
+
+    .comments_section {
+        margin-bottom: 5rem;
     }
 }
