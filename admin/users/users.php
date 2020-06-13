@@ -31,7 +31,6 @@ if (isset($_POST['role'])){
     <?php include('../../includes/head.php') ?>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <link rel="stylesheet" href="../admin.css">
-    <link rel="stylesheet" href="../test.css">
     <link rel="icon" href="../../images/hammer.png">
     <title>Admin | Users</title>
 </head>
