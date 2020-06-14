@@ -84,7 +84,7 @@ if ($_POST) {
     <div class="new-account flex-container">
         <a href="userRegistration.php">Create your Account <i class="fa fa-long-arrow-right m-l-5"
                                                               aria-hidden="true"></i></a>
-        <a href="professionalsRegistration.php">Join as a Pro <i class="fa fa-star" aria-hidden="true"></i></a>
+        <a href="pricing.php">Join as a Pro <i class="fa fa-star" aria-hidden="true"></i></a>
     </div>
 </main>
 </body>
