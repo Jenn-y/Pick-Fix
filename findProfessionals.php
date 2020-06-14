@@ -64,7 +64,7 @@ if (isset($_SESSION['user_id'])) {
     <link rel="stylesheet" href="css/header.css">
     <link rel="stylesheet" href="css/index.css">
     <link rel="stylesheet" href="css/footer.css">
-    <link rel="stylesheet" href="css/test.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
     <title>Find Professionals</title>
 </head>
@@ -104,9 +104,9 @@ if (isset($_SESSION['user_id'])) {
 
                 <?php while ($row4 = oci_fetch_assoc($query5)): ?>
                     <div class="dropdown">
-                        <a class="dropLink"><?= $row4['CATEGORY']; ?> <i class="fa fa-angle-down"
+                        <a class="drop_link"><?= $row4['CATEGORY']; ?> <i class="fa fa-angle-down"
                                                                          aria-hidden="true"></i></a>
-                        <div class="dropdown-content">
+                        <div class="dropdown_content" style="display: none;">
                             <p><?= $row4['CAT_DESCRIPTION']; ?></p>
                         </div>
                     </div>
@@ -408,6 +408,22 @@ if (isset($_SESSION['user_id'])) {
             </div>
         </section>
     </main>
+
+    <script>
+        $(document).ready(function() {
+            let counter1 = 1;
+            $('.drop_link').click(function() {
+                if (counter1 % 2 == 0) {
+                    $(this).siblings().hide();
+                    counter1++;
+                }
+                else {
+                    $(this).siblings().show();
+                    counter1++;
+                }
+            })
+        });
+    </script>
 
     <?php include('includes/footer.php'); ?>
 </div>
