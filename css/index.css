@@ -124,9 +124,9 @@ main {
     margin-right: 0;
 }
 
-/*.popular-services a:hover {
-    transform: scale(1.1);
-}*/
+.popular-services a:hover {
+    transform: scale3d(0.9, 1, 1);
+}
 
 .popular-services a img{
     width: 100%;
@@ -396,6 +396,8 @@ select {
 #findProfessionals main .flex-container .allServices a:hover {
     transform: scaleX(1.1);
     cursor: pointer;
+    color: rgba(87, 184, 70, 0.77);
+    transition: all 0.25s ease-in;
 }
 
 #findProfessionals main .flex-container .displayProfessionals {
@@ -428,22 +430,16 @@ select {
 }
 
 #findProfessionals main .dropdown {
-    position: relative;
     margin-bottom: 1rem;
 }
 
-#findProfessionals main .dropdown-content {
+#findProfessionals main .dropdown_content {
     display: none;
-    box-shadow: 3px 3px 3px 2px #ccc;
+    border-bottom: 1px solid grey;
     max-width: 100%;
     z-index: 1;
     margin-top: 0;
     padding: 0.5rem;
-}
-
-#findProfessionals main .dropdown:hover .dropdown-content {
-    transition: 5s;
-    display: block;
 }
 
 .displayProfessionals img {
@@ -469,6 +465,9 @@ select {
 
 .displayProfessionals a {
     color: #353b3e;
+}
+.displayProfessionals a:hover {
+    background-color: rgba(144, 238, 144, 0.13);
 }
 
 /**** Animation for team members ****/

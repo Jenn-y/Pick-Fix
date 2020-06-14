@@ -11,7 +11,6 @@ if (session_status() == PHP_SESSION_NONE) {
     <link href="css/header.css" rel="stylesheet">
     <link href="css/index.css" rel="stylesheet">
     <link rel="stylesheet" href="css/footer.css">
-    <link rel="stylesheet" href="css/test.css">
 
     <title>Pick&Fix</title>
 
