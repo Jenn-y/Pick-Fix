@@ -37,6 +37,34 @@ if (isset($_POST['city']) && !isset($_POST['service'])) {
                                                 ORDER BY P.FNAME, P.LNAME");
     oci_execute($list_by_city);
 }
+
+if (isset($_POST['from_date']) && isset($_POST['to_date'])) {
+    $s_A = oci_parse($db, "SELECT COUNT(*) AS ACCEPTED
+                                                      FROM REQUESTS R, REQUESTS_HISTORY H, WORK_OFFERS W
+                                                      WHERE R.RID = H.REQUEST
+                                                      AND H.STATUS = 1
+                                                      AND R.WORK_OFFER = W.WID
+                                                      AND H.datetime >= to_date('{$_POST['from_date']}','YYYY-MM-DD') AND H.datetime <= to_date('{$_POST['to_date']}','YYYY-MM-DD')");
+    oci_execute($s_A);
+    $sum_accepted = oci_fetch_assoc($s_A);
+    $s_R = oci_parse($db, "SELECT COUNT(*) AS REJECTED
+                                                      FROM REQUESTS R, REQUESTS_HISTORY H, WORK_OFFERS W
+                                                      WHERE R.RID = H.REQUEST
+                                                      AND H.STATUS = 2
+                                                      AND R.WORK_OFFER = W.WID
+                                                      AND H.datetime >= to_date('{$_POST['from_date']}','YYYY-MM-DD') AND H.datetime <= to_date('{$_POST['to_date']}','YYYY-MM-DD')");
+    oci_execute($s_R);
+    $sum_rejected = oci_fetch_assoc($s_R);
+    $s_T = oci_parse($db, "SELECT COUNT(*) AS TOTAL, R.RID
+                                                      FROM REQUESTS R, REQUESTS_HISTORY H, WORK_OFFERS W
+                                                      WHERE R.WORK_OFFER = W.WID
+                                                      AND (SELECT COUNT (*) FROM REQUESTS_HISTORY WHERE REQUEST = R.RID) = 1
+                                                      AND H.datetime >= to_date('{$_POST['from_date']}','YYYY-MM-DD') AND H.datetime <= to_date('{$_POST['to_date']}','YYYY-MM-DD')
+                                                      GROUP BY R.RID");
+    oci_execute($s_T);
+    $sum_total = oci_fetch_assoc($s_T);
+
+}
 ?>
 <!doctype html>
 <html lang="en">
@@ -61,7 +89,7 @@ if (isset($_POST['city']) && !isset($_POST['service'])) {
         <div class="tables flex-container">
             <a href="../cities/cities.php">Cities</a>
             <a href="../services/services.php">Services</a>
-            <a href="#" id="stay">Work offers <i class="fa fa-long-arrow-right" aria-hidden="true"></i></a>
+            <a href="work_offers.php" id="stay">Work offers <i class="fa fa-long-arrow-right" aria-hidden="true"></i></a>
             <a href="../users/users.php">Users</a>
             <a href="../payments/payments.php">Payments</a>
         </div>
@@ -506,7 +534,7 @@ if (isset($_POST['city']) && !isset($_POST['service'])) {
                                                   ORDER BY A.FNAME, A.LNAME");
                 oci_execute($query_c);
                 ?>
-                <table style="border-bottom: none !important;">
+                <table>
                     <tr><th colspan="5">- List of professionals that offer services outside of their place of residence -</th></tr>
                     <tr>
                         <th>#</th>
@@ -538,6 +566,33 @@ if (isset($_POST['city']) && !isset($_POST['service'])) {
                         </tr>
                     <?php } ?>
                 </table>
+                <form method="post" style="text-align: center;">
+                    <p>TRACK OF REQUESTS</p>
+                    <label for="from">From</label>
+                    <input name="from_date" type="date" id="from">
+
+                    <label for="to">To</label>
+                    <input name="to_date" type="date" id="to">
+
+                    <button type="submit">Go</button>
+                </form>
+                <?php if (isset($_POST['from_date']) && isset($_POST['to_date'])): ?>
+                    <table style="border-bottom: none !important;">
+                        <tr>
+                            <th colspan="3"><?php echo $_POST['from_date']; ?> - <?php echo $_POST['to_date']; ?></th>
+                        </tr>
+                        <tr>
+                            <th># of accepted requests</th>
+                            <th># of rejected requests</th>
+                            <th>TOTAL</th>
+                        </tr>
+                            <tr>
+                                <td><?php echo $sum_accepted['ACCEPTED']; ?></td>
+                                <td><?php echo $sum_rejected['REJECTED']; ?></td>
+                                <td><?php echo $sum_total['TOTAL']; ?></td>
+                            </tr>
+                    </table>
+                <?php endif; ?>
             </div>
             <hr>
 
