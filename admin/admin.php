@@ -65,6 +65,7 @@
                             displayed cities where services were requested in</li>
                         <li>List of professionals that offer their services even outside of their city of residence
                         along with displayed cities they offer their services in</li>
+                        <li>Track all job requests in a given period</li>
                         <li>Rating per service</li>
                         <li>Rating per city</li>
                     </ul>
