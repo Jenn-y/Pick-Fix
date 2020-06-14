@@ -100,7 +100,7 @@ if (isset($_POST['rating']) && isset($_POST['rid'])){
                             if (!oci_fetch_assoc($query4)) { ?>
                                 <tr>
                                     <th>#</th>
-                                    <td style="border-right: 1px solid darkblue;"><?php echo $num_of_new; $num_of_new++; ?></td>
+                                    <td><?php echo $num_of_new; $num_of_new++; ?></td>
                                 </tr>
                                 <tr>
                                     <th>FROM</th>
@@ -173,7 +173,7 @@ if (isset($_POST['rating']) && isset($_POST['rid'])){
                         while ($row3 = oci_fetch_assoc($query3)): ?>
                             <tr>
                                 <th>#</th>
-                                <td style="border-right: 1px solid darkblue;"><?php echo $num_of_accepted; $num_of_accepted++; ?></td>
+                                <td><?php echo $num_of_accepted; $num_of_accepted++; ?></td>
                             </tr>
                         <tr>
                             <th>FROM</th>
@@ -246,7 +246,7 @@ if (isset($_POST['rating']) && isset($_POST['rid'])){
                         while ($row3 = oci_fetch_assoc($query3)): ?>
                             <tr>
                                 <th>#</th>
-                                <td style="border-right: 1px solid darkblue;"><?php echo $num_of_rejected; $num_of_rejected++; ?></td>
+                                <td><?php echo $num_of_rejected; $num_of_rejected++; ?></td>
                             </tr>
                             <tr>
                                 <th>FROM</th>
@@ -325,7 +325,7 @@ if (isset($_POST['rating']) && isset($_POST['rid'])){
                         if (!$checkStatus) { ?>
                             <tr>
                                 <th>#</th>
-                                <td style="border-right: 1px solid darkblue;"><?php echo $num_of_sent; $num_of_sent++; ?></td>
+                                <td><?php echo $num_of_sent; $num_of_sent++; ?></td>
                             </tr>
                             <tr>
                                 <th>SERVICE</th>
@@ -359,7 +359,7 @@ if (isset($_POST['rating']) && isset($_POST['rid'])){
                     } else if ($row['STATUS'] == 1): ?>
                         <tr>
                             <th>#</th>
-                            <td style="border-right: 1px solid darkblue;"><?php echo $num_of_sent; $num_of_sent++; ?></td>
+                            <td><?php echo $num_of_sent; $num_of_sent++; ?></td>
                         </tr>
                         <tr>
                             <th>SERVICE</th>
@@ -427,7 +427,7 @@ if (isset($_POST['rating']) && isset($_POST['rid'])){
                     <?php elseif ($row['STATUS'] == 2): ?>
                         <tr>
                             <th>#</th>
-                            <td style="border-right: 1px solid darkblue;"><?php echo $num_of_sent; $num_of_sent++; ?></td>
+                            <td><?php echo $num_of_sent; $num_of_sent++; ?></td>
                         </tr>
                         <tr>
                             <th>SERVICE</th>
