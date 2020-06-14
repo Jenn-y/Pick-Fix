@@ -88,7 +88,6 @@ if (isset($_SESSION['user_id'])) {
 }
 
 ?>
-
 <!doctype html>
 <html lang="en">
 <head>
@@ -97,24 +96,72 @@ if (isset($_SESSION['user_id'])) {
     <link href="css/header.css" rel="stylesheet">
     <link rel="stylesheet" href="css/footer.css">
     <title>Edit Service Categories</title>
-    <script type="text/javascript">
-        <!--
-        if (screen.width <= 800) {
-            document.location = "editServices-m.php";
+    <style>
+        @media (max-width: 800px) {
+            table th {
+                background-color: blue ;
+                color: white;
+                text-align: left;
+            }
+            table tr:nth-child(odd) { background-color: dodgerblue; }
+            table tr:nth-child(even) { background-color: lightblue; }
+            .mains {
+                padding-bottom: 25rem;
+            }
+            .start-form {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                padding-bottom: 2rem;
+            }
+            #service_functions {
+                text-align: center;
+            }
+            #service_functions select {
+                width: 200px;
+            }
+            #service_functions label {
+                margin-left: 0;
+            }
+            div label, label {
+                width: unset;
+                margin: 0;
+            }
+
+            th, td {
+                padding: 0.5rem;
+            }
+            table {
+                border-collapse: collapse;
+            }
+            #editServices table td {
+
+            }
+            input[type="text"], input[type="email"], input[type="number"], select, input[type="password"] {
+                max-width: 100px;
+            }
+            .buttonStyle {
+                margin: 0 auto;
+                padding: 0.5rem 2rem;
+            }
+            #editServices table #city_header {
+                background-color: white;
+                color: black;
+            }
         }
-        //-->
-    </script>
+    </style>
+
 </head>
 <body id="editServices">
 
 <div id="page-container">
     <?php include('includes/header.php'); ?>
-
-    <main>
+    <main class="mains">
         <div class="main center">
             <h2>Edit Service Categories</h2>
             <div id="service_functions">
-                <form method="post">
+                <form class="start-form" method="post">
                     <label for="new_service">Add a new service</label>
                     <select name="new_service">
                         <option disabled selected value>Choose a service</option>
@@ -124,7 +171,7 @@ if (isset($_SESSION['user_id'])) {
                     </select>
                     <button type="submit" class="buttonStyle">ADD</button>
                 </form>
-                <form method="post">
+                <form class="start-form" method="post">
                     <label for="deleted_service">Delete a service</label>
                     <select name="deleted_service">
                         <option disabled selected value>Choose a service</option>
@@ -139,7 +186,7 @@ if (isset($_SESSION['user_id'])) {
             $city_id = $row['CID']; ?>
             <table>
                 <tr>
-                    <th colspan="4" id="city_header"><?= $row['CNAME'] ?></th>
+                    <th class="heading" id="city_header"><?= $row['CNAME'] ?></th>
                 </tr>
 
                 <?php $query3 = oci_parse($db, "SELECT W.*, S.CATEGORY, S.CAT_DESCRIPTION, C.CNAME
@@ -152,21 +199,23 @@ if (isset($_SESSION['user_id'])) {
                                                                    ORDER BY S.CATEGORY");
                 oci_execute($query3); ?>
 
-                <tr>
-                    <th>Services</th>
-                    <th>Category Description</th>
-                    <th>Charge per Hour</th>
-                    <th>Save</th>
-                </tr>
-
                 <?php
                 while ($row_offer = oci_fetch_assoc($query3)) { ?>
                     <form method="post">
                         <tr>
+                            <th>Services</th>
                             <td><?= $row_offer['CATEGORY']; ?>
-                                <input type="hidden" name="service" value="<?= $row_offer['SERVICE']; ?>"></td>
-                            <td style="padding: 0 3rem;"><?= $row_offer['CAT_DESCRIPTION'] ?></td>
-                            <td><input id="charge_per_hour" name="charge_per_hour" type="number"
+                                <input type="hidden" name="service" value="<?= $row_offer['SERVICE']; ?>">
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Category Description</th>
+                            <td><?= $row_offer['CAT_DESCRIPTION'] ?></td>
+                        </tr>
+                        <tr>
+                            <th>Charge per Hour</th>
+                            <td>
+                                <input id="charge_per_hour" name="charge_per_hour" type="number"
                                        value="<?php
                                        if (isset($row_offer['CHARGE_PER_HOUR'])) {
                                            echo $row_offer['CHARGE_PER_HOUR'];
@@ -174,6 +223,9 @@ if (isset($_SESSION['user_id'])) {
                                        ?>">
                                 <input type="hidden" name="wid" value="<?= $row_offer['WID']; ?>">
                             </td>
+                        </tr>
+                        <tr>
+                            <th>Save</th>
                             <td><input type="submit" name="submit" value="Save" class="buttonStyle">
                                 <?php
                                 if (isset($_POST['charge_per_hour']) && isset($_POST['service']) && isset($_POST['wid'])) {
@@ -197,8 +249,10 @@ if (isset($_SESSION['user_id'])) {
                                 }
                                 ?>
                             </td>
+                        </tr>
                     </form>
                     </tr>
+
                 <?php }
                 } ?>
             </table>
