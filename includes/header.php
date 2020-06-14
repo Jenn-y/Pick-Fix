@@ -8,12 +8,12 @@ $query_services = oci_parse($db, 'SELECT * FROM services WHERE date_deleted IS N
 oci_execute($query_services);
 $array[] = '';
 $num_rows = 0;
-while ($row_of_services = oci_fetch_assoc($query_services)){
+while ($row_of_services = oci_fetch_assoc($query_services)) {
     $array[] = $row_of_services['CATEGORY'];
     $num_rows++;
 }
 
-if(isset($_SESSION['user_id'])) {
+if (isset($_SESSION['user_id'])) {
     $header_query = oci_parse($db, "SELECT * FROM accounts WHERE aid = {$_SESSION['user_id']}");
     oci_execute($header_query);
     $header_row = oci_fetch_assoc($header_query);
@@ -36,15 +36,16 @@ if(isset($_SESSION['user_id'])) {
         <div id="logo"><a href="index.php"><h1>Pick & Fix</h1></a></div>
         <nav id="services">
             <div class="dropdown">
-                <a class="dropdown-link" href="<?= empty($_SESSION) ? "login.php" : "findProfessionals.php" ?>"><i class="fa fa-angle-right" aria-hidden="true"></i> All Services</a>
+                <a class="dropdown-link" href="<?= empty($_SESSION) ? "login.php" : "findProfessionals.php" ?>"><i
+                            class="fa fa-angle-right" aria-hidden="true"></i> All Services</a>
                 <div class="dropdown-content">
                     <div>
-                        <?php for ($i = 1; $i < $num_rows/2+1; $i++): ?>
+                        <?php for ($i = 1; $i < $num_rows / 2 + 1; $i++): ?>
                             <a href="#"><?php echo $array[$i]; ?></a>
                         <?php endfor; ?>
                     </div>
                     <div>
-                        <?php for ($i = $num_rows/2+1; $i < $num_rows+1; $i++): ?>
+                        <?php for ($i = $num_rows / 2 + 1; $i < $num_rows + 1; $i++): ?>
                             <a href="#"><?php echo $array[$i]; ?></a>
                         <?php endfor; ?>
                     </div>
@@ -52,7 +53,7 @@ if(isset($_SESSION['user_id'])) {
             </div>
         </nav>
 
-        <?php if(empty($_SESSION)): ?>
+        <?php if (empty($_SESSION)): ?>
         <div id="side-menu" class="side-nav">
             <a href="#" class="btn-close" onclick="closeMenu()">&times;</a>
             <a href="#">Home</a>
@@ -79,7 +80,7 @@ if(isset($_SESSION['user_id'])) {
                 <a href="profile.php">
                     <div class="pic flex-container">
                         <img src="<?= fetch_profile_image($header_row['AID'], $header_row['IMG_TYPE']); ?>" alt="nope">
-                        <p class="dropdown-link"><?php echo ' ' . $_SESSION['fname']. ' ' . $_SESSION['lname'] ?></p>
+                        <p class="dropdown-link"><?php echo ' ' . $header_row['FNAME'] . ' ' . $header_row['LNAME'] ?></p>
                     </div>
                 </a>
                 <div class="dropdown-content" id="signed-profile">
@@ -93,7 +94,7 @@ if(isset($_SESSION['user_id'])) {
         </div>
     <?php endif; ?>
 
-    <?php if(basename($_SERVER['REQUEST_URI']) == "profile.php" || basename($_SERVER['REQUEST_URI']) == "editProfile.php" || basename($_SERVER['REQUEST_URI']) == "requests.php"): ?>
+    <?php if (basename($_SERVER['REQUEST_URI']) == "profile.php" || basename($_SERVER['REQUEST_URI']) == "editProfile.php" || basename($_SERVER['REQUEST_URI']) == "requests.php"): ?>
         <div id="side-menu" class="side-nav">
             <a href="#" class="btn-close" onclick="closeMenu()">&times;</a>
             <a href="index.php">Home</a>
@@ -101,21 +102,21 @@ if(isset($_SESSION['user_id'])) {
             <a href="editProfile.php">Edit profile</a>
             <a href="requests.php" onclick="closeMenu()">My Requests</a>
             <a href="findProfessionals.php">Find a Professional</a>
-            <?php if ($row['ROLE'] == 2): ?>
+            <?php if ($header_row['ROLE'] == 2): ?>
                 <a href="pricing.php">Become a Professional</a>
             <?php endif; ?>
-            <a href="index.php">Log out</a>
+            <a href="includes/logout.php">Log out</a>
         </div>
     <?php else: ?>
         <div id="side-menu" class="side-nav">
             <a href="#" class="btn-close" onclick="closeMenu()">&times;</a>
             <a href="index.php">Home</a>
             <a href="findProfessionals.php">Find a Professional</a>
-            <?php if ($row['ROLE'] == 2): ?>
+            <?php if ($header_row['ROLE'] == 2): ?>
                 <a href="pricing.php">Become a Professional</a>
             <?php endif; ?>
             <a href="profile.php">My Profile</a>
-
+            <a href="includes/logout.php">Log out</a>
 
         </div>
     <?php endif; ?>
@@ -124,7 +125,8 @@ if(isset($_SESSION['user_id'])) {
         function openMenu(x) {
             document.getElementById('side-menu').style.width = '300px';
         }
-        function closeMenu(){
+
+        function closeMenu() {
             document.getElementById('side-menu').style.width = '0';
         }
     </script>

@@ -4,7 +4,7 @@ if (session_status() == PHP_SESSION_NONE) {
 }
 include_once("includes/db.php");
 
-if (isset($_GET['id'])){
+if (isset($_GET['id'])) {
     $id = $_GET['id'];
 
     $result = oci_parse($db, "INSERT INTO REQUESTS_HISTORY(DATETIME, STATUS, REQUEST)

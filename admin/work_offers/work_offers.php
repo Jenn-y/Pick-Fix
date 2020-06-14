@@ -55,12 +55,10 @@ if (isset($_POST['from_date']) && isset($_POST['to_date'])) {
                                                       AND H.datetime >= to_date('{$_POST['from_date']}','YYYY-MM-DD') AND H.datetime <= to_date('{$_POST['to_date']}','YYYY-MM-DD')");
     oci_execute($s_R);
     $sum_rejected = oci_fetch_assoc($s_R);
-    $s_T = oci_parse($db, "SELECT COUNT(*) AS TOTAL, R.RID
-                                                      FROM REQUESTS R, REQUESTS_HISTORY H, WORK_OFFERS W
-                                                      WHERE R.WORK_OFFER = W.WID
-                                                      AND (SELECT COUNT (*) FROM REQUESTS_HISTORY WHERE REQUEST = R.RID) = 1
-                                                      AND H.datetime >= to_date('{$_POST['from_date']}','YYYY-MM-DD') AND H.datetime <= to_date('{$_POST['to_date']}','YYYY-MM-DD')
-                                                      GROUP BY R.RID");
+    $s_T = oci_parse($db, "select count (distinct request) as TOTAL 
+                                    from requests_history 
+                                    where datetime >= to_date('2019-03-07','YYYY-MM-DD') 
+                                    AND datetime <= to_date('2020-06-14','YYYY-MM-DD') + 1");
     oci_execute($s_T);
     $sum_total = oci_fetch_assoc($s_T);
 
@@ -89,7 +87,8 @@ if (isset($_POST['from_date']) && isset($_POST['to_date'])) {
         <div class="tables flex-container">
             <a href="../cities/cities.php">Cities</a>
             <a href="../services/services.php">Services</a>
-            <a href="work_offers.php" id="stay">Work offers <i class="fa fa-long-arrow-right" aria-hidden="true"></i></a>
+            <a href="work_offers.php" id="stay">Work offers <i class="fa fa-long-arrow-right"
+                                                               aria-hidden="true"></i></a>
             <a href="../users/users.php">Users</a>
             <a href="../payments/payments.php">Payments</a>
         </div>
@@ -116,23 +115,23 @@ if (isset($_POST['from_date']) && isset($_POST['to_date'])) {
             </form>
             <div class="rows">
                 <?php if (isset($_POST['service']) && isset($_POST['city'])) { ?>
-                <table>
-                    <tr>
-                        <th colspan="8">PROFESSIONALS</th>
-                    </tr>
-                    <tr>
-                        <th>#</th>
-                        <th>Name</th>
-                        <th>Surname</th>
-                        <th># accepted <br> requests</th>
-                        <th># rejected <br> requests</th>
-                        <th># total <br> requests</th>
-                        <th>Rating per <br> work_offer</th>
-                        <th>% of being rated</th>
-                    </tr>
-                    <?php $num = 1;
+                    <table>
+                        <tr>
+                            <th colspan="8">PROFESSIONALS</th>
+                        </tr>
+                        <tr>
+                            <th>#</th>
+                            <th>Name</th>
+                            <th>Surname</th>
+                            <th># accepted <br> requests</th>
+                            <th># rejected <br> requests</th>
+                            <th># total <br> requests</th>
+                            <th>Rating per <br> work_offer</th>
+                            <th>% of being rated</th>
+                        </tr>
+                        <?php $num = 1;
                         while ($row = oci_fetch_assoc($list_specific)):
-                        $sql = oci_parse($db, "SELECT COUNT(*) AS ACCEPTED
+                            $sql = oci_parse($db, "SELECT COUNT(*) AS ACCEPTED
                                                       FROM REQUESTS R, REQUESTS_HISTORY H, WORK_OFFERS W
                                                       WHERE R.RID = H.REQUEST
                                                       AND H.STATUS = 1
@@ -140,9 +139,9 @@ if (isset($_POST['from_date']) && isset($_POST['to_date'])) {
                                                       AND W.CITY = {$_POST['city']}
                                                       AND R.WORK_OFFER = W.WID
                                                       AND W.PROFESSIONAL = {$row['AID']}");
-                        oci_execute($sql);
-                        $num_of_accepted = oci_fetch_assoc($sql);
-                        $sql2 = oci_parse($db, "SELECT COUNT(*) AS REJECTED
+                            oci_execute($sql);
+                            $num_of_accepted = oci_fetch_assoc($sql);
+                            $sql2 = oci_parse($db, "SELECT COUNT(*) AS REJECTED
                                                       FROM REQUESTS R, REQUESTS_HISTORY H, WORK_OFFERS W
                                                       WHERE R.RID = H.REQUEST
                                                       AND H.STATUS = 2
@@ -150,66 +149,68 @@ if (isset($_POST['from_date']) && isset($_POST['to_date'])) {
                                                       AND W.CITY = {$_POST['city']}
                                                       AND R.WORK_OFFER = W.WID
                                                       AND W.PROFESSIONAL = {$row['AID']}");
-                        oci_execute($sql2);
-                        $num_of_rejected = oci_fetch_assoc($sql2);
-                        $sql3 = oci_parse($db, "SELECT COUNT(*) AS TOTAL
+                            oci_execute($sql2);
+                            $num_of_rejected = oci_fetch_assoc($sql2);
+                            $sql3 = oci_parse($db, "select count (distinct H.request) as TOTAL
                                                       FROM REQUESTS R, REQUESTS_HISTORY H, WORK_OFFERS W
                                                       WHERE R.WORK_OFFER = W.WID
+                                                      AND R.RID = H.REQUEST
                                                       AND W.SERVICE = {$_POST['service']}
                                                       AND W.CITY = {$_POST['city']}
                                                       AND W.PROFESSIONAL = {$row['AID']}");
-                        oci_execute($sql3);
-                        $total = oci_fetch_assoc($sql3);
-                        $rating = oci_parse($db, "SELECT R.JOB_RATING
+
+                            oci_execute($sql3);
+                            $total = oci_fetch_assoc($sql3);
+                            $rating = oci_parse($db, "SELECT R.JOB_RATING
                                                        FROM REQUESTS R, WORK_OFFERS W
                                                        WHERE R.WORK_OFFER = W.WID
                                                        AND W.SERVICE = {$_POST['service']}
                                                        AND W.CITY = {$_POST['city']}
                                                        AND W.PROFESSIONAL = {$row['AID']}
                                                        AND R.JOB_RATING IS NOT NULL");
-                        oci_execute($rating);
+                            oci_execute($rating);
 
-                        $sum_rates = 0;
-                        $num_of_rates = 0;
+                            $sum_rates = 0;
+                            $num_of_rates = 0;
 
-                        while ($request_row = oci_fetch_assoc($rating)) {
-                            $sum_rates = $sum_rates + $request_row['JOB_RATING'];
-                            $num_of_rates++;
-                        }
-                        $rat = 1;
-                        $percentage = 0;
-                        if ($num_of_rates != 0 && $num_of_accepted['ACCEPTED'] != 0) {
-                            $rat = $sum_rates / $num_of_rates;
-                            $percentage = ($num_of_rates/$num_of_accepted['ACCEPTED']) * 100;
-                        }
-                        $empty_stars = 5;
-                        ?>
-                        <tr>
-                            <td><?php echo $num++; ?></td>
-                            <td><?= $row['FNAME']; ?></td>
-                            <td><?= $row['LNAME']; ?></td>
-                            <td><?= $num_of_accepted['ACCEPTED']; ?></td>
-                            <td><?= $num_of_rejected['REJECTED']; ?></td>
-                            <td><?= $total['TOTAL']; ?></td>
-                            <td>
-                                <?php while ($rat >= 1) :
-                                    $rat--;
-                                    $empty_stars--; ?>
-                                    <span><i class="fa fa-star" style="color: #FFDF00;"></i></span>
-                                <?php endwhile;
-                                if ($rat > 0) :
-                                    $empty_stars--; ?>
-                                    <span><i class="fa fa-star-half-empty" style="color: #FFDF00"></i></span>
-                                <?php endif;
-                                while ($empty_stars >= 1) :
-                                    $empty_stars--; ?>
-                                    <span><i class="fa fa-star-o"></i></span>
-                                <?php endwhile; ?></td>
-                            <td><?php echo $percentage . '%'; ?></td>
-                        </tr>
-                    <?php endwhile; ?>
+                            while ($request_row = oci_fetch_assoc($rating)) {
+                                $sum_rates = $sum_rates + $request_row['JOB_RATING'];
+                                $num_of_rates++;
+                            }
+                            $rat = 1;
+                            $percentage = 0;
+                            if ($num_of_rates != 0 && $num_of_accepted['ACCEPTED'] != 0) {
+                                $rat = $sum_rates / $num_of_rates;
+                                $percentage = ($num_of_rates / $num_of_accepted['ACCEPTED']) * 100;
+                            }
+                            $empty_stars = 5;
+                            ?>
+                            <tr>
+                                <td><?php echo $num++; ?></td>
+                                <td><?= $row['FNAME']; ?></td>
+                                <td><?= $row['LNAME']; ?></td>
+                                <td><?= $num_of_accepted['ACCEPTED']; ?></td>
+                                <td><?= $num_of_rejected['REJECTED']; ?></td>
+                                <td><?= $total['TOTAL']; ?></td>
+                                <td>
+                                    <?php while ($rat >= 1) :
+                                        $rat--;
+                                        $empty_stars--; ?>
+                                        <span><i class="fa fa-star" style="color: #FFDF00;"></i></span>
+                                    <?php endwhile;
+                                    if ($rat > 0) :
+                                        $empty_stars--; ?>
+                                        <span><i class="fa fa-star-half-empty" style="color: #FFDF00"></i></span>
+                                    <?php endif;
+                                    while ($empty_stars >= 1) :
+                                        $empty_stars--; ?>
+                                        <span><i class="fa fa-star-o"></i></span>
+                                    <?php endwhile; ?></td>
+                                <td><?php echo $percentage . '%'; ?></td>
+                            </tr>
+                        <?php endwhile; ?>
 
-                </table>
+                    </table>
                 <?php } else if (!isset($_POST['service']) && isset($_POST['city'])) { ?>
                     <table>
                         <tr>
@@ -226,7 +227,7 @@ if (isset($_POST['from_date']) && isset($_POST['to_date'])) {
                             <th>% of being rated</th>
                         </tr>
                         <?php $num = 1;
-                            while ($row = oci_fetch_assoc($list_by_city)):
+                        while ($row = oci_fetch_assoc($list_by_city)):
                             $sql = oci_parse($db, "SELECT COUNT(*) AS ACCEPTED
                                                       FROM REQUESTS R, REQUESTS_HISTORY H, WORK_OFFERS W
                                                       WHERE R.RID = H.REQUEST
@@ -245,9 +246,10 @@ if (isset($_POST['from_date']) && isset($_POST['to_date'])) {
                                                       AND W.PROFESSIONAL = {$row['AID']}");
                             oci_execute($sql2);
                             $num_of_rejected = oci_fetch_assoc($sql2);
-                            $sql3 = oci_parse($db, "SELECT COUNT(*) AS TOTAL
+                            $sql3 = oci_parse($db, "select count (distinct H.request) as TOTAL
                                                       FROM REQUESTS R, REQUESTS_HISTORY H, WORK_OFFERS W
                                                       WHERE R.WORK_OFFER = W.WID
+                                                      AND R.RID = H.REQUEST
                                                       AND W.CITY = {$_POST['city']}
                                                       AND W.PROFESSIONAL = {$row['AID']}");
                             oci_execute($sql3);
@@ -271,7 +273,7 @@ if (isset($_POST['from_date']) && isset($_POST['to_date'])) {
                             $percentage = 0;
                             if ($num_of_rates != 0 && $num_of_accepted['ACCEPTED'] != 0) {
                                 $rat = $sum_rates / $num_of_rates;
-                                $percentage = ($num_of_rates/$num_of_accepted['ACCEPTED']) * 100;
+                                $percentage = ($num_of_rates / $num_of_accepted['ACCEPTED']) * 100;
                             }
                             $empty_stars = 5;
                             ?>
@@ -317,7 +319,7 @@ if (isset($_POST['from_date']) && isset($_POST['to_date'])) {
                             <th>% of being rated</th>
                         </tr>
                         <?php $num = 1;
-                            while ($row = oci_fetch_assoc($list_by_service)):
+                        while ($row = oci_fetch_assoc($list_by_service)):
                             $sql = oci_parse($db, "SELECT COUNT(*) AS ACCEPTED
                                                       FROM REQUESTS R, REQUESTS_HISTORY H, WORK_OFFERS W
                                                       WHERE R.RID = H.REQUEST
@@ -336,9 +338,10 @@ if (isset($_POST['from_date']) && isset($_POST['to_date'])) {
                                                       AND W.PROFESSIONAL = {$row['AID']}");
                             oci_execute($sql2);
                             $num_of_rejected = oci_fetch_assoc($sql2);
-                            $sql3 = oci_parse($db, "SELECT COUNT(*) AS TOTAL
+                            $sql3 = oci_parse($db, "select count (distinct H.request) as TOTAL
                                                       FROM REQUESTS R, REQUESTS_HISTORY H, WORK_OFFERS W
                                                       WHERE R.WORK_OFFER = W.WID
+                                                      AND R.RID = H.REQUEST
                                                       AND W.SERVICE = {$_POST['service']}
                                                       AND W.PROFESSIONAL = {$row['AID']}");
                             oci_execute($sql3);
@@ -362,7 +365,7 @@ if (isset($_POST['from_date']) && isset($_POST['to_date'])) {
                             $percentage = 0;
                             if ($num_of_rates != 0 && $num_of_accepted['ACCEPTED'] != 0) {
                                 $rat = $sum_rates / $num_of_rates;
-                                $percentage = ($num_of_rates/$num_of_accepted['ACCEPTED']) * 100;
+                                $percentage = ($num_of_rates / $num_of_accepted['ACCEPTED']) * 100;
                             }
                             $empty_stars = 5;
                             ?>
@@ -408,7 +411,7 @@ if (isset($_POST['from_date']) && isset($_POST['to_date'])) {
                             <th>% of being rated</th>
                         </tr>
                         <?php $num = 1;
-                            while ($row = oci_fetch_assoc($query4)):
+                        while ($row = oci_fetch_assoc($query4)):
                             $sql = oci_parse($db, "SELECT COUNT(*) AS ACCEPTED
                                                       FROM REQUESTS R, REQUESTS_HISTORY H, WORK_OFFERS W
                                                       WHERE R.RID = H.REQUEST
@@ -425,9 +428,10 @@ if (isset($_POST['from_date']) && isset($_POST['to_date'])) {
                                                       AND W.PROFESSIONAL = {$row['AID']}");
                             oci_execute($sql2);
                             $num_of_rejected = oci_fetch_assoc($sql2);
-                            $sql3 = oci_parse($db, "SELECT COUNT(*) AS TOTAL
+                            $sql3 = oci_parse($db, "select count (distinct H.request) as TOTAL
                                                       FROM REQUESTS R, REQUESTS_HISTORY H, WORK_OFFERS W
                                                       WHERE R.WORK_OFFER = W.WID
+                                                      AND R.RID = H.REQUEST
                                                       AND W.PROFESSIONAL = {$row['AID']}");
                             oci_execute($sql3);
                             $total = oci_fetch_assoc($sql3);
@@ -449,7 +453,7 @@ if (isset($_POST['from_date']) && isset($_POST['to_date'])) {
                             $percentage = 0;
                             if ($num_of_rates != 0 && $num_of_accepted['ACCEPTED'] != 0) {
                                 $rat = $sum_rates / $num_of_rates;
-                                $percentage = ($num_of_rates/$num_of_accepted['ACCEPTED']) * 100;
+                                $percentage = ($num_of_rates / $num_of_accepted['ACCEPTED']) * 100;
                             }
                             $empty_stars = 5;
                             ?>
@@ -474,7 +478,7 @@ if (isset($_POST['from_date']) && isset($_POST['to_date'])) {
                                         $empty_stars--; ?>
                                         <span><i class="fa fa-star-o"></i></span>
                                     <?php endwhile; ?></td>
-                                <td><?php echo $percentage .'%'; ?></td>
+                                <td><?php echo $percentage . '%'; ?></td>
                             </tr>
                         <?php endwhile; ?>
 
@@ -492,13 +496,15 @@ if (isset($_POST['from_date']) && isset($_POST['to_date'])) {
                 oci_execute($query_c);
                 ?>
                 <table>
-                    <tr><th colspan="5">- List of users that ask for services outside of their place of residence -</th></tr>
+                    <tr>
+                        <th colspan="5">- List of users that ask for services outside of their place of residence -</th>
+                    </tr>
                     <tr>
                         <th>#</th>
                         <th>Name</th>
                         <th>Surname</th>
                         <th>City of Residence</th>
-                        <th>Service requested in: </th>
+                        <th>Service requested in:</th>
                     </tr>
                     <?php
                     $num = 1;
@@ -511,17 +517,18 @@ if (isset($_POST['from_date']) && isset($_POST['to_date'])) {
                                                          AND UPPER(C.CNAME) != UPPER('{$users['PRIMARY_CITY']}')");
                         oci_execute($cities);
                         ?>
-                    <tr>
-                        <td><?php echo $num; $num++; ?></td>
-                        <td><?= $users['FNAME'] ?></td>
-                        <td><?= $users['LNAME'] ?></td>
-                        <td><?= $users['PRIMARY_CITY'] ?></td>
-                        <td>
-                        <?php while ($list_cities = oci_fetch_assoc($cities)) : ?>
-                        <p><?= $list_cities['CNAME'] ?></p>
-                        <?php endwhile; ?>
-                        </td>
-                    </tr>
+                        <tr>
+                            <td><?php echo $num;
+                                $num++; ?></td>
+                            <td><?= $users['FNAME'] ?></td>
+                            <td><?= $users['LNAME'] ?></td>
+                            <td><?= $users['PRIMARY_CITY'] ?></td>
+                            <td>
+                                <?php while ($list_cities = oci_fetch_assoc($cities)) : ?>
+                                    <p><?= $list_cities['CNAME'] ?></p>
+                                <?php endwhile; ?>
+                            </td>
+                        </tr>
                     <?php } ?>
                 </table>
                 <?php
@@ -535,13 +542,17 @@ if (isset($_POST['from_date']) && isset($_POST['to_date'])) {
                 oci_execute($query_c);
                 ?>
                 <table>
-                    <tr><th colspan="5">- List of professionals that offer services outside of their place of residence -</th></tr>
+                    <tr>
+                        <th colspan="5">- List of professionals that offer services outside of their place of residence
+                            -
+                        </th>
+                    </tr>
                     <tr>
                         <th>#</th>
                         <th>Name</th>
                         <th>Surname</th>
                         <th>City of Residence</th>
-                        <th>Service offered in: </th>
+                        <th>Service offered in:</th>
                     </tr>
                     <?php
                     $num = 1;
@@ -554,7 +565,8 @@ if (isset($_POST['from_date']) && isset($_POST['to_date'])) {
                         oci_execute($cities);
                         ?>
                         <tr>
-                            <td><?php echo $num; $num++; ?></td>
+                            <td><?php echo $num;
+                                $num++; ?></td>
                             <td><?= $professionals['FNAME'] ?></td>
                             <td><?= $professionals['LNAME'] ?></td>
                             <td><?= $professionals['PRIMARY_CITY'] ?></td>
@@ -586,124 +598,124 @@ if (isset($_POST['from_date']) && isset($_POST['to_date'])) {
                             <th># of rejected requests</th>
                             <th>TOTAL</th>
                         </tr>
-                            <tr>
-                                <td><?php echo $sum_accepted['ACCEPTED']; ?></td>
-                                <td><?php echo $sum_rejected['REJECTED']; ?></td>
-                                <td><?php echo $sum_total['TOTAL']; ?></td>
-                            </tr>
+                        <tr>
+                            <td><?php echo $sum_accepted['ACCEPTED']; ?></td>
+                            <td><?php echo $sum_rejected['REJECTED']; ?></td>
+                            <td><?php echo $sum_total['TOTAL']; ?></td>
+                        </tr>
                     </table>
                 <?php endif; ?>
             </div>
             <hr>
 
-        <div class="flex-container" id="services_cities">
-            <?php
-            $services = oci_parse($db, "SELECT * FROM SERVICES WHERE DATE_DELETED IS NULL ORDER BY CATEGORY");
-            oci_execute($services);
-            $cities = oci_parse($db, "SELECT * FROM CITIES WHERE DATE_DELETED IS NULL ORDER BY CNAME");
-            oci_execute($cities);
-            ?>
-            <table style="border-bottom: none !important;">
-                <tr>
-                    <th colspan="3">RATING PER SERVICE</th>
-                </tr>
-                <tr>
-                    <th>#</th>
-                    <th>Service</th>
-                    <th>Rating</th>
-                </tr>
-                <?php $num = 1;
+            <div class="flex-container" id="services_cities">
+                <?php
+                $services = oci_parse($db, "SELECT * FROM SERVICES WHERE DATE_DELETED IS NULL ORDER BY CATEGORY");
+                oci_execute($services);
+                $cities = oci_parse($db, "SELECT * FROM CITIES WHERE DATE_DELETED IS NULL ORDER BY CNAME");
+                oci_execute($cities);
+                ?>
+                <table style="border-bottom: none !important;">
+                    <tr>
+                        <th colspan="3">RATING PER SERVICE</th>
+                    </tr>
+                    <tr>
+                        <th>#</th>
+                        <th>Service</th>
+                        <th>Rating</th>
+                    </tr>
+                    <?php $num = 1;
                     while ($all_services = oci_fetch_assoc($services)) :
-                    $rating = oci_parse($db, "SELECT R.JOB_RATING
+                        $rating = oci_parse($db, "SELECT R.JOB_RATING
                                                        FROM REQUESTS R, WORK_OFFERS W
                                                        WHERE R.WORK_OFFER = W.WID
                                                        AND W.SERVICE = {$all_services['SID']}
                                                        AND R.JOB_RATING IS NOT NULL");
-                    oci_execute($rating);
+                        oci_execute($rating);
 
-                    $sum_rates = 0;
-                    $num_of_rates = 0;
+                        $sum_rates = 0;
+                        $num_of_rates = 0;
 
-                    while ($request_row = oci_fetch_assoc($rating)) {
-                        $sum_rates = $sum_rates + $request_row['JOB_RATING'];
-                        $num_of_rates++;
-                    }
-                    $rat = 1;
-                    if ($num_of_rates != 0) {
-                        $rat = $sum_rates / $num_of_rates;
-                    }
-                    $empty_stars = 5;?>
-                <tr>
-                    <td><?php echo $num++; ?></td>
-                    <td><?= $all_services['CATEGORY'] ?></td>
-                    <td>
-                        <?php while ($rat >= 1) :
-                            $rat--;
-                            $empty_stars--; ?>
-                            <span><i class="fa fa-star" style="color: #FFDF00;"></i></span>
-                        <?php endwhile;
-                        if ($rat > 0) :
-                            $empty_stars--; ?>
-                            <span><i class="fa fa-star-half-empty" style="color: #FFDF00"></i></span>
-                        <?php endif;
-                        while ($empty_stars >= 1) :
-                            $empty_stars--; ?>
-                            <span><i class="fa fa-star-o"></i></span>
-                        <?php endwhile; ?></td>
-                </tr>
-                <?php endwhile; ?>
-            </table>
-            <table style="border-bottom: none !important;">
-                <tr>
-                    <th colspan="3">RATING PER CITY</th>
-                </tr>
-                <tr>
-                    <th>#</th>
-                    <th>City</th>
-                    <th>Rating</th>
-                </tr>
-                <?php $num = 1;
+                        while ($request_row = oci_fetch_assoc($rating)) {
+                            $sum_rates = $sum_rates + $request_row['JOB_RATING'];
+                            $num_of_rates++;
+                        }
+                        $rat = 1;
+                        if ($num_of_rates != 0) {
+                            $rat = $sum_rates / $num_of_rates;
+                        }
+                        $empty_stars = 5; ?>
+                        <tr>
+                            <td><?php echo $num++; ?></td>
+                            <td><?= $all_services['CATEGORY'] ?></td>
+                            <td>
+                                <?php while ($rat >= 1) :
+                                    $rat--;
+                                    $empty_stars--; ?>
+                                    <span><i class="fa fa-star" style="color: #FFDF00;"></i></span>
+                                <?php endwhile;
+                                if ($rat > 0) :
+                                    $empty_stars--; ?>
+                                    <span><i class="fa fa-star-half-empty" style="color: #FFDF00"></i></span>
+                                <?php endif;
+                                while ($empty_stars >= 1) :
+                                    $empty_stars--; ?>
+                                    <span><i class="fa fa-star-o"></i></span>
+                                <?php endwhile; ?></td>
+                        </tr>
+                    <?php endwhile; ?>
+                </table>
+                <table style="border-bottom: none !important;">
+                    <tr>
+                        <th colspan="3">RATING PER CITY</th>
+                    </tr>
+                    <tr>
+                        <th>#</th>
+                        <th>City</th>
+                        <th>Rating</th>
+                    </tr>
+                    <?php $num = 1;
                     while ($all_cities = oci_fetch_assoc($cities)) :
-                    $rating = oci_parse($db, "SELECT R.JOB_RATING
+                        $rating = oci_parse($db, "SELECT R.JOB_RATING
                                                        FROM REQUESTS R, WORK_OFFERS W
                                                        WHERE R.WORK_OFFER = W.WID
                                                        AND W.SERVICE = {$all_cities['CID']}
                                                        AND R.JOB_RATING IS NOT NULL");
-                    oci_execute($rating);
+                        oci_execute($rating);
 
-                    $sum_rates = 0;
-                    $num_of_rates = 0;
+                        $sum_rates = 0;
+                        $num_of_rates = 0;
 
-                    while ($request_row = oci_fetch_assoc($rating)) {
-                        $sum_rates = $sum_rates + $request_row['JOB_RATING'];
-                        $num_of_rates++;
-                    }
-                    $rat = 1;
-                    if ($num_of_rates != 0) {
-                        $rat = $sum_rates / $num_of_rates;
-                    }
-                    $empty_stars = 5;?>
-                    <tr>
-                        <td><?php echo $num++; ?></td>
-                        <td><?= $all_cities['CNAME'] ?></td>
-                        <td>
-                            <?php while ($rat >= 1) :
-                                $rat--;
-                                $empty_stars--; ?>
-                                <span><i class="fa fa-star" style="color: #FFDF00;"></i></span>
-                            <?php endwhile;
-                            if ($rat > 0) :
-                                $empty_stars--; ?>
-                                <span><i class="fa fa-star-half-empty" style="color: #FFDF00"></i></span>
-                            <?php endif;
-                            while ($empty_stars >= 1) :
-                                $empty_stars--; ?>
-                                <span><i class="fa fa-star-o"></i></span>
-                            <?php endwhile; ?></td>
-                    </tr>
-                <?php endwhile; ?>
-            </table>
-        </div>
+                        while ($request_row = oci_fetch_assoc($rating)) {
+                            $sum_rates = $sum_rates + $request_row['JOB_RATING'];
+                            $num_of_rates++;
+                        }
+                        $rat = 1;
+                        if ($num_of_rates != 0) {
+                            $rat = $sum_rates / $num_of_rates;
+                        }
+                        $empty_stars = 5; ?>
+                        <tr>
+                            <td><?php echo $num++; ?></td>
+                            <td><?= $all_cities['CNAME'] ?></td>
+                            <td>
+                                <?php while ($rat >= 1) :
+                                    $rat--;
+                                    $empty_stars--; ?>
+                                    <span><i class="fa fa-star" style="color: #FFDF00;"></i></span>
+                                <?php endwhile;
+                                if ($rat > 0) :
+                                    $empty_stars--; ?>
+                                    <span><i class="fa fa-star-half-empty" style="color: #FFDF00"></i></span>
+                                <?php endif;
+                                while ($empty_stars >= 1) :
+                                    $empty_stars--; ?>
+                                    <span><i class="fa fa-star-o"></i></span>
+                                <?php endwhile; ?></td>
+                        </tr>
+                    <?php endwhile; ?>
+                </table>
+            </div>
             <hr>
         </div>
     </div>

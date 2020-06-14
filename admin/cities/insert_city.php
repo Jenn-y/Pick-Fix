@@ -1,5 +1,5 @@
 <?php
-if($_POST) {
+if ($_POST) {
 
     $query = oci_parse($db, "SELECT cid, cname FROM cities 
 WHERE date_deleted IS NOT NULL AND UPPER ('{$_POST['name']}') = UPPER (cname)");
@@ -9,15 +9,14 @@ WHERE date_deleted IS NOT NULL AND UPPER ('{$_POST['name']}') = UPPER (cname)");
 WHERE date_deleted IS NOT NULL AND UPPER ('{$_POST['name']}') = UPPER (cname))");
         oci_execute($query);
         oci_commit($db);
-    }
-    else {
-      $result = oci_parse($db, "INSERT INTO cities (cname) VALUES('{$_POST['name']}')");
+    } else {
+        $result = oci_parse($db, "INSERT INTO cities (cname) VALUES('{$_POST['name']}')");
 
-      oci_execute($result);
-      oci_commit($db);
+        oci_execute($result);
+        oci_commit($db);
     }
 
-        echo '<script> location.replace("cities.php"); </script>';
+    echo '<script> location.replace("cities.php"); </script>';
 
 
 }

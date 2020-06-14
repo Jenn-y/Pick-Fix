@@ -25,36 +25,31 @@ if (isset($_SESSION['user_id'])) {
             oci_commit($db);
         }
         echo '<script> location.replace("editProfile.php"); </script>';
-    }
-    else if(isset($_POST['about'])) {
+    } else if (isset($_POST['about'])) {
         if (checkRequiredField($_POST['about'])) {
             $query2 = oci_parse($db, "update accounts set short_biography = '{$_POST['about']}' where aid = $aid");
             oci_execute($query2);
             oci_commit($db);
         }
         echo '<script> location.replace("editProfile.php"); </script>';
-    }
-    else if(isset($_POST['current_password'])) {
-        if(checkRequiredField($_POST['current_password']) && checkRequiredField($_POST['new_password']) && checkRequiredField($_POST['new_password_repeat'])) {
+    } else if (isset($_POST['current_password'])) {
+        if (checkRequiredField($_POST['current_password']) && checkRequiredField($_POST['new_password']) && checkRequiredField($_POST['new_password_repeat'])) {
             $query2 = oci_parse($db, "select * from accounts where aid={$_SESSION['user_id']}");
             oci_execute($query2);
 
             $curr = oci_fetch_assoc($query2);
 
-            if(password_verify($_POST['current_password'], $curr['PASSWORD'])) {
-                if($_POST['new_password'] == $_POST['new_password_repeat']) {
+            if (password_verify($_POST['current_password'], $curr['PASSWORD'])) {
+                if ($_POST['new_password'] == $_POST['new_password_repeat']) {
                     $password = password_hash($_POST['new_password'], PASSWORD_DEFAULT);
                     $query2 = oci_parse($db, "update accounts set password = '$password' where aid = {$_SESSION['user_id']}");
                     oci_execute($query2);
                     oci_commit($db);
                     $success = true;
-                }
-                else $incorrect_new_password = true;
-            }
-            else $incorrect_password = true;
+                } else $incorrect_new_password = true;
+            } else $incorrect_password = true;
         }
-    }
-    else if (isset($_POST['new_city'])) {
+    } else if (isset($_POST['new_city'])) {
         $check_deleted = oci_parse($db, "SELECT W.*
                                                     FROM WORK_OFFERS W
                                                     WHERE W.PROFESSIONAL = {$aid}
@@ -71,7 +66,7 @@ if (isset($_SESSION['user_id'])) {
                                                  AND W.PROFESSIONAL = {$aid}
                                                  ORDER BY S.CATEGORY");
             oci_execute($query2);
-            while ($services = oci_fetch_assoc($query2)){
+            while ($services = oci_fetch_assoc($query2)) {
                 $service = $services['SERVICE'];
 
                 $sql1 = oci_parse($db, "INSERT INTO WORK_OFFERS(SERVICE, CITY, CHARGE_PER_HOUR, PROFESSIONAL)
@@ -80,8 +75,8 @@ if (isset($_SESSION['user_id'])) {
                 oci_commit($db);
 
 
-
-            }  }else {
+            }
+        } else {
             $query2 = oci_parse($db, "SELECT DISTINCT W.SERVICE, S.CATEGORY, S.SID
                                      FROM WORK_OFFERS W, SERVICES S
                                      WHERE W.SERVICE = S.SID
@@ -99,8 +94,7 @@ if (isset($_SESSION['user_id'])) {
             }
         }
 
-    }
-    else if (isset($_POST['deleted_city'])) {
+    } else if (isset($_POST['deleted_city'])) {
         $query2 = oci_parse($db, "SELECT DISTINCT W.SERVICE, S.CATEGORY, S.SID
                                      FROM WORK_OFFERS W, SERVICES S
                                      WHERE W.SERVICE = S.SID
@@ -117,9 +111,8 @@ if (isset($_SESSION['user_id'])) {
             oci_commit($db);
         }
         echo '<script> location.replace("editProfile.php"); </script>';
-    }
-    else if (isset($_POST['card_num'])) {
-        if (checkRequiredField($_POST['card_num']) && isset($_POST['month']) && isset($_POST['year']) && checkRequiredField($_POST['cvv'])){
+    } else if (isset($_POST['card_num'])) {
+        if (checkRequiredField($_POST['card_num']) && isset($_POST['month']) && isset($_POST['year']) && checkRequiredField($_POST['cvv'])) {
             $sql = oci_parse($db, "UPDATE FEE_PAYMENTS
                                           SET CARD_NUMBER = {$_POST['card_num']},
                                           EXP_MONTH = {$_POST['month']},
@@ -130,8 +123,7 @@ if (isset($_SESSION['user_id'])) {
             oci_commit($db);
         }
         echo '<script> location.replace("editProfile.php"); </script>';
-    }
-    else if(isset($_POST['submit'])) {
+    } else if (isset($_POST['submit'])) {
         if (isset($_FILES)) {
             $imageSrc = $_FILES['image']['tmp_name'];
             $imageType = $_FILES['image']['type'];
@@ -181,35 +173,36 @@ if (isset($_SESSION['user_id'])) {
 
     <main id="main">
         <div class="main center">
-            <?php if($incorrect_password): ?>
+            <?php if ($incorrect_password): ?>
                 <div class="flex-container center">
                     <p class="center">Incorrect password!</p>
                 </div>
             <?php endif; ?>
-            <?php if($incorrect_new_password): ?>
+            <?php if ($incorrect_new_password): ?>
                 <div class="flex-container center">
                     <p class="center">Repeated password is incorrect!</p>
                 </div>
             <?php endif; ?>
-            <?php if($success): ?>
+            <?php if ($success): ?>
                 <div class="flex-container center">
                     <p class="center">Success!</p>
                 </div>
             <?php endif; ?>
-            <?php if($row['ROLE'] == 1): ?>
-            <div>
-                <?php
-                $sql = oci_parse($db, "select MAX(F.PAYMENT_EXPIRATION)
+            <?php if ($row['ROLE'] == 1): ?>
+                <div>
+                    <?php
+                    $sql = oci_parse($db, "select MAX(F.PAYMENT_EXPIRATION)
                                           from ACCOUNTS A, FEE_PAYMENTS F
                                           where F.PROFESSIONAL = A.AID
                                           and A.AID = {$aid}");
-                oci_execute($sql);
+                    oci_execute($sql);
 
-                $exp_row = oci_fetch_assoc($sql);
+                    $exp_row = oci_fetch_assoc($sql);
 
-                ?>
-                <h4 style="color: #d42626; font-weight: unset; font-style: italic; ">Payment expires on: <?php echo $exp_row['MAX(F.PAYMENT_EXPIRATION)']; ?></h4>
-            </div>
+                    ?>
+                    <h4 style="color: #d42626; font-weight: unset; font-style: italic; ">Payment expires
+                        on: <?php echo $exp_row['MAX(F.PAYMENT_EXPIRATION)']; ?></h4>
+                </div>
             <?php endif; ?>
             <form method="post" enctype="multipart/form-data">
                 <div id="profilePhoto">
@@ -225,7 +218,7 @@ if (isset($_SESSION['user_id'])) {
                     <div>
                         <label for="firstName">First name</label>
                         <input id="firstName" name="fname" type="text" value="<?php
-                        if (isset($row['FNAME'])){
+                        if (isset($row['FNAME'])) {
                             echo $row['FNAME'];
                         }
                         ?>">
@@ -233,7 +226,7 @@ if (isset($_SESSION['user_id'])) {
                     <div>
                         <label for="lastName">Last name</label>
                         <input id="lastName" name="lname" type="text" value="<?php
-                        if (isset($row['LNAME'])){
+                        if (isset($row['LNAME'])) {
                             echo $row['LNAME'];
                         }
                         ?>">
@@ -241,7 +234,7 @@ if (isset($_SESSION['user_id'])) {
                     <div>
                         <label for="email">Email</label>
                         <input id="email" name="email" type="email" value="<?php
-                        if (isset($row['EMAIL'])){
+                        if (isset($row['EMAIL'])) {
                             echo $row['EMAIL'];
                         }
                         ?>">
@@ -249,7 +242,7 @@ if (isset($_SESSION['user_id'])) {
                     <div>
                         <label for="phoneNum">Phone number</label>
                         <input id="phoneNum" name="phone_number" type="number" value="<?php
-                        if (isset($row['PHONE_NUMBER'])){
+                        if (isset($row['PHONE_NUMBER'])) {
                             echo $row['PHONE_NUMBER'];
                         }
                         ?>">
@@ -257,7 +250,7 @@ if (isset($_SESSION['user_id'])) {
                     <div>
                         <label for="primary_city">City of residence</label>
                         <input id="primary_city" name="primary_city" type="text" value="<?php
-                        if (isset($row['PRIMARY_CITY'])){
+                        if (isset($row['PRIMARY_CITY'])) {
                             echo $row['PRIMARY_CITY'];
                         }
                         ?>">
@@ -272,7 +265,9 @@ if (isset($_SESSION['user_id'])) {
                     <div class="about">
                         <label for="about">About</label>
                         <textarea name="about" id="about" placeholder="Please tell us a little about yourself"><?php
-                            if(isset($row['SHORT_BIOGRAPHY'])) { echo "{$row['SHORT_BIOGRAPHY']}"; }
+                            if (isset($row['SHORT_BIOGRAPHY'])) {
+                                echo "{$row['SHORT_BIOGRAPHY']}";
+                            }
                             ?></textarea>
                     </div>
                     <button type="submit" class="buttonStyle">SAVE</button>
@@ -285,7 +280,8 @@ if (isset($_SESSION['user_id'])) {
                     <legend>Password</legend>
                     <div>
                         <label for="currentPass">Current Password</label>
-                        <input name="current_password" id="currentPass" placeholder="Enter your current password" type="password">
+                        <input name="current_password" id="currentPass" placeholder="Enter your current password"
+                               type="password">
                     </div>
                     <div>
                         <label for="newPass">New password</label>
@@ -293,13 +289,14 @@ if (isset($_SESSION['user_id'])) {
                     </div>
                     <div>
                         <label for="repeatPass">Repeat New Password</label>
-                        <input name="new_password_repeat" id="repeatPass" placeholder="Repeat your new password" type="password">
+                        <input name="new_password_repeat" id="repeatPass" placeholder="Repeat your new password"
+                               type="password">
                     </div>
                     <button type="submit" class="buttonStyle">SAVE</button>
                 </fieldset>
             </form>
 
-            <?php if($row['ROLE'] == 1): ?>
+            <?php if ($row['ROLE'] == 1): ?>
                 <fieldset>
                     <legend>Credit card</legend>
                     <div class="credit-card_fieldset" id="get_credit_info">
@@ -315,7 +312,8 @@ if (isset($_SESSION['user_id'])) {
                             </div>
                             <div class="card_num">
                                 <label for="card_num">Card number</label>
-                                <input type="text" name="card_num" class="card-number" id="card_num" placeholder="Card Number">
+                                <input type="text" name="card_num" class="card-number" id="card_num"
+                                       placeholder="Card Number">
                             </div>
                             <div class="dateAndCvv">
                                 <div class="month">
@@ -336,13 +334,15 @@ if (isset($_SESSION['user_id'])) {
                                 </div>
                                 <div class="cvv-input">
                                     <label for="cvv">CVV</label>
-                                    <?php create_input("number", "cvv", "CVV",true); ?>
+                                    <?php create_input("number", "cvv", "CVV", true); ?>
                                 </div>
                             </div>
                             <button class="buttonStyle" type="submit">Save</button>
                         </form>
                     </div>
-                    <button class="buttonStyle" onclick="get_credit()" id="remove_button">Update Credit Card Information</button>
+                    <button class="buttonStyle" onclick="get_credit()" id="remove_button">Update Credit Card
+                        Information
+                    </button>
                     <script>
                         function get_credit() {
                             document.getElementById('get_credit_info').style.display = 'block';

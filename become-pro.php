@@ -13,9 +13,9 @@ oci_execute($query2);
 $list_cities = oci_parse($db, 'SELECT * FROM cities WHERE date_deleted IS NULL ORDER BY cname');
 oci_execute($list_cities);
 $months = [1 => 'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-$years = range(2020, date('Y')+5);
+$years = range(2020, date('Y') + 5);
 
-if($_POST && $_GET['plan']) {
+if ($_POST && $_GET['plan']) {
 
     if (checkRequiredField($_POST['area_code']) && checkRequiredField($_POST['phone_number']) && checkRequiredField($_POST['card_num']) && checkRequiredField($_POST['month']) && checkRequiredField($_POST['year']) && checkRequiredField($_POST['cvv']) && isset($_POST['cities']) && isset($_POST['services'])) {
 
@@ -39,27 +39,27 @@ if($_POST && $_GET['plan']) {
 
         $amount = 11.95;
         $num_of_months = 1;
-        if ($_GET['plan'] == 1){
+        if ($_GET['plan'] == 1) {
             $amount = 83.88;
             $num_of_months = 12;
-        } else if ($_GET['plan'] == 2){
+        } else if ($_GET['plan'] == 2) {
             $amount = 119.76;
             $num_of_months = 24;
-        } else if ($_GET['plan'] == 3){
+        } else if ($_GET['plan'] == 3) {
             $amount = 125.64;
             $num_of_months = 36;
         }
 
-        $query3 = "INSERT INTO fee_payments (card_number, exp_month, exp_year, cvv, professional, plan, amount, payment_expiration, date_paid)
-                VALUES ({$_POST['card_num']}, {$_POST['month']}, {$_POST['year']}, {$_POST['cvv']}, {$_SESSION['user_id']}, {$_GET['plan']}, {$amount}, ADD_MONTHS(SYSDATE, {$num_of_months}), SYSDATE)";
-        $result = oci_parse($db, $query3);
-        oci_execute($result);
-
-        oci_commit($db);
-
         $findProfessional = oci_parse($db, "SELECT * FROM accounts WHERE aid = {$_SESSION['user_id']}");
         oci_execute($findProfessional);
         $professional = oci_fetch_assoc($findProfessional);
+
+        $query3 = "INSERT INTO fee_payments (card_number, cvv, amount, professional, date_paid, exp_year, exp_month, payment_plan, payment_expiration)
+                VALUES ({$_POST['card_num']}, {$_POST['cvv']}, {$amount}, {$professional['AID']}, SYSDATE, {$_POST['year']}, {$_POST['month']}, {$_GET['plan']}, ADD_MONTHS(SYSDATE, {$num_of_months}))";
+        $result1 = oci_parse($db, $query3);
+        oci_execute($result1);
+
+        oci_commit($db);
 
         if ($professional) {
             $_SESSION['role'] = $professional['ROLE'];
@@ -121,7 +121,7 @@ if($_POST && $_GET['plan']) {
                         <div>
                             <label>Available for work in:</label>
                             <div class="checkbox">
-                                <?php while($row = oci_fetch_assoc($query1)): ?>
+                                <?php while ($row = oci_fetch_assoc($query1)): ?>
                                     <input name="cities[]" type="checkbox" value="<?= $row['CID']; ?>">
                                     <label><?= $row['CNAME']; ?></label><br>
                                 <?php endwhile; ?>
@@ -131,7 +131,7 @@ if($_POST && $_GET['plan']) {
                         <div>
                             <label>Categories of work</label>
                             <div class="checkbox">
-                                <?php while($row = oci_fetch_assoc($query2)): ?>
+                                <?php while ($row = oci_fetch_assoc($query2)): ?>
                                     <input name="services[]" type="checkbox" value="<?= $row['SID']; ?>">
                                     <label><?= $row['CATEGORY']; ?></label><br>
                                 <?php endwhile; ?>
@@ -140,9 +140,9 @@ if($_POST && $_GET['plan']) {
                     </div>
                     <div>
                         <label>Phone Number<br>
-                            <input name="area_code" id="area_code" type="number" placeholder="Area code"
+                            <input name="area_code" id="area_code" type="number" placeholder="ex. 387"
                                    value="<?= isset($_POST['area_code']) ?? isset($_GET['area_code']) ?>" required>
-                            <input name="phone_number" id="phone_number" type="number" placeholder="Phone Number"
+                            <input name="phone_number" id="phone_number" type="number" placeholder="ex. 60856365"
                                    value="<?= $_POST['phone_number'] ?? isset($_GET['phone_number']) ?>" required>
                         </label>
                     </div>
@@ -179,7 +179,7 @@ if($_POST && $_GET['plan']) {
                         </select>
                     </div>
                     <div class="cvv-input">
-                        <?php create_input("number", "cvv", "CVV",true); ?>
+                        <?php create_input("number", "cvv", "CVV", true); ?>
                     </div>
                 </div>
                 <div class="submission">

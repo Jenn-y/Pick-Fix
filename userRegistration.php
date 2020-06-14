@@ -8,7 +8,7 @@ include_once("includes/db.php");
 $query3 = oci_parse($db, 'SELECT * FROM cities WHERE date_deleted IS NULL ORDER BY cname');
 oci_execute($query3);
 
-if($_POST) {
+if ($_POST) {
     if (checkRequiredField($_POST['first_name']) && checkRequiredField($_POST['last_name']) && checkRequiredField($_POST['email'])
         && checkRequiredField($_POST['password'])) {
 
@@ -52,20 +52,20 @@ if($_POST) {
             <?php create_input("text", "last_name", "Last name", true); ?>
         </div>
         <label for="email">Email</label>
-        <?php create_input("text", "email", "Email",true); ?>
+        <?php create_input("text", "email", "Email", true); ?>
         <label for="password">Password</label>
-        <?php create_input("password", "password", "Password",true); ?>
+        <?php create_input("password", "password", "Password", true); ?>
 
         <label for="area_code">Area code</label>
-        <?php create_input("number", "area_code", "Area code",true); ?>
+        <?php create_input("number", "area_code", "Area code", true); ?>
 
         <label for="phone">Phone</label>
-        <?php create_input("tel", "phone", "Phone number",true); ?>
+        <?php create_input("tel", "phone", "Phone number", true); ?>
 
         <label for="city">City of residence</label>
         <select name="city" id="city">
             <option disabled selected value>Select a city</option>
-            <?php while($row3 = oci_fetch_assoc($query3)): ?>
+            <?php while ($row3 = oci_fetch_assoc($query3)): ?>
                 <option value="<?= $row3['CNAME']; ?>"><?= $row3['CNAME']; ?></option>
             <?php endwhile; ?>
         </select>

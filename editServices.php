@@ -36,7 +36,7 @@ if (isset($_SESSION['user_id'])) {
                                      AND W.DATE_DELETED IS NULL
                                      AND W.PROFESSIONAL = {$aid}");
         oci_execute($query2);
-        while($row = oci_fetch_assoc($query2)) {
+        while ($row = oci_fetch_assoc($query2)) {
             $city = $row['CITY'];
             $check_deleted = oci_parse($db, "SELECT W.*
                                                     FROM WORK_OFFERS W 
