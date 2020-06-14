@@ -4,16 +4,16 @@ if (session_status() == PHP_SESSION_NONE) {
 }
 include_once("includes/db.php");
 
-if (isset($_GET['id'])){
+if (isset($_GET['id'])) {
     $id = $_GET['id'];
 
     $result = oci_parse($db, "INSERT INTO REQUESTS_HISTORY(DATETIME, STATUS, REQUEST)
                                      VALUES (SYSDATE, 1, {$id})");
 
-        oci_execute($result);
-        oci_commit($db);
+    oci_execute($result);
+    oci_commit($db);
 
-        header('Location: requests.php');
+    header('Location: requests.php');
 
 }
 

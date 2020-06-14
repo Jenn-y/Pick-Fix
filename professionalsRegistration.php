@@ -14,7 +14,7 @@ oci_execute($list_cities);
 $months = [1 => 'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 $years = range(2020, date('Y') + 5);
 
-if($_POST) {
+if ($_POST) {
 
     if (checkRequiredField($_POST['first_name']) && checkRequiredField($_POST['last_name']) && checkRequiredField($_POST['email'])
         && checkRequiredField($_POST['password']) && checkRequiredField($_POST['area_code']) && checkRequiredField($_POST['phone_number'])
@@ -49,13 +49,13 @@ if($_POST) {
         if ($row) {
             $amount = 11.95;
             $num_of_months = 1;
-            if ($_GET['plan'] == 1){
+            if ($_GET['plan'] == 1) {
                 $amount = 83.88;
                 $num_of_months = 12;
-            } else if ($_GET['plan'] == 2){
+            } else if ($_GET['plan'] == 2) {
                 $amount = 119.76;
                 $num_of_months = 24;
-            } else if ($_GET['plan'] == 3){
+            } else if ($_GET['plan'] == 3) {
                 $amount = 125.64;
                 $num_of_months = 36;
             }
@@ -126,25 +126,25 @@ if($_POST) {
                     <div class="loginFields">
                         <div>
                             <label for="email">Email</label><br>
-                            <?php create_input("text", "email", "Email",true); ?>
+                            <?php create_input("text", "email", "Email", true); ?>
                         </div>
                         <div>
                             <label for="password">Password</label><br>
-                            <?php create_input("password", "password", "Password",true); ?>
+                            <?php create_input("password", "password", "Password", true); ?>
                         </div>
                     </div>
                     <div class="checkboxWrapper">
                         <div>
                             <label>Available for work in:</label>
                             <div class="checkbox" id="city-checkbox">
-                                <?php while($row = oci_fetch_assoc($query1)): ?>
+                                <?php while ($row = oci_fetch_assoc($query1)): ?>
                                     <input name="cities[]" type="checkbox" value="<?= $row['CID']; ?>">
                                     <label><?= $row['CNAME']; ?></label><br>
                                 <?php endwhile; ?>
                             </div>
                             <select name="primary_city" id="city">
                                 <option disabled selected value>City of residence</option>
-                                <?php while($fetch_cities = oci_fetch_assoc($list_cities)): ?>
+                                <?php while ($fetch_cities = oci_fetch_assoc($list_cities)): ?>
                                     <option value="<?= $fetch_cities['CNAME']; ?>"><?= $fetch_cities['CNAME']; ?></option>
                                 <?php endwhile; ?>
                             </select>
@@ -152,7 +152,7 @@ if($_POST) {
                         <div>
                             <label>Categories of work</label>
                             <div class="checkbox">
-                                <?php while($row = oci_fetch_assoc($query2)): ?>
+                                <?php while ($row = oci_fetch_assoc($query2)): ?>
                                     <input name="services[]" type="checkbox" value="<?= $row['SID']; ?>">
                                     <label><?= $row['CATEGORY']; ?></label><br>
                                 <?php endwhile; ?>
@@ -161,8 +161,8 @@ if($_POST) {
                     </div>
                     <div>
                         <label>Phone Number<br>
-                            <?php create_input("number", "area_code", "Area code",true); ?>
-                            <?php create_input("number", "phone_number", "Phone number",true); ?>
+                            <?php create_input("number", "area_code", "ex. 387", true); ?>
+                            <?php create_input("number", "phone_number", "ex. 60846875", true); ?>
                         </label>
                     </div>
             </div>
@@ -198,7 +198,7 @@ if($_POST) {
                         </select>
                     </div>
                     <div class="cvv-input">
-                        <?php create_input("number", "cvv", "CVV",true); ?>
+                        <?php create_input("number", "cvv", "CVV", true); ?>
                     </div>
                 </div>
                 <div class="submission">

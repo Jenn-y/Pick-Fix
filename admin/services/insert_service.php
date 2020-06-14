@@ -1,5 +1,5 @@
 <?php
-if($_POST) {
+if ($_POST) {
     $query = oci_parse($db, "SELECT sid, category FROM services 
 WHERE date_deleted IS NOT NULL AND UPPER ('{$_POST['category']}') = UPPER (category)");
     oci_execute($query);
@@ -8,8 +8,7 @@ WHERE date_deleted IS NOT NULL AND UPPER ('{$_POST['category']}') = UPPER (categ
 WHERE date_deleted IS NOT NULL AND UPPER ('{$_POST['category']}') = UPPER (category))");
         oci_execute($query);
         oci_commit($db);
-    }
-    else {
+    } else {
         $result = oci_parse($db, "INSERT INTO services (category, cat_description) VALUES('{$_POST['category']}', '{$_POST['cat_description']}')");
 
         oci_execute($result);
@@ -22,14 +21,14 @@ WHERE date_deleted IS NOT NULL AND UPPER ('{$_POST['category']}') = UPPER (categ
 
 <form action="services.php" method="post">
     <div>
-    <label for="category">Service category name: </label>
-    <input type="text" name="category">
+        <label for="category">Service category name: </label>
+        <input type="text" name="category">
     </div>
     <div>
-    <label for="cat_description">Category description: </label>
-    <input type="text" name="cat_description">
+        <label for="cat_description">Category description: </label>
+        <input type="text" name="cat_description">
     </div>
-<div>
-    <button type="submit">ADD</button>
-</div>
+    <div>
+        <button type="submit">ADD</button>
+    </div>
 </form>

@@ -63,6 +63,7 @@ if (isset($_POST['from_date3']) && isset($_POST['to_date3'])) {
                                         GROUP BY professional
                                         )
                                       ON aid = professional
+                                      where role = 1
                                       ORDER BY total_money_spent desc");
     oci_execute($query3);
 }
@@ -77,6 +78,7 @@ if (isset($_POST['from_date4']) && isset($_POST['to_date4'])) {
                                         GROUP BY user_id
                                         )
                                       ON aid = user_id
+                                      where role != 0
                                       ORDER BY total_paid desc");
     oci_execute($query4);
 }
@@ -115,6 +117,49 @@ if (isset($_POST['from_date4']) && isset($_POST['to_date4'])) {
         </div>
         <div class="report-view">
 
+            <table>
+                <tr>
+                    <td colspan="4">- NUMBER OF PROFESSIONALS PER PAYMENT PLAN -</td>
+                </tr>
+                <tr>
+                    <th>PLAN</th>
+                    <th>AMOUNT</th>
+                    <th>DURATION</th>
+                    <th># OF PROS</th>
+                </tr>
+                <?php
+                $payment = oci_parse($db, "SELECT COUNT (DISTINCT F.PROFESSIONAL) AS NUM, F.PAYMENT_PLAN
+                                                    FROM FEE_PAYMENTS F
+                                                    group by F.PAYMENT_PLAN
+                                                    ORDER BY F.PAYMENT_PLAN");
+                oci_execute($payment);
+                while ($paym = oci_fetch_assoc($payment)) :
+                    ?>
+                    <tr>
+                        <?php if ($paym['PAYMENT_PLAN'] == 0 && $paym['PAYMENT_PLAN'] != null) : ?>
+                            <td>Trial</td>
+                            <td>11.95 BAM</td>
+                            <td>30 days</td>
+                            <td><?= $paym['NUM']; ?></td>
+                        <?php elseif ($paym['PAYMENT_PLAN'] == 1 && $paym['PAYMENT_PLAN'] != null) : ?>
+                            <td>Basic</td>
+                            <td>83.88 BAM</td>
+                            <td>1 year</td>
+                            <td><?= $paym['NUM']; ?></td>
+                        <?php elseif ($paym['PAYMENT_PLAN'] == 2 && $paym['PAYMENT_PLAN'] != null) : ?>
+                            <td>Loyal</td>
+                            <td>119.76 BAM</td>
+                            <td>2 years</td>
+                            <td><?= $paym['NUM']; ?></td>
+                        <?php elseif ($paym['PAYMENT_PLAN'] == 3 && $paym['PAYMENT_PLAN'] != null) : ?>
+                            <td>Best Value</td>
+                            <td>125.64 BAM</td>
+                            <td>3 years</td>
+                            <td><?= $paym['NUM']; ?></td>
+                        <?php endif; ?>
+                    </tr>
+                <?php endwhile; ?>
+            </table>
             <p>Number of professionals that continued payment after the 1st payment plan expiration:
                 <?php $sql = oci_parse($db, "SELECT COUNT (A.AID) AS CONT
                                                           FROM ACCOUNTS A
@@ -146,23 +191,25 @@ if (isset($_POST['from_date4']) && isset($_POST['to_date4'])) {
                         <th>Amount Earned</th>
                         <th># of accepted <br> jobs</th>
                     </tr>
-                    <?php $num = 1; $total = 0;
+                    <?php $num = 1;
+                    $total = 0;
                     while ($row = oci_fetch_assoc($query)):
-                        $total += $row['MONEY_EARNED'];?>
+                        $total += $row['MONEY_EARNED']; ?>
                         <tr>
                             <td><?php echo $num++; ?></td>
                             <td><?= $row['FNAME'] ?></td>
                             <td><?= $row['LNAME'] ?></td>
                             <?php if ($row['MONEY_EARNED'] == 0) : ?>
-                            <td><?php echo '0 BAM'; ?></td>
+                                <td><?php echo '0 BAM'; ?></td>
                             <?php else : ?>
-                            <td><?= $row['MONEY_EARNED'] . ' BAM'?></td>
+                                <td><?= $row['MONEY_EARNED'] . ' BAM' ?></td>
                             <?php endif; ?>
                             <td><?= $row['JOBS'] ?? 0 ?></td>
                         </tr>
                     <?php endwhile; ?>
                     <tr>
-                        <th colspan="5" style="border: 2px solid grey;">TOTAL MONEY EARNED by professionals: <?php echo $total . ' BAM'; ?> </th>
+                        <th colspan="5" style="border: 2px solid grey;">TOTAL MONEY EARNED by
+                            professionals: <?php echo $total . ' BAM'; ?> </th>
                     </tr>
                 </table>
             <?php endif; ?>
@@ -195,9 +242,9 @@ if (isset($_POST['from_date4']) && isset($_POST['to_date4'])) {
                         <tr>
                             <td><?php echo $num++; ?></td>
                             <td><?= $row['CATEGORY'] ?></td>
-                            <td><?php echo isset($row['MIN_BILLED'])? $row['MIN_BILLED'] . ' BAM' : 0 . ' BAM' ?></td>
-                            <td><?php echo isset($row['MAX_BILLED'])? $row['MAX_BILLED'] . ' BAM' : 0 . ' BAM' ?></td>
-                            <td><?php echo isset($row['AVG_BILLED'])? $row['AVG_BILLED'] . ' BAM' : 0 . ' BAM' ?></td>
+                            <td><?php echo isset($row['MIN_BILLED']) ? $row['MIN_BILLED'] . ' BAM' : 0 . ' BAM' ?></td>
+                            <td><?php echo isset($row['MAX_BILLED']) ? $row['MAX_BILLED'] . ' BAM' : 0 . ' BAM' ?></td>
+                            <td><?php echo isset($row['AVG_BILLED']) ? $row['AVG_BILLED'] . ' BAM' : 0 . ' BAM' ?></td>
                             <td><?= $row['N_OF_REQUESTS'] ?? 0 ?></td>
                         </tr>
                     <?php endwhile; ?>
@@ -232,9 +279,9 @@ if (isset($_POST['from_date4']) && isset($_POST['to_date4'])) {
                         <tr>
                             <td><?php echo $num++; ?></td>
                             <td><?= $row['CNAME'] ?></td>
-                            <td><?php echo isset($row['MIN_BILLED'])? $row['MIN_BILLED'] . ' BAM' : 0 . ' BAM' ?></td>
-                            <td><?php echo isset($row['MAX_BILLED'])? $row['MAX_BILLED'] . ' BAM' : 0 . ' BAM' ?></td>
-                            <td><?php echo isset($row['AVG_BILLED'])? $row['AVG_BILLED'] . ' BAM' : 0 . ' BAM' ?></td>
+                            <td><?php echo isset($row['MIN_BILLED']) ? $row['MIN_BILLED'] . ' BAM' : 0 . ' BAM' ?></td>
+                            <td><?php echo isset($row['MAX_BILLED']) ? $row['MAX_BILLED'] . ' BAM' : 0 . ' BAM' ?></td>
+                            <td><?php echo isset($row['AVG_BILLED']) ? $row['AVG_BILLED'] . ' BAM' : 0 . ' BAM' ?></td>
                             <td><?= $row['N_OF_REQUESTS'] ?? 0 ?></td>
                         </tr>
                     <?php endwhile; ?>
@@ -262,18 +309,20 @@ if (isset($_POST['from_date4']) && isset($_POST['to_date4'])) {
                         <th>Last Name</th>
                         <th>Amount</th>
                     </tr>
-                    <?php $num = 1; $total = 0;
+                    <?php $num = 1;
+                    $total = 0;
                     while ($row = oci_fetch_assoc($query3)):
-                        $total += $row['TOTAL_MONEY_SPENT'];?>
+                        $total += $row['TOTAL_MONEY_SPENT']; ?>
                         <tr>
                             <td><?php echo $num++; ?></td>
                             <td><?= $row['FNAME'] ?></td>
                             <td><?= $row['LNAME'] ?></td>
-                            <td><?php echo isset($row['TOTAL_MONEY_SPENT'])? $row['TOTAL_MONEY_SPENT'] . ' BAM' : 0 . ' BAM' ?></td>
+                            <td><?php echo isset($row['TOTAL_MONEY_SPENT']) ? $row['TOTAL_MONEY_SPENT'] . ' BAM' : 0 . ' BAM' ?></td>
                         </tr>
                     <?php endwhile; ?>
                     <tr>
-                        <th colspan="4" style="border: 2px solid grey;">TOTAL MONEY EARNED: <?php echo $total . ' BAM'; ?> </th>
+                        <th colspan="4" style="border: 2px solid grey;">TOTAL MONEY
+                            EARNED: <?php echo $total . ' BAM'; ?> </th>
                     </tr>
                 </table>
             <?php endif; ?>
@@ -299,18 +348,20 @@ if (isset($_POST['from_date4']) && isset($_POST['to_date4'])) {
                         <th>Last Name</th>
                         <th>Amount</th>
                     </tr>
-                    <?php $num = 1; $total = 0;
+                    <?php $num = 1;
+                    $total = 0;
                     while ($row = oci_fetch_assoc($query4)):
                         $total += $row['TOTAL_PAID']; ?>
                         <tr>
                             <td><?php echo $num++; ?></td>
                             <td><?= $row['FNAME'] ?></td>
                             <td><?= $row['LNAME'] ?></td>
-                            <td><?php echo isset($row['TOTAL_PAID'])? $row['TOTAL_PAID'] . ' BAM' : 0 . ' BAM' ?></td>
+                            <td><?php echo isset($row['TOTAL_PAID']) ? $row['TOTAL_PAID'] . ' BAM' : 0 . ' BAM' ?></td>
                         </tr>
                     <?php endwhile; ?>
                     <tr>
-                        <th colspan="4" style="border: 2px solid grey;">TOTAL MONEY SPENT ON SERVICES: <?php echo $total . ' BAM'; ?> </th>
+                        <th colspan="4" style="border: 2px solid grey;">TOTAL MONEY SPENT ON
+                            SERVICES: <?php echo $total . ' BAM'; ?> </th>
                     </tr>
                 </table>
             <?php endif; ?>

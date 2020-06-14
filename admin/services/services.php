@@ -44,57 +44,61 @@ oci_execute($query2);
             <a href="../payments/payments.php">Payments</a>
         </div>
         <div class="report-view">
-        <div id="add_service">
-            <?php include('insert_service.php'); ?>
-        </div>
+            <div id="add_service">
+                <?php include('insert_service.php'); ?>
+            </div>
             <div class="flex-container">
-        <div class="rows">
-            <h4>ACTIVE CATEGORIES</h4>
-            <table>
-                <tr>
-                    <th>#</th>
-                    <th>Category</th>
-                    <th># of Pros</th>
-                    <th>DELETE</th>
-                    <th>EDIT</th>
-                </tr>
-                <?php $num = 1;
-                while($row = oci_fetch_assoc($query1)): ?>
-                    <tr>
-                        <td><?php echo $num++; ?></td>
-                        <td><?= $row['CATEGORY']; ?></td>
-                        <?php if($row['NO_OF_PROS'] == NULL): ?>
-                            <td>0</td>
-                        <?php else: ?>
-                            <td><?= $row['NO_OF_PROS']; ?></td>
-                        <?php endif; ?>
-                        <td><a href="delete_service.php?id=<?=$row['SID']; ?>" onclick="return confirm('Are you sure that you want to delete category <?=$row['CATEGORY']; ?>?')">delete</a></td>
-                        <td><a href="update_service.php?id=<?=$row['SID']; ?>">edit</a></td>
-                    </tr>
-                <?php endwhile; ?>
-            </table>
-        </div>
+                <div class="rows">
+                    <h4>ACTIVE CATEGORIES</h4>
+                    <table>
+                        <tr>
+                            <th>#</th>
+                            <th>Category</th>
+                            <th># of Pros</th>
+                            <th>DELETE</th>
+                            <th>EDIT</th>
+                        </tr>
+                        <?php $num = 1;
+                        while ($row = oci_fetch_assoc($query1)): ?>
+                            <tr>
+                                <td><?php echo $num++; ?></td>
+                                <td><?= $row['CATEGORY']; ?></td>
+                                <?php if ($row['NO_OF_PROS'] == NULL): ?>
+                                    <td>0</td>
+                                <?php else: ?>
+                                    <td><?= $row['NO_OF_PROS']; ?></td>
+                                <?php endif; ?>
+                                <td><a href="delete_service.php?id=<?= $row['SID']; ?>"
+                                       onclick="return confirm('Are you sure that you want to delete category <?= $row['CATEGORY']; ?>?')">delete</a>
+                                </td>
+                                <td><a href="update_service.php?id=<?= $row['SID']; ?>">edit</a></td>
+                            </tr>
+                        <?php endwhile; ?>
+                    </table>
+                </div>
                 <hr>
-        <div class="rows">
-            <h4>DELETED CATEGORIES</h4>
-            <table>
-                <tr>
-                    <th>#</th>
-                    <th>Category</th>
-                    <th>RE-ADD</th>
-                </tr>
-                <?php $num = 1;
-                while($row = oci_fetch_assoc($query2)): ?>
-                    <tr>
-                        <td><?php echo $num++; ?></td>
-                        <td><?= $row['CATEGORY']; ?></td>
-                        <td><a href="update_deleted_service.php?id=<?=$row['SID']; ?>" onclick="return confirm('Are you sure that you want to add again category <?=$row['CATEGORY']; ?>?')">re-add</a></td>
-                    </tr>
-                <?php endwhile; ?>
-            </table>
-        </div>
+                <div class="rows">
+                    <h4>DELETED CATEGORIES</h4>
+                    <table>
+                        <tr>
+                            <th>#</th>
+                            <th>Category</th>
+                            <th>RE-ADD</th>
+                        </tr>
+                        <?php $num = 1;
+                        while ($row = oci_fetch_assoc($query2)): ?>
+                            <tr>
+                                <td><?php echo $num++; ?></td>
+                                <td><?= $row['CATEGORY']; ?></td>
+                                <td><a href="update_deleted_service.php?id=<?= $row['SID']; ?>"
+                                       onclick="return confirm('Are you sure that you want to add again category <?= $row['CATEGORY']; ?>?')">re-add</a>
+                                </td>
+                            </tr>
+                        <?php endwhile; ?>
+                    </table>
+                </div>
 
-        </div>
+            </div>
             <hr>
         </div>
     </div>

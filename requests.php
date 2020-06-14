@@ -106,7 +106,8 @@ $row = oci_fetch_assoc($query);
                             <?php } ?>
                         <?php } ?>
                     </table>
-                <?php } if ($num_of_new == 1) { ?>
+                <?php }
+                if ($num_of_new == 1) { ?>
                     <p style="padding: 1rem; ">You have no new requests.</p>
                 <?php } ?>
             </div>
@@ -164,7 +165,8 @@ $row = oci_fetch_assoc($query);
                             <tr>
                                 <td></td>
                                 <td colspan="2">
-                                    <b>CONTACT: </b><br><br><?= '+' . $row3['AREA_CODE'] . ' ' . $row['PHONE_NUMBER'] ?></td>
+                                    <b>CONTACT: </b><br><br><?= '+' . $row3['AREA_CODE'] . ' ' . $row['PHONE_NUMBER'] ?>
+                                </td>
                                 <td colspan="5"><b>PROBLEM DESCRIPTION: <br></b><br><?= $row3['DESCRIPTION'] ?></td>
                             </tr>
                         <?php endwhile; ?>
@@ -273,7 +275,7 @@ $row = oci_fetch_assoc($query);
                                                      JOIN WORK_OFFERS ON WORK_OFFER = WID
                                                      JOIN SERVICES ON SERVICE = SID
                                                      JOIN REQUESTS_HISTORY ON REQUEST = RID
-                                                     WHERE USER_ID={$_SESSION['user_id']}
+                                                     WHERE REQUEST = {$row['RID']}
                                                      AND SERVICE = {$row['SERVICE']}
                                                      AND STATUS IN (1, 2)
                                                      ORDER BY STATUS");
@@ -310,7 +312,8 @@ $row = oci_fetch_assoc($query);
                             <td colspan="3">
                                 <table class="review_table">
                                     <tr class="review_header">
-                                        <th colspan="3" class="rating_click">CLICK TO RATE  <i class="fa fa-angle-double-down" aria-hidden="true"></i> </th>
+                                        <th colspan="3" class="rating_click">CLICK TO RATE <i
+                                                    class="fa fa-angle-double-down" aria-hidden="true"></i></th>
                                     </tr>
                                     <?php
                                     $checkRated = oci_parse($db, "SELECT R.JOB_RATING
@@ -319,7 +322,7 @@ $row = oci_fetch_assoc($query);
                                                                          AND JOB_RATING IS NOT NULL");
                                     oci_execute($checkRated);
                                     $rated = oci_fetch_assoc($checkRated);
-                                    if (!$rated){
+                                    if (!$rated) {
                                         ?>
                                         <form method="post">
                                             <tr style="display: none" class="rating_area">
@@ -334,20 +337,24 @@ $row = oci_fetch_assoc($query);
                                                     </select>
                                                 </td>
                                                 <td>
-                                                    <textarea name="comment" placeholder="Leave a review (optional)"></textarea>
+                                                    <textarea name="comment"
+                                                              placeholder="Leave a review (optional)"></textarea>
                                                     <input type="hidden" name="rid" value="<?php echo $row['RID']; ?>">
                                                 </td>
-                                                <td><button type="submit" id="submit_button">Rate</button></td>
+                                                <td>
+                                                    <button type="submit" id="submit_button">Rate</button>
+                                                </td>
                                             </tr>
                                         </form>
                                     <?php } else { ?>
-                                        <tr class="rating_area" id="rating_area<?= $row['RID']?>" style="display: none">
+                                        <tr class="rating_area" id="rating_area<?= $row['RID'] ?>"
+                                            style="display: none">
                                             <td><i>Thank you for rating</i></td>
                                         </tr>
                                     <?php } ?>
                                 </table>
                                 <?php
-                                if (isset($_POST['rating']) && isset($_POST['rid'])){
+                                if (isset($_POST['rating']) && isset($_POST['rid'])) {
 
                                     if (isset($_POST['comment'])) {
                                         $sql = oci_parse($db, "UPDATE REQUESTS
@@ -394,8 +401,8 @@ $row = oci_fetch_assoc($query);
     <?php endif; ?>
     </main>
     <script>
-        $(document).ready(function() {
-            $('.rating_click').click(function() {
+        $(document).ready(function () {
+            $('.rating_click').click(function () {
                 $(this).parents('tbody').first().find('.rating_area').show();
             })
         });

@@ -1,4 +1,3 @@
-
 <?php
 include('../../includes/db.php');
 $query1 = oci_parse($db, 'SELECT * FROM services WHERE date_deleted IS NULL');

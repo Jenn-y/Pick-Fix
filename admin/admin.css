@@ -53,6 +53,7 @@ h2 {
     color: grey;
     padding: 1rem;
 }
+
 .tables a:hover {
     color: black;
 }
@@ -88,6 +89,7 @@ table a:hover {
 #display_services, #display_cities {
     display: none;
 }
+
 #work_offers .tables a {
     width: 100%;
 }
@@ -97,15 +99,18 @@ table a:hover {
     justify-content: flex-end;
     font-size: 20px;
 }
+
 #admin .flex-container div .flex-container div {
     width: 65%;
     line-height: 1.8;
 }
+
 #admin .flex-container div .flex-container {
     margin: 2rem 1rem;
     border-bottom: 1px solid grey;
     padding: 1rem;
 }
+
 #admin ul {
     list-style: none;
 }
@@ -117,31 +122,37 @@ table a:hover {
     width: 1em;
     margin-left: -1em;
 }
+
 #admin #title {
     text-align: center;
     margin: 1.5rem 1.5rem 1.5rem 6rem;
 }
+
 #admin h2 {
     font-weight: unset;
 }
+
 .flex-container .report-view {
     margin-left: 5rem;
 }
+
 .report-view .flex-container:first-child {
-    width: 120%;
+    width: 100%;
 }
 
 .report-view table th, .report-view td {
     text-align: center;
 }
+
 .rows table th, .rows table td, #payments .report-view table th, #payments .report-view table td {
     width: 100%;
     padding: 0.5rem 0.2rem;
 }
 
-.tables a{
+.tables a {
     width: 100%;
 }
+
 .flex-container .rows table {
     border: none !important;
 }
@@ -150,6 +161,7 @@ table a:hover {
     text-align: center;
     display: flex;
 }
+
 #add_service label, #update_service .rows label {
     width: 50%;
     text-align: right;
@@ -245,14 +257,17 @@ button:hover, .report-view a:hover {
 #users button {
     margin: 0.2rem 0;
 }
+
 #users .rows table th, #users .rows table td {
     padding: 0.2rem;
 }
+
 #payments form p, .report-view p {
     font-size: 18px;
     color: #25363d;
     text-align: center;
 }
+
 #payments form {
     border: 1px solid grey;
     border-radius: 5px;
@@ -260,6 +275,7 @@ button:hover, .report-view a:hover {
     padding: 1rem;
     text-align: center;
 }
+
 #payments .tables {
     width: unset !important;
 }

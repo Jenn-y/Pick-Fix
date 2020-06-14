@@ -1,9 +1,9 @@
 <?php
-if(isset($_GET['id']) && $_POST) {
+if (isset($_GET['id']) && $_POST) {
     $id = $_GET['id'];
     $result = oci_parse($db, "UPDATE cities SET cname = '{$_POST['name']}' WHERE cid = $id");
 
-    if($result) {
+    if ($result) {
         oci_execute($result);
         oci_commit($db);
 
@@ -11,7 +11,7 @@ if(isset($_GET['id']) && $_POST) {
     }
 }
 
-if(isset($_GET['id'])) {
+if (isset($_GET['id'])) {
     $id = $_GET['id'];
     $query = oci_parse($db, "SELECT cname FROM cities WHERE cid = $id");
     oci_execute($query);
@@ -24,10 +24,10 @@ if(isset($_GET['id'])) {
 <form method="post">
     <label for="name">City name: </label>
     <input type="text" name="name" value="<?php
-    if (isset($row['CNAME'])){
+    if (isset($row['CNAME'])) {
         echo $row['CNAME'];
     }
-     ?>">
+    ?>">
 
     <button type="submit">SAVE</button>
 </form>

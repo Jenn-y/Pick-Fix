@@ -36,7 +36,7 @@ if (isset($_SESSION['user_id'])) {
                                      AND W.DATE_DELETED IS NULL
                                      AND W.PROFESSIONAL = {$aid}");
         oci_execute($query2);
-        while($row = oci_fetch_assoc($query2)) {
+        while ($row = oci_fetch_assoc($query2)) {
             $city = $row['CITY'];
             $check_deleted = oci_parse($db, "SELECT W.*
                                                     FROM WORK_OFFERS W 
@@ -99,15 +99,23 @@ if (isset($_SESSION['user_id'])) {
     <style>
         @media (max-width: 800px) {
             table th {
-                background-color: blue ;
+                background-color: blue;
                 color: white;
                 text-align: left;
             }
-            table tr:nth-child(odd) { background-color: dodgerblue; }
-            table tr:nth-child(even) { background-color: lightblue; }
+
+            table tr:nth-child(odd) {
+                background-color: dodgerblue;
+            }
+
+            table tr:nth-child(even) {
+                background-color: lightblue;
+            }
+
             .mains {
                 padding-bottom: 25rem;
             }
+
             .start-form {
                 display: flex;
                 flex-direction: column;
@@ -115,15 +123,19 @@ if (isset($_SESSION['user_id'])) {
                 align-items: center;
                 padding-bottom: 2rem;
             }
+
             #service_functions {
                 text-align: center;
             }
+
             #service_functions select {
                 width: 200px;
             }
+
             #service_functions label {
                 margin-left: 0;
             }
+
             div label, label {
                 width: unset;
                 margin: 0;
@@ -132,19 +144,24 @@ if (isset($_SESSION['user_id'])) {
             th, td {
                 padding: 0.5rem;
             }
+
             table {
                 border-collapse: collapse;
             }
+
             #editServices table td {
 
             }
+
             input[type="text"], input[type="email"], input[type="number"], select, input[type="password"] {
                 max-width: 100px;
             }
+
             .buttonStyle {
                 margin: 0 auto;
                 padding: 0.5rem 2rem;
             }
+
             #editServices table #city_header {
                 background-color: white;
                 color: black;

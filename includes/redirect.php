@@ -12,7 +12,7 @@
     </style>
     <script>
         function redirect() {
-            window.setTimeout(function(){
+            window.setTimeout(function () {
                 // Move to a new location or you can do something else
                 window.location.href = "../login.php";
             }, 5000);

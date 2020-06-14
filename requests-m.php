@@ -13,7 +13,7 @@ oci_execute($query);
 
 $row = oci_fetch_assoc($query);
 
-if (isset($_POST['rating']) && isset($_POST['rid'])){
+if (isset($_POST['rating']) && isset($_POST['rid'])) {
 
     if (isset($_POST['comment'])) {
         $sql = oci_parse($db, "UPDATE REQUESTS
@@ -100,7 +100,8 @@ if (isset($_POST['rating']) && isset($_POST['rid'])){
                             if (!oci_fetch_assoc($query4)) { ?>
                                 <tr>
                                     <th>#</th>
-                                    <td><?php echo $num_of_new; $num_of_new++; ?></td>
+                                    <td><?php echo $num_of_new;
+                                        $num_of_new++; ?></td>
                                 </tr>
                                 <tr>
                                     <th>FROM</th>
@@ -137,7 +138,8 @@ if (isset($_POST['rating']) && isset($_POST['rid'])){
                             <?php } ?>
                         <?php } ?>
                     </table>
-                <?php } if ($num_of_new == 1) { ?>
+                <?php }
+                if ($num_of_new == 1) { ?>
                     <p style="padding: 1rem; ">You have no new requests.</p>
                 <?php } ?>
             </div>
@@ -173,39 +175,41 @@ if (isset($_POST['rating']) && isset($_POST['rid'])){
                         while ($row3 = oci_fetch_assoc($query3)): ?>
                             <tr>
                                 <th>#</th>
-                                <td><?php echo $num_of_accepted; $num_of_accepted++; ?></td>
+                                <td><?php echo $num_of_accepted;
+                                    $num_of_accepted++; ?></td>
                             </tr>
-                        <tr>
-                            <th>FROM</th>
-                            <td><?= $row3['FNAME'] . ' ' . $row3['LNAME'] ?></td>
-                        </tr>
-                        <tr>
-                            <th>REQUESTED<br>SERVICE</th>
-                            <td><?= $row3['CATEGORY'] ?></td>
-                        </tr>
-                        <tr>
-                            <th>IN</th>
-                            <td><?= $row3['CNAME'] ?></td>
-                        </tr>
-                        <tr>
-                            <th>NUMBER OF HOURS</th>
-                            <td><?= $row3['NUM_OF_HRS'] ?></td>
-                        </tr>
-                        <tr>
-                            <th>ESTIMATED PRICE</th>
-                            <td><?= $row3['NUM_OF_HRS'] * $row3['CHARGE_PER_HOUR'] ?></td>
-                        </tr>
-                        <tr>
-                            <th>DATE RECEIVED</th>
-                            <td><?= $row3['DATETIME'] ?></td>
-                        </tr>
-                        <tr>
-                            <th>STATUS</th>
-                            <td><a href="#">Accepted</a></td>
-                        </tr>
+                            <tr>
+                                <th>FROM</th>
+                                <td><?= $row3['FNAME'] . ' ' . $row3['LNAME'] ?></td>
+                            </tr>
+                            <tr>
+                                <th>REQUESTED<br>SERVICE</th>
+                                <td><?= $row3['CATEGORY'] ?></td>
+                            </tr>
+                            <tr>
+                                <th>IN</th>
+                                <td><?= $row3['CNAME'] ?></td>
+                            </tr>
+                            <tr>
+                                <th>NUMBER OF HOURS</th>
+                                <td><?= $row3['NUM_OF_HRS'] ?></td>
+                            </tr>
+                            <tr>
+                                <th>ESTIMATED PRICE</th>
+                                <td><?= $row3['NUM_OF_HRS'] * $row3['CHARGE_PER_HOUR'] ?></td>
+                            </tr>
+                            <tr>
+                                <th>DATE RECEIVED</th>
+                                <td><?= $row3['DATETIME'] ?></td>
+                            </tr>
+                            <tr>
+                                <th>STATUS</th>
+                                <td><a href="#">Accepted</a></td>
+                            </tr>
 
                             <tr>
-                                <td><b>CONTACT: </b><br><br><?= '+' . $row3['AREA_CODE'] . ' ' . $row['PHONE_NUMBER'] ?></td>
+                                <td><b>CONTACT: </b><br><br><?= '+' . $row3['AREA_CODE'] . ' ' . $row['PHONE_NUMBER'] ?>
+                                </td>
                                 <td><b>PROBLEM DESCRIPTION: <br></b><br><?= $row3['DESCRIPTION'] ?></td>
                             </tr>
                         <?php endwhile; ?>
@@ -246,7 +250,8 @@ if (isset($_POST['rating']) && isset($_POST['rid'])){
                         while ($row3 = oci_fetch_assoc($query3)): ?>
                             <tr>
                                 <th>#</th>
-                                <td><?php echo $num_of_rejected; $num_of_rejected++; ?></td>
+                                <td><?php echo $num_of_rejected;
+                                    $num_of_rejected++; ?></td>
                             </tr>
                             <tr>
                                 <th>FROM</th>
@@ -256,26 +261,26 @@ if (isset($_POST['rating']) && isset($_POST['rid'])){
                                 <th>REQUESTED SERVICE</th>
                                 <td><?= $row3['CATEGORY'] ?></td>
                             </tr>
-                        <tr>
-                            <th>IN</th>
-                            <td><?= $row3['CNAME'] ?></td>
-                        </tr>
-                        <tr>
-                            <th>NUMBER OF HOURS</th>
-                            <td><?= $row3['NUM_OF_HRS'] ?></td>
-                        </tr>
-                        <tr>
-                            <th>ESTIMATED PRICE</th>
-                            <td><?= $row3['NUM_OF_HRS'] * $row3['CHARGE_PER_HOUR'] ?></td>
-                        </tr>
-                        <tr>
-                            <th>DATE<br>RECEIVED</th>
-                            <td><?= $row3['DATETIME'] ?></td>
-                        </tr>
-                        <tr>
-                            <th>STATUS</th>
-                            <td><a href="#" style="background-color: #b22222;">Rejected</a></td>
-                        </tr>
+                            <tr>
+                                <th>IN</th>
+                                <td><?= $row3['CNAME'] ?></td>
+                            </tr>
+                            <tr>
+                                <th>NUMBER OF HOURS</th>
+                                <td><?= $row3['NUM_OF_HRS'] ?></td>
+                            </tr>
+                            <tr>
+                                <th>ESTIMATED PRICE</th>
+                                <td><?= $row3['NUM_OF_HRS'] * $row3['CHARGE_PER_HOUR'] ?></td>
+                            </tr>
+                            <tr>
+                                <th>DATE<br>RECEIVED</th>
+                                <td><?= $row3['DATETIME'] ?></td>
+                            </tr>
+                            <tr>
+                                <th>STATUS</th>
+                                <td><a href="#" style="background-color: #b22222;">Rejected</a></td>
+                            </tr>
                             <tr>
                                 <td colspan="8"><b>PROBLEM DESCRIPTION: <br></b><br><?= $row3['DESCRIPTION'] ?></td>
                             </tr>
@@ -317,7 +322,7 @@ if (isset($_POST['rating']) && isset($_POST['rid'])){
                                                      JOIN SERVICES ON SERVICE = SID
                                                      JOIN REQUESTS_HISTORY ON REQUEST = RID
                                                      WHERE USER_ID={$_SESSION['user_id']}
-                                                     AND SERVICE = {$row['SERVICE']}
+                                                     AND REQUEST = {$row['RID']}
                                                      AND STATUS IN (1, 2)
                                                      ORDER BY STATUS");
                         oci_execute($queryN);
@@ -325,7 +330,8 @@ if (isset($_POST['rating']) && isset($_POST['rid'])){
                         if (!$checkStatus) { ?>
                             <tr>
                                 <th>#</th>
-                                <td><?php echo $num_of_sent; $num_of_sent++; ?></td>
+                                <td><?php echo $num_of_sent;
+                                    $num_of_sent++; ?></td>
                             </tr>
                             <tr>
                                 <th>SERVICE</th>
@@ -352,14 +358,15 @@ if (isset($_POST['rating']) && isset($_POST['rid'])){
                                 <td><a href="#" style="background-color: darkblue">Pending</a></td>
                             </tr>
                             <tr>
-                                <th><b>PROBLEM DESCRIPTION: </th>
+                                <th><b>PROBLEM DESCRIPTION:</th>
                                 <td><?= $row['DESCRIPTION'] ?></td>
                             </tr>
                         <?php }
                     } else if ($row['STATUS'] == 1): ?>
                         <tr>
                             <th>#</th>
-                            <td><?php echo $num_of_sent; $num_of_sent++; ?></td>
+                            <td><?php echo $num_of_sent;
+                                $num_of_sent++; ?></td>
                         </tr>
                         <tr>
                             <th>SERVICE</th>
@@ -386,48 +393,52 @@ if (isset($_POST['rating']) && isset($_POST['rid'])){
                             <td><a href="#">Accepted</a></td>
                         </tr>
 
-                            <tr class="review_header">
-                                <th colspan="3" class="rating_click">CLICK TO RATE  <i class="fa fa-angle-double-down" aria-hidden="true"></i> </th>
-                            </tr>
-                            <?php
-                            $checkRated = oci_parse($db, "SELECT R.JOB_RATING
+                        <tr class="review_header">
+                            <th colspan="3" class="rating_click">CLICK TO RATE <i class="fa fa-angle-double-down"
+                                                                                  aria-hidden="true"></i></th>
+                        </tr>
+                        <?php
+                        $checkRated = oci_parse($db, "SELECT R.JOB_RATING
                                                                          FROM REQUESTS R
                                                                          WHERE R.RID = {$row['RID']}
                                                                          AND JOB_RATING IS NOT NULL");
-                            oci_execute($checkRated);
-                            $rated = oci_fetch_assoc($checkRated);
-                            if (!$rated){
-                                ?>
-                                <form method="post">
-                                    <tr style="display: none" class="rating_area">
-                                        <td>
-                                            <select name="rating" id="rating" required>
-                                                <option disabled selected>1-5</option>
-                                                <option value="1">1</option>
-                                                <option value="2">2</option>
-                                                <option value="3">3</option>
-                                                <option value="4">4</option>
-                                                <option value="5">5</option>
-                                            </select>
-                                        </td>
-                                        <td>
-                                            <textarea name="comment" placeholder="Leave a review (optional)"></textarea>
-                                            <input type="hidden" name="rid" value="<?php echo $row['RID']; ?>">
-                                            <button type="submit" id="submit_button">Rate</button>
-                                        </td>
-                                    </tr>
-                                    <tr><td colspan="3"><b>PROBLEM DESCRIPTION: <br></b><br> <?= $row['DESCRIPTION'] ?></td></tr>
-                                </form>
-                            <?php } else { ?>
-                                <tr class="rating_area" id="rating_area<?= $row['RID']?>" style="display: none">
-                                    <td><i>Thank you for rating</i></td>
+                        oci_execute($checkRated);
+                        $rated = oci_fetch_assoc($checkRated);
+                        if (!$rated) {
+                            ?>
+                            <form method="post">
+                                <tr style="display: none" class="rating_area">
+                                    <td>
+                                        <select name="rating" id="rating" required>
+                                            <option disabled selected>1-5</option>
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <textarea name="comment" placeholder="Leave a review (optional)"></textarea>
+                                        <input type="hidden" name="rid" value="<?php echo $row['RID']; ?>">
+                                        <button type="submit" id="submit_button">Rate</button>
+                                    </td>
                                 </tr>
-                            <?php } ?>
+                                <tr>
+                                    <td colspan="3"><b>PROBLEM DESCRIPTION: <br></b><br> <?= $row['DESCRIPTION'] ?></td>
+                                </tr>
+                            </form>
+                        <?php } else { ?>
+                            <tr class="rating_area" id="rating_area<?= $row['RID'] ?>" style="display: none">
+                                <td><i>Thank you for rating</i></td>
+                            </tr>
+                        <?php } ?>
 
                     <?php elseif ($row['STATUS'] == 2): ?>
                         <tr>
                             <th>#</th>
-                            <td><?php echo $num_of_sent; $num_of_sent++; ?></td>
+                            <td><?php echo $num_of_sent;
+                                $num_of_sent++; ?></td>
                         </tr>
                         <tr>
                             <th>SERVICE</th>
@@ -453,7 +464,9 @@ if (isset($_POST['rating']) && isset($_POST['rid'])){
                             <th>STATUS</th>
                             <td><a href="#" style="background-color: #b22222;">Rejected</a></td>
                         </tr>
-                        <tr><td colspan="3"><b>PROBLEM DESCRIPTION: <br></b><br> <?= $row['DESCRIPTION'] ?></td></tr>
+                        <tr>
+                            <td colspan="3"><b>PROBLEM DESCRIPTION: <br></b><br> <?= $row['DESCRIPTION'] ?></td>
+                        </tr>
                     <?php endif; ?>
                 <?php } ?>
             </table>
@@ -463,8 +476,8 @@ if (isset($_POST['rating']) && isset($_POST['rid'])){
     <?php endif; ?>
     </main>
     <script>
-        $(document).ready(function() {
-            $('.rating_click').click(function() {
+        $(document).ready(function () {
+            $('.rating_click').click(function () {
                 $(this).parents('tbody').first().find('.rating_area').show();
             })
         });

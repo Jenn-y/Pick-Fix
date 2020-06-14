@@ -98,7 +98,8 @@ if (isset($_POST['plan'])) {
                     <input type="radio" name="plan" value="0" id="trial_plan">
                     <p class="type">Trial Plan</p>
                     <p class="duration">30 days</p>
-                    <h3 class="price"><sup class="currency">BAM</sup>11.95<span style="font-size: 14px;font-weight: 500">/mo</span>
+                    <h3 class="price"><sup class="currency">BAM</sup>11.95<span
+                                style="font-size: 14px;font-weight: 500">/mo</span>
                     </h3>
                     <p class="saving">Save 0%</p>
                     <p class="value">Try out all Pick & Fix <br>features for a month.</p>

@@ -40,7 +40,9 @@ if (session_status() == PHP_SESSION_NONE) {
     <main>
         <div class="text center">
             <h2>Pick & Fix Services</h2>
-            <p>Instantly book highly rated pros for all in-house services at the best price. <span><a href="<?= empty($_SESSION) ? "login.php" : "findProfessionals.php" ?>">See All <i class="fa fa-angle-right" aria-hidden="true"></i></a></span></p>
+            <p>Instantly book highly rated pros for all in-house services at the best price. <span><a
+                            href="<?= empty($_SESSION) ? "login.php" : "findProfessionals.php" ?>">See All <i
+                                class="fa fa-angle-right" aria-hidden="true"></i></a></span></p>
         </div>
 
         <section class="popular-services flex-container center">
@@ -73,7 +75,8 @@ if (session_status() == PHP_SESSION_NONE) {
                 <div>
                     <h4>Find a professional</h4>
                     <p>Good news - you are on the right place!
-                    Just register on our website and you will be taken to the page to find the right professional for your required service.</p>
+                        Just register on our website and you will be taken to the page to find the right professional
+                        for your required service.</p>
                 </div>
                 <img src="images/find-step.jpg" alt="first-step-find-professional">
             </div>
@@ -81,8 +84,9 @@ if (session_status() == PHP_SESSION_NONE) {
                 <h2>2</h2>
                 <div>
                     <h4>Describe your problem</h4>
-                    <p>Once a professional is chosen, fill out the form with specified problem description and contact details to
-                    let the professional know your requirements.</p>
+                    <p>Once a professional is chosen, fill out the form with specified problem description and contact
+                        details to
+                        let the professional know your requirements.</p>
                 </div>
                 <img src="images/describe-problem.png" alt="first-step-find-professional">
             </div>
@@ -91,9 +95,11 @@ if (session_status() == PHP_SESSION_NONE) {
                 <div>
                     <h4>Book a professional and solve your problem</h4>
                     <p>If you agree with the calculated estimate price - hit SEND!
-                    Your chosen professional will contact you and your problem is solved. <br>
-                    It is that easy now. <br> No more waiting, time to <i class="fa fa-angle-right" aria-hidden="true"></i>
-                         <a href="<?= empty($_SESSION) ? "login.php" : "findProfessionals.php" ?>" style="text-decoration: none;"> REGISTER</a> </p>
+                        Your chosen professional will contact you and your problem is solved. <br>
+                        It is that easy now. <br> No more waiting, time to <i class="fa fa-angle-right"
+                                                                              aria-hidden="true"></i>
+                        <a href="<?= empty($_SESSION) ? "login.php" : "findProfessionals.php" ?>"
+                           style="text-decoration: none;"> REGISTER</a></p>
                 </div>
                 <img src="images/step3.jpg" alt="first-step-find-professional">
             </div>
@@ -116,12 +122,17 @@ if (session_status() == PHP_SESSION_NONE) {
             <div>
                 <h1>Our story</h1> <br>
                 <h4>Great companies are born from dreams and strength of will.</h4><br>
-                <p>The story begins with a date: March 15th, 2018, with a place: Sarajevo, and with 3 names: Armin Salihovic,
-                    Dzenita Djulovic, and Hana Lihovac. For years people struggled with finding a right professional for the
-                    job that needs to be done. They were losing time, patience, and money. Not anymore, as we have developed a web
-                    application that provides users everything they need to find the professional - all in one place. Our secret is
+                <p>The story begins with a date: March 15th, 2018, with a place: Sarajevo, and with 3 names: Armin
+                    Salihovic,
+                    Dzenita Djulovic, and Hana Lihovac. For years people struggled with finding a right professional for
+                    the
+                    job that needs to be done. They were losing time, patience, and money. Not anymore, as we have
+                    developed a web
+                    application that provides users everything they need to find the professional - all in one place.
+                    Our secret is
                     in knowing the struggles that users were having in finding the right professionals and using most
-                    advanced technology for full user experience, integrated into constant research towards the development
+                    advanced technology for full user experience, integrated into constant research towards the
+                    development
                     of new solutions. <br><br> <b>Join us and let's grow together! </b>
                 </p>
             </div>
@@ -147,7 +158,9 @@ if (session_status() == PHP_SESSION_NONE) {
                         through her volunteering and activism in a broad range of organizations. Strong advocate of both
                         formal and informal education with the objective
                         to help other young people in realizing their potential and using the available opportunities.
-                        Connect on <i class="fa fa-angle-right" aria-hidden="true"></i> <a href="https://www.linkedin.com/in/dzenita-djulovic/" style="text-decoration: none; color: white;" target="_blank">LinkedIn</a>
+                        Connect on <i class="fa fa-angle-right" aria-hidden="true"></i> <a
+                                href="https://www.linkedin.com/in/dzenita-djulovic/"
+                                style="text-decoration: none; color: white;" target="_blank">LinkedIn</a>
                     </p>
 
                 </div>
@@ -157,7 +170,8 @@ if (session_status() == PHP_SESSION_NONE) {
                 <img id="small" src="images/armin.png" alt="Image">
                 <div>
                     <h2> Armin </h2>
-                    <p>Easygoing second year student at SSST University studying Computer Science. Passionate about Computers and Electronics.</p>
+                    <p>Easygoing second year student at SSST University studying Computer Science. Passionate about
+                        Computers and Electronics.</p>
                 </div>
             </div>
 
@@ -179,7 +193,9 @@ if (session_status() == PHP_SESSION_NONE) {
             <h2>Vetted, Background-Checked Professionals</h2>
             <p>Pick & Fix - all services booked directly through the Pick & Fix platform are performed by
                 experienced, background-checked professionals</p>
-            <p>who are highly rated by customers like you. <a href="<?= empty($_SESSION) ? "login.php" : "findProfessionals.php" ?>" style="text-decoration: none;"><span>Learn more. </span></a></p>
+            <p>who are highly rated by customers like you. <a
+                        href="<?= empty($_SESSION) ? "login.php" : "findProfessionals.php" ?>"
+                        style="text-decoration: none;"><span>Learn more. </span></a></p>
         </section>
     </main>
 

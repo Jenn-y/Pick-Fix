@@ -105,7 +105,7 @@ if (isset($_SESSION['user_id'])) {
                 <?php while ($row4 = oci_fetch_assoc($query5)): ?>
                     <div class="dropdown">
                         <a class="drop_link"><?= $row4['CATEGORY']; ?> <i class="fa fa-angle-down"
-                                                                         aria-hidden="true"></i></a>
+                                                                          aria-hidden="true"></i></a>
                         <div class="dropdown_content" style="display: none;">
                             <p><?= $row4['CAT_DESCRIPTION']; ?></p>
                         </div>
@@ -188,9 +188,9 @@ if (isset($_SESSION['user_id'])) {
                         <h4 class="display_message">No professional available</h4>
                     <?php } else if ($num == 1) { ?>
                         <h4 class="display_available"><?php echo $num; ?> professional available</h4>
-                    <?php }  else { ?>
-                <h4 class="display_available"><?php echo $num; ?> professionals available</h4>
-                <?php } ?>
+                    <?php } else { ?>
+                        <h4 class="display_available"><?php echo $num; ?> professionals available</h4>
+                    <?php } ?>
                 <?php } else if (!isset($_POST['city']) && isset($_POST['service'])) {
                     $num = 0; ?>
                     <?php while ($row6 = oci_fetch_assoc($list_by_service)):
@@ -332,7 +332,7 @@ if (isset($_SESSION['user_id'])) {
                         <h4 class="display_message">No professional available</h4>
                     <?php } else if ($num == 1) { ?>
                         <h4 class="display_available"><?php echo $num; ?> professional available</h4>
-                    <?php }  else { ?>
+                    <?php } else { ?>
                         <h4 class="display_available"><?php echo $num; ?> professionals available</h4>
                     <?php } ?>
                 <?php } else {
@@ -401,7 +401,7 @@ if (isset($_SESSION['user_id'])) {
                         <h4 class="display_message">No professional available</h4>
                     <?php } else if ($num == 1) { ?>
                         <h4 class="display_available"><?php echo $num; ?> professional available</h4>
-                    <?php }  else { ?>
+                    <?php } else { ?>
                         <h4 class="display_available"><?php echo $num; ?> professionals available</h4>
                     <?php } ?>
                 <?php } ?>
@@ -410,14 +410,13 @@ if (isset($_SESSION['user_id'])) {
     </main>
 
     <script>
-        $(document).ready(function() {
+        $(document).ready(function () {
             let counter1 = 1;
-            $('.drop_link').click(function() {
+            $('.drop_link').click(function () {
                 if (counter1 % 2 == 0) {
                     $(this).siblings().hide();
                     counter1++;
-                }
-                else {
+                } else {
                     $(this).siblings().show();
                     counter1++;
                 }

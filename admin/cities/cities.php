@@ -33,62 +33,66 @@ oci_execute($query2);
             <a href="../payments/payments.php">Payments</a>
         </div>
         <div class="report-view">
-        <div id="add_city">
-            <?php include('insert_city.php'); ?>
-        </div>
+            <div id="add_city">
+                <?php include('insert_city.php'); ?>
+            </div>
             <div class="flex-container">
-        <div class="rows">
-            <h4>ACTIVE CITIES</h4>
-            <table>
-                <tr>
-                    <th>#</th>
-                    <th>NAME</th>
-                    <th># OF PROs</th>
-                    <th>DELETE</th>
-                    <th>EDIT</th>
-                </tr>
-                <?php $num = 1;
-                while($row = oci_fetch_assoc($query1)):
-                    $sql = oci_parse($db, "SELECT COUNT(DISTINCT W.PROFESSIONAL) as PRO_NUM
+                <div class="rows">
+                    <h4>ACTIVE CITIES</h4>
+                    <table>
+                        <tr>
+                            <th>#</th>
+                            <th>NAME</th>
+                            <th># OF PROs</th>
+                            <th>DELETE</th>
+                            <th>EDIT</th>
+                        </tr>
+                        <?php $num = 1;
+                        while ($row = oci_fetch_assoc($query1)):
+                            $sql = oci_parse($db, "SELECT COUNT(DISTINCT W.PROFESSIONAL) as PRO_NUM
                                                    FROM WORK_OFFERS W
                                                    WHERE W.CITY = {$row['CID']}");
-                    oci_execute($sql);
-                    $pro_num = oci_fetch_assoc($sql);
-                    ?>
-                    <tr>
-                        <td><?php echo $num++; ?></td>
-                        <td><?= $row['CNAME']; ?></td>
-                        <td><?php echo $pro_num['PRO_NUM']; ?></td>
-                        <td><a href="delete_city.php?id=<?=$row['CID']; ?>" onclick="return confirm('Are you sure that you want to delete city <?=$row['CNAME']; ?>?')">delete</a></td>
-                        <td><a href="update_city.php?id=<?=$row['CID']; ?>">edit</a></td>
-                    </tr>
-                <?php endwhile; ?>
+                            oci_execute($sql);
+                            $pro_num = oci_fetch_assoc($sql);
+                            ?>
+                            <tr>
+                                <td><?php echo $num++; ?></td>
+                                <td><?= $row['CNAME']; ?></td>
+                                <td><?php echo $pro_num['PRO_NUM']; ?></td>
+                                <td><a href="delete_city.php?id=<?= $row['CID']; ?>"
+                                       onclick="return confirm('Are you sure that you want to delete city <?= $row['CNAME']; ?>?')">delete</a>
+                                </td>
+                                <td><a href="update_city.php?id=<?= $row['CID']; ?>">edit</a></td>
+                            </tr>
+                        <?php endwhile; ?>
 
-            </table>
-        </div>
+                    </table>
+                </div>
                 <hr>
-        <div class="rows">
-            <h4>DELETED CITIES</h4>
-            <table>
-                <tr>
-                    <th>#</th>
-                    <th>NAME</th>
-                    <th>RE-ADD</th>
-                </tr>
-                <?php $num = 1;
-                while($row = oci_fetch_assoc($query2)): ?>
-                    <tr>
-                        <td><?php echo $num++; ?></td>
-                        <td><?= $row['CNAME']; ?></td>
-                        <td><a href="update_deleted_city.php?id=<?=$row['CID']; ?>" onclick="return confirm('Are you sure that you want to add again city <?=$row['CNAME']; ?>?')">re-add</a></td>
-                    </tr>
-                <?php endwhile; ?>
+                <div class="rows">
+                    <h4>DELETED CITIES</h4>
+                    <table>
+                        <tr>
+                            <th>#</th>
+                            <th>NAME</th>
+                            <th>RE-ADD</th>
+                        </tr>
+                        <?php $num = 1;
+                        while ($row = oci_fetch_assoc($query2)): ?>
+                            <tr>
+                                <td><?php echo $num++; ?></td>
+                                <td><?= $row['CNAME']; ?></td>
+                                <td><a href="update_deleted_city.php?id=<?= $row['CID']; ?>"
+                                       onclick="return confirm('Are you sure that you want to add again city <?= $row['CNAME']; ?>?')">re-add</a>
+                                </td>
+                            </tr>
+                        <?php endwhile; ?>
 
-            </table>
-        </div>
+                    </table>
+                </div>
             </div>
             <hr>
-    </div>
+        </div>
     </div>
 </main>
 </body>
