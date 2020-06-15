@@ -11,6 +11,7 @@ $years = range(2020, date('Y') + 5);
 $incorrect_password = false;
 $incorrect_new_password = false;
 $success = false;
+$wrong_image = false;
 if (isset($_SESSION['user_id'])) {
     $aid = $_SESSION['user_id'];
 
@@ -127,15 +128,20 @@ if (isset($_SESSION['user_id'])) {
         if (isset($_FILES)) {
             $imageSrc = $_FILES['image']['tmp_name'];
             $imageType = $_FILES['image']['type'];
-            $ext = substr($imageType, 6);
 
-            $path = "images/profiles/" . $aid . "." . $ext;
-            move_uploaded_file($_FILES['image']['tmp_name'], $path);
+            if (substr($imageType, 0, 5) != "image") {
+                $wrong_image = "true";
+            }
+            else {
+                $ext = substr($imageType, 6);
+                $path = "images/profiles/" . $aid . "." . $ext;
+                move_uploaded_file($_FILES['image']['tmp_name'], $path);
 
-            $r = oci_parse($db, "UPDATE accounts SET img_type = '{$ext}' WHERE aid = {$aid}");
-            oci_execute($r);
-            oci_commit($db);
-            echo '<script> location.replace("editProfile.php"); </script>';
+                $r = oci_parse($db, "UPDATE accounts SET img_type = '{$ext}' WHERE aid = {$aid}");
+                oci_execute($r);
+                oci_commit($db);
+                echo '<script> location.replace("editProfile.php"); </script>';
+            }
         }
     }
 
@@ -186,6 +192,11 @@ if (isset($_SESSION['user_id'])) {
             <?php if ($success): ?>
                 <div class="flex-container center">
                     <p class="center">Success!</p>
+                </div>
+            <?php endif; ?>
+            <?php if ($wrong_image): ?>
+                <div class="flex-container center">
+                    <p class="center">Uploaded file is not an image!</p>
                 </div>
             <?php endif; ?>
             <?php if ($row['ROLE'] == 1): ?>
