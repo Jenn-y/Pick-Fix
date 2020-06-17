@@ -2,7 +2,7 @@
 include('../../includes/db.php');
 $query1 = oci_parse($db, 'SELECT * FROM cities WHERE date_deleted IS NULL ORDER BY CNAME');
 oci_execute($query1);
-$query2 = oci_parse($db, 'SELECT * FROM cities WHERE date_deleted IS NOT NULL ORDER BY CNAME');
+$query2 = oci_parse($db, 'SELECT * FROM cities WHERE date_deleted IS NOT NULL ORDER BY date_deleted');
 oci_execute($query2);
 ?>
 <!doctype html>

@@ -50,16 +50,17 @@ if ($_POST && $_GET['plan']) {
             $num_of_months = 36;
         }
 
-        $findProfessional = oci_parse($db, "SELECT * FROM accounts WHERE aid = {$_SESSION['user_id']}");
-        oci_execute($findProfessional);
-        $professional = oci_fetch_assoc($findProfessional);
 
         $query3 = "INSERT INTO fee_payments (card_number, cvv, amount, professional, date_paid, exp_year, exp_month, payment_plan, payment_expiration)
-                VALUES ({$_POST['card_num']}, {$_POST['cvv']}, {$amount}, {$professional['AID']}, SYSDATE, {$_POST['year']}, {$_POST['month']}, {$_GET['plan']}, ADD_MONTHS(SYSDATE, {$num_of_months}))";
+                VALUES ({$_POST['card_num']}, {$_POST['cvv']}, {$amount}, {$_SESSION['user_id']}, SYSDATE, {$_POST['year']}, {$_POST['month']}, {$_GET['plan']}, ADD_MONTHS(SYSDATE, {$num_of_months}))";
         $result1 = oci_parse($db, $query3);
         oci_execute($result1);
 
         oci_commit($db);
+
+        $findProfessional = oci_parse($db, "SELECT * FROM accounts WHERE aid = {$_SESSION['user_id']}");
+        oci_execute($findProfessional);
+        $professional = oci_fetch_assoc($findProfessional);
 
         if ($professional) {
             $_SESSION['role'] = $professional['ROLE'];

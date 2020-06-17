@@ -13,7 +13,7 @@ $query1 = oci_parse($db, 'SELECT * FROM services
                                   WHERE date_deleted IS NULL
                                   ORDER BY CATEGORY');
 oci_execute($query1);
-$query2 = oci_parse($db, 'SELECT * FROM services WHERE date_deleted IS NOT NULL ORDER BY CATEGORY');
+$query2 = oci_parse($db, 'SELECT * FROM services WHERE date_deleted IS NOT NULL ORDER BY date_deleted');
 oci_execute($query2);
 ?>
 <!doctype html>
