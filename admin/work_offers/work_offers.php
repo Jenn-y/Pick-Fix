@@ -206,7 +206,7 @@ if (isset($_POST['from_date']) && isset($_POST['to_date'])) {
                                         $empty_stars--; ?>
                                         <span><i class="fa fa-star-o"></i></span>
                                     <?php endwhile; ?></td>
-                                <td><?php echo $percentage . '%'; ?></td>
+                                <td><?php echo round($percentage, 2) . '%'; ?></td>
                             </tr>
                         <?php endwhile; ?>
 
@@ -298,7 +298,7 @@ if (isset($_POST['from_date']) && isset($_POST['to_date'])) {
                                         $empty_stars--; ?>
                                         <span><i class="fa fa-star-o"></i></span>
                                     <?php endwhile; ?></td>
-                                <td><?php echo $percentage . '%'; ?></td>
+                                <td><?php echo round($percentage, 2) . '%'; ?></td>
                             </tr>
                         <?php endwhile; ?>
 
@@ -390,7 +390,7 @@ if (isset($_POST['from_date']) && isset($_POST['to_date'])) {
                                         $empty_stars--; ?>
                                         <span><i class="fa fa-star-o"></i></span>
                                     <?php endwhile; ?></td>
-                                <td><?php echo $percentage . '%'; ?></td>
+                                <td><?php echo round($percentage, 2) . '%'; ?></td>
                             </tr>
                         <?php endwhile; ?>
 
@@ -478,7 +478,7 @@ if (isset($_POST['from_date']) && isset($_POST['to_date'])) {
                                         $empty_stars--; ?>
                                         <span><i class="fa fa-star-o"></i></span>
                                     <?php endwhile; ?></td>
-                                <td><?php echo $percentage . '%'; ?></td>
+                                <td><?php echo round($percentage, 2) . '%'; ?></td>
                             </tr>
                         <?php endwhile; ?>
 

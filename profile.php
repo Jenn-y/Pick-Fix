@@ -107,13 +107,13 @@ if ($_POST && isset($_GET['id'])) {
                             $sum_rates = $sum_rates + $request_row['JOB_RATING'];
                             $num_of_rates++;
                         }
-                        $rating = 1.0;
+                        $rating = 1;
                         if ($num_of_rates != 0) {
                             $rating = $sum_rates / $num_of_rates;
                         }
                         $empty_stars = 5;
                         ?>
-                        <br><span>Service Rating: <span><?php echo $rating; ?><br></span></span>
+                        <br><span>Service Rating: <span><?php echo number_format((float)$rating, 2, '.', ''); ?><br></span></span>
                         <?php while ($rating >= 1) :
                             $rating--;
                             $empty_stars--; ?>
@@ -258,7 +258,7 @@ if ($_POST && isset($_GET['id'])) {
             </div>
         <?php endif; ?>
 
-        <?php if ($_SESSION['role'] == 1 || isset($aid)) { ?>
+        <?php if ($_SESSION['role'] == 1 || isset($_GET['id'])) { ?>
             <div class="comments_section shadow">
                 <h1>Review Comments</h1>
                 <?php
