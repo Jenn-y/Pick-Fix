@@ -94,7 +94,7 @@ if (isset($_SESSION['user_id'])) {
         </div>
     <?php endif; ?>
 
-    <?php if (basename($_SERVER['REQUEST_URI']) == "profile.php" || basename($_SERVER['REQUEST_URI']) == "editProfile.php" || basename($_SERVER['REQUEST_URI']) == "requests.php"): ?>
+    <?php if (basename($_SERVER['REQUEST_URI']) == "profile" || basename($_SERVER['REQUEST_URI']) == "editProfile" || basename($_SERVER['REQUEST_URI']) == "requests"): ?>
         <div id="side-menu" class="side-nav">
             <a href="#" class="btn-close" onclick="closeMenu()">&times;</a>
             <a href="index.php">Home</a>

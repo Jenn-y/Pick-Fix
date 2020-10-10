@@ -192,7 +192,7 @@ if (isset($_SESSION['user_id'])) {
                                         oci_execute($query);
                                         oci_commit($db);
 
-                                        echo '<script> location.replace("editServices.php"); </script>';
+                                        echo '<script> location.replace("editServices"); </script>';
                                     }
                                 }
                                 ?>

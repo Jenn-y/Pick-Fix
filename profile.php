@@ -46,7 +46,7 @@ if ($_POST && isset($_GET['id'])) {
         oci_execute($query_history);
         oci_commit($db);
 
-        header('Location: requests.php');
+        header('Location: requests');
         exit();
     }
 }

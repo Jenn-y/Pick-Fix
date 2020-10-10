@@ -29,7 +29,7 @@ if ($_POST) {
         $_SESSION['lname'] = $row['LNAME'];
         $_SESSION['role'] = $row['ROLE'];
 
-        header('Location: findProfessionals.php');
+        header('Location: findProfessionals');
         exit();
     }
 }
@@ -73,7 +73,7 @@ if ($_POST) {
         <div class="already-member flex-container">
             <div>
                 <span>Already have an account?</span>
-                <a href="login.php">Sign in!</a>
+                <a href="login">Sign in!</a>
             </div>
         </div>
     </form>

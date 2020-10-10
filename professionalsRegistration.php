@@ -71,7 +71,7 @@ if ($_POST) {
         $_SESSION['lname'] = $row['LNAME'];
         $_SESSION['role'] = $row['ROLE'];
 
-        header('Location: findProfessionals.php');
+        header('Location: findProfessionals');
         exit();
     }
 }
@@ -211,7 +211,7 @@ if ($_POST) {
 
         <div id="signInBlock">
             <h4>Already have an account?</h4>
-            <a class="buttonStyle" href="login.php">SIGN IN</a>
+            <a class="buttonStyle" href="login">SIGN IN</a>
         </div>
     </main>
 

@@ -66,7 +66,7 @@ if ($_POST && $_GET['plan']) {
             $_SESSION['role'] = $professional['ROLE'];
 
 
-            header('Location: findProfessionals.php');
+            header('Location: findProfessionals');
             exit();
         }
     }
@@ -89,7 +89,7 @@ if ($_POST && $_GET['plan']) {
         <header>
             <h1><a href="index.php">pick&fix</a></h1>
             <nav>
-                <a href="profile.php">Back to Profile</a>
+                <a href="profile">Back to Profile</a>
             </nav>
         </header>
         <hr>
