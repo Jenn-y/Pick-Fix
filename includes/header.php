@@ -36,7 +36,7 @@ if (isset($_SESSION['user_id'])) {
         <div id="logo"><a href="index.php"><h1>Pick & Fix</h1></a></div>
         <nav id="services">
             <div class="dropdown">
-                <a class="dropdown-link" href="<?= empty($_SESSION) ? "login.php" : "findProfessionals.php" ?>"><i
+                <a class="dropdown-link" href="<?= empty($_SESSION) ? "login" : "findProfessionals" ?>"><i
                             class="fa fa-angle-right" aria-hidden="true"></i> All Services</a>
                 <div class="dropdown-content">
                     <div>
@@ -60,33 +60,33 @@ if (isset($_SESSION['user_id'])) {
             <a href="index.php#how-it-works" onclick="closeMenu()">How It Works?</a>
             <a href="index.php#story" onclick="closeMenu()">Our Story</a>
             <a href="index.php#team-overview" onclick="closeMenu()">Team Members</a>
-            <a href="login.php">Find a Professional</a>
-            <a href="login.php">Login</a>
-            <a href="userRegistration.php">Register</a>
-            <a href="pricing.php">Join As a Pro</a>
+            <a href="login">Find a Professional</a>
+            <a href="login">Login</a>
+            <a href="userRegistration">Register</a>
+            <a href="pricing">Join As a Pro</a>
             <a href="index.php#contact" onclick="closeMenu()">Contact Us</a>
         </div>
 
         <nav id="login">
             <ul>
                 <li style="margin-right: 2rem;"><a href="login"><i class="fa fa-sign-in"></i> Log In</a></li>
-                <li><a href="pricing.php"><i class="fa fa-star" aria-hidden="true"></i> Join as a Pro</a></li>
+                <li><a href="pricing"><i class="fa fa-star" aria-hidden="true"></i> Join as a Pro</a></li>
             </ul>
         </nav>
     </div>
     <?php else: ?>
         <nav id="login">
             <div class="dropdown">
-                <a href="profile.php">
+                <a href="profile">
                     <div class="pic flex-container">
                         <img src="<?= fetch_profile_image($header_row['AID'], $header_row['IMG_TYPE']); ?>" alt="nope">
                         <p class="dropdown-link"><?php echo ' ' . $header_row['FNAME'] . ' ' . $header_row['LNAME'] ?></p>
                     </div>
                 </a>
                 <div class="dropdown-content" id="signed-profile">
-                    <a href="profile.php">My profile</a>
-                    <a href="editProfile.php">Edit profile</a>
-                    <a href="requests.php">Requests</a>
+                    <a href="profile">My profile</a>
+                    <a href="editProfile">Edit profile</a>
+                    <a href="requests">Requests</a>
                     <a href="includes/logout.php">Log out</a>
                 </div>
             </div>
@@ -98,12 +98,12 @@ if (isset($_SESSION['user_id'])) {
         <div id="side-menu" class="side-nav">
             <a href="#" class="btn-close" onclick="closeMenu()">&times;</a>
             <a href="index.php">Home</a>
-            <a href="profile.php">My profile</a>
-            <a href="editProfile.php">Edit profile</a>
-            <a href="requests.php" onclick="closeMenu()">My Requests</a>
-            <a href="findProfessionals.php">Find a Professional</a>
+            <a href="profile">My profile</a>
+            <a href="editProfile">Edit profile</a>
+            <a href="requests" onclick="closeMenu()">My Requests</a>
+            <a href="findProfessionals">Find a Professional</a>
             <?php if ($header_row['ROLE'] == 2): ?>
-                <a href="pricing.php">Become a Professional</a>
+                <a href="pricing">Become a Professional</a>
             <?php endif; ?>
             <a href="includes/logout.php">Log out</a>
         </div>
@@ -111,11 +111,11 @@ if (isset($_SESSION['user_id'])) {
         <div id="side-menu" class="side-nav">
             <a href="#" class="btn-close" onclick="closeMenu()">&times;</a>
             <a href="index.php">Home</a>
-            <a href="findProfessionals.php">Find a Professional</a>
+            <a href="findProfessionals">Find a Professional</a>
             <?php if ($header_row['ROLE'] == 2): ?>
-                <a href="pricing.php">Become a Professional</a>
+                <a href="pricing">Become a Professional</a>
             <?php endif; ?>
-            <a href="profile.php">My Profile</a>
+            <a href="profile">My Profile</a>
             <a href="includes/logout.php">Log out</a>
 
         </div>
