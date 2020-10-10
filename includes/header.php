@@ -69,7 +69,7 @@ if (isset($_SESSION['user_id'])) {
 
         <nav id="login">
             <ul>
-                <li style="margin-right: 2rem;"><a href="login.php"><i class="fa fa-sign-in"></i> Log In</a></li>
+                <li style="margin-right: 2rem;"><a href="login"><i class="fa fa-sign-in"></i> Log In</a></li>
                 <li><a href="pricing.php"><i class="fa fa-star" aria-hidden="true"></i> Join as a Pro</a></li>
             </ul>
         </nav>
