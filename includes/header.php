@@ -62,7 +62,7 @@ if (isset($_SESSION['user_id'])) {
             <a href="index.php#team-overview" onclick="closeMenu()">Team Members</a>
             <a href="login">Find a Professional</a>
             <a href="login">Login</a>
-            <a href="userRegistration">Register</a>
+            <a href="register">Register</a>
             <a href="pricing">Join As a Pro</a>
             <a href="index.php#contact" onclick="closeMenu()">Contact Us</a>
         </div>

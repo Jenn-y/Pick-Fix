@@ -100,7 +100,7 @@ if (isset($_SESSION['user_id'])) {
     <script type="text/javascript">
         <!--
         if (screen.width <= 800) {
-            document.location = "editServices-m.php";
+            document.location = "editServices-m";
         }
         //-->
     </script>
@@ -202,7 +202,7 @@ if (isset($_SESSION['user_id'])) {
                 <?php }
                 } ?>
             </table>
-            <a href="editProfile.php" class="buttonStyle" id="return_link">Back to Edit</a>
+            <a href="editProfile" class="buttonStyle" id="return_link">Back to Edit</a>
         </div>
     </main>
     <?php include('includes/footer.php'); ?>

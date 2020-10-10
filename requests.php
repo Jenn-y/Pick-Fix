@@ -26,7 +26,7 @@ $row = oci_fetch_assoc($query);
     <script type="text/javascript">
         <!--
         if (screen.width <= 800) {
-            document.location = "requests-m.php";
+            document.location = "requests-m";
         }
         //-->
     </script>

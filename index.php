@@ -34,34 +34,34 @@ if (session_status() == PHP_SESSION_NONE) {
     <div class="welcome">
         <div class="color-overlay"></div>
         <h1>The easy, reliable way to take care of your home.</h1>
-        <a href="<?= empty($_SESSION) ? "login.php" : "findProfessionals.php" ?>">Get Started</a>
+        <a href="<?= empty($_SESSION) ? "login" : "findProfessionals" ?>">Get Started</a>
     </div>
 
     <main>
         <div class="text center">
             <h2>Pick & Fix Services</h2>
             <p>Instantly book highly rated pros for all in-house services at the best price. <span><a
-                            href="<?= empty($_SESSION) ? "login.php" : "findProfessionals.php" ?>">See All <i
+                            href="<?= empty($_SESSION) ? "login" : "findProfessionals" ?>">See All <i
                                 class="fa fa-angle-right" aria-hidden="true"></i></a></span></p>
         </div>
 
         <section class="popular-services flex-container center">
-            <a href="<?= empty($_SESSION) ? "login.php" : "findProfessionals.php" ?>">
+            <a href="<?= empty($_SESSION) ? "login" : "findProfessionals" ?>">
                 <img src="images/repairman.jpg" alt="Repairman">
                 <p>General repairman <i class="fa fa-angle-right" aria-hidden="true"></i></p>
             </a>
 
-            <a href="<?= empty($_SESSION) ? "login.php" : "findProfessionals.php" ?>">
+            <a href="<?= empty($_SESSION) ? "login" : "findProfessionals" ?>">
                 <img src="images/electrics-resized.jpg" alt="Electrics">
                 <p>Electrical <i class="fa fa-angle-right" aria-hidden="true"></i></p>
             </a>
 
-            <a href="<?= empty($_SESSION) ? "login.php" : "findProfessionals.php" ?>">
+            <a href="<?= empty($_SESSION) ? "login" : "findProfessionals" ?>">
                 <img src="images/faucet-resized.jpg" alt="Faucet">
                 <p>Plumbing <i class="fa fa-angle-right" aria-hidden="true"></i></p>
             </a>
 
-            <a href="<?= empty($_SESSION) ? "login.php" : "findProfessionals.php" ?>">
+            <a href="<?= empty($_SESSION) ? "login" : "findProfessionals" ?>">
                 <img src="images/furniture-resized.jpg" alt="Furniture">
                 <p>Furniture <i class="fa fa-angle-right" aria-hidden="true"></i></p>
             </a>
@@ -98,7 +98,7 @@ if (session_status() == PHP_SESSION_NONE) {
                         Your chosen professional will contact you and your problem is solved. <br>
                         It is that easy now. <br> No more waiting, time to <i class="fa fa-angle-right"
                                                                               aria-hidden="true"></i>
-                        <a href="<?= empty($_SESSION) ? "login.php" : "findProfessionals.php" ?>"
+                        <a href="<?= empty($_SESSION) ? "login" : "findProfessionals" ?>"
                            style="text-decoration: none;"> REGISTER</a></p>
                 </div>
                 <img src="images/step3.jpg" alt="first-step-find-professional">
@@ -115,7 +115,7 @@ if (session_status() == PHP_SESSION_NONE) {
             </div>
             <h2>Are You a Home Improvement or Service Pro?</h2>
             <p>Find out how Pick&Fix can help your business</p>
-            <a href="pricing.php">Learn More <i class="fa fa-angle-right" aria-hidden="true"></i></a>
+            <a href="pricing">Learn More <i class="fa fa-angle-right" aria-hidden="true"></i></a>
         </section>
 
         <section class="our-story" id="story">
@@ -194,7 +194,7 @@ if (session_status() == PHP_SESSION_NONE) {
             <p>Pick & Fix - all services booked directly through the Pick & Fix platform are performed by
                 experienced, background-checked professionals</p>
             <p>who are highly rated by customers like you. <a
-                        href="<?= empty($_SESSION) ? "login.php" : "findProfessionals.php" ?>"
+                        href="<?= empty($_SESSION) ? "login" : "findProfessionals" ?>"
                         style="text-decoration: none;"><span>Learn more. </span></a></p>
         </section>
     </main>
