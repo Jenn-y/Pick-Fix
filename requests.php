@@ -363,14 +363,14 @@ $row = oci_fetch_assoc($query);
                                                                   WHERE RID = {$_POST['rid']}");
                                         oci_execute($sql);
                                         oci_commit($db);
-                                        echo '<script> location.replace("requests.php"); </script>';
+                                        echo '<script> location.replace("requests"); </script>';
                                     } else {
                                         $sql = oci_parse($db, "UPDATE REQUESTS
                                                                   SET JOB_RATING = {$_POST['rating']}
                                                                   WHERE RID = {$_POST['rid']}");
                                         oci_execute($sql);
                                         oci_commit($db);
-                                        echo '<script> location.replace("requests.php"); </script>';
+                                        echo '<script> location.replace("requests"); </script>';
                                     }
                                 }
                                 ?>

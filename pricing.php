@@ -27,7 +27,7 @@ if (isset($_POST['plan'])) {
         oci_execute($result);
         oci_commit($db);
 
-        header("Location: findProfessionals.php");
+        header("Location: findProfessionals");
     } else if ($_SESSION['role'] == 2) {
         header("Location: become-pro.php?plan={$_POST['plan']}");
     } else {

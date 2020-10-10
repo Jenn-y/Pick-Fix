@@ -22,14 +22,14 @@ if (isset($_POST['rating']) && isset($_POST['rid'])) {
                                                                   WHERE RID = {$_POST['rid']}");
         oci_execute($sql);
         oci_commit($db);
-        echo '<script> location.replace("requests.php"); </script>';
+        echo '<script> location.replace("requests"); </script>';
     } else {
         $sql = oci_parse($db, "UPDATE REQUESTS
                                                                   SET JOB_RATING = {$_POST['rating']}
                                                                   WHERE RID = {$_POST['rid']}");
         oci_execute($sql);
         oci_commit($db);
-        echo '<script> location.replace("requests.php"); </script>';
+        echo '<script> location.replace("requests"); </script>';
     }
 }
 ?>
@@ -46,7 +46,7 @@ if (isset($_POST['rating']) && isset($_POST['rid'])) {
     <script type="text/javascript">
         <!--
         if (screen.width > 800) {
-            document.location = "requests.php";
+            document.location = "requests";
         }
         //-->
     </script>

@@ -13,7 +13,7 @@ if (isset($_GET['id'])) {
     oci_execute($result);
     oci_commit($db);
 
-    header('Location: requests.php');
+    header('Location: requests');
 
 }
 
