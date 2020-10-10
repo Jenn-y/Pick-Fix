@@ -25,14 +25,14 @@ if (isset($_SESSION['user_id'])) {
             oci_execute($result);
             oci_commit($db);
         }
-        echo '<script> location.replace("editProfile.php"); </script>';
+        echo '<script> location.replace("editProfile"); </script>';
     } else if (isset($_POST['about'])) {
         if (checkRequiredField($_POST['about'])) {
             $query2 = oci_parse($db, "update accounts set short_biography = '{$_POST['about']}' where aid = $aid");
             oci_execute($query2);
             oci_commit($db);
         }
-        echo '<script> location.replace("editProfile.php"); </script>';
+        echo '<script> location.replace("editProfile"); </script>';
     } else if (isset($_POST['current_password'])) {
         if (checkRequiredField($_POST['current_password']) && checkRequiredField($_POST['new_password']) && checkRequiredField($_POST['new_password_repeat'])) {
             $query2 = oci_parse($db, "select * from accounts where aid={$_SESSION['user_id']}");
@@ -111,7 +111,7 @@ if (isset($_SESSION['user_id'])) {
             oci_execute($sql);
             oci_commit($db);
         }
-        echo '<script> location.replace("editProfile.php"); </script>';
+        echo '<script> location.replace("editProfile"); </script>';
     } else if (isset($_POST['card_num'])) {
         if (checkRequiredField($_POST['card_num']) && isset($_POST['month']) && isset($_POST['year']) && checkRequiredField($_POST['cvv'])) {
             $sql = oci_parse($db, "UPDATE FEE_PAYMENTS
@@ -123,7 +123,7 @@ if (isset($_SESSION['user_id'])) {
             oci_execute($sql);
             oci_commit($db);
         }
-        echo '<script> location.replace("editProfile.php"); </script>';
+        echo '<script> location.replace("editProfile"); </script>';
     } else if (isset($_POST['submit'])) {
         if (isset($_FILES)) {
             $imageSrc = $_FILES['image']['tmp_name'];
@@ -140,7 +140,7 @@ if (isset($_SESSION['user_id'])) {
                 $r = oci_parse($db, "UPDATE accounts SET img_type = '{$ext}' WHERE aid = {$aid}");
                 oci_execute($r);
                 oci_commit($db);
-                echo '<script> location.replace("editProfile.php"); </script>';
+                echo '<script> location.replace("editProfile"); </script>';
             }
         }
     }
@@ -365,7 +365,7 @@ if (isset($_SESSION['user_id'])) {
 
                 <fieldset>
                     <legend>Service Categories</legend>
-                    <a href="editServices.php" class="buttonStyle" id="services_link">Update Service Categories</a>
+                    <a href="editServices" class="buttonStyle" id="services_link">Update Service Categories</a>
                 </fieldset>
 
                 <fieldset id="cities_fieldset">

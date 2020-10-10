@@ -36,14 +36,14 @@ if ($_POST) {
                 $expiration_date = oci_fetch_assoc($sql);
 
                 if (strtotime(date("Y/m/d")) >= strtotime($expiration_date["MAX(F.PAYMENT_EXPIRATION)"])) {
-                    header('Location: pricing.php');
+                    header('Location: pricing');
                     exit();
                 } else {
-                    header('Location: findProfessionals.php');
+                    header('Location: findProfessionals');
                     exit();
                 }
             } else {
-                header('Location: findProfessionals.php');
+                header('Location: findProfessionals');
                 exit();
             }
         } else {
@@ -82,9 +82,9 @@ if ($_POST) {
         </form>
     </div>
     <div class="new-account flex-container">
-        <a href="userRegistration.php">Create your Account <i class="fa fa-long-arrow-right m-l-5"
+        <a href="register">Create your Account <i class="fa fa-long-arrow-right m-l-5"
                                                               aria-hidden="true"></i></a>
-        <a href="pricing.php">Join as a Pro <i class="fa fa-star" aria-hidden="true"></i></a>
+        <a href="pricing">Join as a Pro <i class="fa fa-star" aria-hidden="true"></i></a>
     </div>
 </main>
 </body>
