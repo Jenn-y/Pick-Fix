@@ -1,2 +1,3 @@
 .idea/
-images/profiles
+images/profiles/*
+!images/profiles/.gitkeep
