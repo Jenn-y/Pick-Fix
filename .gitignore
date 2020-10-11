@@ -1,3 +1,4 @@
 .idea/
 images/profiles/*
 !images/profiles/.gitkeep
+.htaccess
