@@ -80,7 +80,7 @@ if (isset($_SESSION['user_id'])) {
                 <a href="profile">
                     <div class="pic flex-container">
                         <img src="<?= fetch_profile_image($header_row['AID'], $header_row['IMG_TYPE']); ?>" alt="nope">
-                        <p class="dropdown-link"><?php echo ' ' . $header_row['FNAME'] . ' ' . $header_row['LNAME'] ?></p>
+                        <p class="dropdown-link" style="margin-bottom: 0 !important;"><?php echo ' ' . $header_row['FNAME'] . ' ' . $header_row['LNAME'] ?></p>
                     </div>
                 </a>
                 <div class="dropdown-content" id="signed-profile">

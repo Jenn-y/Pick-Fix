@@ -4,7 +4,6 @@
 }
 
 body {
-    font-family: 'Roboto', serif;
     background-color: #f4f4f4;
     background-size: cover;
     background-repeat: no-repeat;
@@ -52,9 +51,6 @@ body {
     background-color: white;
     padding: 2rem;
 }
-
-.about h4 { padding-bottom: 1rem; }
-.about p { padding-bottom: 2rem; }
 
 main {
     padding: 3rem 1rem 15rem 1rem;
@@ -122,101 +118,6 @@ td a:nth-child(even) {
 
 td a:nth-child(even):hover { background-color: #b22222; }
 td a:nth-child(odd):hover { background-color: #44a512; }
-
-/* Form */
-
-.request-box form {
-    flex-wrap: wrap;
-    justify-content: space-between;
-}
-
-.request-box {
-    margin-top: 2rem;
-    padding: 2rem;
-    background: rgb(30,144,255);
-    background: linear-gradient(0deg, rgba(30,144,255,1) 15%, rgba(9,76,143,1) 100%);
-}
-
-.request-box p {
-    font-size: 2.5rem;
-    padding-bottom: 2.5rem;
-    color: white;
-}
-
-form > div {
-    width: 50%;
-}
-
-.description {
-    flex-direction: column;
-    padding-left: 1.5rem;
-    box-sizing: border-box;
-}
-
-.request-details {
-    flex-direction: column;
-    padding-right: 1.5rem;
-    box-sizing: border-box;
-}
-
-.request-details div input, select {
-    width: calc(50% - 0.5rem);
-    margin-right: 1rem;
-    box-sizing: border-box;
-}
-
-form div input:last-child, select:last-child { margin-right: 0; }
-
-input, textarea, button, select{
-    font-family:inherit;
-    font-size: inherit;
-    border-radius: 0.313rem;
-}
-
-input, textarea, select {
-    background-color: #f4f4f4;
-    border: 0;
-    padding: 1rem;
-    margin-bottom: 2rem;
-}
-
-textarea { resize: none;
-    box-sizing: border-box;
-    height: 100%;
-    width: 100%;
-}
-
-select {
-    appearance: none;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-}
-
-button, #get-price {
-    margin: 0 auto;
-    box-sizing:border-box;
-    padding: 1rem;
-    border: none;
-    cursor: pointer;
-    background-color: #4dbc15;
-    color: white;
-    font-weight: bold;
-    border-radius: 5px;
-    text-align: center;
-}
-
-button:hover { background-color: #44a512; }
-
-label {
-    padding-bottom: 1rem;
-    color: white;
-}
-
-label span { color: #DC143C; }
-
-#submit-box {
-    width: 100%;
-}
 
 /***** Area categories *****/
 .areas_categories div {
@@ -304,9 +205,6 @@ label span { color: #DC143C; }
 /****** Responsive design ******/
 
 @media (max-width: 800px) {
-    .request-box {
-        margin-bottom: 5rem;
-    }
     .about {
         margin-bottom: 5rem;
     }
@@ -330,24 +228,8 @@ label span { color: #DC143C; }
         margin: 0;
     }
 
-    .request-box form {
-        flex-direction: column;
-    }
-
-    form > div {
-        width: 100%;
-    }
-
-    .description {
-        padding-left: 0;
-    }
-
     .request-details {
         padding-right: 0;
-    }
-
-    textarea {
-        height: 10rem;
     }
 
     #requests td a:nth-child(odd) {
@@ -366,4 +248,30 @@ label span { color: #DC143C; }
     .comments_section {
         margin-bottom: 5rem;
     }
+}
+
+
+input, textarea, button, select{
+    font-family:inherit;
+    font-size: inherit;
+    border-radius: 0.313rem;
+}
+
+input, textarea, select {
+    background-color: #f4f4f4;
+    border: 0;
+    padding: 1rem;
+    margin-bottom: 2rem;
+}
+
+textarea { resize: none;
+    box-sizing: border-box;
+    height: 100%;
+    width: 100%;
+}
+
+select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
 }
