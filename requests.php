@@ -71,7 +71,7 @@ $row = oci_fetch_assoc($query);
                 <h2>New requests</h2>
                 <div class="shadow">
                     <?php if ($row2 = oci_fetch_assoc($query2)) {
-                        $query3 = oci_parse($db, "SELECT R.*, H.REQUEST, H.DATETIME, H.STATUS, S.CATEGORY, C.CNAME, A.FNAME, A.LNAME, offer_amount 
+                        $query3 = oci_parse($db, "SELECT user_id, R.*, H.REQUEST, H.DATETIME, H.STATUS, S.CATEGORY, C.CNAME, A.FNAME, A.LNAME, offer_amount 
                                      FROM REQUESTS R, REQUESTS_HISTORY H, WORK_OFFERS W, SERVICES S, ACCOUNTS A, CITIES C
                                      WHERE R.WORK_OFFER = W.WID 
                                      AND W.CITY = C.CID
@@ -108,9 +108,9 @@ $row = oci_fetch_assoc($query);
                                 oci_execute($query4);
                                 if (!oci_fetch_assoc($query4)) { ?>
                                     <tr>
-                                        <td style="border-right: 1px solid darkblue;"><?php echo $num_of_new;
+                                        <td style="border-right: 1px solid #7579e7;"><?php echo $num_of_new;
                                             $num_of_new++; ?></td>
-                                        <td><?= $row3['FNAME'] . ' ' . $row3['LNAME'] ?></td>
+                                        <td><a href="profile.php?id=<?=$row3['USER_ID']?>"><?= $row3['FNAME'] . ' ' . $row3['LNAME'] ?></a></td>
                                         <td><?= $row3['CATEGORY'] ?></td>
                                         <td><?= $row3['CNAME'] ?></td>
                                         <td><?= $row3['NUM_OF_HRS'] ?></td>
@@ -168,7 +168,7 @@ $row = oci_fetch_assoc($query);
             ?>
             <?php if ($row['ROLE'] == 1) {
                 $num_of_sent = 1; ?>
-                <h2>Sent offers</h2>
+                <h2 class="pt-5">Sent offers</h2>
                 <div class="shadow">
                     <?php if ($row2 = oci_fetch_assoc($query2)) {
                         $query3 = oci_parse($db, "SELECT R.*, H.REQUEST, H.DATETIME, H.STATUS, S.CATEGORY, C.CNAME, A.FNAME, A.LNAME, offer_amount 
@@ -196,7 +196,7 @@ $row = oci_fetch_assoc($query);
                             <?php while ($row3 = oci_fetch_assoc($query3)) {
                                 if($row3['STATUS'] == 0 && $row3['OFFER_AMOUNT'] != -1) {
                                     $request_id = $row3['REQUEST'];
-                                    $query4 = oci_parse($db, "SELECT R.*, H.REQUEST, H.DATETIME, H.STATUS, S.CATEGORY, A.FNAME, A.LNAME, A.PHONE_NUMBER, offer_amount 
+                                    $query4 = oci_parse($db, "SELECT user_id, R.*, H.REQUEST, H.DATETIME, H.STATUS, S.CATEGORY, A.FNAME, A.LNAME, A.PHONE_NUMBER, offer_amount 
                                          FROM REQUESTS R, REQUESTS_HISTORY H, WORK_OFFERS W, SERVICES S, ACCOUNTS A
                                          WHERE R.WORK_OFFER = W.WID 
                                          AND R.USER_ID = A.AID
@@ -208,9 +208,9 @@ $row = oci_fetch_assoc($query);
                                     oci_execute($query4);
                                     if (!oci_fetch_assoc($query4)) { ?>
                                         <tr>
-                                            <td style="border-right: 1px solid darkblue;"><?php echo $num_of_sent;
+                                            <td style="border-right: 1px solid #7579e7;"><?php echo $num_of_sent;
                                                 $num_of_sent++; ?></td>
-                                            <td><?= $row3['FNAME'] . ' ' . $row3['LNAME'] ?></td>
+                                            <td><a href="profile.php?id=<?=$row3['USER_ID']?>"><?= $row3['FNAME'] . ' ' . $row3['LNAME'] ?></a></td>
                                             <td><?= $row3['CATEGORY'] ?></td>
                                             <td><?= $row3['CNAME'] ?></td>
                                             <td><?= $row3['NUM_OF_HRS'] ?></td>
@@ -222,13 +222,14 @@ $row = oci_fetch_assoc($query);
                                                     <div class="modal-content">
 
                                                         <div class="modal-header">
-                                                            <h4 class="modal-title">Offer: Pending</h4>
+                                                            <h4 class="modal-title">Offer Pending</h4>
                                                             <button type="button" class="close" data-dismiss="modal">&times;</button>
                                                         </div>
 
                                                         <div class="modal-body">
                                                             <p>Your offer of <?=$row3['OFFER_AMOUNT']?> has been sent. </p>
-                                                            <h2>Problem description</h2>
+                                                            <hr>
+                                                            <h5>Problem description</h5>
                                                             <p><?= $row3['DESCRIPTION'] ?></p>
                                                         </div>
 
@@ -241,11 +242,15 @@ $row = oci_fetch_assoc($query);
                                             </div>
                                         </tr>
                                     <?php } ?>
-                                <?php } else if($row3['STATUS'] == 1) {?>
+                                <?php } else if($row3['STATUS'] == 1) {
+                                    $pro_phone_number = oci_parse($db, "select phone_number, area_code from accounts where aid = {$row3['USER_ID']}");
+                                    oci_execute($pro_phone_number);
+                                    $row4 = oci_fetch_assoc($pro_phone_number);
+                                    ?>
                                     <tr>
-                                        <td style="border-right: 1px solid darkblue;"><?php echo $num_of_sent;
+                                        <td style="border-right: 1px solid #7579e7;"><?php echo $num_of_sent;
                                             $num_of_sent++; ?></td>
-                                        <td><?= $row3['FNAME'] . ' ' . $row3['LNAME'] ?></td>
+                                        <td><a href="profile.php?id=<?=$row3['USER_ID']?>"><?= $row3['FNAME'] . ' ' . $row3['LNAME'] ?></a></td>
                                         <td><?= $row3['CATEGORY'] ?></td>
                                         <td><?= $row3['CNAME'] ?></td>
                                         <td><?= $row3['NUM_OF_HRS'] ?></td>
@@ -263,7 +268,9 @@ $row = oci_fetch_assoc($query);
 
                                                     <div class="modal-body">
                                                         <p>Your offer of <b><?=$row3['OFFER_AMOUNT']?></b>BAM to solve their problem has been <span class="text-success font-italic font-weight-bold">accepted</span>.</p>
-                                                        <p>Problem description:</p>
+                                                        <p>Contact the client on +<?=$row4['AREA_CODE']?> <?=$row4['PHONE_NUMBER']?></p>
+                                                        <hr>
+                                                        <h5>Problem description:</h5>
                                                         <p><?= $row3['DESCRIPTION'] ?></p>
                                                     </div>
 
@@ -277,9 +284,9 @@ $row = oci_fetch_assoc($query);
                                     </tr>
                                 <?php } else if($row3['STATUS'] == 2) { ?>
                                     <tr>
-                                        <td style="border-right: 1px solid darkblue;"><?php echo $num_of_sent;
+                                        <td style="border-right: 1px solid #7579e7;"><?php echo $num_of_sent;
                                             $num_of_sent++; ?></td>
-                                        <td><?= $row3['FNAME'] . ' ' . $row3['LNAME'] ?></td>
+                                        <td><a href="profile.php?id=<?=$row3['USER_ID']?>"><?= $row3['FNAME'] . ' ' . $row3['LNAME'] ?></a></td>
                                         <td><?= $row3['CATEGORY'] ?></td>
                                         <td><?= $row3['CNAME'] ?></td>
                                         <td><?= $row3['NUM_OF_HRS'] ?></td>
@@ -297,7 +304,8 @@ $row = oci_fetch_assoc($query);
 
                                                     <div class="modal-body">
                                                         <p>Your offer of <b><?=$row3['OFFER_AMOUNT']?></b>BAM to solve their problem has been <span class="text-danger font-italic font-weight-bold">rejected</span>.</p>
-                                                        <p>Problem description:</p>
+                                                        <hr>
+                                                        <h5>Problem description:</h5>
                                                         <p><?= $row3['DESCRIPTION'] ?></p>
                                                     </div>
 
@@ -320,7 +328,7 @@ $row = oci_fetch_assoc($query);
             <?php } ?>
 
 
-            <h2 id="sentRequests">Sent Requests</h2>
+            <h2 class="pt-5">Sent Requests</h2>
             <div class="shadow">
                 <?php
                 $query = oci_parse($db, "SELECT * FROM REQUESTS
@@ -341,7 +349,7 @@ $row = oci_fetch_assoc($query);
                         <th>Feedback</th>
                     </tr>
                     <?php
-                    $query = oci_parse($db, "SELECT OFFER_AMOUNT, CATEGORY, STATUS, DATETIME, R.DESCRIPTION, SERVICE, FNAME, LNAME, AREA_CODE, PHONE_NUMBER, CNAME, R.NUM_OF_HRS, R.CHARGE_PER_HOUR, R.RID 
+                    $query = oci_parse($db, "SELECT professional, OFFER_AMOUNT, CATEGORY, STATUS, DATETIME, R.DESCRIPTION, SERVICE, FNAME, LNAME, AREA_CODE, PHONE_NUMBER, CNAME, R.NUM_OF_HRS, R.CHARGE_PER_HOUR, R.RID 
                                                      FROM REQUESTS R
                                                      JOIN WORK_OFFERS ON WORK_OFFER = WID
                                                      JOIN SERVICES ON SERVICE = SID
@@ -351,6 +359,7 @@ $row = oci_fetch_assoc($query);
                                                      WHERE USER_ID={$_SESSION['user_id']}
                                                      ORDER BY STATUS");
                     oci_execute($query);
+
                     ?>
                     <?php while ($row = oci_fetch_assoc($query)) {
                         if ($row['STATUS'] == 0 && $row['OFFER_AMOUNT'] == -1) {
@@ -366,11 +375,11 @@ $row = oci_fetch_assoc($query);
                             $checkStatus = oci_fetch_assoc($queryN);
                             if (!$checkStatus) { ?>
                                 <tr>
-                                    <td style="border-right: 1px solid darkblue;"><?php echo $num_of_sent;
+                                    <td style="border-right: 1px solid #7579e7;"><?php echo $num_of_sent;
                                         $num_of_sent++; ?></td>
                                     <td><?= $row['CATEGORY'] ?></td>
                                     <td><?= $row['CNAME'] ?></td>
-                                    <td><?= $row['FNAME'] . ' ' . $row['LNAME'] ?></td>
+                                    <td><a href="profile.php?id=<?=$row['PROFESSIONAL']?>"><?= $row['FNAME'] . ' ' . $row['LNAME'] ?></a></td>
                                     <td> <?= $row['CHARGE_PER_HOUR'] * $row['NUM_OF_HRS'] . 'BAM' ?></td>
                                     <td><?= $row['DATETIME'] ?></td>
                                     <td><button type="button" class="btn btn-warning" data-toggle="modal" data-target="#sent-requests<?=$num_of_sent?>">Pending</button></td>
@@ -379,13 +388,14 @@ $row = oci_fetch_assoc($query);
                                             <div class="modal-content">
 
                                                 <div class="modal-header">
-                                                    <h4 class="modal-title">Problem description</h4>
+                                                    <h4 class="modal-title">Request pending</h4>
                                                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                                                 </div>
 
                                                 <div class="modal-body">
-                                                    <p>Professional will review your request as soon as possible and send you an offer</p>
-                                                    <p>Your problem description:</p>
+                                                    <p>Professional will review your request as soon as possible and send you an offer.</p>
+                                                    <hr>
+                                                    <h5>Your problem description:</h5>
                                                     <p><?= $row['DESCRIPTION'] ?></p>
                                                 </div>
 
@@ -412,11 +422,11 @@ $row = oci_fetch_assoc($query);
                             $checkStatus = oci_fetch_assoc($queryN);
                             if (!$checkStatus) { ?>
                                 <tr>
-                                    <td style="border-right: 1px solid darkblue;"><?php echo $num_of_sent;
+                                    <td style="border-right: 1px solid #7579e7;"><?php echo $num_of_sent;
                                         $num_of_sent++; ?></td>
                                     <td><?= $row['CATEGORY'] ?></td>
                                     <td><?= $row['CNAME'] ?></td>
-                                    <td><?= $row['FNAME'] . ' ' . $row['LNAME'] ?></td>
+                                    <td><a href="profile.php?id=<?=$row['PROFESSIONAL']?>"><?= $row['FNAME'] . ' ' . $row['LNAME'] ?></a></td>
                                     <td> <?= $row['CHARGE_PER_HOUR'] * $row['NUM_OF_HRS'] . 'BAM' ?></td>
                                     <td><?= $row['DATETIME'] ?></td>
                                     <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#sent-requests<?=$num_of_sent?>">New offer!</button></td>
@@ -432,7 +442,7 @@ $row = oci_fetch_assoc($query);
                                                 <div class="modal-body">
                                                     <p>The seller has offered <b><?= $row['OFFER_AMOUNT'] ?></b>BAM to solve your problem.</p>
                                                     <hr>
-                                                    <h6>Your problem description:</h6>
+                                                    <h5>Your problem description:</h5>
                                                     <p><?= $row['DESCRIPTION'] ?></p>
                                                 </div>
 
@@ -448,13 +458,18 @@ $row = oci_fetch_assoc($query);
                                     <td></td>
                             <?php }
                         }
-                        else if ($row['STATUS'] == 1): ?>
+                        else if ($row['STATUS'] == 1):
+                            $pro_phone_number = oci_parse($db, "select phone_number, area_code from accounts where aid = {$row['PROFESSIONAL']}");
+                            oci_execute($pro_phone_number);
+                            $row4 = oci_fetch_assoc($pro_phone_number);
+                            ?>
+
                             <tr>
-                                <td style="border-right: 1px solid darkblue;"><?php echo $num_of_sent;
+                                <td style="border-right: 1px solid #7579e7;"><?php echo $num_of_sent;
                                     $num_of_sent++; ?></td>
                                 <td><?= $row['CATEGORY'] ?></td>
                                 <td><?= $row['CNAME'] ?></td>
-                                <td><?= $row['FNAME'] . ' ' . $row['LNAME'] ?></td>
+                                <td><a href="profile.php?id=<?=$row['PROFESSIONAL']?>"><?= $row['FNAME'] . ' ' . $row['LNAME'] ?></a></td>
                                 <td> <?= $row['CHARGE_PER_HOUR'] * $row['NUM_OF_HRS'] . 'BAM' ?></td>
                                 <td><?= $row['DATETIME'] ?></td>
                                 <td><button type="button" class="btn btn-success" data-toggle="modal" data-target="#job-success<?=$num_of_sent?>">Accepted</button></td>
@@ -470,6 +485,7 @@ $row = oci_fetch_assoc($query);
                                             <div class="modal-body">
                                                 <h5>Congratulations!</h5>
                                                 <p>You have accepted the seller's offer of <b><?=$row['OFFER_AMOUNT']?></b>BAM to complete the job.</p>
+                                                <p>Contact the professional on +<?=$row4['AREA_CODE']?> <?=$row4['PHONE_NUMBER']?></p>
                                                 <hr>
                                                 <h5>Problem description:</h5>
                                                 <p><?= $row['DESCRIPTION'] ?></p>
@@ -532,11 +548,11 @@ $row = oci_fetch_assoc($query);
                             </tr>
                         <?php elseif ($row['STATUS'] == 2): ?>
                             <tr>
-                                <td style="border-right: 1px solid darkblue;"><?php echo $num_of_sent;
+                                <td style="border-right: 1px solid #7579e7;"><?php echo $num_of_sent;
                                     $num_of_sent++; ?></td>
                                 <td><?= $row['CATEGORY'] ?></td>
                                 <td><?= $row['CNAME'] ?></td>
-                                <td><?= $row['FNAME'] . ' ' . $row['LNAME'] ?></td>
+                                <td><a href="profile.php?id=<?=$row['PROFESSIONAL']?>"><?= $row['FNAME'] . ' ' . $row['LNAME'] ?></a></td>
                                 <td> <?= $row['CHARGE_PER_HOUR'] * $row['NUM_OF_HRS'] . 'BAM' ?></td>
                                 <td><?= $row['DATETIME'] ?></td>
                                 <td><button type="button" class="btn btn-danger" data-toggle="modal" data-target="#job-fail<?=$num_of_sent?>">Rejected</button></td>
@@ -551,7 +567,8 @@ $row = oci_fetch_assoc($query);
 
                                             <div class="modal-body">
                                                 <p>The job has been canceled.</p>
-                                                <h6>Your problem description:</h6>
+                                                <hr>
+                                                <h5>Your problem description:</h5>
                                                 <p><?= $row['DESCRIPTION'] ?></p>
                                             </div>
 
@@ -569,7 +586,7 @@ $row = oci_fetch_assoc($query);
                 </table>
             </div>
         <?php else: ?>
-            <p style="padding: 1rem;">You have no sent requests.</p>
+            <p style="padding: 1rem;">You have no sent offers.</p>
         <?php endif; ?>
     </main>
     <?php include('includes/footer.php'); ?>

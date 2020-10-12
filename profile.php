@@ -107,7 +107,7 @@ if ($_POST && isset($_GET['id'])) {
         }
         a:hover {
             text-decoration: none;
-            color: black;
+            color: #343a40;
         }
 
         .cat {
@@ -124,6 +124,9 @@ if ($_POST && isset($_GET['id'])) {
 
         h3 {
             font-size: 1.5em !important;
+        }
+        h4 {
+            font-size: 16px !important;
         }
         input, textarea, select {
             margin-bottom: 2rem;
@@ -150,8 +153,8 @@ if ($_POST && isset($_GET['id'])) {
             <div class="user flex-container">
                 <img src="<?= fetch_profile_image($row['AID'], $row['IMG_TYPE']); ?>" alt="default-user-image">
                 <div>
-                    <h2 id="username"><?= $row['FNAME'] . ' ' . $row['LNAME'] ?></h2>
-                    <p><?= $row['PRIMARY_CITY'] ?>, Bosnia and Herzegovina</p>
+                    <h2 id="username" style="color: #f4f4f4;"><?= $row['FNAME'] . ' ' . $row['LNAME'] ?></h2>
+                    <p style="color: #f4f4f4;"><?= $row['PRIMARY_CITY'] ?>, Bosnia and Herzegovina</p>
                     <?php if ($row['ROLE'] == 1) {
                         $sql = oci_parse($db, "SELECT R.JOB_RATING
                                                        FROM REQUESTS R, WORK_OFFERS W
@@ -173,7 +176,7 @@ if ($_POST && isset($_GET['id'])) {
                         }
                         $empty_stars = 5;
                         ?>
-                        <br><span>Service Rating: <span><?php echo number_format((float)$rating, 2, '.', ''); ?><br></span></span>
+                        <br><span style="color: #f4f4f4;">Service Rating: <span style="color: #f4f4f4;"><?php echo number_format((float)$rating, 2, '.', ''); ?><br></span></span>
                         <?php while ($rating >= 1) :
                             $rating--;
                             $empty_stars--; ?>
@@ -185,7 +188,7 @@ if ($_POST && isset($_GET['id'])) {
                         <?php endif;
                         while ($empty_stars >= 1) :
                             $empty_stars--; ?>
-                            <span><i class="fa fa-star-o"></i></span>
+                            <span><i class="fa fa-star-o" style="color: #f4f4f4;"></i></span>
                         <?php endwhile; ?>
                         <span style="color:#C0C0C0;">(<?php echo $num_of_rates; ?> reviews)</span>
                     <?php } ?>
@@ -203,8 +206,9 @@ if ($_POST && isset($_GET['id'])) {
                     </div>
                 </div>
                 <?php if ($row['ROLE'] == 1): ?>
+                <hr>
                 <div class="row pb-4">
-                    <div class="col-md-6">
+                    <div class="col-md-3">
                         <h3>Areas Served:</h3>
                         <ul class="cat">
                             <?php
@@ -220,7 +224,7 @@ if ($_POST && isset($_GET['id'])) {
                             <?php endwhile; ?>
                         </ul>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-9">
                         <h3>Categories:</h3>
                         <ul class="cat">
                             <?php
@@ -237,6 +241,7 @@ if ($_POST && isset($_GET['id'])) {
                         </ul>
                     </div>
                 </div>
+                <hr>
                 <div class="row pb-4">
                     <div class="col-md-6">
                         <h3>Contact:</h3>
