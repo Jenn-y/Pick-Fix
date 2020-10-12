@@ -59,6 +59,10 @@ if ($_POST) {
                 $amount = 125.64;
                 $num_of_months = 36;
             }
+            else if ($_GET['plan'] == 4) {
+                $amount = 0;
+                $num_of_months = -1;
+            }
 
             $query3 = "INSERT INTO fee_payments (card_number, exp_month, exp_year, cvv, payment_plan, professional, date_paid, amount, payment_expiration)
                 VALUES ({$_POST['card_num']}, {$_POST['month']}, {$_POST['year']}, {$_POST['cvv']}, {$_GET['plan']}, {$row['AID']}, SYSDATE, {$amount}, ADD_MONTHS(SYSDATE, {$num_of_months}))";

@@ -88,7 +88,7 @@ if (session_status() == PHP_SESSION_NONE) {
                         details to
                         let the professional know your requirements.</p>
                 </div>
-                <img src="images/describe-problem.png" alt="first-step-find-professional">
+                <img src="images/request-form.png" alt="Request form">
             </div>
             <div class="step-description center">
                 <h2>3</h2>
@@ -115,7 +115,7 @@ if (session_status() == PHP_SESSION_NONE) {
             </div>
             <h2>Are You a Home Improvement or Service Pro?</h2>
             <p>Find out how Pick&Fix can help your business</p>
-            <a href="pricing">Learn More <i class="fa fa-angle-right" aria-hidden="true"></i></a>
+            <a href="membership">Learn More <i class="fa fa-angle-right" aria-hidden="true"></i></a>
         </section>
 
         <section class="our-story" id="story">
@@ -123,8 +123,8 @@ if (session_status() == PHP_SESSION_NONE) {
                 <h1>Our story</h1> <br>
                 <h4>Great companies are born from dreams and strength of will.</h4><br>
                 <p>The story begins with a date: March 15th, 2018, with a place: Sarajevo, and with 3 names: Armin
-                    Salihovic,
-                    Dzenita Djulovic, and Hana Lihovac. For years people struggled with finding a right professional for
+                    Salihovic, and
+                    Dzenita Djulovic. For years people struggled with finding a right professional for
                     the
                     job that needs to be done. They were losing time, patience, and money. Not anymore, as we have
                     developed a web
@@ -143,13 +143,12 @@ if (session_status() == PHP_SESSION_NONE) {
         <section class="team-section">
             <div id="team-overview">
                 <p>CLICK TO GET TO KNOW US <i class="fa fa-angle-double-down" aria-hidden="true"></i></p>
-                <img class="show-member" src="images/teamMember.png" alt="Image" data-member="1">
-                <img class="show-member" src="images/armin.png" alt="Image" data-member="2">
-                <img class="show-member" src="images/hana.png" alt="Image" data-member="3">
+                <img class="show-member" src="images/teamMember.png" alt="Dzenita Djulovic" data-member="1">
+                <img class="show-member" src="images/armin.png" alt="Armin Salihovic" data-member="2">
             </div>
 
             <div id="member1" class="team-member center active">
-                <img id="small" src="images/teamMember.png" alt="Image">
+                <img id="small" src="images/teamMember.png" alt="Dzenita Djulovic">
                 <div>
                     <h2> Jenn </h2>
                     <p> Ambitious and hard-working young engineer coming from Zivinice
@@ -167,7 +166,7 @@ if (session_status() == PHP_SESSION_NONE) {
             </div>
 
             <div id="member2" class="team-member center">
-                <img id="small" src="images/armin.png" alt="Image">
+                <img id="small" src="images/armin.png" alt="Armin Salihovic">
                 <div>
                     <h2> Armin </h2>
                     <p>Easygoing second year student at SSST University studying Computer Science. Passionate about
@@ -175,17 +174,6 @@ if (session_status() == PHP_SESSION_NONE) {
                 </div>
             </div>
 
-            <div id="member3" class="team-member center">
-                <img id="small" src="images/hana.png" alt="Image">
-                <div>
-                    <h2> Hana </h2>
-                    <p>Dedicated Computer Science student pursuing a diploma degree at SSST.
-                        Having a great interest in mathematics and computer science developing skills
-                        into data science professionals, particularly in the fields of machine learning
-                        and artificial intelligence.
-                    </p>
-                </div>
-            </div>
         </section>
 
         <section class="vetted-professionals flex-container center" id="contact">

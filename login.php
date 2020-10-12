@@ -26,21 +26,34 @@ if ($_POST) {
                 header('Location: admin/admin.php');
                 exit();
             } else if ($_SESSION['role'] == 1) {
+                $query2 = oci_parse($db, "select payment_plan from fee_payments
+                                                  join (select max(fid) latest_fee_payment
+                                                        from ACCOUNTS A, FEE_PAYMENTS F
+                                                        where F.PROFESSIONAL = A.AID
+                                                        and A.AID = {$row['AID']})
+                                                        on latest_fee_payment = fid");
+                oci_execute($query2);
+                $membership = oci_fetch_assoc($query2);
 
-                $sql = oci_parse($db, "select MAX(F.PAYMENT_EXPIRATION)
+                if($membership['PAYMENT_PLAN'] == 4) {
+                    header('Location: findProfessionals');
+                    exit();
+                }
+                else {
+                    $sql = oci_parse($db, "select MAX(F.PAYMENT_EXPIRATION)
                                           from ACCOUNTS A, FEE_PAYMENTS F
                                           where F.PROFESSIONAL = A.AID
                                           and A.AID = {$row['AID']}");
-                oci_execute($sql);
+                    oci_execute($sql);
+                    $expiration_date = oci_fetch_assoc($sql);
 
-                $expiration_date = oci_fetch_assoc($sql);
-
-                if (strtotime(date("Y/m/d")) >= strtotime($expiration_date["MAX(F.PAYMENT_EXPIRATION)"])) {
-                    header('Location: pricing');
-                    exit();
-                } else {
-                    header('Location: findProfessionals');
-                    exit();
+                    if (strtotime(date("Y/m/d")) >= strtotime($expiration_date["MAX(F.PAYMENT_EXPIRATION)"])) {
+                        header('Location: pricing');
+                        exit();
+                    } else {
+                        header('Location: findProfessionals');
+                        exit();
+                    }
                 }
             } else {
                 header('Location: findProfessionals');

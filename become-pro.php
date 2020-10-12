@@ -48,6 +48,9 @@ if ($_POST && $_GET['plan']) {
         } else if ($_GET['plan'] == 3) {
             $amount = 125.64;
             $num_of_months = 36;
+        } else if ($_GET['plan'] == 4) {
+            $amount = 0;
+            $num_of_months = -1;
         }
 
 
