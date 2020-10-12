@@ -1,9 +1,9 @@
 <footer>
     <div class="inner-footer center">
         <section class="social-media flex-container">
-            <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
-            <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
-            <a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+            <a href="#"><i class="fa fa-facebook" aria-hidden="true" style="color: #d3d3d3;"></i></a>
+            <a href="#"><i class="fa fa-twitter" aria-hidden="true" style="color: #d3d3d3;"></i></a>
+            <a href="#"><i class="fa fa-instagram" aria-hidden="true" style="color: #d3d3d3;"></i></a>
         </section>
         <div class="line"></div>
         <section class="contact flex-container">

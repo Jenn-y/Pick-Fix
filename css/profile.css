@@ -1,6 +1,7 @@
 * {
     margin: 0;
     padding: 0;
+    color: #343a40;
 }
 
 body {
@@ -68,16 +69,13 @@ main {
 
 /* Professional user requests*/
 
-main #sentRequests {
-    margin-top: 2rem;
-}
-
 table, th, td { border-collapse: collapse; }
 table { width: 100%; }
 
 th {
-    background-color: darkblue;
-    color: white;
+    background-color: #7579e7;
+    color: #f4f4f4;
+    font-weight: bolder;
 }
 
 th, td {
@@ -89,35 +87,19 @@ td {
     text-align: center;
 }
 
-table tr:nth-child(odd) { background-color: dodgerblue; }
-table tr:nth-child(even) { background-color: lightblue; }
+table tr:nth-child(odd) { background-color: #a3d8f4; }
+table tr:nth-child(even) { background-color: #9ab3f5; }
 
 main h2 {
-    color: #333333;
+    /*color: #333333;*/
+    font-size: 24px;
     margin-bottom: 1rem;
 }
 
 td a {
-    display: inline-block;
-    min-width: 20%;
-    text-decoration: none;
-    padding: 10px 15px;
-    border-radius: 5px;
-    color: white;
+    color: #343a40;
+    text-decoration: underline;
 }
-
-td a:nth-child(odd) {
-    background-color: #4dbc15;
-    margin-right: 0.5rem;
-}
-
-td a:nth-child(even) {
-    background-color: #ca3433;
-    margin-left: 0.5rem;
-}
-
-td a:nth-child(even):hover { background-color: #b22222; }
-td a:nth-child(odd):hover { background-color: #44a512; }
 
 /***** Area categories *****/
 .areas_categories div {
