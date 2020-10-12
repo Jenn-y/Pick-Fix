@@ -200,6 +200,20 @@ if (isset($_SESSION['user_id'])) {
                 </div>
             <?php endif; ?>
             <?php if ($row['ROLE'] == 1): ?>
+            <?php
+                $membership_q = oci_parse($db, "select payment_plan from fee_payments
+                                                  join (select max(fid) latest_fee_payment
+                                                        from ACCOUNTS A, FEE_PAYMENTS F
+                                                        where F.PROFESSIONAL = A.AID
+                                                        and A.AID = {$aid})
+                                                        on latest_fee_payment = fid");
+                oci_execute($membership_q);
+                $membership = oci_fetch_assoc($membership_q);
+
+                if($membership['PAYMENT_PLAN'] == 4): ?>
+                    <h4 style="color: #d42626; font-weight: unset; font-style: italic; ">Membership: Free</h4>
+                    <h5>Get premium <a href="pricing.php">here!</a></h5>
+                <?php else: ?>
                 <div>
                     <?php
                     $sql = oci_parse($db, "select MAX(F.PAYMENT_EXPIRATION)
@@ -209,11 +223,10 @@ if (isset($_SESSION['user_id'])) {
                     oci_execute($sql);
 
                     $exp_row = oci_fetch_assoc($sql);
-
                     ?>
-                    <h4 style="color: #d42626; font-weight: unset; font-style: italic; ">Payment expires
-                        on: <?php echo $exp_row['MAX(F.PAYMENT_EXPIRATION)']; ?></h4>
+                    <h4 style="color: #d42626; font-weight: unset; font-style: italic; ">Membership: Premium - Payment expires on: <?php echo $exp_row['MAX(F.PAYMENT_EXPIRATION)']; ?></h4>
                 </div>
+                <?php endif; ?>
             <?php endif; ?>
             <form method="post" enctype="multipart/form-data">
                 <div id="profilePhoto">
