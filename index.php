@@ -115,7 +115,7 @@ if (session_status() == PHP_SESSION_NONE) {
             </div>
             <h2>Are You a Home Improvement or Service Pro?</h2>
             <p>Find out how Pick&Fix can help your business</p>
-            <a href="pricing">Learn More <i class="fa fa-angle-right" aria-hidden="true"></i></a>
+            <a href="membership">Learn More <i class="fa fa-angle-right" aria-hidden="true"></i></a>
         </section>
 
         <section class="our-story" id="story">
