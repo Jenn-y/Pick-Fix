@@ -8,7 +8,12 @@ include_once('includes/db.php');
 if (isset($_POST['membership'])) {
     $membership = $_POST['membership'];
     if($membership == 0) {
-        header("Location: professionalsRegistration.php?plan=4");
+        if($_SESSION['role'] == 2) {
+            header("Location: become-pro.php?plan=4");
+        }
+        else {
+            header("Location: professionalsRegistration.php?plan=4");
+        }
     }
     else {
         header("Location: pricing");

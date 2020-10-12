@@ -63,14 +63,14 @@ if (isset($_SESSION['user_id'])) {
             <a href="login">Find a Professional</a>
             <a href="login">Login</a>
             <a href="register">Register</a>
-            <a href="pricing">Join As a Pro</a>
+            <a href="membership">Join As a Pro</a>
             <a href="index.php#contact" onclick="closeMenu()">Contact Us</a>
         </div>
 
         <nav id="login">
             <ul>
                 <li style="margin-right: 2rem;"><a href="login"><i class="fa fa-sign-in"></i> Log In</a></li>
-                <li><a href="pricing"><i class="fa fa-star" aria-hidden="true"></i> Join as a Pro</a></li>
+                <li><a href="membership"><i class="fa fa-star" aria-hidden="true"></i> Join as a Pro</a></li>
             </ul>
         </nav>
     </div>
@@ -103,7 +103,7 @@ if (isset($_SESSION['user_id'])) {
             <a href="requests" onclick="closeMenu()">My Requests</a>
             <a href="findProfessionals">Find a Professional</a>
             <?php if ($header_row['ROLE'] == 2): ?>
-                <a href="pricing">Become a Professional</a>
+                <a href="membership">Become a Professional</a>
             <?php endif; ?>
             <a href="includes/logout.php">Log out</a>
         </div>
@@ -113,7 +113,7 @@ if (isset($_SESSION['user_id'])) {
             <a href="index.php">Home</a>
             <a href="findProfessionals">Find a Professional</a>
             <?php if ($header_row['ROLE'] == 2): ?>
-                <a href="pricing">Become a Professional</a>
+                <a href="membership">Become a Professional</a>
             <?php endif; ?>
             <a href="profile">My Profile</a>
             <a href="includes/logout.php">Log out</a>
