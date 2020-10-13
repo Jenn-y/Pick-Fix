@@ -499,6 +499,9 @@ select {
 }
 
 @media (max-width: 800px) {
+    #logo h1 {
+        padding-left: 0;
+    }
     .user-steps {
         width: unset;
         margin: unset;

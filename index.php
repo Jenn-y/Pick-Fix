@@ -122,9 +122,9 @@ if (session_status() == PHP_SESSION_NONE) {
             <div>
                 <h1>Our story</h1> <br>
                 <h4>Great companies are born from dreams and strength of will.</h4><br>
-                <p>The story begins with a date: March 15th, 2018, with a place: Sarajevo, and with 3 names: Armin
-                    Salihovic, and
-                    Dzenita Djulovic. For years people struggled with finding a right professional for
+                <p>The story begins with a date: March 15th, 2018, with a place: Sarajevo, and with 2 names: Armin
+                    Salihović, and
+                    Dženita Đulović. For years people struggled with finding a right professional for
                     the
                     job that needs to be done. They were losing time, patience, and money. Not anymore, as we have
                     developed a web
