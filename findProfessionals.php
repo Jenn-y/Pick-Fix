@@ -101,6 +101,7 @@ if (isset($_SESSION['user_id'])) {
             border: 3px solid #FFD700;
             border-radius: 10px;
             position: relative;
+            max-width: calc(25% - 1rem - 6px);
         }
         .trust {
             position: absolute;
@@ -110,6 +111,12 @@ if (isset($_SESSION['user_id'])) {
             background: #343a40;
             color: #FFD700;
             border-radius: 5px;
+        }
+
+        @media (max-width: 600px): {
+            .gold {
+                max-width: calc(50% - 0.5rem - 6px);
+            }
         }
     </style>
 </head>
