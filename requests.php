@@ -227,7 +227,7 @@ $row = oci_fetch_assoc($query);
                                                         </div>
 
                                                         <div class="modal-body">
-                                                            <p>Your offer of <?=$row3['OFFER_AMOUNT']?> has been sent. </p>
+                                                            <p>Your offer of <b><?=$row3['OFFER_AMOUNT']?></b>BAM has been sent. </p>
                                                             <hr>
                                                             <h5>Problem description</h5>
                                                             <p><?= $row3['DESCRIPTION'] ?></p>
