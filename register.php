@@ -40,7 +40,7 @@ if ($_POST) {
 <head>
     <?php include('includes/head.php'); ?>
     <link rel="stylesheet" href="css/register.css">
-    <title>Register</title>
+    <title>Register | Pick & Fix</title>
 </head>
 <body>
 <main class="flex-container">

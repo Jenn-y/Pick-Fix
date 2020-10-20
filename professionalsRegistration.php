@@ -87,7 +87,7 @@ if ($_POST) {
     <?php include('includes/head.php'); ?>
     <link rel="stylesheet" href="css/professionalsRegistration.css">
     <link rel="stylesheet" href="css/footer.css">
-    <title>Join as a Pro</title>
+    <title>Join as a Pro | Pick & Fix</title>
 </head>
 <body>
 <div id="page-container">

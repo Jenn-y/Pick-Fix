@@ -91,7 +91,7 @@ if (isset($_SESSION['user_id'])) {
     <link rel="stylesheet" href="css/footer.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
-    <title>Find Professionals</title>
+    <title>Find Professionals | Pick & Fix</title>
 
     <style>
         .gold-img {

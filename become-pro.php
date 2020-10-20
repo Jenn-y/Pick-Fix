@@ -84,7 +84,7 @@ if ($_POST && $_GET['plan']) {
     <link href="css/professionalsRegistration.css" rel="stylesheet">
     <link href="css/footer.css" rel="stylesheet">
 
-    <title>Become a Pro</title>
+    <title>Become a Pro | Pick & Fix</title>
 </head>
 <body id="become-pro">
 <div id="page-container">

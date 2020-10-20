@@ -73,7 +73,7 @@ if ($_POST) {
 <head>
     <?php include('includes/head.php'); ?>
     <link rel="stylesheet" href="css/login.css">
-    <title>Log in</title>
+    <title>Log in | Pick & Fix</title>
 </head>
 <body>
 <main class="flex-container">

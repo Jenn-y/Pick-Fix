@@ -170,7 +170,7 @@ if (isset($_SESSION['user_id'])) {
     <link rel="stylesheet" href="css/editProfile.css">
     <link href="css/header.css" rel="stylesheet">
     <link rel="stylesheet" href="css/footer.css">
-    <title>Edit Profile</title>
+    <title>Edit Profile | Pick & Fix</title>
 </head>
 <body id="edit_profile">
 

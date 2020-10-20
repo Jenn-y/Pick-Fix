@@ -96,7 +96,7 @@ if (isset($_SESSION['user_id'])) {
     <link rel="stylesheet" href="css/editProfile.css">
     <link href="css/header.css" rel="stylesheet">
     <link rel="stylesheet" href="css/footer.css">
-    <title>Edit Service Categories</title>
+    <title>Edit Service Categories | Pick & Fix</title>
     <script type="text/javascript">
         <!--
         if (screen.width <= 800) {
