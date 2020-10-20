@@ -12,7 +12,7 @@ if (session_status() == PHP_SESSION_NONE) {
     <link href="css/index.css" rel="stylesheet">
     <link rel="stylesheet" href="css/footer.css">
 
-    <title>Pick&Fix</title>
+    <title>Pick & Fix: The easy, reliable way to take care of your home.</title>
 
     <script type="text/javascript">
         document.addEventListener("DOMContentLoaded", function () { // wait until DOM is ready

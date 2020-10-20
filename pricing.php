@@ -43,6 +43,7 @@ if (isset($_POST['plan'])) {
     <link href="css/header.css" rel="stylesheet">
     <link rel="stylesheet" href="css/footer.css">
     <link rel="stylesheet" href="css/pricing.css">
+    <title>Pricing | Pick & Fix</title>
 </head>
 <body>
 

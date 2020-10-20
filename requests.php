@@ -37,7 +37,7 @@ $row = oci_fetch_assoc($query);
 <!--        }-->
 <!--      -->
 <!--    </script>-->
-    <title>Requests</title>
+    <title>Requests | Pick & Fix</title>
 
     <style>
         h1 {
@@ -322,7 +322,7 @@ $row = oci_fetch_assoc($query);
                         </table>
                     <?php }
                     if ($num_of_sent == 1) { ?>
-                        <p style="padding: 1rem; ">You have no new requests.</p>
+                        <p style="padding: 1rem; ">You haven't sent any offers yet.</p>
                     <?php } ?>
                 </div>
             <?php } ?>
@@ -586,7 +586,7 @@ $row = oci_fetch_assoc($query);
                 </table>
             </div>
         <?php else: ?>
-            <p style="padding: 1rem;">You have no sent offers.</p>
+            <p style="padding: 1rem;">You haven't sent any requests.</p>
         <?php endif; ?>
     </main>
     <?php include('includes/footer.php'); ?>

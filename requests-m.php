@@ -50,7 +50,7 @@ if (isset($_POST['rating']) && isset($_POST['rid'])) {
         }
         //-->
     </script>
-    <title>Requests</title>
+    <title>Requests | Pick & Fix</title>
 </head>
 <body id="requests">
 <div id="page-container">
