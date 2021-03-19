@@ -25,6 +25,5 @@ the Jetbrain’s Phpstorm IDE connected to an autonomous database on Oracle Clou
 deployed on an Ubuntu virtual instance via NginX. For enhancing user experience, Javascript
 and JQuery are used.
 
-Pick&Fix is available at:
-http://pick-fix.jenny.systems/ or
-http://pickfix.armin.wtf/ :mag:
+Pick&Fix Demo Video is available at:
+https://www.youtube.com/watch?v=ObbGoPRTwCk :mag:
